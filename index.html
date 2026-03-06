@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Burn Rate Calculator | Track Meeting Costs in Real-Time</title>
+    <meta name="description" content="Stop wasting company money. Use our free Meeting Burn Rate Calculator to track the real-time financial cost of your meetings, Agile sprint planning, and daily standups.">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Meeting Burn Rate Calculator",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "WebBrowser",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg: #0B0F19; --panel: #1A2235; --text-main: #FFFFFF;
+            --text-muted: #8B949E; --accent-red: #FF3366;
+            --accent-green: #00E676; --accent-blue: #3B82F6; --border: #2D3748;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; line-height: 1.6; }
+        body { background-color: var(--bg); color: var(--text-main); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 40px 20px; }
+
+        .calculator-container { background: var(--panel); padding: 40px; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); max-width: 500px; width: 100%; border: 1px solid var(--border); margin-bottom: 40px; }
+        h1 { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 5px; letter-spacing: -0.5px; }
+        .subtitle { color: var(--text-muted); text-align: center; font-size: 15px; margin-bottom: 30px; }
+
+        /* Currency Toggle */
+        .currency-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+        .currency-btn { background: var(--border); color: var(--text-muted); border: 1px solid var(--border); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; transition: 0.2s; }
+        .currency-btn.active { background: var(--accent-blue); color: white; border-color: var(--accent-blue); }
+
+        .input-group { margin-bottom: 25px; }
+        .label-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        label { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .value-display { font-size: 14px; font-weight: 700; color: var(--accent-green); }
+
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: var(--accent-green); cursor: pointer; margin-top: -8px; box-shadow: 0 0 10px rgba(0, 230, 118, 0.4); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: var(--border); border-radius: 2px; }
+
+        .display-board { background: #000; padding: 30px 20px; border-radius: 12px; text-align: center; margin: 35px 0; border: 1px solid var(--border); }
+        .cost-display { font-size: 64px; font-weight: 800; color: var(--text-main); font-variant-numeric: tabular-nums; letter-spacing: -2px; line-height: 1; }
+        .burn-rate { font-size: 13px; color: var(--text-muted); margin-top: 10px; font-family: monospace; }
+
+        @keyframes pulse-glow {
+            0% { text-shadow: 0 0 10px rgba(255, 51, 102, 0.2); transform: scale(1); }
+            50% { text-shadow: 0 0 30px rgba(255, 51, 102, 0.8); transform: scale(1.02); }
+            100% { text-shadow: 0 0 10px rgba(255, 51, 102, 0.2); transform: scale(1); }
+        }
+        .running .cost-display { color: var(--accent-red); animation: pulse-glow 1s infinite; }
+
+        .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        button.action-btn { padding: 16px; border: none; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
+        .btn-main { background: var(--accent-green); color: #000; grid-column: span 2; }
+        .btn-secondary { background: var(--border); color: var(--text-main); }
+        .hidden { display: none !important; }
+
+        .content-container { max-width: 700px; width: 100%; margin: 0 auto; color: #D1D5DB; }
+        .monetization-banner { background: rgba(59, 130, 246, 0.1); border: 1px solid var(--accent-blue); padding: 25px; border-radius: 12px; margin-bottom: 40px; text-align: center; }
+        .affiliate-btn { display: inline-block; background: var(--accent-blue); color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; margin-top: 15px; }
+        .seo-content h2 { color: var(--text-main); font-size: 24px; margin: 30px 0 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .seo-content p { margin-bottom: 15px; font-size: 16px; color: #9CA3AF; }
+        footer { margin-top: 60px; text-align: center; border-top: 1px solid var(--border); padding: 20px; font-size: 13px; color: var(--text-muted); width: 100%; }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h1>Meeting Burn Rate</h1>
+        <p class="subtitle">Watch company money vanish in real-time.</p>
+
+        <div class="currency-toggle">
+            <button class="currency-btn active" onclick="setCurrency('USD', '$', 30000, 250000, 95000)">USD ($)</button>
+            <button class="currency-btn" onclick="setCurrency('INR', '₹', 500000, 8000000, 1500000)">INR (₹)</button>
+            <button class="currency-btn" onclick="setCurrency('EUR', '€', 30000, 200000, 85000)">EUR (€)</button>
+        </div>
+
+        <div class="input-group">
+            <div class="label-row"><label>People in Room</label><span class="value-display" id="attendeeVal">8</span></div>
+            <input type="range" id="attendees" min="2" max="50" value="8">
+        </div>
+
+        <div class="input-group">
+            <div class="label-row"><label id="salaryLabel">Avg Annual Salary</label><span class="value-display" id="salaryVal">$95,000</span></div>
+            <input type="range" id="salary" min="30000" max="250000" step="5000" value="95000">
+        </div>
+
+        <div class="display-board" id="displayBoard">
+            <div class="cost-display" id="costDisplay">$0.00</div>
+            <div class="burn-rate" id="burnRateDisplay">Burning $0.00 / sec</div>
+        </div>
+
+        <div class="controls">
+            <button class="action-btn btn-main" id="startBtn" onclick="startTimer()">Start Burning Money</button>
+            <button class="action-btn btn-secondary hidden" id="pauseBtn" onclick="pauseTimer()">Pause</button>
+            <button class="action-btn btn-secondary hidden" id="resetBtn" onclick="resetTimer()">Reset</button>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <div class="monetization-banner">
+            <h3>Is this meeting too expensive?</h3>
+            <p>Replace expensive syncs with asynchronous video messaging. Save your team thousands per week.</p>
+            <a href="#" class="affiliate-btn">Try Loom for Free</a> 
+        </div>
+        <div class="seo-content">
+            <h2>The True Cost of Corporate Meetings</h2>
+            <p>Time is money. Our free <strong>Meeting Burn Rate Calculator</strong> helps managers and Scrum Masters visualize exactly how much capital is being drained during lengthy internal calls.</p>
+            <p>Whether it is an Agile sprint planning session or a QA sync, seeing the cost tick up in real-time is the fastest way to enforce efficiency.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Meeting Burn Rate Calculator | meetingburn.in</p>
+    </footer>
+
+    <script>
+        let timerInterval; let totalSeconds = 0; let isRunning = false;
+        let costPerSecond = 0; let symbol = '$';
+        const attendeesSlider = document.getElementById('attendees');
+        const salarySlider = document.getElementById('salary');
+        const displayBoard = document.getElementById('displayBoard');
+
+        function setCurrency(cur, sym, min, max, val) {
+            symbol = sym;
+            document.querySelectorAll('.currency-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            salarySlider.min = min;
+            salarySlider.max = max;
+            salarySlider.value = val;
+            salarySlider.step = (cur === 'INR') ? 50000 : 5000;
+            
+            resetTimer();
+            calculateRates();
+        }
+
+        function calculateRates() {
+            const attendees = parseFloat(attendeesSlider.value);
+            const salary = parseFloat(salarySlider.value);
+            document.getElementById('attendeeVal').innerText = attendees;
+            document.getElementById('salaryVal').innerText = symbol + salary.toLocaleString();
+            costPerSecond = ((salary / 2080) / 3600) * attendees;
+            document.getElementById('burnRateDisplay').innerText = `Burning ${symbol}${costPerSecond.toFixed(4)} / sec`;
+            if(!isRunning && totalSeconds === 0) document.getElementById('costDisplay').innerText = symbol + '0.00';
+        }
+
+        function updateDisplay() {
+            document.getElementById('costDisplay').innerText = symbol + (costPerSecond * totalSeconds).toFixed(2);
+        }
+
+        function startTimer() {
+            if (isRunning) return; isRunning = true;
+            displayBoard.classList.add('running');
+            document.getElementById('startBtn').classList.add('hidden');
+            document.getElementById('pauseBtn').classList.remove('hidden');
+            document.getElementById('resetBtn').classList.remove('hidden');
+            timerInterval = setInterval(() => { totalSeconds++; updateDisplay(); }, 1000);
+        }
+
+        function pauseTimer() {
+            isRunning = false; clearInterval(timerInterval);
+            displayBoard.classList.remove('running');
+            document.getElementById('pauseBtn').classList.add('hidden');
+            document.getElementById('startBtn').classList.remove('hidden');
+            document.getElementById('startBtn').innerText = "Resume";
+        }
+
+        function resetTimer() {
+            isRunning = false; clearInterval(timerInterval); totalSeconds = 0;
+            displayBoard.classList.remove('running');
+            document.getElementById('startBtn').classList.remove('hidden');
+            document.getElementById('startBtn').innerText = "Start Burning Money";
+            document.getElementById('pauseBtn').classList.add('hidden');
+            document.getElementById('resetBtn').classList.add('hidden');
+            updateDisplay();
+        }
+
+        attendeesSlider.addEventListener('input', calculateRates);
+        salarySlider.addEventListener('input', calculateRates);
+        calculateRates();
+    </script>
+</body>
+</html>
