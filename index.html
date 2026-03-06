@@ -133,14 +133,14 @@
         <div class="input-group">
             <div class="label-row">
                 <label>Avg Annual Salary</label>
-                <span class="value-display" id="salaryVal">$95,000</span>
+                <span class="value-display" id="salaryVal">₹95,000</span>
             </div>
             <input type="range" id="salary" min="30000" max="250000" step="5000" value="95000">
         </div>
 
         <div class="display-board" id="displayBoard">
-            <div class="cost-display" id="costDisplay">$0.00</div>
-            <div class="burn-rate" id="burnRateDisplay">Burning $0.00 / sec</div>
+            <div class="cost-display" id="costDisplay">₹0.00</div>
+            <div class="burn-rate" id="burnRateDisplay">Burning ₹0.00 / sec</div>
         </div>
 
         <div class="controls">
@@ -172,7 +172,7 @@
             
             <div class="faq-box">
                 <h4>Why should I track meeting costs?</h4>
-                <p>Tracking meeting costs provides a visual, tangible metric for time management. When a team realizes a single daily standup costs the company $400 a week, they are more likely to stay on topic, reduce attendee lists, and move minor updates to text-based channels.</p>
+                <p>Tracking meeting costs provides a visual, tangible metric for time management. When a team realizes a single daily standup costs the company ₹400 a week, they are more likely to stay on topic, reduce attendee lists, and move minor updates to text-based channels.</p>
             </div>
 
             <div class="faq-box">
@@ -197,14 +197,14 @@
         
         function calculateRates() {
             const attendees = parseFloat(attendeesSlider.value); const salary = parseFloat(salarySlider.value);
-            document.getElementById('attendeeVal').innerText = attendees; document.getElementById('salaryVal').innerText = '$' + salary.toLocaleString();
+            document.getElementById('attendeeVal').innerText = attendees; document.getElementById('salaryVal').innerText = '₹' + salary.toLocaleString();
             const hourlyRate = salary / 2080; costPerSecond = (hourlyRate / 3600) * attendees;
-            document.getElementById('burnRateDisplay').innerText = `Burning $${costPerSecond.toFixed(4)} / sec`;
-            if(!isRunning && totalSeconds === 0) { document.getElementById('costDisplay').innerText = '$0.00'; }
+            document.getElementById('burnRateDisplay').innerText = `Burning ₹₹{costPerSecond.toFixed(4)} / sec`;
+            if(!isRunning && totalSeconds === 0) { document.getElementById('costDisplay').innerText = '₹0.00'; }
         }
 
         function updateDisplay() {
-            const currentCost = costPerSecond * totalSeconds; document.getElementById('costDisplay').innerText = '$' + currentCost.toFixed(2);
+            const currentCost = costPerSecond * totalSeconds; document.getElementById('costDisplay').innerText = '₹' + currentCost.toFixed(2);
         }
 
         function startTimer() {
@@ -229,4 +229,5 @@
         calculateRates();
     </script>
 </body>
+
 </html>
