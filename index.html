@@ -199,7 +199,7 @@
             const attendees = parseFloat(attendeesSlider.value); const salary = parseFloat(salarySlider.value);
             document.getElementById('attendeeVal').innerText = attendees; document.getElementById('salaryVal').innerText = '₹' + salary.toLocaleString();
             const hourlyRate = salary / 2080; costPerSecond = (hourlyRate / 3600) * attendees;
-            document.getElementById('burnRateDisplay').innerText = `Burning ₹₹{costPerSecond.toFixed(4)} / sec`;
+            document.getElementById('burnRateDisplay').innerText = `Burning ₹{costPerSecond.toFixed(4)} / sec`;
             if(!isRunning && totalSeconds === 0) { document.getElementById('costDisplay').innerText = '₹0.00'; }
         }
 
@@ -231,3 +231,4 @@
 </body>
 
 </html>
+
