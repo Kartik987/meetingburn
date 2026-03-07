@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Burn | Professional Resource Intelligence</title>
+    <meta name="description" content="A surgical-grade resource tracker for modern teams. Quantify meeting costs, environmental impact, and opportunity loss with surgical precision.">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --bg: #020617;
+            --card-bg: rgba(15, 23, 42, 0.6);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --accent: #6366F1;
+            --danger: #FB7185;
+            --success: #34D399;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--text-primary); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 40px 20px;
+            background-image: radial-gradient(circle at 50% -20%, #1e1b4b 0%, transparent 50%);
+        }
+
+        .app-container { 
+            backdrop-filter: blur(16px);
+            background: var(--card-bg);
+            padding: 48px;
+            border-radius: 32px;
+            border: 1px solid var(--border);
+            max-width: 580px;
+            width: 100%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .header-section { margin-bottom: 40px; }
+        h1 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
+        .live-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; display: none; box-shadow: 0 0 12px var(--success); }
+
+        .currency-nav { display: flex; gap: 8px; margin-bottom: 32px; }
+        .nav-btn { background: transparent; border: 1px solid var(--border); color: var(--text-secondary); padding: 6px 14px; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: 500; transition: 0.2s; }
+        .nav-btn.active { background: rgba(255, 255, 255, 0.05); color: #fff; border-color: rgba(255, 255, 255, 0.2); }
+
+        .control-group { margin-bottom: 28px; }
+        .control-label { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); }
+        .control-val { color: var(--text-primary); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+        input[type=range] { -webkit-appearance: none; width: 100%; height: 4px; background: var(--border); border-radius: 2px; outline: none; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: #fff; border-radius: 50%; cursor: pointer; border: 4px solid var(--bg); box-shadow: 0 0 10px rgba(0,0,0,0.5); }
+
+        .monitor-pane { text-align: center; margin: 48px 0; }
+        .main-cost { font-size: 72px; font-weight: 700; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; line-height: 1; margin-bottom: 16px; transition: color 0.3s; }
+        .sub-msg { font-size: 13px; color: var(--text-secondary); font-weight: 400; height: 20px; }
+
+        .metrics-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 40px; }
+        .metric-card { background: rgba(255, 255, 255, 0.02); padding: 16px; border-radius: 16px; border: 1px solid var(--border); text-align: center; }
+        .metric-label { font-size: 9px; font-weight: 700; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 6px; display: block; }
+        .metric-val { font-size: 13px; font-weight: 600; color: #fff; }
+
+        .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .btn { padding: 18px; border-radius: 14px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 0.02em; }
+        .btn-primary { grid-column: span 2; background: #fff; color: #000; }
+        .btn-secondary { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid var(--border); }
+
+        /* Toast Styling */
+        #toast { 
+            visibility: hidden; min-width: 250px; background-color: #1e293b; color: #fff; text-align: center; 
+            border-radius: 12px; padding: 16px; position: fixed; z-index: 100; bottom: 30px; 
+            font-size: 14px; border: 1px solid var(--border); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+        }
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+        @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+        @keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
+
+        .hidden { display: none !important; }
+        .running .main-cost { color: var(--danger); text-shadow: 0 0 30px rgba(251, 113, 133, 0.3); }
+        .running .live-dot { display: inline-block; animation: pulse 2s infinite; }
+
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+        .seo-footer { max-width: 580px; margin-top: 64px; text-align: center; opacity: 0.6; }
+        .seo-footer p { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <div class="header-section">
+            <h1><span class="live-dot" id="dot"></span> RESOURCE INTELLIGENCE</h1>
+        </div>
+        
+        <div class="currency-nav">
+            <button class="nav-btn active" onclick="updateCur('USD', '$', 20000, 500000, 95000)">USD</button>
+            <button class="nav-btn" onclick="updateCur('INR', '₹', 500000, 15000000, 3000000)">INR</button>
+            <button class="nav-btn" onclick="updateCur('EUR', '€', 20000, 450000, 85000)">EUR</button>
+        </div>
+
+        <div class="control-group">
+            <div class="control-label"><span>Participants</span><span class="control-val" id="pCount">8</span></div>
+            <input type="range" id="participants" min="2" max="100" value="8" oninput="calc()">
+        </div>
+
+        <div class="control-group">
+            <div class="control-label"><span>Avg Total Comp</span><span class="control-val" id="sCount">$95,000</span></div>
+            <input type="range" id="salary" min="20000" max="500000" step="5000" value="95000" oninput="calc()">
+        </div>
+
+        <div class="monitor-pane" id="monitor">
+            <div class="main-cost" id="costDisplay">$0.00</div>
+            <div class="sub-msg" id="msg">Awaiting session initialization.</div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card"><span class="metric-label">Efficiency</span><span class="metric-val" id="rank">Idle</span></div>
+            <div class="metric-card"><span class="metric-label">Sustainability</span><span class="metric-val" id="co2">0.00g</span></div>
+            <div class="metric-card"><span class="metric-label">Opportunity</span><span class="metric-val" id="opp">--</span></div>
+        </div>
+
+        <div class="action-row">
+            <button class="btn btn-primary" id="startBtn" onclick="toggleTimer()">Initialize Session</button>
+            <button class="btn btn-secondary hidden" id="resetBtn" onclick="reset()">Reset</button>
+            <button class="btn btn-secondary hidden" id="copyBtn" onclick="copyReceipt()">Copy Receipt</button>
+        </div>
+    </div>
+
+    <div id="toast">Receipt Copied to Clipboard</div>
+
+    <div class="seo-footer">
+        <p>Advanced meeting transparency for modern enterprises. meetingburn.in optimizes capital and environmental resources through real-time data visualization.</p>
+    </div>
+
+    <script>
+        let seconds = 0, running = false, timer, curSym = '$', rateSec = 0;
+
+        function updateCur(code, sym, min, max, val) {
+            curSym = sym;
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            const s = document.getElementById('salary');
+            s.min = min; s.max = max; s.value = val;
+            s.step = (code === 'INR') ? 100000 : 5000;
+            reset();
+        }
+
+        function calc() {
+            const p = document.getElementById('participants').value;
+            const s = document.getElementById('salary').value;
+            document.getElementById('pCount').innerText = p;
+            document.getElementById('sCount').innerText = curSym + parseInt(s).toLocaleString();
+            rateSec = ((s / 2080) / 3600) * p;
+            if(!running && seconds === 0) document.getElementById('costDisplay').innerText = curSym + "0.00";
+        }
+
+        function toggleTimer() {
+            const btn = document.getElementById('startBtn');
+            const monitor = document.getElementById('monitor');
+            if(!running) {
+                running = true;
+                btn.innerText = "Terminate Session"; btn.style.background = "var(--danger)"; btn.style.color = "#fff";
+                monitor.classList.add('running');
+                document.getElementById('resetBtn').classList.remove('hidden');
+                document.getElementById('copyBtn').classList.remove('hidden');
+                timer = setInterval(() => { seconds++; updateUI(); }, 1000);
+            } else {
+                running = false;
+                btn.innerText = "Resume Session"; btn.style.background = "#fff"; btn.style.color = "#000";
+                monitor.classList.remove('running');
+                clearInterval(timer);
+                document.getElementById('msg').innerText = "Session Suspended.";
+            }
+        }
+
+        function updateUI() {
+            const total = rateSec * seconds;
+            document.getElementById('costDisplay').innerText = curSym + total.toFixed(2);
+            document.getElementById('co2').innerText = (document.getElementById('participants').value * 0.05 * seconds).toFixed(2) + "g";
+
+            let m = "Monitoring resource flow...", r = "Optimal", o = "--";
+            
+            // Fixed Opportunity logic for all currencies (approx normalized to USD)
+            const normalizedTotal = (curSym === '₹') ? total / 80 : total;
+
+            if(normalizedTotal > 5) o = "3 Coffee Cups";
+            if(normalizedTotal > 20) { m = "Capital drain initiated."; r = "High Burn"; o = "Team Lunch"; }
+            if(normalizedTotal > 150) { m = "Moderate efficiency loss."; r = "Compromised"; o = "SaaS Licenses"; }
+            if(normalizedTotal > 800) { m = "Critical resource alert."; r = "Critical"; o = "Senior Hire"; }
+            
+            document.getElementById('msg').innerText = m;
+            document.getElementById('rank').innerText = r;
+            document.getElementById('opp').innerText = o;
+        }
+
+        function reset() {
+            clearInterval(timer); seconds = 0; running = false;
+            document.getElementById('startBtn').innerText = "Initialize Session";
+            document.getElementById('startBtn').style.background = "#fff";
+            document.getElementById('startBtn').style.color = "#000";
+            document.getElementById('monitor').classList.remove('running');
+            document.getElementById('resetBtn').classList.add('hidden');
+            document.getElementById('copyBtn').classList.add('hidden');
+            document.getElementById('msg').innerText = "Awaiting session initialization.";
+            document.getElementById('co2').innerText = "0.00g";
+            document.getElementById('rank').innerText = "Idle";
+            document.getElementById('opp').innerText = "--";
+            calc();
+        }
+
+        function copyReceipt() {
+            const total = document.getElementById('costDisplay').innerText;
+            const rank = document.getElementById('rank').innerText;
+            const co2 = document.getElementById('co2').innerText;
+            const opp = document.getElementById('opp').innerText;
+            const participants = document.getElementById('pCount').innerText;
+            
+            let verdict = "⚡ ELITE SPEED";
+            if(rank === "High Burn") verdict = "💸 MODERATE DRAIN";
+            if(rank === "Compromised") verdict = "⚠️ RESOURCE LEAK";
+            if(rank === "Critical") verdict = "🚨 BANKRUPTCY IMMINENT";
+
+            const receipt = `┏━━━━━━ MEETING IMPACT REPORT ━━━━━━┓
+┃                                   
+┃  VERDICT: ${verdict}
+┃                                   
+┣━━ PERFORMANCE ━━━━━━━━━━━━━━━━━━━━━
+┃  💵 Total Burn:   ${total}
+┃  ⏱️ Duration:     ${Math.floor(seconds/60)}m ${seconds%60}s
+┃  👥 Attendees:    ${participants}
+┃                                   
+┣━━ SUSTAINABILITY ━━━━━━━━━━━━━━━━━━
+┃  🌱 CO2 Footprint: ${co2}
+┃  📉 Efficiency:    ${rank}
+┃                                   
+┣━━ OPPORTUNITY COST ━━━━━━━━━━━━━━━━
+┃  🏢 Could buy:    ${opp}
+┃                                   
+┗━━━ Tracked via meetingburn.in ━━━━┛`;
+
+            navigator.clipboard.writeText(receipt);
+            
+            const toast = document.getElementById("toast");
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+        calc();
+    </script>
+</body>
+</html>
