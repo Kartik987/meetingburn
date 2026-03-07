@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Burn | Professional Resource Audit & Productivity Tracker</title>
+    <meta name="description" content="Quantify the true cost of meetings. Factors in Total Employee Cost, Focus Recovery Time, and Carbon Impact. A precision tool for Lean and Agile teams.">
+    
+    <meta name="google-site-verification" content="PASTE_YOUR_CODE_HERE" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <style>
+        :root {
+            --bg: #020617; --card: rgba(15, 23, 42, 0.7); --border: rgba(255, 255, 255, 0.1);
+            --text-main: #F8FAFC; --text-dim: #94A3B8; --accent: #6366F1; --danger: #FB7185;
+        }
+
+        [data-theme="light"] {
+            --bg: #F8FAFC; --card: rgba(255, 255, 255, 0.9); --border: rgba(0, 0, 0, 0.1);
+            --text-main: #0F172A; --text-dim: #64748B; --accent: #4F46E5; --danger: #E11D48;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; transition: all 0.2s ease; }
+        body { background-color: var(--bg); color: var(--text-main); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
+
+        .theme-toggle { position: fixed; top: 20px; right: 20px; cursor: pointer; background: var(--card); border: 1px solid var(--border); padding: 12px; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 20px; z-index: 1000; }
+
+        .app-card { backdrop-filter: blur(25px); background: var(--card); padding: 40px; border-radius: 32px; border: 1px solid var(--border); max-width: 550px; width: 100%; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+        
+        .header-tag { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 25px; text-align: center; border: 1px solid var(--accent); width: fit-content; margin: 0 auto 25px auto; padding: 4px 12px; border-radius: 20px; }
+
+        .currency-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 35px; }
+        .cur-btn { background: transparent; border: 1px solid var(--border); color: var(--text-dim); padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 12px; font-weight: 600; }
+        .cur-btn.active { background: var(--text-main); color: var(--bg); border-color: var(--text-main); }
+
+        .field { margin-bottom: 28px; }
+        .field-head { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 11px; font-weight: 700; color: var(--text-dim); }
+        .field-head span:last-child { color: var(--text-main); font-size: 14px; font-weight: 800; }
+        .explainer { font-size: 10px; color: var(--text-dim); margin-top: 6px; display: block; line-height: 1.4; opacity: 0.8; }
+
+        input[type=range] { -webkit-appearance: none; width: 100%; height: 6px; background: var(--border); border-radius: 10px; outline: none; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; background: var(--text-main); border-radius: 50%; cursor: pointer; border: 4px solid var(--accent); box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
+
+        .monitor { text-align: center; padding: 35px 0; border-radius: 24px; background: rgba(0,0,0,0.2); margin-bottom: 30px; border: 1px solid var(--border); }
+        .cost-hero { font-size: 64px; font-weight: 800; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; line-height: 1; }
+        .status-msg { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-dim); margin-top: 10px; }
+
+        .audit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 35px; }
+        .audit-item { background: rgba(255, 255, 255, 0.03); padding: 18px; border-radius: 20px; border: 1px solid var(--border); }
+        .audit-label { font-size: 9px; font-weight: 800; color: var(--text-dim); text-transform: uppercase; margin-bottom: 6px; display: block; }
+        .audit-val { font-size: 15px; font-weight: 700; color: var(--text-main); }
+
+        .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .btn-p { grid-column: span 2; padding: 22px; border-radius: 18px; border: none; background: var(--accent); color: white; font-weight: 800; cursor: pointer; font-size: 14px; box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4); }
+        .btn-s { padding: 16px; border-radius: 18px; border: 1px solid var(--border); background: var(--card); color: var(--text-main); font-size: 12px; font-weight: 700; cursor: pointer; }
+
+        .hidden { display: none; }
+        .active-audit .cost-hero { color: var(--danger); text-shadow: 0 0 20px rgba(251, 113, 133, 0.3); }
+
+        #toast { visibility: hidden; position: fixed; bottom: 30px; background: var(--text-main); color: var(--bg); padding: 14px 28px; border-radius: 40px; font-weight: 800; font-size: 13px; z-index: 2000; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        #toast.show { visibility: visible; animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .seo-box { max-width: 550px; margin-top: 50px; text-align: center; opacity: 0.7; }
+        .seo-box h2 { font-size: 15px; margin-bottom: 8px; }
+        .seo-box p { font-size: 12px; line-height: 1.6; color: var(--text-dim); }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <div class="theme-toggle" onclick="toggleTheme()">🌓</div>
+
+    <div class="app-card">
+        <div class="header-tag">Live Resource Audit</div>
+
+        <div class="currency-row">
+            <button class="cur-btn active" onclick="setCur('USD', '$', 20000, 500000, 95000)">USD ($)</button>
+            <button class="cur-btn" onclick="setCur('INR', '₹', 500000, 15000000, 3000000)">INR (₹)</button>
+            <button class="cur-btn" onclick="setCur('EUR', '€', 20000, 450000, 85000)">EUR (€)</button>
+        </div>
+
+        <div class="field">
+            <div class="field-head"><span>PARTICIPANTS</span><span id="pDisp">8</span></div>
+            <input type="range" id="pIn" min="2" max="50" value="8" oninput="upd()">
+            <span class="explainer">Total employees currently present in the meeting.</span>
+        </div>
+
+        <div class="field">
+            <div class="field-head"><span>EMPLOYEE AVG COST (Annual)</span><span id="sDisp">$95,000</span></div>
+            <input type="range" id="sIn" min="20000" max="500000" step="5000" value="95000" oninput="upd()">
+            <span class="explainer">Includes base salary + taxes, benefits, and office overhead (1.3x multiplier).</span>
+        </div>
+
+        <div class="field">
+            <div class="field-head"><span>FOCUS RECOVERY TIME</span><span id="rDisp">23m</span></div>
+            <input type="range" id="rIn" min="0" max="60" value="23" oninput="upd()">
+            <span class="explainer">The time wasted per person to regain "Deep Work" focus after this interruption.</span>
+        </div>
+
+        <div class="monitor" id="mon">
+            <div class="cost-hero" id="costD">$0.00</div>
+            <div class="status-msg" id="statD">System Ready</div>
+        </div>
+
+        <div class="audit-grid">
+            <div class="audit-item">
+                <span class="audit-label">Focus Drain Cost</span>
+                <span class="audit-val" id="taxD">$0.00</span>
+            </div>
+            <div class="audit-item">
+                <span class="audit-label">Opportunity Cost</span>
+                <span class="audit-val" id="oppD">--</span>
+            </div>
+            <div class="audit-item">
+                <span class="audit-label">Carbon Impact</span>
+                <span class="audit-val" id="co2D">0.00g</span>
+            </div>
+            <div class="audit-item">
+                <span class="audit-label">Meeting Quality</span>
+                <span class="audit-val" id="rankD">Idle</span>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="btn-p" id="actB" onclick="toggle()">Initialize Audit</button>
+            <button class="btn-s hidden" id="resB" onclick="reset()">Reset</button>
+            <button class="btn-s hidden" id="copyB" onclick="copy()">Copy Bill</button>
+        </div>
+    </div>
+
+    <div id="toast">Audit Bill Copied to Clipboard</div>
+
+    <div class="seo-box">
+        <h2>Professional Efficiency Auditing</h2>
+        <p>A surgical-grade meeting cost tracker designed for Agile Scrum Masters and Enterprise Leadership. We quantify <strong>Focus Recovery Time</strong> and <strong>Loaded Employment Costs</strong> to provide a realistic audit of corporate resource burn.</p>
+    </div>
+
+    <script>
+        let sec = 0, active = false, timer, sym = '$', rateS = 0, code = 'USD';
+
+        function toggleTheme() {
+            const b = document.body;
+            b.setAttribute('data-theme', b.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        }
+
+        function setCur(c, s, min, max, val) {
+            sym = s; code = c;
+            document.querySelectorAll('.cur-btn').forEach(b => b.classList.toggle('active', b.innerText.includes(c)));
+            const r = document.getElementById('sIn');
+            r.min = min; r.max = max; r.value = val;
+            r.step = (c === 'INR') ? 100000 : 5000;
+            reset();
+        }
+
+        function upd() {
+            const p = document.getElementById('pIn').value;
+            const s = document.getElementById('sIn').value;
+            const r = document.getElementById('rIn').value;
+            document.getElementById('pDisp').innerText = p;
+            document.getElementById('sDisp').innerText = sym + parseInt(s).toLocaleString();
+            document.getElementById('rDisp').innerText = r + "m";
+            
+            // 1.3x loaded cost multiplier
+            rateS = (((s * 1.3) / 2080) / 3600) * p;
+            
+            if(!active && sec === 0) {
+                document.getElementById('costD').innerText = sym + "0.00";
+                document.getElementById('taxD').innerText = sym + "0.00";
+                document.getElementById('co2D').innerText = "0.00g";
+            }
+        }
+
+        function toggle() {
+            const btn = document.getElementById('actB');
+            const mon = document.getElementById('mon');
+            if(!active) {
+                active = true;
+                btn.innerText = "Terminate Session"; btn.style.background = "var(--danger)";
+                mon.classList.add('active-audit');
+                document.getElementById('resB').classList.remove('hidden');
+                document.getElementById('copyB').classList.remove('hidden');
+                timer = setInterval(() => { sec++; tick(); }, 1000);
+            } else {
+                active = false;
+                btn.innerText = "Resume Session"; btn.style.background = "var(--accent)";
+                mon.classList.remove('active-audit');
+                clearInterval(timer);
+            }
+        }
+
+        function tick() {
+            const total = rateS * sec;
+            const p = document.getElementById('pIn').value;
+            const recovery = document.getElementById('rIn').value;
+            const drain = rateS * (recovery * 60);
+            
+            document.getElementById('costD').innerText = sym + total.toFixed(2);
+            document.getElementById('taxD').innerText = sym + drain.toFixed(2);
+            
+            // Carbon Impact: 0.05g per person per second (approx for video calls/server energy)
+            document.getElementById('co2D').innerText = (p * 0.05 * sec).toFixed(2) + "g";
+
+            let opp = "--";
+            if (code === 'INR') {
+                if(total > 100) opp = "2 Plates Samosa";
+                if(total > 5000) opp = "Weekend Flight";
+            } else {
+                if(total > 15) opp = "SaaS Subscription";
+                if(total > 2000) opp = "High-End Laptop";
+            }
+
+            let rank = "Efficient";
+            if(total > 500) rank = "Costly";
+            if(total > 2000) rank = "High Waste";
+
+            document.getElementById('statD').innerText = "Live Audit in Progress";
+            document.getElementById('rankD').innerText = rank;
+            document.getElementById('oppD').innerText = opp;
+        }
+
+        function reset() {
+            clearInterval(timer); sec = 0; active = false;
+            document.getElementById('actB').innerText = "Initialize Audit";
+            document.getElementById('actB').style.background = "var(--accent)";
+            document.getElementById('mon').classList.remove('active-audit');
+            document.getElementById('resB').classList.add('hidden');
+            document.getElementById('copyB').classList.add('hidden');
+            document.getElementById('statD').innerText = "System Ready";
+            document.getElementById('rankD').innerText = "Idle";
+            document.getElementById('oppD').innerText = "--";
+            upd();
+        }
+
+        function copy() {
+            const bill = `
+----------------------------------
+      MEETING BURN AUDIT
+      ${new Date().toLocaleDateString()}
+----------------------------------
+VERDICT: ${document.getElementById('rankD').innerText.toUpperCase()}
+----------------------------------
+QTY   DESCRIPTION         PRICE
+----------------------------------
+${document.getElementById('pDisp').innerText.padStart(2)}    PARTICIPANTS        --
+1     ACTIVE DURATION     ${(sec/60).toFixed(1)}m
+1     DIRECT BURN         ${document.getElementById('costD').innerText}
+1     FOCUS DRAIN         ${document.getElementById('taxD').innerText}
+----------------------------------
+TOTAL RESOURCE BURN:      ${(parseFloat(document.getElementById('costD').innerText.replace(/[^0-9.-]+/g,"")) + parseFloat(document.getElementById('taxD').innerText.replace(/[^0-9.-]+/g,""))).toFixed(2)}
+----------------------------------
+FOOTPRINT: ${document.getElementById('co2D').innerText}
+OPP COST:  ${document.getElementById('oppD').innerText}
+----------------------------------
+    POWERED BY MEETINGBURN.IN
+----------------------------------`;
+            navigator.clipboard.writeText(bill.trim());
+            const t = document.getElementById("toast");
+            t.className = "show";
+            setTimeout(()=>t.className="", 3000);
+        }
+        upd();
+    </script>
+</body>
+</html>
