@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Burn Rate Calculator | Real-Time Meeting Cost Tracker</title>
+    <meta name="description" content="Calculate the real-time financial cost of corporate meetings. Visualize your burn rate and improve Agile productivity with our interactive tool.">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Meeting Burn Rate Calculator",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "WebBrowser",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg: #0B0F19; --panel: #1A2235; --text-main: #FFFFFF;
+            --text-muted: #8B949E; --accent-red: #FF3366;
+            --accent-green: #00E676; --accent-blue: #3B82F6; --border: #2D3748;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; line-height: 1.6; }
+        body { background-color: var(--bg); color: var(--text-main); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 40px 20px; transition: background-color 1s ease; }
+
+        .calculator-container { background: var(--panel); padding: 40px; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); max-width: 500px; width: 100%; border: 1px solid var(--border); margin-bottom: 40px; position: relative; z-index: 2; }
+        h1 { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 5px; letter-spacing: -0.5px; }
+        .subtitle { color: var(--text-muted); text-align: center; font-size: 14px; margin-bottom: 30px; }
+
+        /* Currency Toggle */
+        .currency-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+        .currency-btn { background: var(--border); color: var(--text-muted); border: 1px solid var(--border); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 600; transition: 0.2s; }
+        .currency-btn.active { background: var(--accent-blue); color: white; border-color: var(--accent-blue); }
+
+        .input-group { margin-bottom: 25px; }
+        .label-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .value-display { font-size: 14px; font-weight: 700; color: var(--accent-green); }
+
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 18px; width: 18px; border-radius: 50%; background: var(--accent-green); cursor: pointer; margin-top: -8px; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; background: var(--border); border-radius: 2px; }
+
+        /* The Display Board */
+        .display-board { background: #000; padding: 30px 20px; border-radius: 12px; text-align: center; margin: 30px 0; border: 1px solid var(--border); }
+        .cost-display { font-size: 60px; font-weight: 800; color: var(--text-main); font-variant-numeric: tabular-nums; letter-spacing: -2px; line-height: 1; }
+        
+        /* Commentary Box */
+        .commentary-box { min-height: 50px; margin-top: 15px; font-size: 14px; color: var(--accent-blue); font-weight: 500; font-style: italic; transition: all 0.5s; }
+
+        @keyframes pulse-glow {
+            0% { text-shadow: 0 0 10px rgba(255, 51, 102, 0.2); transform: scale(1); }
+            50% { text-shadow: 0 0 30px rgba(255, 51, 102, 0.8); transform: scale(1.03); }
+            100% { text-shadow: 0 0 10px rgba(255, 51, 102, 0.2); transform: scale(1); }
+        }
+        .running .cost-display { color: var(--accent-red); animation: pulse-glow 1s infinite; }
+
+        .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        button.action-btn { padding: 16px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
+        .btn-main { background: var(--accent-green); color: #000; grid-column: span 2; }
+        .btn-secondary { background: var(--border); color: var(--text-main); }
+        .hidden { display: none !important; }
+
+        .seo-content { max-width: 700px; width: 100%; color: #9CA3AF; margin-top: 40px; }
+        .seo-content h2 { color: white; margin: 20px 0; font-size: 22px; }
+        footer { margin-top: auto; padding: 40px; color: var(--text-muted); font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h1>Meeting Burn Rate</h1>
+        <p class="subtitle">Real-time financial impact of this call.</p>
+
+        <div class="currency-toggle">
+            <button class="currency-btn active" onclick="setCurrency('USD', '$', 30000, 250000, 95000)">USD ($)</button>
+            <button class="currency-btn" onclick="setCurrency('INR', '₹', 500000, 8000000, 1500000)">INR (₹)</button>
+            <button class="currency-btn" onclick="setCurrency('EUR', '€', 30000, 200000, 85000)">EUR (€)</button>
+        </div>
+
+        <div class="input-group">
+            <div class="label-row"><label>Participants</label><span class="value-display" id="attendeeVal">8</span></div>
+            <input type="range" id="attendees" min="2" max="50" value="8">
+        </div>
+
+        <div class="input-group">
+            <div class="label-row"><label>Avg Salary</label><span class="value-display" id="salaryVal">$95,000</span></div>
+            <input type="range" id="salary" min="30000" max="250000" step="5000" value="95000">
+        </div>
+
+        <div class="display-board" id="displayBoard">
+            <div class="cost-display" id="costDisplay">$0.00</div>
+            <div class="commentary-box" id="commentary">Adjust settings and start the clock.</div>
+        </div>
+
+        <div class="controls">
+            <button class="action-btn btn-main" id="startBtn" onclick="startTimer()">Begin Monitoring</button>
+            <button class="action-btn btn-secondary hidden" id="pauseBtn" onclick="pauseTimer()">Pause Sync</button>
+            <button class="action-btn btn-secondary hidden" id="resetBtn" onclick="resetTimer()">Reset</button>
+        </div>
+    </div>
+
+    <div class="seo-content">
+        <h2>Why Visualize Meeting Costs?</h2>
+        <p>Corporate "burn rate" is more than just a buzzword. When technical teams engage in daily syncs, Agile planning, or metrics management reviews, the literal cost per second is often overlooked. This tool provides instant transparency.</p>
+    </div>
+
+    <footer>
+        &copy; 2026 meetingburn.in | Built for Efficient Teams
+    </footer>
+
+    <script>
+        let timerInterval; let totalSeconds = 0; let isRunning = false;
+        let costPerSecond = 0; let symbol = '$';
+
+        const comments = [
+            { price: 0, msg: "The meter is running. Keep it brief." },
+            { price: 20, msg: "This meeting just cost a fancy coffee." },
+            { price: 50, msg: "That's a nice team lunch gone." },
+            { price: 150, msg: "You could have bought a new monitor by now." },
+            { price: 400, msg: "Is this meeting really worth a weekend getaway?" },
+            { price: 1000, msg: "Warning: High-intensity capital burn detected." },
+            { price: 5000, msg: "At this point, you're funding a small startup." }
+        ];
+
+        function setCurrency(cur, sym, min, max, val) {
+            symbol = sym;
+            document.querySelectorAll('.currency-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            salarySlider.min = min; salarySlider.max = max; salarySlider.value = val;
+            salarySlider.step = (cur === 'INR') ? 50000 : 5000;
+            resetTimer(); calculateRates();
+        }
+
+        function calculateRates() {
+            const attendees = parseFloat(document.getElementById('attendees').value);
+            const salary = parseFloat(document.getElementById('salary').value);
+            document.getElementById('attendeeVal').innerText = attendees;
+            document.getElementById('salaryVal').innerText = symbol + salary.toLocaleString();
+            costPerSecond = ((salary / 2080) / 3600) * attendees;
+            if(!isRunning && totalSeconds === 0) document.getElementById('costDisplay').innerText = symbol + '0.00';
+        }
+
+        function updateDisplay() {
+            const totalCost = costPerSecond * totalSeconds;
+            document.getElementById('costDisplay').innerText = symbol + totalCost.toFixed(2);
+            
+            // Background intensity logic
+            const intensity = Math.min(totalCost / 500, 0.4); 
+            document.body.style.backgroundColor = `rgba(255, 51, 102, ${intensity})`;
+            
+            // Dynamic commentary logic
+            const currentComment = [...comments].reverse().find(c => {
+                const threshold = (symbol === '₹') ? c.price * 80 : c.price;
+                return totalCost >= threshold;
+            });
+            if(currentComment) document.getElementById('commentary').innerText = currentComment.msg;
+        }
+
+        function startTimer() {
+            if (isRunning) return; isRunning = true;
+            document.getElementById('displayBoard').classList.add('running');
+            document.getElementById('startBtn').classList.add('hidden');
+            document.getElementById('pauseBtn').classList.remove('hidden');
+            document.getElementById('resetBtn').classList.remove('hidden');
+            timerInterval = setInterval(() => { totalSeconds++; updateDisplay(); }, 1000);
+        }
+
+        function pauseTimer() {
+            isRunning = false; clearInterval(timerInterval);
+            document.getElementById('displayBoard').classList.remove('running');
+            document.getElementById('pauseBtn').classList.add('hidden');
+            document.getElementById('startBtn').classList.remove('hidden');
+            document.getElementById('startBtn').innerText = "Resume Sync";
+        }
+
+        function resetTimer() {
+            isRunning = false; clearInterval(timerInterval); totalSeconds = 0;
+            document.getElementById('displayBoard').classList.remove('running');
+            document.getElementById('startBtn').classList.remove('hidden');
+            document.getElementById('startBtn').innerText = "Begin Monitoring";
+            document.getElementById('pauseBtn').classList.add('hidden');
+            document.getElementById('resetBtn').classList.add('hidden');
+            document.body.style.backgroundColor = '#0B0F19';
+            updateDisplay();
+        }
+
+        document.getElementById('attendees').addEventListener('input', calculateRates);
+        document.getElementById('salary').addEventListener('input', calculateRates);
+        const salarySlider = document.getElementById('salary');
+        calculateRates();
+    </script>
+</body>
+</html>
