@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meeting Cost Calculator | Free Live Meeting Cost Tracker | MeetingBurn</title>
+<meta name="description" content="Free meeting cost calculator that tracks salary burn per second in real time. See how much meetings cost your team per hour, week, and year. Used by startups and enterprises. Built on published workplace research.">
+<meta name="keywords" content="meeting cost calculator, how much do meetings cost, meeting cost per hour, calculate meeting cost, meeting salary burn rate, meeting ROI calculator, unproductive meeting cost, meeting time tracker, cost of unnecessary meetings, reduce meeting costs, meeting savings calculator, could this meeting be an email">
+<meta name="author" content="MeetingBurn Team">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://meetingburn.in"/>
+<meta property="og:title" content="Meeting Cost Calculator | See What Your Meetings Really Cost">
+<meta property="og:description" content="Free tool to calculate meeting costs in real time based on attendee salaries. Track burn rate, focus recovery tax, and annual waste projections.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://meetingburn.in">
+<meta property="og:site_name" content="MeetingBurn">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meeting Cost Calculator | Free Live Tracker">
+<meta name="twitter:description" content="See exactly how much your meetings cost per second. Free tool with salary based calculations and downloadable audit reports.">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"MeetingBurn Meeting Cost Calculator","operatingSystem":"Web","applicationCategory":"BusinessApplication","description":"Free meeting cost calculator that tracks salary burn in real time, calculates focus recovery cost, and projects annual meeting waste based on published workplace research.","featureList":"Live Cost Tracking, Role Based Salary Calculator, Focus Recovery Tax, Meeting Health Score, Annual Projections, Savings Simulator, Meeting Policy Generator, Multi Currency Support, Downloadable Reports","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much do meetings cost a company per year?","acceptedAnswer":{"@type":"Answer","text":"Meeting time costs organizations roughly $29,000 per employee per year when factoring in salary and lost productivity, according to Fellow's 2024 Workplace Report. Broader estimates put U.S. meeting waste as high as $375 billion annually."}},{"@type":"Question","name":"How do you calculate the cost of a meeting?","acceptedAnswer":{"@type":"Answer","text":"Divide each attendee's annual salary by 2,080 standard work hours per year to get an hourly rate, then divide by 3,600 for a per second rate. Multiply by attendees and duration. Optionally add 30% overhead for benefits and taxes."}},{"@type":"Question","name":"How long does it take to refocus after a meeting?","acceptedAnswer":{"@type":"Answer","text":"Research by Gloria Mark and colleagues at the University of California, Irvine found it takes an average of 23 minutes and 15 seconds to fully return to a task after an interruption such as a meeting."}},{"@type":"Question","name":"What percentage of meetings are unproductive?","acceptedAnswer":{"@type":"Answer","text":"Atlassian found only 11% of meetings are rated as highly productive by attendees, and a Harvard Business Review survey found 71% of senior managers consider meetings unproductive."}},{"@type":"Question","name":"How many hours per week does an average employee spend in meetings?","acceptedAnswer":{"@type":"Answer","text":"The average employee spends approximately 11.3 hours per week in meetings, about 28% of a 40 hour work week, according to Fellow's research."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://meetingburn.in"},{"@type":"ListItem","position":2,"name":"Calculator","item":"https://meetingburn.in/#calculator"},{"@type":"ListItem","position":3,"name":"Research","item":"https://meetingburn.in/#research"},{"@type":"ListItem","position":4,"name":"FAQ","item":"https://meetingburn.in/#faq"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to Calculate Meeting Cost","description":"Calculate the true cost of any business meeting in four steps.","step":[{"@type":"HowToStep","name":"Convert salary to hourly rate","text":"Divide annual salary by 2,080 working hours per year."},{"@type":"HowToStep","name":"Add benefits overhead","text":"Multiply hourly rate by 1.30 for benefits, taxes, and overhead."},{"@type":"HowToStep","name":"Calculate per minute cost for all attendees","text":"Divide loaded hourly rate by 60, then multiply by the number of attendees."},{"@type":"HowToStep","name":"Multiply by meeting duration","text":"Multiply per minute cost by the meeting duration in minutes to get total cost."}]}</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"></noscript>
+
+<style>
+/* ═══ DESIGN: Warm minimal. Dark = deep navy not pure black. Light = warm cream. Amber accent. ═══ */
+:root{
+--bg:#0f1219;--bgE:#161b26;--bgC:#1c2233;--bgH:#232b3e;
+--bd:rgba(148,163,194,.1);--bdH:rgba(148,163,194,.18);
+--t1:#e2e8f0;--t2:#94a3b8;--t3:#64748b;--t4:#475569;
+--ac:#f59e0b;--acD:rgba(245,158,11,.1);--acS:#d97706;--acG:rgba(245,158,11,.15);
+--ok:#34d399;--okD:rgba(52,211,153,.1);
+--no:#f87171;--noD:rgba(248,113,113,.08);
+--fH:'Outfit',sans-serif;--fB:'Outfit',sans-serif;--fM:'JetBrains Mono',monospace;--fS:'Lora',serif;
+--r:12px;--rL:20px;--rX:28px
+}
+[data-theme="light"]{
+--bg:#faf8f5;--bgE:#fff;--bgC:#f3f1ec;--bgH:#ebe8e1;
+--bd:rgba(60,50,40,.08);--bdH:rgba(60,50,40,.14);
+--t1:#1c1917;--t2:#57534e;--t3:#78716c;--t4:#a8a29e;
+--ac:#b45309;--acD:rgba(180,83,9,.06);--acS:#92400e;--acG:rgba(180,83,9,.08);
+--ok:#059669;--okD:rgba(5,150,105,.06);
+--no:#dc2626;--noD:rgba(220,38,38,.05)
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fB);background:var(--bg);color:var(--t1);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;font-weight:400}
+.w{max-width:960px;margin:0 auto;padding:0 20px}
+
+/* ═══ NAV ═══ */
+.nav{position:sticky;top:0;z-index:100;background:var(--bgE);border-bottom:1px solid var(--bd);backdrop-filter:blur(20px)}
+.nav-in{max-width:960px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--t1);font-weight:700;font-size:16px}
+.logo-ic{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--ac),#ef4444);display:grid;place-items:center;font-size:14px;color:#fff}
+.nav-r{display:flex;gap:4px;align-items:center}
+.nav-a{font-size:13px;font-weight:500;color:var(--t3);text-decoration:none;padding:7px 14px;border-radius:8px;transition:.15s}
+.nav-a:hover{color:var(--t1);background:var(--bgC)}
+.thm{background:none;border:1px solid var(--bd);color:var(--t2);width:36px;height:36px;border-radius:50%;cursor:pointer;display:grid;place-items:center;font-size:15px;transition:.15s;margin-left:4px}
+.thm:hover{border-color:var(--bdH);color:var(--t1)}
+@media(max-width:600px){.nav-a{font-size:11px;padding:5px 8px}}
+
+/* ═══ HERO ═══ */
+.hero{text-align:center;padding:56px 0 36px}
+.badge{display:inline-flex;align-items:center;gap:7px;font-family:var(--fM);font-size:11px;font-weight:500;color:var(--ac);background:var(--acD);border:1px solid var(--acG);padding:5px 16px;border-radius:100px;margin-bottom:16px}
+.badge .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.6)}}
+h1{font-family:var(--fH);font-size:clamp(26px,5.5vw,46px);font-weight:800;letter-spacing:-.03em;line-height:1.12;margin-bottom:16px}
+h1 .hl{color:var(--ac)}
+.hero-p{font-size:17px;color:var(--t2);max-width:540px;margin:0 auto 28px;line-height:1.75;font-weight:300}
+.trust-row{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;font-size:12px;color:var(--t3);font-weight:400}
+.trust-row strong{color:var(--t1);font-weight:600;font-size:14px}
+@media(max-width:500px){.hero{padding:36px 0 24px}.hero-p{font-size:15px}.trust-row{gap:16px;font-size:11px}.trust-row strong{font-size:12px}}
+
+/* ═══ PILLS ═══ */
+.row-ctrl{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:10px;flex-wrap:wrap}
+.pg{display:inline-flex;gap:3px;background:var(--bgC);padding:3px;border-radius:10px;border:1px solid var(--bd)}
+.pb{background:transparent;border:none;color:var(--t3);padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--fB);transition:.15s;white-space:nowrap}
+.pb.on{background:var(--bgE);color:var(--t1);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+@media(max-width:500px){.row-ctrl{flex-direction:column;align-items:stretch}.pg{width:100%;justify-content:center}.pb{padding:7px 10px;font-size:11px}}
+
+/* ═══ CARD ═══ */
+.card{background:var(--bgE);border:1px solid var(--bd);border-radius:var(--rX);padding:32px;box-shadow:0 8px 32px rgba(0,0,0,.12);margin-bottom:28px}
+@media(max-width:600px){.card{padding:18px 16px;border-radius:var(--rL)}}
+
+/* ═══ MONITOR ═══ */
+.mon{display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-bottom:24px}
+@media(max-width:680px){.mon{grid-template-columns:1fr}}
+.burn{background:var(--bgC);border:1px solid var(--bd);border-radius:var(--rL);padding:32px 24px;text-align:center;position:relative;overflow:hidden;transition:border-color .6s}
+.burn.live{border-color:var(--acG)}
+.burn.hot{border-color:rgba(248,113,113,.2)}
+.burn-lbl{font-family:var(--fM);font-size:10px;font-weight:500;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.cost{font-family:var(--fM);font-size:clamp(36px,8vw,60px);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--t1);transition:color .5s}
+.cost.warn{color:var(--ac)}.cost.crit{color:var(--no)}
+.timer{font-family:var(--fM);font-size:14px;font-weight:500;color:var(--ac);margin-top:10px;letter-spacing:.04em}
+.side{display:flex;flex-direction:column;gap:10px}
+.sc{background:var(--bgC);border:1px solid var(--bd);border-radius:var(--r);padding:14px 16px;flex:1}
+.sc-l{font-family:var(--fM);font-size:9px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.sc-v{font-family:var(--fM);font-size:16px;font-weight:600;color:var(--t1)}
+.sc-h{font-size:11px;color:var(--t4);margin-top:2px;font-weight:300}
+
+/* ═══ CONFIG ═══ */
+.cfg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+@media(max-width:680px){.cfg{grid-template-columns:1fr}}
+.pan{background:var(--bgC);border:1px solid var(--bd);border-radius:var(--rL);padding:20px}
+.pan-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.pan-t{font-family:var(--fM);font-size:9px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.08em}
+.pan-v{font-family:var(--fM);font-size:13px;font-weight:600;color:var(--ac)}
+input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--bg);border-radius:2px;outline:none;cursor:pointer;margin:5px 0}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;background:var(--ac);border-radius:50%;border:3px solid var(--bgE);box-shadow:0 0 0 1px var(--ac);cursor:pointer}
+input[type="range"]::-moz-range-thumb{width:18px;height:18px;background:var(--ac);border-radius:50%;border:3px solid var(--bgE);box-shadow:0 0 0 1px var(--ac);cursor:pointer}
+.role{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:12px;margin-top:8px}
+.role-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.role-n{font-size:13px;font-weight:600}
+.role-ctrl{display:flex;align-items:center;gap:8px}
+.rbtn{width:28px;height:28px;border-radius:7px;border:1px solid var(--bd);background:var(--bgC);color:var(--t1);font-size:16px;cursor:pointer;display:grid;place-items:center;transition:.12s;font-family:var(--fB)}
+.rbtn:hover{background:var(--bgH);border-color:var(--bdH)}
+.rnum{font-family:var(--fM);font-weight:700;font-size:13px;min-width:18px;text-align:center}
+.rsal{font-family:var(--fM);font-size:10px;color:var(--t4);margin-top:4px}
+.chk{display:flex;align-items:center;gap:8px;margin-top:12px;cursor:pointer}
+.chk input{width:16px;height:16px;accent-color:var(--ac);cursor:pointer}
+.chk label{font-size:12px;font-weight:400;color:var(--t2);cursor:pointer}
+
+/* ═══ DIAGNOSTICS ═══ */
+.diag{background:var(--bgC);border:1px solid var(--bd);border-radius:var(--rL);padding:20px;margin-bottom:20px}
+.diag-g{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}
+@media(max-width:500px){.diag-g{grid-template-columns:1fr}}
+.dg-i{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:8px;background:var(--bg);border:1px solid var(--bd);cursor:pointer;font-size:12px;font-weight:400;color:var(--t2);transition:.15s;user-select:none}
+.dg-i:hover{border-color:var(--bdH)}
+.dg-i.on{border-color:rgba(52,211,153,.25);background:var(--okD);color:var(--ok);font-weight:500}
+.dg-i input{display:none}
+.dg-d{width:16px;height:16px;border-radius:50%;flex-shrink:0;border:2px solid var(--bdH);display:grid;place-items:center;font-size:9px;transition:.15s}
+.dg-i.on .dg-d{border-color:var(--ok);background:var(--ok);color:#fff}
+
+/* ═══ FORMULA BAR ═══ */
+.formula{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:12px 16px;margin-bottom:20px;font-family:var(--fM);font-size:11px;color:var(--t3);line-height:1.9;word-break:break-word}
+.formula b{color:var(--t2);font-weight:600}
+.formula .val{color:var(--ac)}
+
+/* ═══ PROJECTIONS ═══ */
+.proj{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
+@media(max-width:600px){.proj{grid-template-columns:1fr 1fr}}
+.proj .sc-v.danger{color:var(--no)}
+
+/* ═══ SAVINGS SIMULATOR (NEW FEATURE) ═══ */
+.savings{background:linear-gradient(135deg,var(--okD),transparent 60%);border:1px solid rgba(52,211,153,.15);border-radius:var(--rL);padding:24px;margin-bottom:20px}
+.savings-h{font-size:14px;font-weight:700;margin-bottom:4px;color:var(--ok)}
+.savings-sub{font-size:12px;color:var(--t3);margin-bottom:14px}
+.savings-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.savings-stat{text-align:center;flex:1;min-width:100px}
+.savings-num{font-family:var(--fM);font-size:22px;font-weight:700;color:var(--ok)}
+.savings-lbl{font-size:10px;color:var(--t3);margin-top:2px}
+
+/* ═══ BUTTONS ═══ */
+.btn-main{width:100%;padding:16px;border-radius:var(--r);border:none;background:var(--ac);color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--fH);box-shadow:0 4px 16px rgba(245,158,11,.25);transition:.2s;margin-bottom:10px}
+.btn-main:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(245,158,11,.3)}
+.btn-main.stop{background:var(--no);box-shadow:0 4px 16px rgba(248,113,113,.2)}
+.btn-main.paused{background:var(--t3);box-shadow:0 4px 16px rgba(100,116,139,.2)}
+.sec-btns{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+@media(max-width:500px){.sec-btns{grid-template-columns:1fr 1fr}}
+.btn-s{padding:10px;border-radius:8px;border:1px solid var(--bd);background:var(--bgC);color:var(--t2);font-size:11px;font-weight:600;cursor:pointer;font-family:var(--fB);transition:.15s;text-align:center}
+.btn-s:hover{border-color:var(--bdH);color:var(--t1)}
+.btn-s.hide{display:none}
+.lifetime{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:var(--r);background:var(--okD);border:1px solid rgba(52,211,153,.12);margin-top:14px}
+.lifetime span:first-child{font-family:var(--fM);font-size:10px;font-weight:600;color:var(--ok);text-transform:uppercase;letter-spacing:.05em}
+.lifetime span:last-child{font-family:var(--fM);font-size:15px;font-weight:600;color:var(--ok)}
+
+/* ═══ EMAIL SECTION ═══ */
+.email-sec{background:var(--bgE);border:1px solid var(--bd);border-radius:var(--rX);padding:40px 32px;margin-bottom:40px;text-align:center}
+.email-sec .badge{margin-bottom:12px}
+.email-sec h2{font-family:var(--fH);font-size:clamp(20px,3.5vw,26px);font-weight:700;margin-bottom:10px}
+.email-sec .sub{font-size:14px;color:var(--t2);max-width:440px;margin:0 auto 22px;line-height:1.7;font-weight:300}
+.email-form{display:flex;gap:8px;max-width:420px;margin:0 auto 12px}
+@media(max-width:500px){.email-form{flex-direction:column}}
+.email-form input[type="email"]{flex:1;padding:12px 16px;border-radius:10px;border:1px solid var(--bdH);background:var(--bgC);color:var(--t1);font-size:14px;font-family:var(--fB);outline:none;transition:.2s}
+.email-form input[type="email"]:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--acD)}
+.email-form input[type="email"]::placeholder{color:var(--t4)}
+.email-form button{padding:12px 24px;border-radius:10px;border:none;background:var(--ac);color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--fH);transition:.2s;white-space:nowrap}
+.email-form button:hover{background:var(--acS);transform:translateY(-1px)}
+.e-trust{font-size:11px;color:var(--t4);display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.e-ok{display:none;padding:16px;border-radius:12px;background:var(--okD);border:1px solid rgba(52,211,153,.2);color:var(--ok);font-weight:600;font-size:14px;max-width:420px;margin:0 auto}
+
+/* ═══ TOOLS ═══ */
+.tools-g{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+@media(max-width:600px){.tools-g{grid-template-columns:1fr}}
+.tool{background:var(--bgE);border:1px solid var(--bd);border-radius:var(--rL);padding:22px;transition:.2s;text-decoration:none;color:inherit;display:block}
+.tool:hover{border-color:var(--bdH);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.tool-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.tool-ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:18px;flex-shrink:0}
+.tool-name{font-size:15px;font-weight:700}
+.tool-tag{font-family:var(--fM);font-size:9px;color:var(--t4);text-transform:uppercase;letter-spacing:.06em}
+.tool-desc{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:10px;font-weight:300}
+.tool-cta{font-size:12px;font-weight:700;color:var(--ac)}
+.tool-cta::after{content:' \2192'}
+
+/* ═══ CONTENT SECTIONS ═══ */
+.sec{margin-bottom:52px}
+.sec-ey{font-family:var(--fM);font-size:10px;font-weight:600;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.sec-h{font-family:var(--fH);font-size:clamp(20px,3.5vw,28px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
+.sec-p{font-family:var(--fS);font-size:16px;line-height:1.85;color:var(--t2);max-width:640px;font-weight:400}
+.sec-p strong{color:var(--t1);font-weight:600}
+
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+@media(max-width:600px){.stat-row{grid-template-columns:1fr}}
+.stat{background:var(--bgE);border:1px solid var(--bd);border-radius:var(--rL);padding:22px;text-align:center}
+.stat-n{font-family:var(--fM);font-size:30px;font-weight:700;margin-bottom:4px}
+.stat-d{font-size:13px;color:var(--t2);line-height:1.5;font-weight:300}
+.stat-c{font-size:10px;color:var(--t4);margin-top:6px;font-style:italic}
+
+.res-g{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+@media(max-width:600px){.res-g{grid-template-columns:1fr}}
+.res{background:var(--bgE);border:1px solid var(--bd);border-radius:var(--rL);padding:20px}
+.res-ic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:15px;margin-bottom:10px}
+.res-t{font-size:14px;font-weight:700;margin-bottom:6px}
+.res-b{font-size:13px;color:var(--t2);line-height:1.7;font-weight:300}
+.res-ci{font-size:10px;color:var(--t4);margin-top:8px;font-style:italic}
+
+.meth{background:var(--bgE);border:1px solid var(--bd);border-radius:var(--rL);padding:24px;margin:20px 0}
+.meth-t{font-size:15px;font-weight:700;margin-bottom:12px}
+.meth-s{display:flex;gap:12px;margin-bottom:12px}
+.meth-n{width:22px;height:22px;border-radius:50%;background:var(--acD);color:var(--ac);display:grid;place-items:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px}
+.meth-tx{font-size:13px;color:var(--t2);line-height:1.7;font-weight:300}
+.meth-tx code{font-family:var(--fM);font-size:11px;background:var(--bgC);padding:1px 6px;border-radius:4px;color:var(--ac)}
+
+/* ═══ FAQ ═══ */
+.faq{border-bottom:1px solid var(--bd)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-size:14px;font-weight:600;color:var(--t1);background:none;border:none;width:100%;text-align:left;font-family:var(--fB)}
+.faq-q:hover{color:var(--ac)}
+.faq-arr{font-size:14px;color:var(--t4);transition:transform .3s;flex-shrink:0;margin-left:12px}
+.faq.open .faq-arr{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:13px;color:var(--t2);line-height:1.8;font-family:var(--fS);font-weight:400}
+.faq.open .faq-a{max-height:500px;padding-bottom:16px}
+
+/* ═══ FOOTER ═══ */
+footer{border-top:1px solid var(--bd);padding:32px 0 44px;margin-top:16px}
+.ft-r{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.ft-b{max-width:280px}
+.ft-bn{font-weight:700;font-size:14px;margin-bottom:4px}
+.ft-bd{font-size:12px;color:var(--t4);line-height:1.6;font-weight:300}
+.ft-cols{display:flex;gap:32px}
+.ft-ch{font-family:var(--fM);font-size:9px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.ft-a{display:block;font-size:12px;color:var(--t3);text-decoration:none;padding:2px 0;transition:.12s;font-weight:400}
+.ft-a:hover{color:var(--t1)}
+.ft-bot{margin-top:24px;padding-top:14px;border-top:1px solid var(--bd);font-size:11px;color:var(--t4);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-weight:300}
+@media(max-width:500px){.ft-r{flex-direction:column}.ft-cols{flex-direction:column;gap:16px}.ft-bot{flex-direction:column;text-align:center}}
+
+/* ═══ TOAST ═══ */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--t1);color:var(--bg);padding:10px 24px;border-radius:100px;font-size:12px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:2000;opacity:0;transition:all .3s ease;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* ═══ TICKER ═══ */
+.ticker{background:var(--bgC);border:1px solid var(--bd);border-radius:var(--rL);padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.ticker .tbd{font-family:var(--fM);font-size:9px;font-weight:600;background:var(--okD);color:var(--ok);padding:3px 10px;border-radius:100px;text-transform:uppercase;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.ticker .tbd .dot{width:4px;height:4px;border-radius:50%;background:var(--ok);animation:pulse 1.5s infinite}
+.ticker .msg{font-family:var(--fM);font-size:12px;color:var(--t3);font-weight:400}
+@media(max-width:500px){.ticker{flex-direction:column;align-items:flex-start;gap:6px}.ticker .msg{font-size:11px}}
+
+.hidden{display:none!important}
+</style>
+</head>
+<body data-theme="dark">
+<a href="#calculator" class="skip-to" style="position:absolute;top:-60px;left:16px;background:var(--ac);color:#fff;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;z-index:9999;text-decoration:none;transition:top .2s" onfocus="this.style.top='10px'" onblur="this.style.top='-60px'">Skip to Calculator</a>
+<noscript><div style="background:#fbbf24;color:#000;text-align:center;padding:14px;font-weight:600;font-size:14px">This calculator requires JavaScript to work. Please enable JavaScript in your browser settings.</div></noscript>
+
+<nav class="nav" role="navigation" aria-label="Main navigation"><div class="nav-in">
+<a href="/" class="logo"><div class="logo-ic">&#x1f525;</div>MeetingBurn</a>
+<div class="nav-r">
+<a href="#calculator" class="nav-a">Calculator</a>
+<a href="#research" class="nav-a">Research</a>
+<a href="#faq" class="nav-a">FAQ</a>
+<button class="thm" onclick="toggleTheme()" aria-label="Toggle theme">&#x263E;</button>
+</div>
+</div></nav>
+
+<header class="hero w" role="banner">
+<div class="badge"><span class="dot"></span> Free Tool | No Signup</div>
+<h1>How Much Do Your Meetings<br><span class="hl">Actually Cost?</span></h1>
+<p class="hero-p">Calculate what your meetings really cost, per second, per person, per year. Built on published workplace research from Harvard Business Review, UC Irvine, and Atlassian.</p>
+<div class="trust-row">
+<span><strong>11.3 hrs</strong> weekly in meetings</span>
+<span><strong>$29K</strong> per employee yearly</span>
+<span><strong>71%</strong> say meetings are wasteful</span>
+</div>
+</header>
+
+<main class="w" id="calculator" role="main" aria-label="Meeting cost calculator">
+<div class="ticker"><div class="tbd"><span class="dot"></span> Insight</div><div class="msg" id="tickMsg">Adjust the sliders to estimate your meeting cost.</div></div>
+
+<div class="row-ctrl">
+<div class="pg"><button class="pb on" data-c="USD" onclick="setCur('USD','$')">USD $</button><button class="pb" data-c="INR" onclick="setCur('INR','₹')">INR ₹</button><button class="pb" data-c="EUR" onclick="setCur('EUR','€')">EUR €</button><button class="pb" data-c="GBP" onclick="setCur('GBP','£')">GBP £</button></div>
+<div class="pg"><button class="pb on" id="tLite" onclick="setMode('lite')">Quick Calc</button><button class="pb" id="tPro" onclick="setMode('pro')">By Role</button></div>
+</div>
+
+<section class="card">
+
+<div class="mon">
+<div class="burn" id="burnP">
+<div class="burn-lbl" id="burnLbl">Estimated Meeting Cost</div>
+<div class="cost" id="costN" aria-live="polite">$0.00</div>
+<div class="timer" id="timerN">00:00:00</div>
+</div>
+<div class="side">
+<div class="sc"><div class="sc-l">Meeting Health</div><div class="sc-v" id="healthV" style="color:var(--t4)">Not started yet</div><div class="sc-h" id="healthH">Start tracking to see your score</div></div>
+<div class="sc"><div class="sc-l">Focus Recovery Cost</div><div class="sc-v" id="focusV">$0.00</div><div class="sc-h">23 min 15 sec post meeting void</div></div>
+<div class="sc"><div class="sc-l">Burn Rate</div><div class="sc-v" id="rateV">$0.000<small style="font-size:10px;color:var(--t4)">/sec</small></div></div>
+</div>
+</div>
+
+<div class="cfg">
+<div class="pan">
+<div id="liteUI">
+<div class="pan-h"><span class="pan-t">Attendees</span><span class="pan-v" id="dA">6</span></div>
+<input type="range" id="rA" min="2" max="40" value="6" oninput="recalc()" aria-label="Number of meeting attendees">
+<div class="pan-h" style="margin-top:16px"><span class="pan-t">Avg Annual Salary</span><span class="pan-v" id="dS">$85,000</span></div>
+<input type="range" id="rS" min="25000" max="400000" step="5000" value="85000" oninput="recalc()" aria-label="Average annual salary">
+</div>
+<div id="proUI" class="hidden">
+<div class="pan-h"><span class="pan-t">Team Composition</span></div>
+<div class="role"><div class="role-top"><span class="role-n">&#x1f4bb; Engineers</span><div class="role-ctrl"><button class="rbtn" onclick="adj('eng',-1)" aria-label="Remove engineer">&#x2212;</button><span class="rnum" id="cE">3</span><button class="rbtn" onclick="adj('eng',1)" aria-label="Add engineer">+</button></div></div><input type="range" id="sE" oninput="recalc()" aria-label="Engineer salary"><div class="rsal" id="dsE">$120,000/yr</div></div>
+<div class="role"><div class="role-top"><span class="role-n">&#x1f4ca; Managers</span><div class="role-ctrl"><button class="rbtn" onclick="adj('mgr',-1)" aria-label="Remove manager">&#x2212;</button><span class="rnum" id="cM">1</span><button class="rbtn" onclick="adj('mgr',1)" aria-label="Add manager">+</button></div></div><input type="range" id="sM" oninput="recalc()" aria-label="Manager salary"><div class="rsal" id="dsM">$160,000/yr</div></div>
+<div class="role"><div class="role-top"><span class="role-n">&#x1f3a8; Designers</span><div class="role-ctrl"><button class="rbtn" onclick="adj('des',-1)" aria-label="Remove designer">&#x2212;</button><span class="rnum" id="cD">1</span><button class="rbtn" onclick="adj('des',1)" aria-label="Add designer">+</button></div></div><input type="range" id="sD" oninput="recalc()" aria-label="Designer salary"><div class="rsal" id="dsD">$105,000/yr</div></div>
+<div class="role"><div class="role-top"><span class="role-n">&#x1f4de; Executives</span><div class="role-ctrl"><button class="rbtn" onclick="adj('exec',-1)" aria-label="Remove executive">&#x2212;</button><span class="rnum" id="cX">0</span><button class="rbtn" onclick="adj('exec',1)" aria-label="Add executive">+</button></div></div><input type="range" id="sX" oninput="recalc()" aria-label="Executive salary"><div class="rsal" id="dsX">$230,000/yr</div></div>
+</div>
+</div>
+<div class="pan">
+<div class="pan-h"><span class="pan-t">Planned Duration</span><span class="pan-v" id="dDr">30 min</span></div>
+<input type="range" id="rDr" min="10" max="180" step="5" value="30" oninput="recalc()" aria-label="Meeting duration in minutes">
+<div class="pan-h" style="margin-top:16px"><span class="pan-t">Recurrence</span><span class="pan-v" id="dFr">Weekly</span></div>
+<input type="range" id="rFr" min="0" max="4" value="1" oninput="recalc()" aria-label="Meeting frequency">
+<div style="font-size:10px;color:var(--t4);margin-top:3px;font-family:var(--fM)">Daily &middot; Weekly &middot; Twice monthly &middot; Monthly &middot; Once</div>
+<div class="chk" style="margin-top:16px"><input type="checkbox" id="chkB" checked onchange="recalc()"><label for="chkB">Add 30% benefits overhead (loaded cost)</label></div>
+<div class="chk"><input type="checkbox" id="chkF" checked onchange="recalc()"><label for="chkF">Include 23 min 15 sec focus recovery tax</label></div>
+</div>
+</div>
+
+<div class="diag">
+<div class="pan-t">Meeting Health Checklist</div>
+<div style="font-size:11px;color:var(--t4);margin-top:3px;font-weight:300">Check the items that apply. Your health score updates while tracking.</div>
+<div class="diag-g">
+<label class="dg-i" onclick="togD(this)"><input type="checkbox" class="dc"><span class="dg-d"></span>Agenda shared beforehand</label>
+<label class="dg-i" onclick="togD(this)"><input type="checkbox" class="dc"><span class="dg-d"></span>Clear decision was reached</label>
+<label class="dg-i" onclick="togD(this)"><input type="checkbox" class="dc"><span class="dg-d"></span>Only essential people invited</label>
+<label class="dg-i" onclick="togD(this)"><input type="checkbox" class="dc"><span class="dg-d"></span>Action items assigned to owners</label>
+<label class="dg-i" onclick="togD(this)"><input type="checkbox" class="dc"><span class="dg-d"></span>Ended on time or early</label>
+<label class="dg-i" onclick="togD(this)"><input type="checkbox" class="dc"><span class="dg-d"></span>Could not have been an email</label>
+</div>
+</div>
+
+<div class="formula" id="fBar"><b>Your formula:</b> (<span class="val" id="fS">$85,000</span> &divide; 2,080 hrs) &times; <span class="val" id="fB">1.30</span> overhead &divide; 60 &times; <span class="val" id="fP">6</span> people &times; <span class="val" id="fDu">30</span> min = <b><span class="val" id="fT">$0.00</span></b> per session</div>
+
+<div class="proj">
+<div class="sc"><div class="sc-l">This Session</div><div class="sc-v" id="pS">$0.00</div></div>
+<div class="sc"><div class="sc-l">Monthly</div><div class="sc-v" id="pM">$0.00</div></div>
+<div class="sc"><div class="sc-l">Annual</div><div class="sc-v danger" id="pY">$0.00</div></div>
+<div class="sc"><div class="sc-l">CO&#x2082;/yr</div><div class="sc-v" id="pC" style="font-size:13px">0 kg</div></div>
+</div>
+
+<!-- SAVINGS SIMULATOR -->
+<div class="savings" id="savSec">
+<div class="savings-h">&#x1f4b0; Potential Savings</div>
+<div class="savings-sub">If you cut just 20% of this meeting's time or reduced attendance by 2 people:</div>
+<div class="savings-row">
+<div class="savings-stat"><div class="savings-num" id="savTime">$0</div><div class="savings-lbl">Save 20% time</div></div>
+<div class="savings-stat"><div class="savings-num" id="savPpl">$0</div><div class="savings-lbl">Remove 2 people</div></div>
+<div class="savings-stat"><div class="savings-num" id="savYear">$0</div><div class="savings-lbl">Annual savings</div></div>
+</div>
+</div>
+
+<button class="btn-main" id="mainB" onclick="toggleTimer()">&#x25B6; Start Live Meeting Tracker</button>
+<div class="sec-btns">
+<button class="btn-s hide" id="resB" onclick="resetAll()">Reset</button>
+<button class="btn-s hide" id="snpB" onclick="copySnap()">Copy Snapshot</button>
+<button class="btn-s" onclick="shareTool()">Share Tool</button>
+<button class="btn-s" onclick="dlReport()">Download Report</button>
+</div>
+<div class="lifetime"><span id="ltL">Lifetime Tracked (USD)</span><span id="ltV">$0.00</span></div>
+</section>
+
+<!-- EMAIL -->
+<section class="email-sec" id="newsletter">
+<div class="badge">&#x2709; Free Weekly Insights</div>
+<h2>Get a Weekly Meeting Cost Digest</h2>
+<p class="sub">One email per week with meeting productivity research, cost reduction strategies, and tool recommendations. Written for managers and team leads.</p>
+<div id="emailWrap">
+<form class="email-form" action="https://app.convertkit.com/forms/0d08d115cf/subscriptions" method="post" data-sv-form="0d08d115cf" data-uid="0d08d115cf" onsubmit="handleSub(event)">
+<input type="email" name="email_address" placeholder="Your work email" required>
+<button type="submit">Subscribe Free</button>
+</form>
+<div class="e-trust"><span>&#x1f512; No spam, ever</span><span>&#x21A9; Unsubscribe anytime</span><span>Free for 10,000 subscribers</span></div>
+</div>
+<div class="e-ok" id="emailOk">&#x2714; You're in! Check your inbox to confirm.</div>
+</section>
+
+<!-- TOOLS -->
+<section class="sec" id="tools" aria-labelledby="toolsHeading">
+<div class="sec-ey">Recommended Tools</div>
+<h2 class="sec-h" id="toolsHeading">Tools That Help Teams Cut Meeting Waste</h2>
+<p class="sec-p">We picked these because they each solve a specific piece of the meeting cost puzzle: scheduling overhead, missing notes, calendar fragmentation, and meetings that should have been async. If you want to understand why these matter, check out <a href="#research" style="color:var(--ac)">our research section</a> below.</p>
+<div class="tools-g">
+<a href="https://calendly.com" class="tool" target="_blank" rel="noopener noreferrer nofollow sponsored"><div class="tool-top"><div class="tool-ic" style="background:var(--acD);color:var(--ac)">&#x1f4c5;</div><div><div class="tool-name">Calendly</div><div class="tool-tag">Scheduling</div></div></div><div class="tool-desc">Kills the constant email threads just to find a meeting time. Set availability rules, add buffer times, and cap meeting durations automatically.</div><span class="tool-cta">Try free</span></a>
+<a href="https://otter.ai" class="tool" target="_blank" rel="noopener noreferrer nofollow sponsored"><div class="tool-top"><div class="tool-ic" style="background:var(--okD);color:var(--ok)">&#x1f399;</div><div><div class="tool-name">Otter.ai</div><div class="tool-tag">Meeting Notes</div></div></div><div class="tool-desc">Transcribes and summarizes meetings automatically. People who don't need to attend can catch up in 2 minutes instead of sitting through a 45 minute call.</div><span class="tool-cta">Try free</span></a>
+<a href="https://reclaim.ai" class="tool" target="_blank" rel="noopener noreferrer nofollow sponsored"><div class="tool-top"><div class="tool-ic" style="background:var(--acD);color:var(--ac)">&#x1f9e0;</div><div><div class="tool-name">Reclaim.ai</div><div class="tool-tag">Calendar Optimizer</div></div></div><div class="tool-desc">Smart calendar tool that protects focus time, optimizes when meetings happen, and prevents the calendar fragmentation that kills deep work.</div><span class="tool-cta">Try free</span></a>
+<a href="https://www.loom.com" class="tool" target="_blank" rel="noopener noreferrer nofollow sponsored"><div class="tool-top"><div class="tool-ic" style="background:var(--noD);color:var(--no)">&#x1f3ac;</div><div><div class="tool-name">Loom</div><div class="tool-tag">Async Video</div></div></div><div class="tool-desc">Record quick video messages instead of scheduling meetings for updates and walkthroughs. The meeting that could have been a Loom.</div><span class="tool-cta">Try free</span></a>
+</div>
+</section>
+
+<!-- RESEARCH -->
+<section class="sec" id="research" aria-labelledby="researchHeading">
+<div class="sec-ey">Workplace Research</div>
+<h2 class="sec-h" id="researchHeading">The Hidden Cost of Meetings, Backed by Data</h2>
+<p class="sec-p">Most organizations have no visibility into what their meeting culture actually costs. We built the <a href="#calculator" style="color:var(--ac)">calculator above</a> because the numbers are staggering once you look at them closely. The data below comes from published studies by Harvard Business Review, Atlassian, Flowtrace, ActivTrak, and the University of California, Irvine. Every claim cites its original source so you can verify it independently.</p>
+<p style="font-size:12px;color:var(--t4);margin-top:10px">Last updated: March 2026</p>
+
+<div class="stat-row">
+<div class="stat"><div class="stat-n" style="color:var(--ac)">~$29K</div><div class="stat-d">Estimated meeting cost per employee per year, factoring salary and lost productivity</div><div class="stat-c">Fellow, 2024 Workplace Report</div></div>
+<div class="stat"><div class="stat-n" style="color:var(--no)">71%</div><div class="stat-d">Of senior managers surveyed consider meetings unproductive and inefficient</div><div class="stat-c">Perlow, Hadley &amp; Eun, Harvard Business Review, 2017</div></div>
+<div class="stat"><div class="stat-n" style="color:var(--ac)">23m 15s</div><div class="stat-d">Average time to fully regain deep focus after an interruption like a meeting</div><div class="stat-c">Mark, Gudith &amp; Klocke, UC Irvine</div></div>
+</div>
+
+<div class="res-g">
+<article class="res"><div class="res-ic" style="background:var(--acD);color:var(--ac)">&#x1f4c9;</div><h3 class="res-t">The Shrinking Focus Session</h3><div class="res-b">How long can your team actually focus without interruption? Not long, according to recent data. ActivTrak analyzed over 443 million hours of work behavior across 1,111 companies for their 2026 State of the Workplace report and found the average focused session has fallen to just 13 minutes and 7 seconds. That represents a 9% decline since 2023. Meetings and collaboration tools are the primary culprits fragmenting the modern workday into ever smaller blocks.</div><div class="res-ci">ActivTrak, "2026 State of the Workplace," 163,638 employees across 1,111 companies</div></article>
+<article class="res"><div class="res-ic" style="background:var(--noD);color:var(--no)">&#x23f1;</div><h3 class="res-t">11.3 Hours Per Week in Meetings</h3><div class="res-b">The typical employee now gives up roughly 11.3 hours every week to meetings, which works out to about 28% of a standard work week. Think about that for a moment: over a quarter of your team's paid time goes to sitting in rooms (physical or virtual) talking. Atlassian's survey data makes the frustration clear. 80% of workers say they would be more productive with fewer meetings, and 68% report that they simply do not get enough uninterrupted time for focused work during the day.</div><div class="res-ci">Fellow Workplace Report, 2024; Atlassian Work Efficiency Survey</div></article>
+<article class="res"><div class="res-ic" style="background:var(--okD);color:var(--ok)">&#x1f4ca;</div><h3 class="res-t">Shorter, Smaller Meetings Work Better</h3><div class="res-b">There is good news. Organizations are starting to figure this out. Flowtrace looked at 1.3 million meetings in 2025 and found the median duration has dropped to 35 minutes. Just 12% of meetings run beyond an hour now, and 64% include six or fewer people. The pattern is clear: teams that keep meetings short, small, and focused around a written agenda consistently report better outcomes than those running long, unfocused sessions with large invite lists.</div><div class="res-ci">Flowtrace, "State of Meetings Report 2025," 1.3M meetings analyzed</div></article>
+<article class="res"><div class="res-ic" style="background:var(--acD);color:var(--ac)">&#x1f30d;</div><h3 class="res-t">Meeting Waste Varies by Country</h3><div class="res-b">Meeting culture is not universal. Asana's 2024 global survey revealed striking differences across countries. Workers in France reported losing roughly 9.1 hours per week to unproductive meetings, with Germany close behind at 8.8 and Japan at 8.3. U.S. workers reported 5.2 hours of weekly waste, while the U.K. came in lowest at 4.1. These aren't small numbers. They point to deeply embedded organizational habits that vary from one country's work culture to another.</div><div class="res-ci">Asana, "Anatomy of Work" Global Report, 2024</div></article>
+</div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="sec" id="methodology" aria-labelledby="methHeading">
+<div class="sec-ey">Transparent Methodology</div>
+<h2 class="sec-h" id="methHeading">How We Calculate Meeting Cost</h2>
+<p class="sec-p" style="margin-bottom:18px">We believe in showing our work. Every number the <a href="#calculator" style="color:var(--ac)">calculator</a> produces comes from your inputs and standard compensation formulas. No hidden variables, no inflated figures. Here is the exact process, step by step.</p>
+<div class="meth">
+<h3 class="meth-t">Calculation Method</h3>
+<div class="meth-s"><div class="meth-n">1</div><div class="meth-tx"><b>Hourly Rate:</b> Annual salary divided by 2,080 hours per year (52 weeks times 40 hours). This is the standard used by the U.S. Bureau of Labor Statistics and most payroll systems. <code>$85,000 / 2,080 = $40.87/hr</code></div></div>
+<div class="meth-s"><div class="meth-n">2</div><div class="meth-tx"><b>Loaded Cost:</b> Hourly rate multiplied by 1.30 for employer costs including health insurance, FICA, retirement contributions, and overhead. BLS data shows employer benefits average 29 to 32% of total compensation. <code>$40.87 x 1.30 = $53.13/hr</code></div></div>
+<div class="meth-s"><div class="meth-n">3</div><div class="meth-tx"><b>Per Minute Rate:</b> Loaded hourly rate divided by 60, multiplied by number of attendees. <code>($53.13 / 60) x 6 = $5.31/min</code></div></div>
+<div class="meth-s"><div class="meth-n">4</div><div class="meth-tx"><b>Session Cost:</b> Per minute rate multiplied by duration. <code>$5.31 x 30 = $159.38</code></div></div>
+<div class="meth-s"><div class="meth-n">5</div><div class="meth-tx"><b>Focus Recovery Tax:</b> Per second rate multiplied by 1,395 seconds (23 min 15 sec) for all attendees. Based on UC Irvine research by Mark, Gudith, and Klocke.</div></div>
+<div class="meth-s"><div class="meth-n">6</div><div class="meth-tx"><b>Projections:</b> Session cost multiplied by frequency. Daily = 260 per year, Weekly = 52, Twice monthly = 26, Monthly = 12, Once = 1. Carbon estimate uses approximately 0.04 kg CO&#x2082; per participant hour.</div></div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" aria-labelledby="faqHeading">
+<div class="sec-ey">Frequently Asked Questions</div>
+<h2 class="sec-h" id="faqHeading">Common Questions About Meeting Costs</h2>
+<div>
+<div class="faq"><button class="faq-q" onclick="togF(this.parentElement)">How much do meetings cost a company per year?<span class="faq-arr">&#x25BC;</span></button><div class="faq-a">It depends heavily on your team's size and salary levels, but the numbers are consistently large across research. Fellow's 2024 report estimates roughly $29,000 per employee per year when you account for both salary time and the productivity lost to context switching and recovery. Bloomberg has cited even broader estimates reaching $375 billion annually across all U.S. businesses. You can plug in your own numbers using our <a href="#calculator" style="color:var(--ac)">calculator above</a> to see what it looks like for your specific team.</div></div>
+<div class="faq"><button class="faq-q" onclick="togF(this.parentElement)">Where does the 23 minute focus recovery figure come from?<span class="faq-arr">&#x25BC;</span></button><div class="faq-a">Gloria Mark, Daniela Gudith, and Ulrich Klocke at the University of California, Irvine published a study called "The Cost of Interrupted Work: More Speed and Stress." They measured how long it takes knowledge workers to return to their original task after being interrupted and found the average was 23 minutes and 15 seconds. The finding has been widely cited in workplace productivity literature since its publication and remains one of the most referenced data points in this space.</div></div>
+<div class="faq"><button class="faq-q" onclick="togF(this.parentElement)">Is the 30% benefits overhead accurate?<span class="faq-arr">&#x25BC;</span></button><div class="faq-a">Yes, it is conservative. The U.S. BLS shows employer benefits average 29 to 32% of total compensation. Many organizations actually run higher. You can toggle it off in the <a href="#calculator" style="color:var(--ac)">calculator</a> if you prefer raw salary numbers.</div></div>
+<div class="faq"><button class="faq-q" onclick="togF(this.parentElement)">What makes a meeting productive according to research?<span class="faq-arr">&#x25BC;</span></button><div class="faq-a">Here is what the data says, and it may sound obvious, but most teams still don't do it: share an agenda before the meeting, define the purpose and expected outcome, invite only the people who truly need to be there, assign action items with clear owners, and respect the planned duration. Atlassian found only 11% of meetings get rated as "highly productive" by attendees. Flowtrace's 2025 data shows 60% of standalone meetings still lack a written agenda. The gap between what works and what people actually do is enormous. Our <a href="#calculator" style="color:var(--ac)">diagnostic checklist</a> is based on these research findings.</div></div>
+<div class="faq"><button class="faq-q" onclick="togF(this.parentElement)">How many hours per week do employees spend in meetings?<span class="faq-arr">&#x25BC;</span></button><div class="faq-a">About 11.3 hours, according to Fellow. That is roughly 28% of a 40 hour work week. Enterprise employees at larger companies tend to spend even more. Microsoft's 2025 Work Trend Index found that about half of all meetings pile up between 9 and 11 AM and 1 and 3 PM, which are the hours when most people do their best focused work.</div></div>
+<div class="faq"><button class="faq-q" onclick="togF(this.parentElement)">Does this work for remote and hybrid meetings?<span class="faq-arr">&#x25BC;</span></button><div class="faq-a">Absolutely. The cost calculation is based on salary time, which applies regardless of where people are sitting. Our carbon estimate covers virtual meeting infrastructure. In person meetings would add commuting emissions on top of that.</div></div>
+<div class="faq"><button class="faq-q" onclick="togF(this.parentElement)">Can I trust the numbers this tool produces?<span class="faq-arr">&#x25BC;</span></button><div class="faq-a">We show the exact formula live on screen as you adjust the sliders, and every step is explained in our <a href="#methodology" style="color:var(--ac)">methodology section</a>. The hourly rate conversion uses the same formula that payroll systems use (salary divided by 2,080 annual hours), and our benefits multiplier aligns with published BLS data. The numbers are only as accurate as the inputs you provide. We do not add any hidden markups, inflated assumptions, or proprietary adjustments. What you see is a straightforward math formula applied to your inputs.</div></div>
+</div>
+</section>
+</main>
+
+<footer role="contentinfo"><div class="w"><div class="ft-r"><div class="ft-b"><div class="ft-bn">MeetingBurn</div><div class="ft-bd">A free meeting cost calculator built on published workplace research. No signup required. Runs entirely in your browser. Your data never leaves your device.</div></div><div class="ft-cols"><div><div class="ft-ch">Tool</div><a href="#calculator" class="ft-a">Calculator</a><a href="#methodology" class="ft-a">Methodology</a><a href="#faq" class="ft-a">FAQ</a><a href="#tools" class="ft-a">Recommended Tools</a></div><div><div class="ft-ch">Sources</div><a href="https://hbr.org/2017/07/stop-the-meeting-madness" class="ft-a" target="_blank" rel="noopener noreferrer">HBR: Meeting Madness</a><a href="https://www.flowtrace.co/collaboration-blog/50-meeting-statistics" class="ft-a" target="_blank" rel="noopener noreferrer">Flowtrace: Statistics</a><a href="https://www.activtrak.com/resources/state-of-the-workplace/" class="ft-a" target="_blank" rel="noopener noreferrer">ActivTrak: 2026</a></div></div></div><div class="ft-bot"><span>&copy; 2026 MeetingBurn.in | Free meeting cost calculator. All citations attributed to original sources.</span><span>Runs in your browser. No data collected.</span></div></div></footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const S={sec:0,on:false,tmr:null,rps:0,cur:'USD',sym:'$',mode:'lite',roles:{eng:3,mgr:1,des:1,exec:0}};
+const C={USD:{sym:'$',mn:25000,mx:400000,df:85000,eng:120000,mgr:160000,des:105000,exec:230000},INR:{sym:'\u20b9',mn:300000,mx:15000000,df:2000000,eng:1800000,mgr:3500000,des:1500000,exec:6000000},EUR:{sym:'\u20ac',mn:20000,mx:350000,df:70000,eng:90000,mgr:140000,des:80000,exec:200000},GBP:{sym:'\u00a3',mn:20000,mx:300000,df:60000,eng:80000,mgr:120000,des:70000,exec:180000}};
+const FL=['Daily','Weekly','Twice monthly','Monthly','Once'],FA=[260,52,26,12,1];
+const INS=[{t:0,m:"Adjust the sliders to estimate your meeting cost."},{t:10,m:"That is roughly a cup of specialty coffee burned."},{t:50,m:"You have spent the equivalent of a team lunch."},{t:200,m:"This meeting now costs more than a monthly software subscription."},{t:500,m:"Past $500. Is this meeting driving a proportional decision?"},{t:1000,m:"Over $1,000 in loaded salary committed to this session."},{t:2500,m:"Approaching the cost of a conference sponsorship."},{t:5000,m:"Significant investment. Make sure action items are documented."}];
+const RM={eng:{c:'cE',s:'sE',d:'dsE'},mgr:{c:'cM',s:'sM',d:'dsM'},des:{c:'cD',s:'sD',d:'dsD'},exec:{c:'cX',s:'sX',d:'dsX'}};
+
+window.addEventListener('DOMContentLoaded',()=>{initSl();recalc()});
+
+function initSl(){const c=C[S.cur],s=document.getElementById('rS');s.min=c.mn;s.max=c.mx;s.value=c.df;Object.keys(RM).forEach(r=>{const el=document.getElementById(RM[r].s);if(el){el.min=c.mn;el.max=c.mx;el.value=c[r]}})}
+
+function setCur(code,sym){S.cur=code;S.sym=sym;document.querySelectorAll('[data-c]').forEach(b=>b.classList.toggle('on',b.dataset.c===code));initSl();resetAll()}
+
+function setMode(m){S.mode=m;document.getElementById('tLite').classList.toggle('on',m==='lite');document.getElementById('tPro').classList.toggle('on',m==='pro');document.getElementById('liteUI').classList.toggle('hidden',m==='pro');document.getElementById('proUI').classList.toggle('hidden',m==='lite');resetAll()}
+
+function adj(role,d){S.roles[role]=Math.max(0,Math.min(15,S.roles[role]+d));document.getElementById(RM[role].c).textContent=S.roles[role];recalc()}
+
+function recalc(){
+    const sym=S.sym,ben=document.getElementById('chkB').checked?1.30:1.00,fi=parseInt(document.getElementById('rFr').value),dur=parseInt(document.getElementById('rDr').value);
+    let ppl=0,avgSal=0;
+    document.getElementById('dFr').textContent=FL[fi];document.getElementById('dDr').textContent=dur+' min';
+    if(S.mode==='lite'){
+        ppl=parseInt(document.getElementById('rA').value);const sal=parseInt(document.getElementById('rS').value);
+        document.getElementById('dA').textContent=ppl;document.getElementById('dS').textContent=sym+sal.toLocaleString();
+        S.rps=((sal*ben)/2080/3600)*ppl;avgSal=sal;
+    }else{
+        let tch=0;ppl=0;
+        Object.keys(RM).forEach(r=>{const sal=parseInt(document.getElementById(RM[r].s).value);const cnt=S.roles[r];tch+=(sal*ben*cnt)/2080;ppl+=cnt;document.getElementById(RM[r].d).textContent=sym+sal.toLocaleString()+'/yr'});
+        S.rps=tch/3600;avgSal=ppl>0?Math.round(tch*2080/ben/ppl):0;
+    }
+    document.getElementById('rateV').innerHTML=sym+S.rps.toFixed(3)+'<small style="font-size:10px;color:var(--t4)">/sec</small>';
+    const focusOn=document.getElementById('chkF').checked,focusCost=focusOn?S.rps*1395:0;
+    document.getElementById('focusV').textContent=sym+focusCost.toFixed(2);
+    const sessCost=S.rps*dur*60,am=FA[fi],mo=(sessCost*am)/12,yr=sessCost*am;
+    const co2=(ppl*(dur/60)*am*0.04).toFixed(1);
+    if(!S.on&&S.sec===0){document.getElementById('pS').textContent=sym+sessCost.toFixed(2);document.getElementById('costN').textContent=sym+'0.00'}
+    document.getElementById('pM').textContent=sym+fK(mo);document.getElementById('pY').textContent=sym+fK(yr);document.getElementById('pC').textContent=co2+' kg';
+    document.getElementById('fS').textContent=sym+avgSal.toLocaleString();document.getElementById('fB').textContent=ben.toFixed(2);document.getElementById('fP').textContent=ppl;document.getElementById('fDu').textContent=dur;document.getElementById('fT').textContent=sym+sessCost.toFixed(2);
+    // Savings simulator
+    const save20=sessCost*0.2*am;
+    const rps2=ppl>2?S.rps*((ppl-2)/ppl):0;
+    const save2ppl=(sessCost-(rps2*dur*60))*am;
+    const bestSave=Math.max(save20,save2ppl);
+    document.getElementById('savTime').textContent=sym+fK(save20);
+    document.getElementById('savPpl').textContent=sym+fK(save2ppl);
+    document.getElementById('savYear').textContent=sym+fK(bestSave);
+    updLt();
+}
+
+function fK(n){if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).toFixed(1)+'K';return n.toFixed(0)}
+
+function toggleTimer(){
+    const b=document.getElementById('mainB');
+    if(!S.on){S.on=true;b.innerHTML='&#x25A0; Stop Tracking';b.className='btn-main stop';document.getElementById('burnP').classList.add('live');document.getElementById('burnLbl').textContent='Live Meeting Cost';document.getElementById('resB').classList.remove('hide');document.getElementById('snpB').classList.remove('hide');S.tmr=setInterval(tick,1000)}
+    else{S.on=false;b.innerHTML='&#x25B6; Resume Tracking';b.className='btn-main paused';clearInterval(S.tmr);saveLt()}
+}
+
+function tick(){
+    S.sec++;const cost=S.rps*S.sec,sym=S.sym;
+    const el=document.getElementById('costN');el.textContent=sym+cost.toFixed(2);el.classList.remove('warn','crit');
+    if(cost>1000)el.classList.add('crit');else if(cost>300)el.classList.add('warn');
+    document.getElementById('burnP').classList.toggle('hot',cost>1000);
+    const h=String(Math.floor(S.sec/3600)).padStart(2,'0'),m=String(Math.floor((S.sec%3600)/60)).padStart(2,'0'),s=String(S.sec%60).padStart(2,'0');
+    document.getElementById('timerN').textContent=h+':'+m+':'+s;
+    const ins=[...INS].reverse().find(i=>cost>=i.t);if(ins)document.getElementById('tickMsg').textContent=ins.m;
+    document.getElementById('pS').textContent=sym+cost.toFixed(2);
+    updHealth(cost);
+}
+
+function updHealth(cost){
+    const ck=document.querySelectorAll('.dc:checked').length,el=document.getElementById('healthV'),ht=document.getElementById('healthH');
+    if(ck>=5){el.textContent='\u2714 Excellent';el.style.color='var(--ok)';ht.textContent='5+ best practices met'}
+    else if(ck>=3){el.textContent='\u2714 Good';el.style.color='var(--ok)';ht.textContent=ck+'/6 best practices met'}
+    else if(ck>=1){el.textContent='\u26A0 Fair';el.style.color='var(--ac)';ht.textContent=ck+'/6, check more items to improve'}
+    else{el.textContent='\u26A0 Unscored';el.style.color='var(--ac)';ht.textContent='Check diagnostic items above'}
+    if(ck===0&&cost>500){el.textContent='\u26D4 At Risk';el.style.color='var(--no)';ht.textContent='High cost with no best practices checked'}
+}
+
+function togD(el){const cb=el.querySelector('.dc');cb.checked=!cb.checked;el.classList.toggle('on',cb.checked);if(S.on)updHealth(S.rps*S.sec)}
+
+function saveLt(){try{let v=parseFloat(localStorage.getItem('mb_'+S.cur)||'0');v+=S.rps*S.sec;localStorage.setItem('mb_'+S.cur,v.toString());updLt()}catch(e){}}
+function updLt(){try{const v=parseFloat(localStorage.getItem('mb_'+S.cur)||'0');document.getElementById('ltL').textContent='Lifetime Tracked ('+S.cur+')';document.getElementById('ltV').textContent=S.sym+v.toFixed(2)}catch(e){}}
+
+function resetAll(){
+    clearInterval(S.tmr);S.sec=0;S.on=false;
+    document.getElementById('mainB').innerHTML='&#x25B6; Start Live Meeting Tracker';document.getElementById('mainB').className='btn-main';
+    document.getElementById('burnP').classList.remove('live','hot');document.getElementById('burnLbl').textContent='Estimated Meeting Cost';
+    document.getElementById('costN').textContent=S.sym+'0.00';document.getElementById('costN').classList.remove('warn','crit');
+    document.getElementById('timerN').textContent='00:00:00';document.getElementById('tickMsg').textContent='Adjust the sliders to estimate your meeting cost.';
+    document.getElementById('resB').classList.add('hide');document.getElementById('snpB').classList.add('hide');
+    document.getElementById('healthV').textContent='Not started yet';document.getElementById('healthV').style.color='var(--t4)';document.getElementById('healthH').textContent='Start tracking to see your score';
+    document.querySelectorAll('.dg-i').forEach(el=>{el.classList.remove('on');el.querySelector('.dc').checked=false});recalc()
+}
+
+function copySnap(){const t='Meeting Cost Snapshot\n'+('_').repeat(28)+'\nDuration: '+document.getElementById('timerN').textContent+'\nCost: '+document.getElementById('costN').textContent+'\nHealth: '+document.getElementById('healthV').textContent+'\nFocus Tax: '+document.getElementById('focusV').textContent+'\nAnnual: '+document.getElementById('pY').textContent+'\n'+('_').repeat(28)+'\nvia meetingburn.in';navigator.clipboard.writeText(t).then(()=>toast('Snapshot copied'))}
+
+function shareTool(){if(navigator.share)navigator.share({title:'Meeting Cost Calculator | MeetingBurn',url:location.href});else navigator.clipboard.writeText(location.href).then(()=>toast('Link copied'))}
+
+function dlReport(){
+    const d=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+    const r='MEETING COST REPORT\nGenerated by meetingburn.in | '+d+'\n'+('=').repeat(50)+'\n\nSESSION\n  Duration:         '+document.getElementById('timerN').textContent+'\n  Live Cost:        '+document.getElementById('costN').textContent+'\n  Burn Rate:        '+S.sym+S.rps.toFixed(4)+'/sec\n  Focus Recovery:   '+document.getElementById('focusV').textContent+'\n  Meeting Health:   '+document.getElementById('healthV').textContent+'\n  Diagnostics:      '+document.querySelectorAll('.dc:checked').length+'/6\n\nPROJECTIONS\n  Monthly:          '+document.getElementById('pM').textContent+'\n  Annual:           '+document.getElementById('pY').textContent+'\n  Carbon:           '+document.getElementById('pC').textContent+'\n\nFORMULA\n  '+document.getElementById('fBar').textContent.trim()+'\n\n'+('=').repeat(50)+'\nMETHOD: Salary / 2,080 hrs x overhead / 3,600 sec x attendees\nFocus recovery: 23m 15s per UC Irvine (Mark, Gudith, Klocke)\n\nSOURCES\n  Fellow, 2024: ~$29K/employee/yr meeting costs\n  HBR: 71% of executives find meetings unproductive\n  Atlassian: 80% say fewer meetings = more productivity\n  ActivTrak, 2026: Avg focused session 13m 7s\n  Flowtrace, 2025: Median meeting 35 min\n'+('=').repeat(50)+'\nmeetingburn.in | Free, no data collected.\n';
+    const blob=new Blob([r],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='meeting-cost-report.txt';a.click();URL.revokeObjectURL(a.href);toast('Report downloaded')
+}
+
+function handleSub(e){
+    e.preventDefault();const form=e.target,email=form.querySelector('input[type="email"]').value;
+    fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email_address:email})})
+    .then(r=>{if(r.ok){document.getElementById('emailWrap').style.display='none';document.getElementById('emailOk').style.display='block'}else{form.submit()}})
+    .catch(()=>{form.submit()})
+}
+
+function toggleTheme(){document.body.setAttribute('data-theme',document.body.getAttribute('data-theme')==='dark'?'light':'dark')}
+function togF(el){const w=el.classList.contains('open');document.querySelectorAll('.faq').forEach(i=>i.classList.remove('open'));if(!w)el.classList.add('open')}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+</script>
+</body>
+</html>
