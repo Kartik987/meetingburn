@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0b0a08" />
+
+<title>Goldhour changelog — every release, by MeetingBurn</title>
+<meta name="description" content="Every release of Goldhour, in reverse order. What shipped, what broke, what we fixed. Built and maintained by MeetingBurn." />
+<meta name="author" content="MeetingBurn" />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href="https://meetingburn.in/goldhour/changelog" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="MeetingBurn" />
+<meta property="og:title" content="Goldhour changelog — every release, by MeetingBurn" />
+<meta property="og:url" content="https://meetingburn.in/goldhour/changelog" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://meetingburn.in/#org","name":"MeetingBurn","url":"https://meetingburn.in/"},
+{"@type":"WebPage","name":"Goldhour Changelog","url":"https://meetingburn.in/goldhour/changelog","isPartOf":{"@type":"WebSite","name":"MeetingBurn","url":"https://meetingburn.in/"}},
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"MeetingBurn","item":"https://meetingburn.in/"},
+{"@type":"ListItem","position":2,"name":"Goldhour","item":"https://meetingburn.in/goldhour/"},
+{"@type":"ListItem","position":3,"name":"Changelog","item":"https://meetingburn.in/goldhour/changelog"}
+]}
+]}
+</script>
+
+<style>
+  :root{--bg:#0a0907;--bg-2:#121009;--ink:#f5efe0;--ink-dim:#a8a192;--ink-faint:#5a564c;--line:#221f17;--line-2:#2e2a1f;--gold:#f5c451;--gold-2:#ffd36b;--gold-soft:#f5c4511a;--ok:#86c07a;--radius:16px;--font-display:"Fraunces",ui-serif,Georgia,serif;--font-body:"DM Sans",ui-sans-serif,system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;--ease:cubic-bezier(.2,.8,.2,1)}
+  html[data-theme="light"]{--bg:#faf7ef;--bg-2:#f3ede0;--ink:#1a1708;--ink-dim:#5a5443;--ink-faint:#9b9584;--line:#e8e1ce;--line-2:#d6ceb7;--gold:#b8871f;--gold-2:#8a6410;--gold-soft:#b8871f18}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;overflow-x:hidden}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh;background-image:radial-gradient(1000px 600px at 85% -10%, #f5c45115, transparent 60%)}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.04;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");mix-blend-mode:overlay}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+  @media (max-width:640px){.wrap{padding:0 16px}}
+
+  nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);background:color-mix(in srgb, var(--bg) 75%, transparent);border-bottom:1px solid var(--line)}
+  nav.top .row{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+  .brand{display:flex;align-items:center;gap:12px;flex:none}
+  .brand .mark{width:28px;height:28px;border-radius:50%;flex:none;background:conic-gradient(from 210deg, var(--gold) 0 25%, #1b1810 25% 55%, var(--gold) 55% 80%, #1b1810 80% 100%);box-shadow:0 0 0 1px var(--line-2), 0 0 24px var(--gold-soft);position:relative;animation:spin 40s linear infinite}
+  .brand .mark::after{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--bg);border:1px solid var(--line-2)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .brand-text{display:flex;flex-direction:column;line-height:1;gap:3px}
+  .brand-name{font-family:var(--font-display);font-size:22px;font-weight:500;letter-spacing:-.02em}
+  .brand-sub{font-family:var(--font-mono);font-size:9px;color:var(--ink-faint);letter-spacing:.16em;text-transform:uppercase}
+  .brand-sub a{color:var(--ink-dim)}
+  .brand-sub a:hover{color:var(--gold)}
+  nav .links{display:flex;gap:22px;font-size:14px;color:var(--ink-dim)}
+  nav .links a{padding:6px 2px;transition:color .25s}
+  nav .links a:hover{color:var(--ink)}
+  @media (max-width:880px){nav .links{display:none}}
+  nav .cta{display:flex;gap:8px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;font-size:14px;font-weight:500;border:1px solid var(--line-2);color:var(--ink);transition:all .25s var(--ease);white-space:nowrap}
+  .btn:hover{border-color:var(--gold);color:var(--gold)}
+  .btn.primary{background:var(--gold);color:#0b0a08;border-color:var(--gold)}
+  .btn.primary:hover{background:var(--gold-2);color:#0b0a08;border-color:var(--gold-2)}
+  .icon-btn{width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line-2);transition:all .25s}
+  .icon-btn:hover{border-color:var(--gold);color:var(--gold);transform:rotate(-12deg)}
+
+  .crumb{font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);padding:40px 0 10px}
+  .crumb a{color:var(--ink-dim)}
+  .crumb a:hover{color:var(--gold)}
+  .crumb .sep{margin:0 10px;color:var(--line-2)}
+
+  main{padding:20px 0 100px}
+  .head{max-width:720px;margin-bottom:60px}
+  .head h1{font-family:var(--font-display);font-weight:300;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 24px}
+  .head .sub{font-family:var(--font-display);font-weight:300;font-size:clamp(1.15rem,1.7vw,1.4rem);font-style:italic;color:var(--ink-dim);line-height:1.5;margin:0;max-width:60ch}
+
+  .log{max-width:820px}
+  .release{display:grid;grid-template-columns:180px 1fr;gap:40px;padding:40px 0;border-top:1px solid var(--line);position:relative}
+  .release:first-child{border-top:1px solid var(--gold);padding-top:44px}
+  .release:first-child::before{content:"";position:absolute;top:-1px;left:0;width:60px;height:1px;background:var(--gold);box-shadow:0 0 8px var(--gold)}
+  @media (max-width:760px){.release{grid-template-columns:1fr;gap:18px;padding:30px 0}}
+
+  .release .meta{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--ink-faint);text-transform:uppercase;line-height:1.6}
+  .release .version{color:var(--gold);font-weight:500;font-size:13px;letter-spacing:.04em;display:block;margin-bottom:4px}
+  .release .date{color:var(--ink-dim)}
+  .release .tag{display:inline-block;margin-top:8px;padding:3px 9px;border:1px solid var(--line-2);border-radius:999px;font-size:9px;color:var(--ink-faint)}
+  .release .tag.current{border-color:var(--gold);color:var(--gold)}
+
+  .release .body{min-width:0}
+  .release h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.4rem,2.2vw,1.9rem);letter-spacing:-.018em;margin:0 0 20px;line-height:1.2}
+  .release h3{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin:22px 0 10px}
+  .release p{margin:0 0 14px;color:var(--ink-dim);max-width:62ch;font-size:15px}
+  .release ul{list-style:none;margin:0 0 14px;padding:0;max-width:62ch}
+  .release li{position:relative;padding:8px 0 8px 22px;color:var(--ink-dim);font-size:14.5px;line-height:1.6;border-bottom:1px dashed color-mix(in srgb, var(--line) 60%, transparent)}
+  .release li:last-child{border-bottom:0}
+  .release li::before{content:"—";position:absolute;left:0;color:var(--gold);font-weight:500}
+  .release li strong{color:var(--ink);font-weight:600}
+  .release li code{font-family:var(--font-mono);font-size:.88em;background:var(--bg-2);padding:1px 6px;border-radius:4px;border:1px solid var(--line);color:var(--gold-2)}
+
+  footer{border-top:1px solid var(--line);padding:60px 0 40px;color:var(--ink-dim);font-size:13px}
+  footer .wrap{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px}
+  @media (max-width:900px){footer .wrap{grid-template-columns:1fr 1fr}}
+  @media (max-width:500px){footer .wrap{grid-template-columns:1fr}}
+  footer h4{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 14px;font-weight:400}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  footer a:hover{color:var(--gold)}
+  .copy{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap row">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      <span class="brand-text"><span class="brand-name">Goldhour</span><span class="brand-sub">by <a href="https://meetingburn.in" rel="noopener">MeetingBurn</a></span></span>
+    </a>
+    <div class="links">
+      <a href="index.html#planner">Planner</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="changelog.html">Changelog</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="cta">
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a href="index.html#planner" class="btn primary">Open planner</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap crumb">
+  <a href="https://meetingburn.in">MeetingBurn</a><span class="sep">/</span><a href="index.html">Goldhour</a><span class="sep">/</span>Changelog
+</div>
+
+<main>
+  <div class="wrap">
+    <div class="head">
+      <h1>Changelog.</h1>
+      <p class="sub">Every change to Goldhour, in reverse order. Nothing here is a marketing line — if it's listed, something actually moved.</p>
+    </div>
+
+    <div class="log">
+
+      <div class="release">
+        <div class="meta">
+          <span class="version">v1.2.0</span>
+          <span class="date">14 April 2026</span>
+          <span class="tag current">Current release</span>
+        </div>
+        <div class="body">
+          <h2>Find best time, meeting duration, shareable links.</h2>
+          <p>The largest feature push since launch. Three features that have been on our board since the first beta, all shipping together because they turned out to depend on each other.</p>
+          <h3>Added</h3>
+          <ul>
+            <li><strong>Find best time</strong> button that scans all 1,440 UTC minutes at 15-minute resolution and jumps the cursor to the midpoint of the longest golden window for your current roster. On a well-balanced team it's usually somewhere between your first city's lunch and your last city's morning coffee.</li>
+            <li><strong>Meeting duration</strong> selector (30 / 60 / 90 min). Duration affects the golden-hour math directly: a slot only counts as golden if everyone is in working hours for the full meeting, not just the start minute. A 90-minute meeting starting at 4:30pm local will drop out of golden if anyone on the team clocks off at 5pm sharp.</li>
+            <li><strong>Shareable links.</strong> Your roster, proposed time and meeting duration all fit inside the URL fragment. Hit the new Share button, paste the URL in your channel, and anyone who opens it sees the exact same view — no account, nothing stored on any server, the state is literally encoded in the <code>#</code>.</li>
+            <li><strong>Quick-start team presets</strong> — one-tap rosters for four common team shapes: US ↔ EU, APAC ↔ EU, India ↔ US, and a six-city global spread.</li>
+            <li><strong>Next golden hour countdown</strong> in the status banner. Whenever the current cursor is not a golden slot, the banner shows something like "Next golden in 2h 15m →" and clicking it jumps the cursor to that slot.</li>
+            <li><strong>Now button</strong> in the panel head — jumps the cursor to the current UTC time, rounded to the nearest 15 minutes.</li>
+            <li><strong>"YOU" badge</strong> on the city row whose IANA timezone matches your browser's detected timezone. A small thing but it saves half a second of visual scanning every time you open the planner.</li>
+          </ul>
+          <h3>Changed</h3>
+          <ul>
+            <li>Slack, Teams and plain-text outputs now include the duration of the meeting in the header line, so a paste never looks ambiguous about whether you're proposing 30 or 60 minutes.</li>
+            <li>The output footer now reads <code>via Goldhour by MeetingBurn · meetingburn.in</code> on all three formats. The old <code>goldhour.app</code> footer never worked for us — we only own <code>meetingburn.in</code> — and Goldhour lives under that domain as a sub-product.</li>
+          </ul>
+          <h3>Fixed</h3>
+          <ul>
+            <li>Reorder buttons on the row now stay disabled at the top and bottom of the list, so you can't generate a phantom "move up from position 0" action.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="release">
+        <div class="meta">
+          <span class="version">v1.1.0</span>
+          <span class="date">22 March 2026</span>
+        </div>
+        <div class="body">
+          <h2>Mobile layout, golden hour banner, readable outputs.</h2>
+          <p>Feedback from the first three weeks post-launch said three things, loudly: the site was unusable on phones, the copied Slack output was unreadable, and nobody knew what "Golden Hour" meant until they had played with the app for two minutes. This release was the response.</p>
+          <h3>Added</h3>
+          <ul>
+            <li><strong>Golden hour status banner</strong> at the top of the planner. One line that tells you whether the current cursor is a golden hour, an edge hour, or off hours, and how many teammates would be asleep.</li>
+            <li><strong>Full mobile layout.</strong> Rows stack to a single column below 820px, with up and down arrow buttons replacing drag-and-drop (which, it turns out, does not reliably fire on touch — a discovery made the hard way).</li>
+            <li>⌘/Ctrl + K keyboard shortcut to focus the city search from anywhere on the page.</li>
+            <li>Click any hour cell on a city strip to jump the cursor directly to that hour. Small feature, big engagement lift in our own usage.</li>
+            <li>Auto-refresh every 60 seconds so the "now" marker stays on the correct hour without a page reload.</li>
+          </ul>
+          <h3>Changed</h3>
+          <ul>
+            <li>Slack, Teams and plain-text outputs now include day, date, timezone abbreviation, and a per-teammate warning tag (💤 asleep / ⚠ late night / ◐ edge hour). Before this release they were a single line per city with just the time. Much harder to misread now.</li>
+            <li>Slider track is now a day-to-night gradient (sleep → dusk → gold → dusk → sleep). The thumb reads as a sun moving through the 24-hour cycle. Purely aesthetic but it makes the app feel alive.</li>
+          </ul>
+          <h3>Fixed</h3>
+          <ul>
+            <li>The city-search dropdown was clipping under the time slider when the roster panel had too many rows. Root cause was an <code>overflow:hidden</code> on the panel container inherited from the initial layout. Removing it and giving the suggestions a solid background with a high z-index fixed it on all viewports.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="release">
+        <div class="meta">
+          <span class="version">v1.0.0</span>
+          <span class="date">1 March 2026</span>
+        </div>
+        <div class="body">
+          <h2>Hello, world. The first public release.</h2>
+          <p>Goldhour shipped with 72 curated cities, three output formats (Slack, Teams, plain text), dark and light themes, a wireframe globe in the hero that nobody asked for, and a footer promising we'd never put ads in the planner itself. Everything in the planner ran in the browser using the native Intl API — no server, no database, nothing to log in to.</p>
+          <p>First-paint measured 410ms on a cold cache on a mid-range Android over 4G. We were happy with that.</p>
+        </div>
+      </div>
+
+      <div class="release">
+        <div class="meta">
+          <span class="version">v0.9 beta</span>
+          <span class="date">15 February 2026</span>
+        </div>
+        <div class="body">
+          <h2>Internal beta.</h2>
+          <p>The MeetingBurn team and a few dozen friends used Goldhour for two weeks before the public launch. Here's what we learned, mostly the hard way:</p>
+          <ul>
+            <li>The autocomplete needed default suggestions when the input is empty. An empty dropdown feels broken.</li>
+            <li>Nobody used the term "Golden Hour" without seeing the legend first. We added the legend below the rows and the anxiety dropped.</li>
+            <li>Our first pass at the Slack output was, in the words of one tester, "genuinely unreadable on my phone." We rewrote it twice before launch.</li>
+            <li>The "warm dark mode" we spent two evenings tuning was still too cold on OLED screens. We pushed the background further toward <code>#0a0907</code> and the problem went away.</li>
+          </ul>
+          <p>Good times.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="index.html" class="brand"><span class="mark"></span><span class="brand-text"><span class="brand-name">Goldhour</span><span class="brand-sub">by MeetingBurn</span></span></a>
+      <p style="margin-top:16px;max-width:36ch">Part of the <a href="https://meetingburn.in" style="color:var(--gold)">MeetingBurn</a> toolkit. A small studio publishing opinionated tools for remote teams.</p>
+    </div>
+    <div><h4>Goldhour</h4><ul><li><a href="index.html#planner">Planner</a></li><li><a href="index.html#features">Features</a></li><li><a href="index.html#how">How it works</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="changelog.html">Changelog</a></li></ul></div>
+    <div><h4>MeetingBurn</h4><ul><li><a href="https://meetingburn.in">meetingburn.in</a></li><li><a href="about.html">About Goldhour</a></li><li><a href="mailto:hello@meetingburn.in">hello@meetingburn.in</a></li></ul></div>
+    <div><h4>Legal</h4><ul><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms of use</a></li></ul></div>
+  </div>
+  <div class="wrap copy">
+    <span>© 2026 MeetingBurn · Goldhour is a MeetingBurn product</span>
+    <span>v1.2.0</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const k="goldhour.theme";const s=localStorage.getItem(k);if(s)document.documentElement.setAttribute("data-theme",s);
+  document.getElementById("theme-toggle").addEventListener("click",()=>{const c=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",c);localStorage.setItem(k,c);});
+})();
+</script>
+</body>
+</html>

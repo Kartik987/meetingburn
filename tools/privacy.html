@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0b0a08" />
+
+<title>Privacy — Goldhour by MeetingBurn</title>
+<meta name="description" content="Goldhour runs entirely in your browser. This page lists exactly what we store (almost nothing), what we don't collect (almost everything), and who else is involved. No lawyer wrote it." />
+<meta name="author" content="MeetingBurn" />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href="https://meetingburn.in/goldhour/privacy" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="MeetingBurn" />
+<meta property="og:title" content="Privacy — Goldhour by MeetingBurn" />
+<meta property="og:url" content="https://meetingburn.in/goldhour/privacy" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://meetingburn.in/#org","name":"MeetingBurn","url":"https://meetingburn.in/"},
+{"@type":"WebPage","name":"Goldhour Privacy","url":"https://meetingburn.in/goldhour/privacy","isPartOf":{"@type":"WebSite","name":"MeetingBurn","url":"https://meetingburn.in/"}},
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"MeetingBurn","item":"https://meetingburn.in/"},
+{"@type":"ListItem","position":2,"name":"Goldhour","item":"https://meetingburn.in/goldhour/"},
+{"@type":"ListItem","position":3,"name":"Privacy","item":"https://meetingburn.in/goldhour/privacy"}
+]}
+]}
+</script>
+
+<style>
+  :root{--bg:#0a0907;--bg-2:#121009;--ink:#f5efe0;--ink-dim:#a8a192;--ink-faint:#5a564c;--line:#221f17;--line-2:#2e2a1f;--gold:#f5c451;--gold-2:#ffd36b;--gold-soft:#f5c4511a;--ok:#86c07a;--danger:#e46a6a;--radius:16px;--font-display:"Fraunces",ui-serif,Georgia,serif;--font-body:"DM Sans",ui-sans-serif,system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;--ease:cubic-bezier(.2,.8,.2,1)}
+  html[data-theme="light"]{--bg:#faf7ef;--bg-2:#f3ede0;--ink:#1a1708;--ink-dim:#5a5443;--ink-faint:#9b9584;--line:#e8e1ce;--line-2:#d6ceb7;--gold:#b8871f;--gold-2:#8a6410;--gold-soft:#b8871f18}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;overflow-x:hidden}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh;background-image:radial-gradient(1000px 600px at 85% -10%, #f5c45115, transparent 60%)}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.04;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");mix-blend-mode:overlay}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+  @media (max-width:640px){.wrap{padding:0 16px}}
+
+  nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);background:color-mix(in srgb, var(--bg) 75%, transparent);border-bottom:1px solid var(--line)}
+  nav.top .row{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+  .brand{display:flex;align-items:center;gap:12px;flex:none}
+  .brand .mark{width:28px;height:28px;border-radius:50%;flex:none;background:conic-gradient(from 210deg, var(--gold) 0 25%, #1b1810 25% 55%, var(--gold) 55% 80%, #1b1810 80% 100%);box-shadow:0 0 0 1px var(--line-2), 0 0 24px var(--gold-soft);position:relative;animation:spin 40s linear infinite}
+  .brand .mark::after{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--bg);border:1px solid var(--line-2)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .brand-text{display:flex;flex-direction:column;line-height:1;gap:3px}
+  .brand-name{font-family:var(--font-display);font-size:22px;font-weight:500;letter-spacing:-.02em}
+  .brand-sub{font-family:var(--font-mono);font-size:9px;color:var(--ink-faint);letter-spacing:.16em;text-transform:uppercase}
+  .brand-sub a{color:var(--ink-dim)}
+  .brand-sub a:hover{color:var(--gold)}
+  nav .links{display:flex;gap:22px;font-size:14px;color:var(--ink-dim)}
+  nav .links a{padding:6px 2px;transition:color .25s}
+  nav .links a:hover{color:var(--ink)}
+  @media (max-width:880px){nav .links{display:none}}
+  nav .cta{display:flex;gap:8px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;font-size:14px;font-weight:500;border:1px solid var(--line-2);color:var(--ink);transition:all .25s var(--ease);white-space:nowrap}
+  .btn:hover{border-color:var(--gold);color:var(--gold)}
+  .btn.primary{background:var(--gold);color:#0b0a08;border-color:var(--gold)}
+  .btn.primary:hover{background:var(--gold-2);color:#0b0a08;border-color:var(--gold-2)}
+  .icon-btn{width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line-2);transition:all .25s}
+  .icon-btn:hover{border-color:var(--gold);color:var(--gold);transform:rotate(-12deg)}
+
+  .crumb{font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);padding:40px 0 10px}
+  .crumb a{color:var(--ink-dim)}
+  .crumb a:hover{color:var(--gold)}
+  .crumb .sep{margin:0 10px;color:var(--line-2)}
+
+  main.prose{padding:30px 0 100px}
+  .prose .inner{max-width:720px}
+  .prose h1{font-family:var(--font-display);font-weight:300;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 18px}
+  .prose .updated{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);letter-spacing:.12em;text-transform:uppercase;margin-bottom:40px;display:inline-block;padding:6px 12px;border:1px solid var(--line-2);border-radius:999px}
+  .prose .lede{font-family:var(--font-display);font-weight:300;font-size:clamp(1.15rem,1.7vw,1.4rem);font-style:italic;color:var(--ink-dim);line-height:1.5;margin:0 0 50px;padding-bottom:40px;border-bottom:1px solid var(--line);max-width:60ch}
+  .prose h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.4rem,2.2vw,1.9rem);letter-spacing:-.018em;margin:50px 0 18px;line-height:1.15}
+  .prose h2 .marker{color:var(--gold);font-style:italic;font-weight:300;font-size:.7em;margin-right:8px}
+  .prose p{margin:0 0 18px;max-width:62ch}
+  .prose a{color:var(--gold);border-bottom:1px dashed color-mix(in srgb, var(--gold) 60%, transparent)}
+  .prose a:hover{border-bottom-color:var(--gold);border-bottom-style:solid}
+  .prose strong{color:var(--ink);font-weight:600}
+  .prose ul{list-style:none;margin:0 0 18px;padding:0;max-width:62ch}
+  .prose li{position:relative;padding:12px 0 12px 24px;color:var(--ink-dim);border-bottom:1px dashed color-mix(in srgb, var(--line) 60%, transparent)}
+  .prose li::before{content:"—";position:absolute;left:0;color:var(--gold);font-weight:500}
+  .prose li strong{color:var(--ink)}
+  .prose code{font-family:var(--font-mono);font-size:.88em;background:var(--bg-2);padding:1px 7px;border-radius:4px;border:1px solid var(--line);color:var(--gold-2)}
+  .prose .data-table{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 24px}
+  .prose .data-table .row{display:grid;grid-template-columns:160px 1fr;gap:0;border-bottom:1px solid var(--line)}
+  .prose .data-table .row:last-child{border-bottom:0}
+  .prose .data-table .k{padding:14px 18px;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);background:var(--bg-2);border-right:1px solid var(--line);align-self:stretch;display:flex;align-items:center}
+  .prose .data-table .v{padding:14px 18px;font-size:14.5px;color:var(--ink-dim)}
+  @media (max-width:560px){.prose .data-table .row{grid-template-columns:1fr}.prose .data-table .k{border-right:0;border-bottom:1px solid var(--line)}}
+  .prose .no-list li::before{content:"✕";color:var(--danger)}
+
+  footer{border-top:1px solid var(--line);padding:60px 0 40px;color:var(--ink-dim);font-size:13px}
+  footer .wrap{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px}
+  @media (max-width:900px){footer .wrap{grid-template-columns:1fr 1fr}}
+  @media (max-width:500px){footer .wrap{grid-template-columns:1fr}}
+  footer h4{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 14px;font-weight:400}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  footer a:hover{color:var(--gold)}
+  .copy{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap row">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      <span class="brand-text"><span class="brand-name">Goldhour</span><span class="brand-sub">by <a href="https://meetingburn.in" rel="noopener">MeetingBurn</a></span></span>
+    </a>
+    <div class="links">
+      <a href="index.html#planner">Planner</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="changelog.html">Changelog</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="cta">
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a href="index.html#planner" class="btn primary">Open planner</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap crumb">
+  <a href="https://meetingburn.in">MeetingBurn</a><span class="sep">/</span><a href="index.html">Goldhour</a><span class="sep">/</span>Privacy
+</div>
+
+<main class="prose">
+  <div class="wrap">
+    <div class="inner">
+      <h1>Privacy, in plain language.</h1>
+      <span class="updated">Last updated · 14 April 2026</span>
+      <p class="lede">Goldhour runs entirely in your browser. This page lists exactly what we store, what we don't, and who else is involved. No lawyer wrote it.</p>
+
+      <h2><span class="marker">i.</span>What we store, and where</h2>
+      <p>Goldhour saves two things to your browser's localStorage — and nothing else. Both live on whichever device you're using and never leave it. You can clear them any time through your browser's site-data panel.</p>
+      <div class="data-table">
+        <div class="row"><div class="k">goldhour.roster</div><div class="v">The list of city names you've added, stored as plain text so we can reload them next time you visit.</div></div>
+        <div class="row"><div class="k">goldhour.theme</div><div class="v">Whether you picked dark or light mode. Exactly one of those two values.</div></div>
+      </div>
+      <p>That's the complete list. We do not write anything to cookies, we do not write anything to IndexedDB, and we do not write anything to sessionStorage. If your browser's site-data panel shows more than those two keys under <code>meetingburn.in</code>, something is broken — please tell us.</p>
+
+      <h2><span class="marker">ii.</span>What we don't collect</h2>
+      <ul class="no-list">
+        <li><strong>No accounts.</strong> There is no sign-up, no email, no password, no magic link. Nothing to forget and nothing to reset.</li>
+        <li><strong>No analytics.</strong> As of the date at the top of this page, Goldhour has no Google Analytics, no Plausible, no Fathom, no PostHog, no Mixpanel. Not a single pageview pixel. If that ever changes, this page changes first and the commit will be visible on the changelog.</li>
+        <li><strong>No tracking cookies.</strong> No advertising cookies, no third-party pixels, no fingerprinting scripts, no session recording.</li>
+        <li><strong>No server-side logs of your roster.</strong> All timezone math runs in your browser using the native <code>Intl.DateTimeFormat</code> API. Your list of cities is never sent to us or anyone else. Not even for debugging.</li>
+        <li><strong>No contact form data.</strong> If you email us at <code>hello@meetingburn.in</code>, that email lands in a regular inbox that two humans read. We keep the email so we can reply. We do not import it into a CRM.</li>
+      </ul>
+
+      <h2><span class="marker">iii.</span>Third parties, and what they see</h2>
+      <p>Goldhour loads three things from public content delivery networks so the page stays fast:</p>
+      <ul>
+        <li><strong>Google Fonts</strong> (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>) serves the Fraunces, DM Sans and JetBrains Mono typefaces you're looking at right now. Google receives the IP address of the request, as with any font loaded from their CDN.</li>
+        <li><strong>jsDelivr</strong> (<code>cdn.jsdelivr.net</code>) serves Bootstrap and jQuery. Same note on IP addresses.</li>
+        <li><strong>Cloudflare CDNJS</strong> (<code>cdnjs.cloudflare.com</code>) serves the Three.js build for the globe in the hero. Same.</li>
+      </ul>
+      <p>Beyond the IP address your browser automatically reveals on any web request, we don't pass anything else to these services. If you run a browser extension that blocks third-party CDNs, Goldhour will still work — the planner falls back to system fonts and the globe will simply not appear.</p>
+
+      <h2><span class="marker">iv.</span>Children</h2>
+      <p>Goldhour is a tool for people scheduling professional meetings. It is not directed at children under 13, and we do not knowingly collect any information from them. If you believe a child has somehow shared information with us through the contact email, please let us know and we'll delete it.</p>
+
+      <h2><span class="marker">v.</span>Changes to this page</h2>
+      <p>If we change how Goldhour handles data, we'll update this page, bump the "last updated" date at the top, and note what changed in a short paragraph at the top of the page for at least 30 days. If the change is material — say, if we ever introduce an optional account system — we'll also mention it in the changelog.</p>
+
+      <h2><span class="marker">vi.</span>Contact</h2>
+      <p>Privacy questions and requests go to <a href="mailto:privacy@meetingburn.in">privacy@meetingburn.in</a>. General questions go to <a href="mailto:hello@meetingburn.in">hello@meetingburn.in</a>. Real humans read both.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="index.html" class="brand"><span class="mark"></span><span class="brand-text"><span class="brand-name">Goldhour</span><span class="brand-sub">by MeetingBurn</span></span></a>
+      <p style="margin-top:16px;max-width:36ch">Part of the <a href="https://meetingburn.in" style="color:var(--gold)">MeetingBurn</a> toolkit. A small studio publishing opinionated tools for remote teams.</p>
+    </div>
+    <div><h4>Goldhour</h4><ul><li><a href="index.html#planner">Planner</a></li><li><a href="index.html#features">Features</a></li><li><a href="index.html#how">How it works</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="changelog.html">Changelog</a></li></ul></div>
+    <div><h4>MeetingBurn</h4><ul><li><a href="https://meetingburn.in">meetingburn.in</a></li><li><a href="about.html">About Goldhour</a></li><li><a href="mailto:hello@meetingburn.in">hello@meetingburn.in</a></li></ul></div>
+    <div><h4>Legal</h4><ul><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms of use</a></li></ul></div>
+  </div>
+  <div class="wrap copy">
+    <span>© 2026 MeetingBurn · Goldhour is a MeetingBurn product</span>
+    <span>v1.2.0</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const k="goldhour.theme";const s=localStorage.getItem(k);if(s)document.documentElement.setAttribute("data-theme",s);
+  document.getElementById("theme-toggle").addEventListener("click",()=>{const c=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",c);localStorage.setItem(k,c);});
+})();
+</script>
+</body>
+</html>

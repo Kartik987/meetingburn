@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0b0a08" />
+
+<title>About Goldhour — a MeetingBurn tool</title>
+<meta name="description" content="The story behind Goldhour, the free timezone meeting planner built by MeetingBurn. Why we built it, who we are, and what's coming next from the MeetingBurn toolkit." />
+<meta name="author" content="MeetingBurn" />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href="https://meetingburn.in/goldhour/about" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="MeetingBurn" />
+<meta property="og:title" content="About Goldhour — a MeetingBurn tool" />
+<meta property="og:description" content="The story behind Goldhour and the small studio building it." />
+<meta property="og:url" content="https://meetingburn.in/goldhour/about" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://meetingburn.in/#org","name":"MeetingBurn","url":"https://meetingburn.in/"},
+{"@type":"AboutPage","name":"About Goldhour","url":"https://meetingburn.in/goldhour/about","about":{"@type":"WebApplication","name":"Goldhour","parentOrganization":{"@id":"https://meetingburn.in/#org"}}},
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"MeetingBurn","item":"https://meetingburn.in/"},
+{"@type":"ListItem","position":2,"name":"Goldhour","item":"https://meetingburn.in/goldhour/"},
+{"@type":"ListItem","position":3,"name":"About","item":"https://meetingburn.in/goldhour/about"}
+]}
+]}
+</script>
+
+<style>
+  :root{--bg:#0a0907;--bg-2:#121009;--ink:#f5efe0;--ink-dim:#a8a192;--ink-faint:#5a564c;--line:#221f17;--line-2:#2e2a1f;--gold:#f5c451;--gold-2:#ffd36b;--gold-soft:#f5c4511a;--radius:16px;--font-display:"Fraunces",ui-serif,Georgia,serif;--font-body:"DM Sans",ui-sans-serif,system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;--ease:cubic-bezier(.2,.8,.2,1)}
+  html[data-theme="light"]{--bg:#faf7ef;--bg-2:#f3ede0;--ink:#1a1708;--ink-dim:#5a5443;--ink-faint:#9b9584;--line:#e8e1ce;--line-2:#d6ceb7;--gold:#b8871f;--gold-2:#8a6410;--gold-soft:#b8871f18}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;overflow-x:hidden}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh;background-image:radial-gradient(1000px 600px at 85% -10%, #f5c45115, transparent 60%)}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.04;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");mix-blend-mode:overlay}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+  @media (max-width:640px){.wrap{padding:0 16px}}
+
+  nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);background:color-mix(in srgb, var(--bg) 75%, transparent);border-bottom:1px solid var(--line)}
+  nav.top .row{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+  .brand{display:flex;align-items:center;gap:12px;flex:none}
+  .brand .mark{width:28px;height:28px;border-radius:50%;flex:none;background:conic-gradient(from 210deg, var(--gold) 0 25%, #1b1810 25% 55%, var(--gold) 55% 80%, #1b1810 80% 100%);box-shadow:0 0 0 1px var(--line-2), 0 0 24px var(--gold-soft);position:relative;animation:spin 40s linear infinite}
+  .brand .mark::after{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--bg);border:1px solid var(--line-2)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .brand-text{display:flex;flex-direction:column;line-height:1;gap:3px}
+  .brand-name{font-family:var(--font-display);font-size:22px;font-weight:500;letter-spacing:-.02em}
+  .brand-sub{font-family:var(--font-mono);font-size:9px;color:var(--ink-faint);letter-spacing:.16em;text-transform:uppercase}
+  .brand-sub a{color:var(--ink-dim)}
+  .brand-sub a:hover{color:var(--gold)}
+  nav .links{display:flex;gap:22px;font-size:14px;color:var(--ink-dim)}
+  nav .links a{position:relative;padding:6px 2px;transition:color .25s}
+  nav .links a:hover{color:var(--ink)}
+  @media (max-width:880px){nav .links{display:none}}
+  nav .cta{display:flex;gap:8px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;font-size:14px;font-weight:500;border:1px solid var(--line-2);color:var(--ink);transition:all .25s var(--ease);white-space:nowrap}
+  .btn:hover{border-color:var(--gold);color:var(--gold)}
+  .btn.primary{background:var(--gold);color:#0b0a08;border-color:var(--gold)}
+  .btn.primary:hover{background:var(--gold-2);color:#0b0a08;border-color:var(--gold-2)}
+  .icon-btn{width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line-2);transition:all .25s}
+  .icon-btn:hover{border-color:var(--gold);color:var(--gold);transform:rotate(-12deg)}
+
+  .crumb{font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);padding:40px 0 10px}
+  .crumb a{color:var(--ink-dim);transition:color .2s}
+  .crumb a:hover{color:var(--gold)}
+  .crumb .sep{margin:0 10px;color:var(--line-2)}
+
+  main.prose{padding:30px 0 100px}
+  .prose .inner{max-width:720px}
+  .prose h1{font-family:var(--font-display);font-weight:300;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 30px}
+  .prose .lede{font-family:var(--font-display);font-weight:300;font-size:clamp(1.2rem,1.8vw,1.5rem);font-style:italic;color:var(--ink-dim);line-height:1.5;margin:0 0 50px;padding-bottom:40px;border-bottom:1px solid var(--line);max-width:60ch}
+  .prose h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.5rem,2.4vw,2rem);letter-spacing:-.018em;margin:50px 0 20px;line-height:1.15}
+  .prose h2 .marker{color:var(--gold);font-style:italic;font-weight:300;font-size:.75em;margin-right:8px;display:inline-block;vertical-align:.05em}
+  .prose p{margin:0 0 20px;max-width:62ch}
+  .prose a{color:var(--gold);border-bottom:1px dashed color-mix(in srgb, var(--gold) 60%, transparent);padding-bottom:1px}
+  .prose a:hover{border-bottom-color:var(--gold);border-bottom-style:solid}
+  .prose strong{color:var(--ink);font-weight:600}
+  .prose em{font-style:italic;color:var(--gold)}
+  .prose ul{margin:0 0 20px;padding-left:22px;max-width:62ch}
+  .prose li{margin-bottom:8px}
+  .prose .sig{margin-top:50px;padding-top:30px;border-top:1px solid var(--line);font-family:var(--font-display);font-style:italic;color:var(--gold);font-size:1.1rem}
+  .prose .callout{margin:40px 0;padding:24px 28px;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;background:var(--bg-2);font-size:14.5px;color:var(--ink-dim)}
+  .prose .callout strong{color:var(--ink)}
+
+  footer{border-top:1px solid var(--line);padding:60px 0 40px;color:var(--ink-dim);font-size:13px}
+  footer .wrap{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px}
+  @media (max-width:900px){footer .wrap{grid-template-columns:1fr 1fr}}
+  @media (max-width:500px){footer .wrap{grid-template-columns:1fr}}
+  footer h4{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 14px;font-weight:400}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  footer a:hover{color:var(--gold)}
+  .copy{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap row">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      <span class="brand-text"><span class="brand-name">Goldhour</span><span class="brand-sub">by <a href="https://meetingburn.in" rel="noopener">MeetingBurn</a></span></span>
+    </a>
+    <div class="links">
+      <a href="index.html#planner">Planner</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="changelog.html">Changelog</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="cta">
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a href="index.html#planner" class="btn primary">Open planner</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap crumb">
+  <a href="https://meetingburn.in">MeetingBurn</a><span class="sep">/</span><a href="index.html">Goldhour</a><span class="sep">/</span>About
+</div>
+
+<main class="prose">
+  <div class="wrap">
+    <div class="inner">
+      <h1>An app for the people who schedule the meeting.</h1>
+      <p class="lede">MeetingBurn is a small studio in Noida building the kind of sharp, narrow tools we actually want to use ourselves. Goldhour is the first one we shipped. This is the story.</p>
+
+      <h2><span class="marker">i.</span>Where it started</h2>
+      <p>The spreadsheet I had open when we started this project was real. A six-person team spread across Bengaluru, London and San Francisco, a recurring meeting that kept getting proposed at 2am Delhi time, and a column of <span style="font-family:var(--font-mono);font-size:.92em">=HOUR(A1-TIMEVALUE("5:30"))</span> formulas that nobody on the team understood except the person who wrote them.</p>
+      <p>By the end of that call, I had three tabs open, a headache, and a note in the back of my notebook that said <em>"someone should just paint the overlap."</em></p>
+      <p>Six months later, that note became Goldhour.</p>
+
+      <h2><span class="marker">ii.</span>What we built</h2>
+      <p>Goldhour is narrow on purpose. It does one thing: it shows you the one hour — or two, or three, if you're lucky — where every city on your roster sits inside normal working hours at the same moment. The slots light up gold. You drag the time cursor until every bar is gold. You hit Copy. You paste it in Slack.</p>
+      <p>The whole thing runs in your browser. There is no account, no database, no team workspace to set up. Your roster lives in your own <strong>localStorage</strong>. If you close the tab and come back next Tuesday, it's waiting for you.</p>
+
+      <div class="callout">
+        <strong>A small design principle.</strong> Every feature in Goldhour has to earn its place in the single HTML file that ships. If we can't fit it inside our budget of sub-500ms first paint and zero bloat, it doesn't ship. This is why you won't see a login page, a "free trial" banner, or a modal asking you to rate us.
+      </div>
+
+      <h2><span class="marker">iii.</span>Who MeetingBurn is</h2>
+      <p>MeetingBurn is the umbrella for the small toolkit we're building. We're a two-person shop, half in Noida and half in whichever coffee shop has the least broken wifi in a given week. We have day jobs and we build this at night, which means we ship slowly, but we also only ship the things we're actually proud of.</p>
+      <p>The thesis is simple: remote meetings got worse, not better, when the world went remote. The big calendar tools charge you $12 a month to send a link. The world clock in your laptop is buried five menus deep. Somebody on every distributed team is accidentally proposing meetings at 2am someone-else-time.</p>
+      <p>We want to build the small tools that fix one specific part of this, well. One at a time. No dashboards. No up-sells.</p>
+
+      <h2><span class="marker">iv.</span>What's next</h2>
+      <p>A few more tools are in the oven under <a href="https://meetingburn.in">meetingburn.in</a>:</p>
+      <ul>
+        <li><strong>Meeting Cost</strong> — paste a calendar invite, get the fully-loaded rupee (or dollar) cost of the meeting. Share the number in the invite description. We think it's going to end a lot of meetings.</li>
+        <li><strong>Recurring Audit</strong> — point it at your Google Calendar and it flags the recurring meetings nobody has actually talked in for three months, then helps you gracefully kill them.</li>
+        <li><strong>A quiet newsletter</strong> once a month with whatever we learned shipping the previous tool. No tips and tricks, no listicles.</li>
+      </ul>
+      <p>If any of this sounds useful, you can tell us at <a href="mailto:hello@meetingburn.in">hello@meetingburn.in</a>. A human reads everything that comes to that inbox, usually within a day, sometimes within an hour, occasionally within a week if we're both on planes.</p>
+
+      <h2><span class="marker">v.</span>One more thing</h2>
+      <p>Goldhour will always be free. If we ever build a Pro tier — saved rosters across devices, calendar sync, team sharing — the core planner you're using today will stay exactly as it is, no strings. That's the promise, and it's the whole reason we picked a brand name like MeetingBurn: we'd rather burn down a bad meeting than trap you in a pricing page.</p>
+
+      <p class="sig">— the MeetingBurn team</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="index.html" class="brand"><span class="mark"></span><span class="brand-text"><span class="brand-name">Goldhour</span><span class="brand-sub">by MeetingBurn</span></span></a>
+      <p style="margin-top:16px;max-width:36ch">Part of the <a href="https://meetingburn.in" style="color:var(--gold)">MeetingBurn</a> toolkit. A small studio publishing opinionated tools for remote teams.</p>
+    </div>
+    <div><h4>Goldhour</h4><ul><li><a href="index.html#planner">Planner</a></li><li><a href="index.html#features">Features</a></li><li><a href="index.html#how">How it works</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="changelog.html">Changelog</a></li></ul></div>
+    <div><h4>MeetingBurn</h4><ul><li><a href="https://meetingburn.in">meetingburn.in</a></li><li><a href="about.html">About Goldhour</a></li><li><a href="mailto:hello@meetingburn.in">hello@meetingburn.in</a></li></ul></div>
+    <div><h4>Legal</h4><ul><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms of use</a></li></ul></div>
+  </div>
+  <div class="wrap copy">
+    <span>© 2026 MeetingBurn · Goldhour is a MeetingBurn product</span>
+    <span>v1.2.0</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const k="goldhour.theme";const s=localStorage.getItem(k);if(s)document.documentElement.setAttribute("data-theme",s);
+  document.getElementById("theme-toggle").addEventListener("click",()=>{const c=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",c);localStorage.setItem(k,c);});
+})();
+</script>
+</body>
+</html>
