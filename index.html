@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meeting Cost Calculator | Free Live Meeting Cost Tracker | MeetingBurn</title> 
+<title>Meeting Cost Calculator | Free Live Meeting Cost Tracker | MeetingBurn</title>
 <meta name="description" content="Free meeting cost calculator that tracks salary burn per second in real time. See how much meetings cost your team per hour, week, and year. Used by startups and enterprises. Built on published workplace research.">
 <meta name="keywords" content="meeting cost calculator, how much do meetings cost, meeting cost per hour, calculate meeting cost, meeting salary burn rate, meeting ROI calculator, unproductive meeting cost, meeting time tracker, cost of unnecessary meetings, reduce meeting costs, meeting savings calculator, could this meeting be an email">
 <meta name="author" content="MeetingBurn Team">
@@ -369,7 +369,7 @@ footer{border-top:1px solid var(--bd);padding:32px 0 44px;margin-top:16px}
 
 <!-- SAVINGS SIMULATOR -->
 <div class="savings" id="savSec">
-<div class="savings-h">Potential Savings</div>
+<div class="savings-h">&#x1f4b0; Potential Savings</div>
 <div class="savings-sub">If you cut just 20% of this meeting's time or reduced attendance by 2 people:</div>
 <div class="savings-row">
 <div class="savings-stat"><div class="savings-num" id="savTime">$0</div><div class="savings-lbl">Save 20% time</div></div>
@@ -378,7 +378,7 @@ footer{border-top:1px solid var(--bd);padding:32px 0 44px;margin-top:16px}
 </div>
 </div>
 
-<button class="btn-main" id="mainB" onclick="toggleTimer()">&#x25B6; Start Meeting</button>
+<button class="btn-main" id="mainB" onclick="toggleTimer()">&#x25B6; Start Live Meeting Tracker</button>
 <div class="sec-btns">
 <button class="btn-s hide" id="resB" onclick="resetAll()">Reset</button>
 <button class="btn-s hide" id="snpB" onclick="copySnap()">Copy Snapshot</button>
@@ -388,7 +388,7 @@ footer{border-top:1px solid var(--bd);padding:32px 0 44px;margin-top:16px}
 <div class="lifetime"><span id="ltL">Lifetime Tracked (USD)</span><span id="ltV">$0.00</span></div>
 </section>
 
-<!-- EMAIL News Letter -->
+<!-- EMAIL -->
 <section class="email-sec" id="newsletter">
 <div class="badge">&#x2709; Free Weekly Insights</div>
 <h2>Get a Weekly Meeting Cost Digest</h2>
@@ -403,11 +403,22 @@ footer{border-top:1px solid var(--bd);padding:32px 0 44px;margin-top:16px}
 <div class="e-ok" id="emailOk">&#x2714; You're in! Check your inbox to confirm.</div>
 </section>
 
+<!-- OUR FREE TOOLS -->
+<section class="sec" id="our-tools" aria-labelledby="ourToolsHeading">
+<div class="sec-ey">More Free Tools</div>
+<h2 class="sec-h" id="ourToolsHeading">Free Meeting Tools Built by MeetingBurn</h2>
+<p class="sec-p">Beyond the cost calculator above, we build other free tools to help teams run better meetings without the usual software overhead. Everything here runs in your browser with no signup, no data collection, and no limits.</p>
+<div class="tools-g" style="margin-top:20px">
+<a href="/tools/" class="tool" style="border-color:var(--acG);background:linear-gradient(135deg,var(--acD),transparent 60%)"><div class="tool-top"><div class="tool-ic" style="background:var(--ac);color:#fff">&#x1f30d;</div><div><div class="tool-name">Timezone Meeting Planner</div><div class="tool-tag">Free &middot; No signup</div></div></div><div class="tool-desc">Find overlapping working hours across coworkers in different time zones. Drop in everyone's location, see when everyone is awake, and pick a meeting slot that does not force anyone into late nights or early mornings. Essential for distributed teams.</div><span class="tool-cta">Open free tool</span></a>
+<a href="/should-this-meeting-be-an-email.html" class="tool"><div class="tool-top"><div class="tool-ic" style="background:var(--okD);color:var(--ok)">&#x2709;</div><div><div class="tool-name">Meeting or Email Quiz</div><div class="tool-tag">Free &middot; 30 seconds</div></div></div><div class="tool-desc">Take our 6 question quiz to find out if your next meeting should be an email instead. Based on workplace research from Atlassian, Harvard, and Flowtrace. Shareable results for team discussions.</div><span class="tool-cta">Take the quiz</span></a>
+</div>
+</section>
+
 <!-- TOOLS -->
 <section class="sec" id="tools" aria-labelledby="toolsHeading">
 <div class="sec-ey">Recommended Tools</div>
 <h2 class="sec-h" id="toolsHeading">Tools That Help Teams Cut Meeting Waste</h2>
-<p class="sec-p">We picked these because they each solve a specific piece of the meeting cost puzzle: scheduling overhead, missing notes, calendar fragmentation, and meetings that should have been async. Not sure if your next meeting needs to happen at all? Try our <a href="/should-this-meeting-be-an-email.html" style="color:var(--ac)">quick quiz</a> first. If you want to understand why these tools matter, check out <a href="#research" style="color:var(--ac)">our research section</a> below.</p>
+<p class="sec-p">We picked these because they each solve a specific piece of the meeting cost puzzle: scheduling overhead, missing notes, calendar fragmentation, and meetings that should have been async. If you are coordinating across time zones, start with our <a href="/tools/" style="color:var(--ac)">free timezone meeting planner</a>. If you want to understand why these tools matter, check out <a href="#research" style="color:var(--ac)">our research section</a> below.</p>
 <div class="tools-g">
 <a href="https://calendly.com" class="tool" target="_blank" rel="noopener noreferrer nofollow sponsored"><div class="tool-top"><div class="tool-ic" style="background:var(--acD);color:var(--ac)">&#x1f4c5;</div><div><div class="tool-name">Calendly</div><div class="tool-tag">Scheduling</div></div></div><div class="tool-desc">Kills the constant email threads just to find a meeting time. Set availability rules, add buffer times, and cap meeting durations automatically.</div><span class="tool-cta">Try free</span></a>
 <a href="https://otter.ai" class="tool" target="_blank" rel="noopener noreferrer nofollow sponsored"><div class="tool-top"><div class="tool-ic" style="background:var(--okD);color:var(--ok)">&#x1f399;</div><div><div class="tool-name">Otter.ai</div><div class="tool-tag">Meeting Notes</div></div></div><div class="tool-desc">Transcribes and summarizes meetings automatically. People who don't need to attend can catch up in 2 minutes instead of sitting through a 45 minute call.</div><span class="tool-cta">Try free</span></a>
@@ -469,9 +480,10 @@ footer{border-top:1px solid var(--bd);padding:32px 0 44px;margin-top:16px}
 </section>
 </main>
 
-<footer role="contentinfo"><div class="w"><div class="ft-r"><div class="ft-b"><div class="ft-bn">MeetingBurn</div><div class="ft-bd">A free meeting cost calculator built on published workplace research. No signup required. Runs entirely in your browser. Your data never leaves your device.</div></div><div class="ft-cols"><div><div class="ft-ch">Tool</div><a href="/" class="ft-a">Calculator</a><a href="#methodology" class="ft-a">Methodology</a><a href="#faq" class="ft-a">FAQ</a><a href="#tools" class="ft-a">Recommended Tools</a></div><div><div class="ft-ch">Guides</div><a href="/meeting-agenda-template.html" class="ft-a">Meeting Agenda Template</a><a href="/meeting-minutes-template.html" class="ft-a">Meeting Minutes Template</a><a href="/reduce-meeting-costs.html" class="ft-a">How to Reduce Meeting Costs</a><a href="/meeting-cost-per-employee.html" class="ft-a">Meeting Cost Per Employee</a><a href="/should-this-meeting-be-an-email.html" class="ft-a">Meeting or Email? Quiz</a><a href="/tools" class="ft-a">Golden Hour - Schedule Meeting Time</a></div><div><div class="ft-ch">Sources</div><a href="https://hbr.org/2017/07/stop-the-meeting-madness" class="ft-a" target="_blank" rel="noopener noreferrer">HBR: Meeting Madness</a><a href="https://www.flowtrace.co/collaboration-blog/50-meeting-statistics" class="ft-a" target="_blank" rel="noopener noreferrer">Flowtrace: Statistics</a><a href="https://www.activtrak.com/resources/state-of-the-workplace/" class="ft-a" target="_blank" rel="noopener noreferrer">ActivTrak: 2026</a></div></div></div><div class="ft-bot"><span>&copy; 2026 MeetingBurn.in | Free meeting cost calculator. All citations attributed to original sources.</span><span>Runs in your browser. No data collected.</span></div></div></footer>
+<footer role="contentinfo"><div class="w"><div class="ft-r"><div class="ft-b"><div class="ft-bn">MeetingBurn</div><div class="ft-bd">A free meeting cost calculator built on published workplace research. No signup required. Runs entirely in your browser. Your data never leaves your device.</div></div><div class="ft-cols"><div><div class="ft-ch">Tool</div><a href="/" class="ft-a">Calculator</a><a href="#methodology" class="ft-a">Methodology</a><a href="#faq" class="ft-a">FAQ</a><a href="#tools" class="ft-a">Recommended Tools</a></div><div><div class="ft-ch">Guides</div><a href="/meeting-agenda-template.html" class="ft-a">Meeting Agenda Template</a><a href="/meeting-minutes-template.html" class="ft-a">Meeting Minutes Template</a><a href="/reduce-meeting-costs.html" class="ft-a">How to Reduce Meeting Costs</a><a href="/meeting-cost-per-employee.html" class="ft-a">Meeting Cost Per Employee</a><a href="/should-this-meeting-be-an-email.html" class="ft-a">Meeting or Email? Quiz</a><a href="/tools/" class="ft-a">Timezone Meeting Planner</a></div><div><div class="ft-ch">Sources</div><a href="https://hbr.org/2017/07/stop-the-meeting-madness" class="ft-a" target="_blank" rel="noopener noreferrer">HBR: Meeting Madness</a><a href="https://www.flowtrace.co/collaboration-blog/50-meeting-statistics" class="ft-a" target="_blank" rel="noopener noreferrer">Flowtrace: Statistics</a><a href="https://www.activtrak.com/resources/state-of-the-workplace/" class="ft-a" target="_blank" rel="noopener noreferrer">ActivTrak: 2026</a></div></div></div><div class="ft-bot"><span>&copy; 2026 MeetingBurn.in | Free meeting cost calculator. All citations attributed to original sources.</span><span>Runs in your browser. No data collected.</span></div></div></footer>
 
 <div class="toast" id="toast"></div>
+<script async data-uid="0d08d115cf" src="https://meetingburn.kit.com/0d08d115cf/index.js"></script>
 
 <script>
 try{
