@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0b0a08" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>" type="image/svg+xml">
 
 <!-- SEO -->
 <title>Goldhour by MeetingBurn — Find the one hour your whole team is awake</title>
@@ -11,18 +12,18 @@
 <meta name="keywords" content="timezone meeting planner, world clock, golden hours, remote team scheduler, slack time formatter, teams meeting time, timezone converter, meetingburn, goldhour" />
 <meta name="author" content="MeetingBurn" />
 <meta name="robots" content="index,follow,max-image-preview:large" />
-<link rel="canonical" href="https://meetingburn.in/goldhour/" />
+<link rel="canonical" href="https://meetingburn.in/tools/" />
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="MeetingBurn" />
 <meta property="og:title" content="Goldhour by MeetingBurn — Find the one hour your whole team is awake" />
 <meta property="og:description" content="A free timezone meeting planner from MeetingBurn. Drag, drop, ship it." />
-<meta property="og:url" content="https://meetingburn.in/goldhour/" />
-<meta property="og:image" content="https://meetingburn.in/goldhour/og.jpg" />
+<meta property="og:url" content="https://meetingburn.in/tools/" />
+<meta property="og:image" content="https://meetingburn.in/tools/og.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Goldhour by MeetingBurn — Timezone planner for remote teams" />
 <meta name="twitter:description" content="Find the Golden Hour when everyone's awake. Copy for Slack & Teams in one click." />
-<meta name="twitter:image" content="https://meetingburn.in/goldhour/og.jpg" />
+<meta name="twitter:image" content="https://meetingburn.in/tools/og.jpg" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,10 +34,10 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://meetingburn.in/#org","name":"MeetingBurn","url":"https://meetingburn.in/","description":"MeetingBurn builds small, sharp tools for remote teams that want meetings to hurt less.","sameAs":["https://meetingburn.in/"]},
-{"@type":"WebApplication","name":"Goldhour","alternateName":"Goldhour by MeetingBurn","url":"https://meetingburn.in/goldhour/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"A timezone meeting planner that highlights Golden Hours across a team roster and copies pre-formatted meeting lines for Slack, Teams and Google Calendar.","parentOrganization":{"@id":"https://meetingburn.in/#org"},"publisher":{"@id":"https://meetingburn.in/#org"}},
+{"@type":"WebApplication","name":"Goldhour","alternateName":"Goldhour by MeetingBurn","url":"https://meetingburn.in/tools/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"A timezone meeting planner that highlights Golden Hours across a team roster and copies pre-formatted meeting lines for Slack, Teams and Google Calendar.","parentOrganization":{"@id":"https://meetingburn.in/#org"},"publisher":{"@id":"https://meetingburn.in/#org"}},
 {"@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"MeetingBurn","item":"https://meetingburn.in/"},
-{"@type":"ListItem","position":2,"name":"Goldhour","item":"https://meetingburn.in/goldhour/"}
+{"@type":"ListItem","position":2,"name":"Goldhour","item":"https://meetingburn.in/tools/"}
 ]},
 {"@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"What is a Golden Hour?","acceptedAnswer":{"@type":"Answer","text":"A Golden Hour is any time slot where every city on your roster is inside working hours at the same moment. Goldhour paints those slots for you automatically, so you do not have to eyeball a spreadsheet."}},
@@ -347,6 +348,14 @@
 </style>
 </head>
 <body>
+<script>
+(function(){
+  var themeKey='goldhour.theme';
+  var saved;
+  try{saved=localStorage.getItem(themeKey)}catch(e){}
+  if(saved==='light'||saved==='dark'){document.documentElement.setAttribute('data-theme',saved)}
+})();
+</script>
 
 <nav class="top" aria-label="Primary">
   <div class="wrap row">
@@ -602,7 +611,7 @@
       <p style="margin-top:16px;max-width:36ch">Part of the <a href="https://meetingburn.in" style="color:var(--gold)">MeetingBurn</a> toolkit. A small studio publishing opinionated tools for remote teams.</p>
     </div>
     <div><h4>Goldhour</h4><ul><li><a href="#planner">Planner</a></li><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#faq">FAQ</a></li><li><a href="changelog.html">Changelog</a></li></ul></div>
-    <div><h4>MeetingBurn</h4><ul><li><a href="https://meetingburn.in" rel="noopener">meetingburn.in</a></li><li><a href="about.html">About Goldhour</a></li><li><a href="mailto:hello@meetingburn.in">hello@meetingburn.in</a></li></ul></div>
+    <div><h4>MeetingBurn</h4><ul><li><a href="https://meetingburn.in" rel="noopener">meetingburn.in</a></li><li><a href="https://meetingburn.in">Meeting Cost Calculator</a></li><li><a href="about.html">About Goldhour</a></li><li><a href="mailto:hello@meetingburn.in">hello@meetingburn.in</a></li></ul></div>
     <div><h4>Legal</h4><ul><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms of use</a></li></ul></div>
   </div>
   <div class="wrap copy">
@@ -1008,7 +1017,6 @@
 
     // Theme
     const tkey="goldhour.theme";
-    const saved=localStorage.getItem(tkey);if(saved)document.documentElement.setAttribute("data-theme",saved);
     document.getElementById("theme-toggle").addEventListener("click",()=>{const cur=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",cur);localStorage.setItem(tkey,cur);});
 
     // Cmd/Ctrl+K
