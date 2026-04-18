@@ -125,6 +125,19 @@ h1{font-size:26px}h2{font-size:20px}h3{font-size:16px}
 </style>
 </head>
 <body data-theme="dark">
+<script>
+(function(){
+var themeKey='goldhour.theme';
+var savedTheme;
+try{savedTheme=localStorage.getItem(themeKey)}catch(e){}
+if(savedTheme==='light'||savedTheme==='dark'){document.body.setAttribute('data-theme',savedTheme)}
+window.toggleTheme=function(){
+var nextTheme=document.body.getAttribute('data-theme')==='dark'?'light':'dark';
+document.body.setAttribute('data-theme',nextTheme);
+try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
+};
+})();
+</script>
 <a href="#main" class="skip-to" onfocus="this.style.top='10px'" onblur="this.style.top='-60px'">Skip to content</a>
 
 <nav class="nav" role="navigation" aria-label="Main navigation"><div class="nav-in">
@@ -133,7 +146,7 @@ h1{font-size:26px}h2{font-size:20px}h3{font-size:16px}
 <a href="/" class="nav-a">Calculator</a>
 <a href="/#research" class="nav-a">Research</a>
 <a href="/#faq" class="nav-a">FAQ</a>
-<button class="thm" onclick="document.body.setAttribute('data-theme',document.body.getAttribute('data-theme')==='dark'?'light':'dark')" aria-label="Toggle theme">&#x263E;</button>
+<button class="thm" onclick="toggleTheme()" aria-label="Toggle theme">&#x263E;</button>
 </div>
 </div></nav>
 

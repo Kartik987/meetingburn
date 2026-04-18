@@ -100,9 +100,22 @@ h1{font-size:22px}
 </style>
 </head>
 <body data-theme="dark">
+<script>
+(function(){
+var themeKey='goldhour.theme';
+var savedTheme;
+try{savedTheme=localStorage.getItem(themeKey)}catch(e){}
+if(savedTheme==='light'||savedTheme==='dark'){document.body.setAttribute('data-theme',savedTheme)}
+window.toggleTheme=function(){
+var nextTheme=document.body.getAttribute('data-theme')==='dark'?'light':'dark';
+document.body.setAttribute('data-theme',nextTheme);
+try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
+};
+})();
+</script>
 <nav class="nav" role="navigation" aria-label="Main navigation"><div class="nav-in">
 <a href="/" class="logo"><div class="logo-ic">&#x1f525;</div>MeetingBurn</a>
-<div class="nav-r"><a href="/" class="nav-a">Calculator</a><a href="/meeting-agenda-template.html" class="nav-a">Templates</a><a href="/reduce-meeting-costs.html" class="nav-a">Reduce Costs</a><button class="thm" onclick="document.body.setAttribute('data-theme',document.body.getAttribute('data-theme')==='dark'?'light':'dark')" aria-label="Toggle theme">&#x263E;</button></div>
+<div class="nav-r"><a href="/" class="nav-a">Calculator</a><a href="/meeting-agenda-template.html" class="nav-a">Templates</a><a href="/reduce-meeting-costs.html" class="nav-a">Reduce Costs</a><button class="thm" onclick="toggleTheme()" aria-label="Toggle theme">&#x263E;</button></div>
 </div></nav>
 
 <div class="w">
