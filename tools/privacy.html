@@ -4,17 +4,23 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0b0a08" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>" type="image/svg+xml">
 
 <title>Privacy — Goldhour by MeetingBurn</title>
 <meta name="description" content="Goldhour runs entirely in your browser. This page lists exactly what we store (almost nothing), what we don't collect (almost everything), and who else is involved. No lawyer wrote it." />
 <meta name="author" content="MeetingBurn" />
-<meta name="robots" content="index,follow" />
-<link rel="canonical" href="https://meetingburn.in/goldhour/privacy" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<link rel="canonical" href="https://meetingburn.in/tools/privacy.html" />
 
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="MeetingBurn" />
 <meta property="og:title" content="Privacy — Goldhour by MeetingBurn" />
-<meta property="og:url" content="https://meetingburn.in/goldhour/privacy" />
+<meta property="og:url" content="https://meetingburn.in/tools/privacy.html" />
+<meta property="og:image" content="https://meetingburn.in/tools/og.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Privacy — Goldhour by MeetingBurn" />
+<meta name="twitter:description" content="Goldhour runs entirely in your browser. This page lists exactly what we store (almost nothing), what we don't collect (almost everything), and who else is involved. No lawyer wrote it." />
+<meta name="twitter:image" content="https://meetingburn.in/tools/og.jpg" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,11 +29,11 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://meetingburn.in/#org","name":"MeetingBurn","url":"https://meetingburn.in/"},
-{"@type":"WebPage","name":"Goldhour Privacy","url":"https://meetingburn.in/goldhour/privacy","isPartOf":{"@type":"WebSite","name":"MeetingBurn","url":"https://meetingburn.in/"}},
+{"@type":"WebPage","name":"Goldhour Privacy","url":"https://meetingburn.in/tools/privacy.html","isPartOf":{"@type":"WebSite","name":"MeetingBurn","url":"https://meetingburn.in/"}},
 {"@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"MeetingBurn","item":"https://meetingburn.in/"},
-{"@type":"ListItem","position":2,"name":"Goldhour","item":"https://meetingburn.in/goldhour/"},
-{"@type":"ListItem","position":3,"name":"Privacy","item":"https://meetingburn.in/goldhour/privacy"}
+{"@type":"ListItem","position":2,"name":"Goldhour","item":"https://meetingburn.in/tools/"},
+{"@type":"ListItem","position":3,"name":"Privacy","item":"https://meetingburn.in/tools/privacy.html"}
 ]}
 ]}
 </script>
@@ -108,6 +114,14 @@
 </style>
 </head>
 <body>
+<script>
+(function(){
+  var themeKey='goldhour.theme';
+  var saved;
+  try{saved=localStorage.getItem(themeKey)}catch(e){}
+  if(saved==='light'||saved==='dark'){document.documentElement.setAttribute('data-theme',saved)}
+})();
+</script>
 
 <nav class="top">
   <div class="wrap row">
@@ -188,7 +202,7 @@
       <p style="margin-top:16px;max-width:36ch">Part of the <a href="https://meetingburn.in" style="color:var(--gold)">MeetingBurn</a> toolkit. A small studio publishing opinionated tools for remote teams.</p>
     </div>
     <div><h4>Goldhour</h4><ul><li><a href="index.html#planner">Planner</a></li><li><a href="index.html#features">Features</a></li><li><a href="index.html#how">How it works</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="changelog.html">Changelog</a></li></ul></div>
-    <div><h4>MeetingBurn</h4><ul><li><a href="https://meetingburn.in">meetingburn.in</a></li><li><a href="about.html">About Goldhour</a></li><li><a href="mailto:hello@meetingburn.in">hello@meetingburn.in</a></li></ul></div>
+    <div><h4>MeetingBurn</h4><ul><li><a href="https://meetingburn.in">meetingburn.in</a></li><li><a href="https://meetingburn.in">Meeting Cost Calculator</a></li><li><a href="about.html">About Goldhour</a></li><li><a href="mailto:hello@meetingburn.in">hello@meetingburn.in</a></li></ul></div>
     <div><h4>Legal</h4><ul><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms of use</a></li></ul></div>
   </div>
   <div class="wrap copy">
@@ -199,7 +213,7 @@
 
 <script>
 (function(){
-  const k="goldhour.theme";const s=localStorage.getItem(k);if(s)document.documentElement.setAttribute("data-theme",s);
+  const k="goldhour.theme";
   document.getElementById("theme-toggle").addEventListener("click",()=>{const c=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",c);localStorage.setItem(k,c);});
 })();
 </script>
