@@ -407,6 +407,19 @@ footer{border-top:1px solid var(--bd);padding:48px 0 56px;margin-top:32px;backgr
 </style>
 </head>
 <body data-theme="dark">
+<script>
+(function(){
+var themeKey='goldhour.theme';
+var savedTheme;
+try{savedTheme=localStorage.getItem(themeKey)}catch(e){}
+if(savedTheme==='light'||savedTheme==='dark'){document.body.setAttribute('data-theme',savedTheme)}
+window.toggleTheme=function(){
+var nextTheme=document.body.getAttribute('data-theme')==='dark'?'light':'dark';
+document.body.setAttribute('data-theme',nextTheme);
+try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
+};
+})();
+</script>
 <a href="#calculator" class="skip-to" onfocus="this.style.top='10px'" onblur="this.style.top='-60px'">Skip to Calculator</a>
 <noscript><div style="background:#fbbf24;color:#000;text-align:center;padding:14px;font-weight:600;font-size:14px">This calculator requires JavaScript to work. Please enable JavaScript in your browser settings.</div></noscript>
 
@@ -416,7 +429,7 @@ footer{border-top:1px solid var(--bd);padding:48px 0 56px;margin-top:32px;backgr
 <a href="#calculator" class="nav-a">Calculator</a>
 <a href="#research" class="nav-a">Research</a>
 <a href="#faq" class="nav-a">FAQ</a>
-<button class="thm" onclick="document.body.setAttribute('data-theme',document.body.getAttribute('data-theme')==='dark'?'light':'dark')" aria-label="Toggle theme">&#x263E;</button>
+<button class="thm" onclick="toggleTheme()" aria-label="Toggle theme">&#x263E;</button>
 </div>
 </div></nav>
 
