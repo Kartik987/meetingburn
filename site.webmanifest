@@ -1,0 +1,11 @@
+{
+  "name": "MeetingBurn",
+  "short_name": "MeetingBurn",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" }
+  ],
+  "theme_color": "#0f1219",
+  "background_color": "#0a0d14",
+  "display": "standalone",
+  "start_url": "/"
+}
