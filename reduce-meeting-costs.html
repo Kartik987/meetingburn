@@ -11,6 +11,7 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta name="theme-color" content="#0f1219">
 <link rel="canonical" href="https://meetingburn.in/reduce-meeting-costs.html"/>
+<link rel="alternate" hreflang="en" href="https://meetingburn.in/reduce-meeting-costs.html" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -27,7 +28,7 @@
 <meta name="twitter:image" content="https://meetingburn.in/og-image.png">
 
 <!-- Analytics: Add your Plausible or Umami script here -->
-<!-- <script defer data-domain="meetingburn.in" src="https://plausible.io/js/script.js"></script> -->
+<script defer data-domain="meetingburn.in" src="https://plausible.io/js/script.js"></script>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Reduce Meeting Costs: 7 Proven Strategies","author":{"@type":"Organization","name":"MeetingBurn","url":"https://meetingburn.in"},"publisher":{"@type":"Organization","name":"MeetingBurn","logo":{"@type":"ImageObject","url":"https://meetingburn.in/favicon.svg"}},"datePublished":"2025-07-10","dateModified":"2026-04-16","description":"Seven research backed strategies to reduce meeting costs at your organization by 20 to 40 percent.","mainEntityOfPage":{"@type":"WebPage","@id":"https://meetingburn.in/reduce-meeting-costs.html"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://meetingburn.in"},{"@type":"ListItem","position":2,"name":"How to Reduce Meeting Costs","item":"https://meetingburn.in/reduce-meeting-costs.html"}]}</script>
@@ -87,6 +88,12 @@ a:hover{text-decoration:none}
 .cta p{font-size:14px;margin-bottom:18px}
 .cta-b{display:inline-block;background:var(--gradT);color:#fff;padding:14px 32px;border-radius:12px;text-decoration:none;font-weight:700;font-size:14px;font-family:var(--fH);box-shadow:0 6px 20px rgba(245,158,11,.3);transition:.2s}
 .cta-b:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(245,158,11,.4)}
+.cta-form{display:flex;gap:10px;max-width:460px;margin:0 auto 12px}
+.cta-form input{flex:1;padding:14px 18px;border-radius:12px;border:1px solid var(--bdH);background:var(--bgE);color:var(--t1);font-size:14px}
+.cta-form button{padding:14px 22px;border:none;border-radius:12px;background:var(--gradT);color:#fff;font-size:14px;font-weight:700;font-family:var(--fH);cursor:pointer}
+.cta-mini{font-size:11px;color:var(--t4)}
+.cta-ok{display:none;padding:16px;border-radius:14px;background:var(--okD);border:1px solid rgba(52,211,153,.25);color:var(--ok);font-weight:700;font-size:14px;max-width:460px;margin:0 auto}
+.cta-ok a{display:inline-flex;align-items:center;gap:6px;margin-top:10px;color:var(--ok);text-decoration:none;font-size:13px}
 .callout{background:var(--puD);border-left:3px solid var(--pu);border-radius:var(--r);padding:18px 22px;margin:24px 0}
 .callout p{margin-bottom:0;font-size:14.5px;color:var(--t2);font-family:var(--fB)}
 .callout b{color:var(--pu)}
@@ -251,9 +258,16 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="tip"><b>Start small if leadership buy in is hard to get.</b> Pick one recurring meeting on your calendar that you suspect is waste. Open the calculator, show the annual cost, and propose making it every other week. If that works, do it for another meeting. Small wins build the case for bigger changes.</div>
 
 <div class="cta">
-<h3>Calculate Your Meeting Cost First</h3>
-<p>Before you can reduce meeting costs, you need to measure them. The free calculator shows you your baseline in 10 seconds.</p>
-<a href="/" class="cta-b">Open Meeting Cost Calculator &rarr;</a>
+<h3>Get the Free Meeting Cost Audit Kit</h3>
+<p>Subscribe for the printable audit template, a meeting cost worksheet, and the async replacement checklist you can use with your team this week.</p>
+<div id="leadWrap">
+<form class="cta-form" action="https://app.convertkit.com/forms/0d08d115cf/subscriptions" method="post" onsubmit="handleLeadMagnet(event)">
+<input type="email" name="email_address" placeholder="Your work email" required>
+<button type="submit">Send the audit kit</button>
+</form>
+<div class="cta-mini">Free. No spam. Unsubscribe any time. <a href="/downloads/meeting-audit-template.html">Preview the audit kit &rarr;</a></div>
+</div>
+<div class="cta-ok" id="leadOk">&#x2714; Check your inbox to confirm your subscription.<br><a href="/downloads/meeting-audit-template.html">Open the Meeting Cost Audit Kit &rarr;</a></div>
 </div>
 
 <section class="faq-sec">
@@ -285,6 +299,7 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 
 <script>
 function togF(el){var w=el.classList.contains('open');document.querySelectorAll('.faq').forEach(function(i){i.classList.remove('open')});if(!w)el.classList.add('open')}
+function handleLeadMagnet(e){e.preventDefault();var form=e.target,email=form.querySelector('input[type=\"email\"]').value;fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email_address:email})}).then(function(r){if(r.ok){document.getElementById('leadWrap').style.display='none';document.getElementById('leadOk').style.display='block'}else{form.submit()}}).catch(function(){form.submit()})}
 </script>
 </body>
 </html>

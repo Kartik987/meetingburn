@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-ads="1">
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -17,6 +17,7 @@
 <meta name="author" content="MeetingBurn" />
 <meta name="robots" content="index,follow,max-image-preview:large" />
 <link rel="canonical" href="https://meetingburn.in/tools/" />
+<link rel="alternate" hreflang="en" href="https://meetingburn.in/tools/" />
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="MeetingBurn" />
@@ -30,7 +31,7 @@
 <meta name="twitter:image" content="https://meetingburn.in/tools/og.jpg" />
 
 <!-- Analytics: Add your Plausible or Umami script here -->
-<!-- <script defer data-domain="meetingburn.in" src="https://plausible.io/js/script.js"></script> -->
+<script defer data-domain="meetingburn.in" src="https://plausible.io/js/script.js"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,7 +41,7 @@
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"Organization","@id":"https://meetingburn.in/#org","name":"MeetingBurn","url":"https://meetingburn.in/","description":"MeetingBurn builds small, sharp tools for remote teams that want meetings to hurt less.","sameAs":["https://meetingburn.in/"]},
+{"@type":"Organization","@id":"https://meetingburn.in/#org","name":"MeetingBurn","url":"https://meetingburn.in/","description":"MeetingBurn builds small, sharp tools for remote teams that want meetings to hurt less.","sameAs":["https://meetingburn.in/","https://github.com/Kartik987/meetingburn"]},
 {"@type":"WebApplication","name":"Goldhour","alternateName":"Goldhour by MeetingBurn","url":"https://meetingburn.in/tools/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"A timezone meeting planner that highlights Golden Hours across a team roster and copies pre-formatted meeting lines for Slack, Teams and Google Calendar.","parentOrganization":{"@id":"https://meetingburn.in/#org"},"publisher":{"@id":"https://meetingburn.in/#org"}},
 {"@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"MeetingBurn","item":"https://meetingburn.in/"},
@@ -287,10 +288,24 @@
   .side p{color:var(--ink-dim);font-size:14px;margin:0 0 18px}
   .side .btn{width:100%;margin-bottom:10px;padding:14px 18px;font-size:14px}
   .side .hint{font-family:var(--font-mono);font-size:10px;color:var(--ink-faint);letter-spacing:.08em;text-transform:uppercase;margin-top:6px;text-align:center}
+  .waitlist-card{margin-top:16px;padding:18px;border:1px solid var(--line);border-radius:var(--radius-sm);background:linear-gradient(180deg,#ffffff05,transparent);text-align:left}
+  .waitlist-card h5{margin:0 0 8px;font-family:var(--font-display);font-size:18px;font-weight:500}
+  .waitlist-card p{font-size:13px;color:var(--ink-dim);margin:0 0 12px}
+  .waitlist-form{display:flex;flex-direction:column;gap:10px}
+  .waitlist-form input{padding:12px 14px;border-radius:12px;border:1px solid var(--line-2);background:var(--bg);color:var(--ink);font-size:14px}
+  .waitlist-form button{padding:12px 16px;border-radius:12px;border:none;background:var(--gold);color:#0b0a08;font-size:13px;font-weight:700;cursor:pointer}
+  .waitlist-mini{font-family:var(--font-mono);font-size:10px;color:var(--ink-faint);letter-spacing:.08em;text-transform:uppercase}
+  .waitlist-ok{display:none;padding:14px;border-radius:12px;background:#86c07a1a;border:1px solid #86c07a33;color:#86c07a;font-size:13px;font-weight:700}
+  .waitlist-ok a{display:inline-flex;align-items:center;gap:6px;margin-top:8px;color:#86c07a;text-decoration:none}
 
   /* Monetization slot */
   .ad-slot{display:none;margin:40px auto;text-align:center;min-height:90px;border:1px dashed var(--line);border-radius:var(--radius-sm);color:var(--ink-faint);font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:30px}
   html[data-ads="1"] .ad-slot{display:block}
+  .house-ad{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;text-align:left}
+  .house-ad-copy{max-width:640px}
+  .house-ad-copy strong{display:block;color:var(--gold);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+  .house-ad-copy span{display:block;color:var(--ink-dim);font-size:13px;line-height:1.7;text-transform:none;letter-spacing:0;font-family:var(--font-body)}
+  .house-ad .btn{margin:0}
 
   /* FEATURES */
   section.features{padding:clamp(60px,10vw,100px) 0;border-top:1px solid var(--line);background:linear-gradient(180deg, transparent, #ffffff03)}
@@ -419,7 +434,7 @@
   </div>
 </header>
 
-<div class="wrap"><aside class="ad-slot" data-ad-slot="hero-bottom" aria-label="Sponsored"></aside></div>
+<div class="wrap"><aside class="ad-slot" data-ad-slot="hero-bottom" aria-label="Sponsored"><div class="house-ad"><div class="house-ad-copy"><strong>Sponsored</strong><span>Goldhour Pro is coming next: saved rosters, team sharing, recurring audit nudges, and calendar sync for remote teams that live across timezones.</span></div><a class="btn primary" href="/pro/?utm_source=goldhour&utm_medium=adslot&utm_campaign=hero-bottom">Join the Pro waitlist</a></div></aside></div>
 
 <section class="planner" id="planner">
   <div class="wrap">
@@ -522,12 +537,22 @@
           Open in Google Calendar
         </a>
         <div class="hint">⌘ K to focus city search</div>
+        <div class="waitlist-card" id="waitlistCard">
+          <h5>Get early access to Goldhour Pro</h5>
+          <p>We are building saved rosters, calendar sync, recurring audit prompts, and team sharing. Join the waitlist to be first in line.</p>
+          <form class="waitlist-form" action="https://app.convertkit.com/forms/0d08d115cf/subscriptions" method="post" onsubmit="handleGoldhourWaitlist(event)">
+            <input type="email" name="email_address" placeholder="Your work email" required />
+            <button type="submit">Join the Pro waitlist</button>
+          </form>
+          <div class="waitlist-mini">Free waitlist • no spam • unsubscribe any time</div>
+          <div class="waitlist-ok" id="waitlistOk">✓ Check your inbox to confirm. <a href="/pro/">See the Pro roadmap →</a></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="wrap"><aside class="ad-slot" data-ad-slot="mid-content" aria-label="Sponsored"></aside></div>
+<div class="wrap"><aside class="ad-slot" data-ad-slot="mid-content" aria-label="Sponsored"><div class="house-ad"><div class="house-ad-copy"><strong>Sponsored</strong><span>Need to make the business case? Use MeetingBurn’s live cost calculator to turn one recurring meeting into a yearly cost number leadership cannot ignore.</span></div><a class="btn" href="https://meetingburn.in/?utm_source=goldhour&utm_medium=adslot&utm_campaign=mid-content">Open MeetingBurn</a></div></aside></div>
 
 <section class="features" id="features">
   <div class="wrap">
@@ -580,12 +605,12 @@
         <h3>Meeting Cost Calculator</h3>
         <p>Calculate live meeting salary burn rate, focus recovery tax, and annual waste in seconds. Free, no signup, and private by default.</p>
       </a>
-      <div class="tool reveal">
+      <a class="tool reveal" href="/pro/?interest=recurring-audit&utm_source=goldhour&utm_medium=siblings&utm_content=recurring-audit">
         <span class="status-pill">Soon</span>
         <span class="by">MeetingBurn tool · 03</span>
         <h3>Recurring Audit</h3>
         <p>Scans your recurring meetings and flags the ones nobody's actually talked in for three months. Then helps you kill them.</p>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -607,7 +632,7 @@
   </div>
 </section>
 
-<div class="wrap"><aside class="ad-slot" data-ad-slot="pre-footer" aria-label="Sponsored"></aside></div>
+<div class="wrap"><aside class="ad-slot" data-ad-slot="pre-footer" aria-label="Sponsored"><div class="house-ad"><div class="house-ad-copy"><strong>Sponsored</strong><span>Want saved team rosters and recurring overlap reports instead of manual planning? Goldhour Pro is the fastest way to get there.</span></div><a class="btn primary" href="/pro/?utm_source=goldhour&utm_medium=adslot&utm_campaign=pre-footer">Get on the waitlist</a></div></aside></div>
 
 <footer>
   <div class="wrap">
@@ -901,6 +926,21 @@
     const r=state.roster.map(c=>encodeURIComponent(c.name)).join(",");
     return "#r="+r+"&t="+state.cursorMin+"&d="+state.duration;
   }
+  async function handleGoldhourWaitlist(e){
+    e.preventDefault();
+    const form=e.target,email=form.querySelector('input[type=\"email\"]').value;
+    try{
+      const r=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email_address:email})});
+      if(r.ok){
+        form.style.display='none';
+        document.querySelector('#waitlistCard .waitlist-mini').style.display='none';
+        document.getElementById('waitlistOk').style.display='block';
+        return;
+      }
+    }catch(e){}
+    form.submit();
+  }
+  window.handleGoldhourWaitlist=handleGoldhourWaitlist;
 
   function renderOutput(){
     $out.textContent=buildOutput();
