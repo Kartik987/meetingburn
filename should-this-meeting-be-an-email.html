@@ -83,6 +83,8 @@ h1{font-family:var(--fH);font-size:clamp(24px,5vw,36px);font-weight:700;letter-s
 .result-mini{font-size:11px;color:var(--t4);margin-top:10px}
 .result-ok{display:none;padding:16px;border-radius:14px;background:var(--okD);border:1px solid rgba(52,211,153,.25);color:var(--ok);font-size:14px;font-weight:700;max-width:520px;margin:0 auto 24px}
 .result-ok a{display:inline-flex;align-items:center;gap:6px;margin-top:10px;color:var(--ok);text-decoration:none;font-size:13px}
+.result-err{display:none;padding:14px;border-radius:14px;background:var(--acD);border:1px solid var(--acG);color:var(--t2);font-size:13px;line-height:1.6;max-width:520px;margin:0 auto 24px}
+.result-err button{margin-top:10px}
 .share-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
 .share-btn{padding:10px 20px;border-radius:10px;border:1px solid var(--bd);background:var(--bgC);color:var(--t1);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--fB);transition:.15s}
 .share-btn:hover{border-color:var(--bdH);background:var(--bgH)}
@@ -174,13 +176,14 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="result-capture" id="resultCapture">
 <h3>Want the printable verdict + audit kit?</h3>
 <p>Get the free Meeting Cost Audit Kit and a copy of this result you can forward to your team.</p>
-<form class="result-form" action="https://app.convertkit.com/forms/0d08d115cf/subscriptions" method="post" onsubmit="handleLeadCapture(event)">
+<form class="result-form" action="https://app.convertkit.com/forms/0d08d115cf/subscriptions" method="post" data-sv-form="0d08d115cf" data-uid="0d08d115cf" onsubmit="handleLeadCapture(event)">
 <input type="email" name="email_address" placeholder="Your work email" required>
 <button type="submit">Email me the kit</button>
 </form>
 <div class="result-mini">Free. No spam. Unsubscribe any time.</div>
 </div>
 <div class="result-ok" id="resultOk">&#x2714; Check your inbox to confirm your subscription.<br><a href="/downloads/meeting-audit-template.html">Open the Meeting Cost Audit Kit &rarr;</a></div>
+<div class="result-err" id="resultErr">We could not submit the inline form just now. You can try again or use the backup signup flow instead.<br><button class="share-btn" type="button" onclick="openLeadFallback()">Open backup signup</button></div>
 <div class="share-btns">
 <button class="share-btn primary" onclick="shareResult()">Share Result</button>
 <button class="share-btn" onclick="copyResult()">Copy Result</button>
@@ -336,11 +339,14 @@ navigator.clipboard.writeText(text).then(function(){alert('Result copied!')});
 
 function handleLeadCapture(e){
 e.preventDefault();
-var form=e.target,email=form.querySelector('input[type=\"email\"]').value;
+var form=e.target,input=form.querySelector('input[type=\"email\"]'),email=input.value.trim();
+document.getElementById('resultErr').style.display='none';
+if(!input.checkValidity()){input.reportValidity();return;}
 fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email_address:email})})
-.then(function(r){if(r.ok){document.getElementById('resultCapture').style.display='none';document.getElementById('resultOk').style.display='block'}else{form.submit()}})
-.catch(function(){form.submit()});
+.then(function(r){if(r.ok){document.getElementById('resultCapture').style.display='none';document.getElementById('resultOk').style.display='block'}else{console.warn('Quiz lead capture returned a non-ok response',r.status,r.statusText);document.getElementById('resultErr').style.display='block';}})
+.catch(function(err){console.error('Quiz lead capture failed',err);document.getElementById('resultErr').style.display='block';});
 }
+function openLeadFallback(){var form=document.querySelector('#resultCapture form');if(form)form.submit()}
 
 function retake(){
 currentQ=0;score=0;
@@ -349,6 +355,7 @@ document.getElementById('resultCard').style.display='none';
 document.getElementById('resFill').style.width='0%';
 document.getElementById('resultCapture').style.display='block';
 document.getElementById('resultOk').style.display='none';
+document.getElementById('resultErr').style.display='none';
 renderQ();
 }
 
