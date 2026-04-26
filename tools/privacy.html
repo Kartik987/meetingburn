@@ -15,6 +15,7 @@
 <meta name="author" content="MeetingBurn" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 <link rel="canonical" href="https://meetingburn.in/tools/privacy.html" />
+<link rel="alternate" hreflang="en" href="https://meetingburn.in/tools/privacy.html" />
 
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="MeetingBurn" />
@@ -27,7 +28,7 @@
 <meta name="twitter:image" content="https://meetingburn.in/tools/og.jpg" />
 
 <!-- Analytics: Add your Plausible or Umami script here -->
-<!-- <script defer data-domain="meetingburn.in" src="https://plausible.io/js/script.js"></script> -->
+<script defer data-domain="meetingburn.in" src="https://plausible.io/js/script.js"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -163,8 +164,9 @@
   <div class="wrap">
     <div class="inner">
       <h1>Privacy, in plain language.</h1>
-      <span class="updated">Last updated · 14 April 2026</span>
+      <span class="updated">Last updated · 26 April 2026</span>
       <p class="lede">Goldhour runs entirely in your browser. This page lists exactly what we store, what we don't, and who else is involved. No lawyer wrote it.</p>
+      <p style="margin:14px 0 0;padding:14px 16px;border-radius:14px;background:#f5c45114;border:1px solid #f5c45133;color:var(--ink-dim)"><strong style="color:var(--gold)">30-day notice:</strong> On 26 April 2026 we added Plausible for privacy-first pageview analytics. It does not use cookies or record your roster, inputs, or message output. This notice stays here for at least 30 days per section v below.</p>
 
       <h2><span class="marker">i.</span>What we store, and where</h2>
       <p>Goldhour saves two things to your browser's localStorage — and nothing else. Both live on whichever device you're using and never leave it. You can clear them any time through your browser's site-data panel.</p>
@@ -174,10 +176,10 @@
       </div>
       <p>That's the complete list. We do not write anything to cookies, we do not write anything to IndexedDB, and we do not write anything to sessionStorage. If your browser's site-data panel shows more than those two keys under <code>meetingburn.in</code>, something is broken — please tell us.</p>
 
-      <h2><span class="marker">ii.</span>What we don't collect</h2>
+      <h2><span class="marker">ii.</span>What we don't collect, and the limited analytics we do use</h2>
       <ul class="no-list">
         <li><strong>No accounts.</strong> There is no sign-up, no email, no password, no magic link. Nothing to forget and nothing to reset.</li>
-        <li><strong>No analytics.</strong> As of the date at the top of this page, Goldhour has no Google Analytics, no Plausible, no Fathom, no PostHog, no Mixpanel. Not a single pageview pixel. If that ever changes, this page changes first and the commit will be visible on the changelog.</li>
+        <li><strong>Privacy-first analytics only.</strong> Goldhour uses Plausible to count pageviews and top-level referral data without cookies, accounts, session recording, or personal profiling. We do not run Google Analytics, Mixpanel, PostHog, or any tracker that captures your roster, message output, or typed input.</li>
         <li><strong>No tracking cookies.</strong> No advertising cookies, no third-party pixels, no fingerprinting scripts, no session recording.</li>
         <li><strong>No server-side logs of your roster.</strong> All timezone math runs in your browser using the native <code>Intl.DateTimeFormat</code> API. Your list of cities is never sent to us or anyone else. Not even for debugging.</li>
         <li><strong>No contact form data.</strong> If you email us at <code>hello@meetingburn.in</code>, that email lands in a regular inbox that two humans read. We keep the email so we can reply. We do not import it into a CRM.</li>

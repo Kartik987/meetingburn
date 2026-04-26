@@ -10,6 +10,7 @@
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0f1219">
 <link rel="canonical" href="https://meetingburn.in/should-this-meeting-be-an-email.html"/>
+<link rel="alternate" hreflang="en" href="https://meetingburn.in/should-this-meeting-be-an-email.html" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -26,7 +27,7 @@
 <meta name="twitter:image" content="https://meetingburn.in/og-image.png">
 
 <!-- Analytics: Add your Plausible or Umami script here -->
-<!-- <script defer data-domain="meetingburn.in" src="https://plausible.io/js/script.js"></script> -->
+<script defer data-domain="meetingburn.in" src="https://plausible.io/js/script.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Should This Meeting Be an Email? A Quick Decision Quiz","author":{"@type":"Organization","name":"MeetingBurn Team"},"publisher":{"@type":"Organization","name":"MeetingBurn"},"datePublished":"2026-03-25","dateModified":"2026-03-27"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,6 +74,17 @@ h1{font-family:var(--fH);font-size:clamp(24px,5vw,36px);font-weight:700;letter-s
 .result-score{font-family:var(--fM);font-size:14px;color:var(--t4);margin-bottom:20px}
 .result-bar{height:8px;background:var(--bgC);border-radius:4px;margin:0 auto 24px;max-width:300px;overflow:hidden}
 .result-fill{height:100%;border-radius:4px;transition:width .8s ease}
+.result-capture{background:var(--bgC);border:1px solid var(--bd);border-radius:16px;padding:20px;max-width:520px;margin:0 auto 24px}
+.result-capture h3{font-family:var(--fH);font-size:18px;font-weight:700;margin:0 0 8px}
+.result-capture p{font-size:13.5px;color:var(--t3);margin-bottom:14px;line-height:1.7}
+.result-form{display:flex;gap:10px}
+.result-form input{flex:1;padding:12px 14px;border-radius:10px;border:1px solid var(--bdH);background:var(--bg);color:var(--t1);font-size:14px}
+.result-form button{padding:12px 18px;border-radius:10px;border:none;background:var(--ac);color:#fff;font-size:13px;font-weight:700;cursor:pointer}
+.result-mini{font-size:11px;color:var(--t4);margin-top:10px}
+.result-ok{display:none;padding:16px;border-radius:14px;background:var(--okD);border:1px solid rgba(52,211,153,.25);color:var(--ok);font-size:14px;font-weight:700;max-width:520px;margin:0 auto 24px}
+.result-ok a{display:inline-flex;align-items:center;gap:6px;margin-top:10px;color:var(--ok);text-decoration:none;font-size:13px}
+.result-err{display:none;padding:14px;border-radius:14px;background:var(--acD);border:1px solid var(--acG);color:var(--t2);font-size:13px;line-height:1.6;max-width:520px;margin:0 auto 24px}
+.result-err button{margin-top:10px}
 .share-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
 .share-btn{padding:10px 20px;border-radius:10px;border:1px solid var(--bd);background:var(--bgC);color:var(--t1);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--fB);transition:.15s}
 .share-btn:hover{border-color:var(--bdH);background:var(--bgH)}
@@ -116,6 +128,8 @@ h1{font-size:22px}
 .prose{font-size:15px}
 .nav-a{font-size:11px;padding:5px 8px}
 .r-grid{grid-template-columns:1fr}
+.result-form{flex-direction:column}
+.result-form button{width:100%}
 }
 </style>
 </head>
@@ -159,6 +173,17 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="result-bar"><div class="result-fill" id="resFill"></div></div>
 <div class="result-score" id="resScore"></div>
 <div class="result-desc" id="resDesc"></div>
+<div class="result-capture" id="resultCapture">
+<h3>Want the printable verdict + audit kit?</h3>
+<p>Get the free Meeting Cost Audit Kit and a copy of this result you can forward to your team.</p>
+<form class="result-form" action="https://app.convertkit.com/forms/0d08d115cf/subscriptions" method="post" data-sv-form="0d08d115cf" data-uid="0d08d115cf" onsubmit="handleLeadCapture(event)">
+<input type="email" name="email_address" placeholder="Your work email" required>
+<button type="submit">Email me the kit</button>
+</form>
+<div class="result-mini">Free. No spam. Unsubscribe any time.</div>
+</div>
+<div class="result-ok" id="resultOk">&#x2714; Check your inbox to confirm your subscription.<br><a href="/downloads/meeting-audit-template.html">Open the Meeting Cost Audit Kit &rarr;</a></div>
+<div class="result-err" id="resultErr">We could not submit the inline form just now. You can try again or use the backup signup flow instead.<br><button class="share-btn" type="button" onclick="openLeadFallback()">Open backup signup</button></div>
 <div class="share-btns">
 <button class="share-btn primary" onclick="shareResult()">Share Result</button>
 <button class="share-btn" onclick="copyResult()">Copy Result</button>
@@ -312,11 +337,25 @@ var text='Should This Meeting Be an Email? Quiz Result\nScore: '+pct+'%\nVerdict
 navigator.clipboard.writeText(text).then(function(){alert('Result copied!')});
 }
 
+function handleLeadCapture(e){
+e.preventDefault();
+var form=e.target,input=form.querySelector('input[type=\"email\"]'),email=input.value.trim();
+document.getElementById('resultErr').style.display='none';
+if(!input.checkValidity()){input.reportValidity();return;}
+fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email_address:email})})
+.then(function(r){if(r.ok){document.getElementById('resultCapture').style.display='none';document.getElementById('resultOk').style.display='block'}else{console.warn('Quiz lead capture returned a non-ok response',r.status,r.statusText);document.getElementById('resultErr').style.display='block';}})
+.catch(function(err){console.error('Quiz lead capture failed',err);document.getElementById('resultErr').style.display='block';});
+}
+function openLeadFallback(){var form=document.querySelector('#resultCapture form');if(form)form.submit()}
+
 function retake(){
 currentQ=0;score=0;
 document.getElementById('quizCard').style.display='block';
 document.getElementById('resultCard').style.display='none';
 document.getElementById('resFill').style.width='0%';
+document.getElementById('resultCapture').style.display='block';
+document.getElementById('resultOk').style.display='none';
+document.getElementById('resultErr').style.display='none';
 renderQ();
 }
 
