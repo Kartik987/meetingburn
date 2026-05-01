@@ -367,7 +367,7 @@ footer{border-top:1px solid var(--bd);padding:48px 0 56px;margin-top:32px;backgr
 
 .hidden{display:none !important}
 .skip-to{position:absolute;top:-60px;left:16px;background:var(--ac);color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;z-index:9999;text-decoration:none;transition:top .2s}
-.embed-mode .nav,.embed-mode .hero,.embed-mode #newsletter,.embed-mode #how,.embed-mode #our-tools,.embed-mode #why-it-matters,.embed-mode #compare,.embed-mode #research,.embed-mode #testimonials,.embed-mode #methodology,.embed-mode #faq,.embed-mode #read-more,.embed-mode footer{display:none}
+.embed-mode .nav,.embed-mode .hero,.embed-mode #newsletter,.embed-mode #how,.embed-mode #our-tools,.embed-mode #why-it-matters,.embed-mode #compare,.embed-mode #research,.embed-mode #testimonials,.embed-mode #methodology,.embed-mode #faq,.embed-mode #read-more,.embed-mode #fun-zone,.embed-mode footer{display:none}
 .embed-mode main{max-width:960px;padding-top:28px}
 
 /* ═══════════ RESPONSIVE ═══════════ */
@@ -423,6 +423,39 @@ footer{border-top:1px solid var(--bd);padding:48px 0 56px;margin-top:32px;backgr
 .hb-p,.hb-s{width:100%;justify-content:center}
 .sp-in{gap:14px;font-size:11px}
 }
+
+/* ═══════════ FUN WIDGETS ═══════════ */
+.widgets-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px}
+.wgt-card{background:var(--bgE);border:1px solid var(--bd);border-radius:var(--rXL);padding:32px 28px;text-align:center;position:relative;overflow:hidden}
+.wgt-card::before{content:'';position:absolute;inset:0;border-radius:var(--rXL);padding:1px;background:linear-gradient(135deg,var(--acG),transparent 50%,var(--puD));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.4}
+.wgt-ey{font-family:var(--fM);font-size:11px;font-weight:700;color:var(--pu);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
+.wgt-h{font-family:var(--fH);font-size:clamp(18px,2.5vw,22px);font-weight:800;letter-spacing:-.025em;margin-bottom:6px}
+.wgt-sub{font-size:13px;color:var(--t3);margin-bottom:20px;line-height:1.6;font-weight:400}
+.clicker-area{position:relative;margin:12px auto 20px;width:fit-content}
+.clicker-btn{width:110px;height:110px;border-radius:50%;background:var(--gradT);border:none;font-size:44px;cursor:pointer;transition:box-shadow .2s;box-shadow:0 8px 28px rgba(245,158,11,.4);display:grid;place-items:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.clicker-btn:hover{box-shadow:0 12px 36px rgba(245,158,11,.55)}
+@media(prefers-reduced-motion:no-preference){.clicker-btn.clicked{animation:clkPop .18s ease-out forwards}}
+@keyframes clkPop{0%{transform:scale(.88)}55%{transform:scale(1.1)}100%{transform:scale(1)}}
+.clicker-stats{display:flex;justify-content:center;gap:10px;margin:0 0 12px}
+.clk-stat{background:var(--bgC);border:1px solid var(--bd);border-radius:var(--r);padding:10px 12px;flex:1}
+.clk-stat-v{font-family:var(--fM);font-size:20px;font-weight:800;color:var(--ac);font-variant-numeric:tabular-nums}
+.clk-stat-l{font-size:10px;color:var(--t4);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-top:3px}
+.clk-msg{font-size:12px;font-weight:600;color:var(--ok);padding:9px 14px;background:var(--okD);border-radius:var(--r);border:1px solid rgba(52,211,153,.2);margin-bottom:12px;display:none;line-height:1.5;text-align:left}
+.clk-msg.show{display:block}
+.clk-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:0 0 14px;min-height:26px}
+.clk-badge{font-size:11px;font-weight:700;color:var(--pu);background:var(--puD);border:1px solid rgba(167,139,250,.22);border-radius:100px;padding:4px 10px}
+@media(prefers-reduced-motion:no-preference){.clk-badge.new-badge{animation:badgePop .35s ease-out}}
+@keyframes badgePop{0%{opacity:0;transform:scale(.6)}70%{transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}
+.wheel-outer{display:flex;flex-direction:column;align-items:center;gap:14px}
+.wheel-wrap{position:relative;width:200px;height:200px;margin:0 auto 4px}
+.wheel-pointer{font-size:20px;color:var(--ac);position:absolute;top:-18px;left:50%;transform:translateX(-50%);z-index:10;pointer-events:none;filter:drop-shadow(0 2px 6px rgba(245,158,11,.6));line-height:1}
+.wheel-disc{width:200px;height:200px;border-radius:50%;position:absolute;inset:0;will-change:transform;border:3px solid var(--bgH)}
+@media(prefers-reduced-motion:no-preference){.wheel-disc{transition:transform 3.2s cubic-bezier(.17,.67,.12,1)}}
+@media(prefers-reduced-motion:reduce){.wheel-disc{transition:transform .05s}}
+.wheel-svg{position:absolute;inset:0;width:200px;height:200px;pointer-events:none}
+.wheel-result{min-height:52px;background:var(--bgC);border:1px solid var(--bd);border-radius:var(--r);padding:12px 18px;font-size:13px;font-weight:600;color:var(--t1);line-height:1.5;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center}
+.wheel-result .wr-em{font-size:18px;flex-shrink:0}
+@media(max-width:680px){.widgets-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body data-theme="dark">
@@ -791,6 +824,66 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <a href="/should-this-meeting-be-an-email.html" class="tool"><div class="tool-top"><div class="tool-ic" style="background:var(--okD);color:var(--ok)">✉️</div><div><div class="tool-name">Should This Meeting Be an Email?</div><div class="tool-tag">30-second quiz</div></div></div><div class="tool-desc">Quickly decide if your next meeting needs to happen live or async.</div><span class="tool-cta">Take quiz</span></a>
 </div>
 </section>
+
+<!-- FUN ZONE: Interactive Widgets — purely client-side, no SEO impact -->
+<section class="sec w" id="fun-zone" aria-labelledby="funZoneHeading">
+<div class="sec-h-wrap">
+<div class="sec-ey">&#x1f3ae; Take a Break</div>
+<h2 class="sec-h" id="funZoneHeading">Burn Meetings. Play. Repeat.</h2>
+<p class="sec-sub">Not ready to track costs today? Vent your meeting frustration right here. No signup. No calendar required.</p>
+</div>
+<div class="widgets-row">
+
+<!-- WIDGET 1: MEETING RAGE CLICKER -->
+<div class="wgt-card" role="region" aria-labelledby="clickerHeading">
+<div class="wgt-ey">&#x1f4a5; Meeting Rage Clicker</div>
+<h3 class="wgt-h" id="clickerHeading">Burn the Meeting</h3>
+<p class="wgt-sub">Tap to incinerate pointless meetings. Build a daily streak. Earn badges.</p>
+<div class="clicker-area">
+<button class="clicker-btn" id="clickerBtn" onclick="doClick()" aria-label="Burn a meeting — tap to increase your score">&#x1f525;</button>
+</div>
+<div class="clicker-stats">
+<div class="clk-stat"><div class="clk-stat-v" id="clkScore">0</div><div class="clk-stat-l">Burned</div></div>
+<div class="clk-stat"><div class="clk-stat-v" id="clkBest">0</div><div class="clk-stat-l">Best</div></div>
+<div class="clk-stat"><div class="clk-stat-v" id="clkStreak">0</div><div class="clk-stat-l">Day Streak</div></div>
+</div>
+<div class="clk-msg" id="clkMsg" role="status" aria-live="polite"></div>
+<div class="clk-badges" id="clkBadges" aria-label="Earned badges"></div>
+<button class="btn-s" onclick="resetClicker()" style="margin-top:4px" aria-label="Reset clicker score to zero">&#x21BA; Reset Score</button>
+</div>
+
+<!-- WIDGET 2: SPIN THE EXCUSE WHEEL -->
+<div class="wgt-card" role="region" aria-labelledby="wheelHeading">
+<div class="wgt-ey">&#x1f3a1; Spin the Excuse Wheel</div>
+<h3 class="wgt-h" id="wheelHeading">This Meeting Could Have Been&hellip;</h3>
+<p class="wgt-sub">Spin the wheel to discover what your meeting should have been instead.</p>
+<div class="wheel-outer">
+<div class="wheel-wrap">
+<div class="wheel-pointer" aria-hidden="true">&#x25BC;</div>
+<div class="wheel-disc" id="wheelDisc" aria-hidden="true"></div>
+<svg class="wheel-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+<line x1="100" y1="100" x2="200" y2="100" stroke="rgba(0,0,0,.3)" stroke-width="2"/>
+<line x1="100" y1="100" x2="171" y2="171" stroke="rgba(0,0,0,.3)" stroke-width="2"/>
+<line x1="100" y1="100" x2="100" y2="200" stroke="rgba(0,0,0,.3)" stroke-width="2"/>
+<line x1="100" y1="100" x2="29" y2="171" stroke="rgba(0,0,0,.3)" stroke-width="2"/>
+<line x1="100" y1="100" x2="0" y2="100" stroke="rgba(0,0,0,.3)" stroke-width="2"/>
+<line x1="100" y1="100" x2="29" y2="29" stroke="rgba(0,0,0,.3)" stroke-width="2"/>
+<line x1="100" y1="100" x2="100" y2="0" stroke="rgba(0,0,0,.3)" stroke-width="2"/>
+<line x1="100" y1="100" x2="171" y2="29" stroke="rgba(0,0,0,.3)" stroke-width="2"/>
+<circle cx="100" cy="100" r="18" fill="var(--bgE)" stroke="var(--bdH)" stroke-width="2"/>
+<text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="14">&#x1f525;</text>
+</svg>
+</div>
+<div class="wheel-result" id="wheelResult" role="status" aria-live="polite">
+<span class="wr-em">&#x1f4ab;</span>
+<span id="wheelResultText">Spin the wheel to find out&hellip;</span>
+</div>
+<button class="btn-main" id="spinBtn" onclick="doSpin()" style="max-width:200px;margin:0 auto" aria-label="Spin the excuse wheel">&#x1f3b0; Spin It!</button>
+</div>
+</div>
+
+</div>
+</section>
 </main>
 
 <footer role="contentinfo">
@@ -981,6 +1074,116 @@ function updLt(){try{const v=parseFloat(localStorage.getItem('mb_'+S.cur)||'0');
 
 window.setCur=setCur;window.setMode=setMode;window.adj=adj;window.recalc=recalc;window.toggleTimer=toggleTimer;window.resetAll=resetAll;window.copySnap=copySnap;window.shareTool=shareTool;window.dlReport=dlReport;window.handleSub=handleSub;window.togD=togD;window.togF=togF;window.toast=toast;window.copyEmbed=copyEmbed;window.shareLifetime=shareLifetime;
 }catch(e){console.error('MeetingBurn JS Error:',e)}
+</script>
+
+<script>
+/* ── Meeting Rage Clicker ── */
+(function(){
+var KEY='mb.clicker.v1';
+var st={score:0,best:0,streak:0,lastDay:'',badges:[]};
+try{var sv=JSON.parse(localStorage.getItem(KEY)||'null');if(sv){st.score=sv.score||0;st.best=sv.best||0;st.streak=sv.streak||0;st.lastDay=sv.lastDay||'';st.badges=sv.badges||[];}}catch(e){}
+var MILESTONES=[
+{n:1,m:'First meeting destroyed! You have started something beautiful. \uD83D\uDD25'},
+{n:10,m:'10 useless meetings burned. Your calendar thanks you.'},
+{n:25,m:'25 down. The recurring invites fear you.'},
+{n:50,m:'50 meetings incinerated. The standup trembles.'},
+{n:100,m:'100 burned! You are a legend of calendar efficiency.'},
+{n:250,m:'250? You are basically a meeting-free zone now.'},
+{n:500,m:'500 meetings gone. You have saved roughly a year of humanity\u2019s time.'}
+];
+var BADGES=[
+{n:10,icon:'\uD83D\uDD25',name:'Inbox Avenger'},
+{n:25,icon:'\u26A1',name:'Sync Sniper'},
+{n:50,icon:'\uD83D\uDCA3',name:'Standup Assassin'},
+{n:100,icon:'\uD83C\uDFC6',name:'Calendar Cleaner'},
+{n:250,icon:'\uD83D\uDC51',name:'VP of Meeting Destruction'}
+];
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+function render(){
+var s=document.getElementById('clkScore'),b=document.getElementById('clkBest'),d=document.getElementById('clkStreak');
+if(s)s.textContent=st.score;if(b)b.textContent=st.best;if(d)d.textContent=st.streak;
+}
+function showMsg(m){var el=document.getElementById('clkMsg');if(!el)return;el.textContent=m;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('show');},4000);}
+function renderBadges(newName){
+var c=document.getElementById('clkBadges');if(!c)return;
+c.innerHTML='';
+for(var i=0;i<BADGES.length;i++){
+var b=BADGES[i];
+if(st.badges.indexOf(b.name)!==-1){
+var el=document.createElement('span');
+el.className='clk-badge'+(b.name===newName?' new-badge':'');
+el.textContent=b.icon+' '+b.name;
+c.appendChild(el);
+}
+}
+}
+window.doClick=function(){
+st.score++;
+if(st.score>st.best)st.best=st.score;
+var today=new Date().toISOString().slice(0,10);
+if(st.lastDay!==today){
+if(st.lastDay){
+var diff=Math.round((new Date(today)-new Date(st.lastDay))/86400000);
+st.streak=diff===1?st.streak+1:1;
+}else{st.streak=1;}
+st.lastDay=today;
+}
+for(var i=0;i<MILESTONES.length;i++){if(st.score===MILESTONES[i].n){showMsg(MILESTONES[i].m);break;}}
+var newBadge=null;
+for(var j=0;j<BADGES.length;j++){if(st.score===BADGES[j].n&&st.badges.indexOf(BADGES[j].name)===-1){st.badges.push(BADGES[j].name);newBadge=BADGES[j].name;}}
+save();render();renderBadges(newBadge);
+var btn=document.getElementById('clickerBtn');
+if(btn){btn.classList.remove('clicked');void btn.offsetWidth;btn.classList.add('clicked');setTimeout(function(){btn.classList.remove('clicked');},220);}
+};
+window.resetClicker=function(){st.score=0;save();render();var m=document.getElementById('clkMsg');if(m)m.classList.remove('show');};
+render();renderBadges(null);
+})();
+
+/* ── Spin the Excuse Wheel ── */
+(function(){
+var EXCUSES=[
+{emoji:'\uD83D\uDCE7',text:'a 3-line email'},
+{emoji:'\uD83D\uDCAC',text:'a Slack message'},
+{emoji:'\uD83C\uDFAC',text:'a 2-minute Loom'},
+{emoji:'\uD83D\uDCDD',text:'a shared doc with comments'},
+{emoji:'\uD83D\uDDD1\uFE0F',text:'nothing at all'},
+{emoji:'\uD83D\uDD14',text:'a quick async update'},
+{emoji:'\uD83D\uDCCA',text:'a shared dashboard'},
+{emoji:'\u2615',text:'a walk-and-talk with one person'}
+];
+var COLORS=['#f59e0b','#f87171','#a78bfa','#22d3ee','#34d399','#fbbf24','#c084fc','#fb923c'];
+var disc=document.getElementById('wheelDisc');
+if(disc){
+var grad='conic-gradient(from 0deg';
+for(var i=0;i<8;i++){grad+=','+COLORS[i]+' '+(i*45)+'deg '+(i*45+45)+'deg';}
+disc.style.background=grad+')';
+}
+var currentAngle=0,spinning=false;
+window.doSpin=function(){
+if(spinning)return;
+spinning=true;
+var btn=document.getElementById('spinBtn');
+if(btn){btn.disabled=true;btn.textContent='\u23F3 Spinning\u2026';}
+var segment=Math.floor(Math.random()*8);
+var targetRemainder=(337.5-segment*45+360)%360;
+var currentRemainder=((currentAngle%360)+360)%360;
+var delta=(targetRemainder-currentRemainder+360)%360;
+if(delta<90)delta+=360;
+var newAngle=currentAngle+5*360+delta;
+var d=document.getElementById('wheelDisc');
+if(d)d.style.transform='rotate('+newAngle+'deg)';
+currentAngle=newAngle;
+var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+var delay=reduced?100:3250;
+setTimeout(function(){
+spinning=false;
+var exc=EXCUSES[segment];
+var rt=document.getElementById('wheelResultText');
+if(rt)rt.innerHTML='This meeting could have been <strong>'+exc.emoji+' '+exc.text+'</strong>';
+if(btn){btn.disabled=false;btn.innerHTML='\uD83C\uDFB0 Spin Again!';}
+},delay);
+};
+})();
 </script>
 </body>
 </html>
