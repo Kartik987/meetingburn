@@ -1098,6 +1098,8 @@ var BADGES=[
 {n:100,icon:'\uD83C\uDFC6',name:'Calendar Cleaner'},
 {n:250,icon:'\uD83D\uDC51',name:'VP of Meeting Destruction'}
 ];
+/* Convert an ISO date string "YYYY-MM-DD" to UTC day count for DST-safe arithmetic */
+function dateToUTCDays(iso){var p=iso.split('-');return Date.UTC(+p[0],+p[1]-1,+p[2])/86400000;}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
 function render(){
 var s=document.getElementById('clkScore'),b=document.getElementById('clkBest'),d=document.getElementById('clkStreak');
@@ -1106,7 +1108,8 @@ if(s)s.textContent=st.score;if(b)b.textContent=st.best;if(d)d.textContent=st.str
 function showMsg(m){var el=document.getElementById('clkMsg');if(!el)return;el.textContent=m;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('show');},4000);}
 function renderBadges(newName){
 var c=document.getElementById('clkBadges');if(!c)return;
-c.innerHTML='';
+/* Remove all existing children without using innerHTML */
+while(c.firstChild){c.removeChild(c.firstChild);}
 for(var i=0;i<BADGES.length;i++){
 var b=BADGES[i];
 if(st.badges.indexOf(b.name)!==-1){
@@ -1123,7 +1126,8 @@ if(st.score>st.best)st.best=st.score;
 var today=new Date().toISOString().slice(0,10);
 if(st.lastDay!==today){
 if(st.lastDay){
-var diff=Math.round((new Date(today)-new Date(st.lastDay))/86400000);
+/* Use UTC day counts via helper to avoid DST boundary edge cases */
+var diff=Math.round(dateToUTCDays(today)-dateToUTCDays(st.lastDay));
 st.streak=diff===1?st.streak+1:1;
 }else{st.streak=1;}
 st.lastDay=today;
@@ -1133,7 +1137,10 @@ var newBadge=null;
 for(var j=0;j<BADGES.length;j++){if(st.score===BADGES[j].n&&st.badges.indexOf(BADGES[j].name)===-1){st.badges.push(BADGES[j].name);newBadge=BADGES[j].name;}}
 save();render();renderBadges(newBadge);
 var btn=document.getElementById('clickerBtn');
-if(btn){btn.classList.remove('clicked');void btn.offsetWidth;btn.classList.add('clicked');setTimeout(function(){btn.classList.remove('clicked');},220);}
+/* CLK_ANIM_MS: CSS keyframe is .18s (180ms); add 40ms buffer so the class
+   is reliably removed after the animation fully completes across browsers */
+var CLK_ANIM_MS=220;
+if(btn){btn.classList.remove('clicked');void btn.offsetWidth;btn.classList.add('clicked');setTimeout(function(){btn.classList.remove('clicked');},CLK_ANIM_MS);}
 };
 window.resetClicker=function(){st.score=0;save();render();var m=document.getElementById('clkMsg');if(m)m.classList.remove('show');};
 render();renderBadges(null);
@@ -1165,7 +1172,11 @@ spinning=true;
 var btn=document.getElementById('spinBtn');
 if(btn){btn.disabled=true;btn.textContent='\u23F3 Spinning\u2026';}
 var segment=Math.floor(Math.random()*8);
-var targetRemainder=(337.5-segment*45+360)%360;
+/* POINTER_OFFSET_DEGREES = 337.5 = 360 - 22.5, where 22.5° is the center angle
+   of segment 0 (which spans 0-45° in the conic gradient). To place segment i at
+   the 12 o'clock pointer, rotate by remainder = (337.5 - i*45 + 360) % 360. */
+var POINTER_OFFSET_DEGREES=337.5;
+var targetRemainder=(POINTER_OFFSET_DEGREES-segment*45+360)%360;
 var currentRemainder=((currentAngle%360)+360)%360;
 var delta=(targetRemainder-currentRemainder+360)%360;
 if(delta<90)delta+=360;
@@ -1179,8 +1190,14 @@ setTimeout(function(){
 spinning=false;
 var exc=EXCUSES[segment];
 var rt=document.getElementById('wheelResultText');
-if(rt)rt.innerHTML='This meeting could have been <strong>'+exc.emoji+' '+exc.text+'</strong>';
-if(btn){btn.disabled=false;btn.innerHTML='\uD83C\uDFB0 Spin Again!';}
+if(rt){
+/* Build result with DOM methods to avoid innerHTML with concatenated strings */
+rt.textContent='This meeting could have been ';
+var strong=document.createElement('strong');
+strong.textContent=exc.emoji+' '+exc.text;
+rt.appendChild(strong);
+}
+if(btn){btn.disabled=false;btn.textContent='\uD83C\uDFB0 Spin Again!';}
 },delay);
 };
 })();
