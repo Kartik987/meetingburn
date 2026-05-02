@@ -367,7 +367,7 @@ footer{border-top:1px solid var(--bd);padding:48px 0 56px;margin-top:32px;backgr
 
 .hidden{display:none !important}
 .skip-to{position:absolute;top:-60px;left:16px;background:var(--ac);color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;z-index:9999;text-decoration:none;transition:top .2s}
-.embed-mode .nav,.embed-mode .hero,.embed-mode #newsletter,.embed-mode #how,.embed-mode #our-tools,.embed-mode #why-it-matters,.embed-mode #compare,.embed-mode #research,.embed-mode #testimonials,.embed-mode #methodology,.embed-mode #faq,.embed-mode #read-more,.embed-mode #fun-zone,.embed-mode footer{display:none}
+.embed-mode .nav,.embed-mode .hero,.embed-mode #newsletter,.embed-mode #how,.embed-mode #our-tools,.embed-mode #why-it-matters,.embed-mode #compare,.embed-mode #research,.embed-mode #testimonials,.embed-mode #methodology,.embed-mode #faq,.embed-mode #read-more,.embed-mode #daily-challenge,.embed-mode #fun-zone,.embed-mode #returnBanner,.embed-mode footer{display:none}
 .embed-mode main{max-width:960px;padding-top:28px}
 
 /* ═══════════ RESPONSIVE ═══════════ */
@@ -456,6 +456,57 @@ footer{border-top:1px solid var(--bd);padding:48px 0 56px;margin-top:32px;backgr
 .wheel-result{min-height:52px;background:var(--bgC);border:1px solid var(--bd);border-radius:var(--r);padding:12px 18px;font-size:13px;font-weight:600;color:var(--t1);line-height:1.5;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center}
 .wheel-result .wr-em{font-size:18px;flex-shrink:0}
 @media(max-width:680px){.widgets-row{grid-template-columns:1fr}}
+
+/* ═══════════ RETURN VISITOR BANNER ═══════════ */
+.rb-wrap{max-width:1120px;margin:0 auto;padding:8px 24px 0}
+.rb-inner{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,rgba(52,211,153,.07),rgba(52,211,153,.02));border:1px solid rgba(52,211,153,.14);border-radius:var(--rL);padding:11px 16px}
+.rb-ic{font-size:18px;flex-shrink:0;line-height:1}
+.rb-body{flex:1;min-width:0}
+.rb-msg{font-size:13px;color:var(--t1);font-weight:500;line-height:1.45}
+.rb-streak-pill{display:none;align-items:center;gap:5px;font-family:var(--fM);font-size:10px;font-weight:700;color:var(--ok);background:var(--okD);border:1px solid rgba(52,211,153,.18);padding:2px 9px;border-radius:100px;margin-left:8px;vertical-align:middle}
+.rb-streak-pill.show{display:inline-flex}
+.rb-dismiss{background:none;border:none;color:var(--t4);font-size:17px;cursor:pointer;padding:3px 7px;border-radius:6px;line-height:1;transition:.15s;flex-shrink:0;font-family:var(--fB)}
+.rb-dismiss:hover{color:var(--t2);background:var(--bgH)}
+@media(prefers-reduced-motion:no-preference){.rb-wrap .rb-inner{animation:rbFade .4s ease-out both}}
+@keyframes rbFade{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════════ DAILY CHALLENGE ═══════════ */
+.dc-card{background:var(--bgE);border:1px solid var(--bd);border-radius:var(--rXL);padding:36px;position:relative;overflow:hidden;max-width:800px;margin:0 auto}
+.dc-card::before{content:'';position:absolute;inset:0;border-radius:var(--rXL);padding:1px;background:linear-gradient(135deg,var(--acG),transparent 50%,var(--puD));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.4}
+.dc-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:8px;position:relative;z-index:1}
+.dc-tag{font-family:var(--fM);font-size:10px;font-weight:700;color:var(--pu);background:var(--puD);border:1px solid rgba(167,139,250,.2);padding:4px 12px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase}
+.dc-streak-pill{display:none;align-items:center;gap:5px;font-family:var(--fM);font-size:10px;font-weight:700;color:var(--ac);background:var(--acD);border:1px solid var(--acG);padding:4px 12px;border-radius:100px}
+.dc-streak-pill.show{display:inline-flex}
+.dc-icon{font-size:32px;margin-bottom:10px;display:block;line-height:1;position:relative;z-index:1}
+.dc-type{font-family:var(--fM);font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;position:relative;z-index:1}
+.dc-title{font-family:var(--fH);font-size:clamp(19px,3vw,25px);font-weight:800;letter-spacing:-.025em;margin-bottom:12px;line-height:1.15;position:relative;z-index:1}
+.dc-scene{font-family:var(--fS);font-size:15px;color:var(--t2);line-height:1.8;margin-bottom:22px;font-weight:400;position:relative;z-index:1}
+.dc-prompt{font-family:var(--fM);font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;position:relative;z-index:1}
+.dc-choices{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:0;position:relative;z-index:1}
+.dc-btn{background:var(--bgC);border:1px solid var(--bd);border-radius:var(--r);padding:13px 15px;font-size:13px;font-weight:600;color:var(--t1);cursor:pointer;text-align:left;transition:.18s;font-family:var(--fB);line-height:1.4}
+.dc-btn:hover:not([disabled]){border-color:var(--bdS);background:var(--bgH)}
+.dc-btn[disabled]{cursor:default}
+.dc-btn.chosen.tone-ok{border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.06);color:var(--ok)}
+.dc-btn.chosen.tone-warn{border-color:rgba(245,158,11,.28);background:rgba(245,158,11,.06);color:var(--ac)}
+.dc-btn.chosen.tone-no{border-color:rgba(248,113,113,.25);background:rgba(248,113,113,.05);color:var(--no)}
+.dc-result{margin-top:18px;border-radius:var(--rL);padding:16px 18px;display:none;position:relative;z-index:1}
+.dc-result.show{display:block}
+.dc-result.tone-ok{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.18)}
+.dc-result.tone-warn{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.18)}
+.dc-result.tone-no{background:rgba(248,113,113,.05);border:1px solid rgba(248,113,113,.15)}
+.dc-res-head{font-family:var(--fH);font-size:14px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.dc-res-head.tone-ok{color:var(--ok)}
+.dc-res-head.tone-warn{color:var(--ac)}
+.dc-res-head.tone-no{color:var(--no)}
+.dc-res-body{font-family:var(--fS);font-size:13px;color:var(--t2);line-height:1.75;font-weight:400}
+.dc-nudge{margin-top:10px;padding-top:10px;border-top:1px solid var(--bd);font-size:12px;color:var(--t3);line-height:1.6;font-weight:400}
+.dc-nudge-lbl{font-family:var(--fM);font-size:9px;font-weight:700;color:var(--ok);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:2px}
+.dc-nav{display:flex;align-items:center;justify-content:space-between;margin-top:20px;flex-wrap:wrap;gap:8px;position:relative;z-index:1}
+.dc-date-lbl{font-family:var(--fM);font-size:11px;color:var(--t4);font-weight:500}
+.dc-share-btn{font-size:12px;font-weight:600;color:var(--t3);background:none;border:1px solid var(--bd);border-radius:var(--r);padding:8px 14px;cursor:pointer;font-family:var(--fB);transition:.15s;display:none}
+.dc-share-btn.show{display:inline-block}
+.dc-share-btn:hover{border-color:var(--bdH);color:var(--t1)}
+@media(max-width:600px){.dc-choices{grid-template-columns:1fr}.dc-card{padding:22px 18px;border-radius:var(--rL)}}
 </style>
 </head>
 <body data-theme="dark">
@@ -501,6 +552,19 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="trust-item"><a href="#research"><strong>23 min</strong>post meeting refocus</a></div>
 </div>
 </header>
+
+<!-- RETURN VISITOR BANNER — client-side only, shown to return visitors via localStorage -->
+<div id="returnBanner" style="display:none" aria-live="polite">
+  <div class="rb-wrap">
+    <div class="rb-inner">
+      <span class="rb-ic" aria-hidden="true">🔥</span>
+      <div class="rb-body">
+        <span class="rb-msg" id="rbMsg">Welcome back to MeetingBurn.</span><span class="rb-streak-pill" id="rbStreakPill"><span aria-hidden="true">🔥</span><span id="rbStreakNum">1</span><span>&#8209;day streak</span></span>
+      </div>
+      <button class="rb-dismiss" onclick="dismissReturnBanner()" aria-label="Dismiss welcome banner" type="button">&#x2715;</button>
+    </div>
+  </div>
+</div>
 
 <!-- ═══ CALCULATOR: EVERYTHING IN MAIN PRESERVED ═══ -->
 <main class="w" id="calculator" role="main" aria-label="Meeting cost calculator">
@@ -823,6 +887,41 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <a href="/meeting-cost-per-employee.html" class="tool"><div class="tool-top"><div class="tool-ic" style="background:var(--cyD);color:var(--cy)">💼</div><div><div class="tool-name">Meeting Cost Per Employee</div><div class="tool-tag">Cost breakdown</div></div></div><div class="tool-desc">Understand annual meeting costs by salary band and team size.</div><span class="tool-cta">Read guide</span></a>
 <a href="/should-this-meeting-be-an-email.html" class="tool"><div class="tool-top"><div class="tool-ic" style="background:var(--okD);color:var(--ok)">✉️</div><div><div class="tool-name">Should This Meeting Be an Email?</div><div class="tool-tag">30-second quiz</div></div></div><div class="tool-desc">Quickly decide if your next meeting needs to happen live or async.</div><span class="tool-cta">Take quiz</span></a>
 </div>
+</section>
+
+<!-- DAILY GLOBAL MEETING CHALLENGE — client-side only, no SEO impact -->
+<section class="sec w" id="daily-challenge" aria-labelledby="dcHeading">
+  <div class="sec-h-wrap">
+    <div class="sec-ey">&#x1f30d; Daily Challenge</div>
+    <h2 class="sec-h" id="dcHeading">Global Meeting Challenge</h2>
+    <p class="sec-sub">One real-world meeting scenario every day. Make your call — then see what happens. Come back tomorrow for a new one.</p>
+  </div>
+  <div class="dc-card">
+    <div class="dc-meta">
+      <span class="dc-tag" id="dcTag">Today&#x2019;s Challenge</span>
+      <span class="dc-streak-pill" id="dcStreakPill">&#x1f525; <span id="dcStreakCount">0</span>-day streak</span>
+    </div>
+    <span class="dc-icon" id="dcIcon" aria-hidden="true">&#x1f4c5;</span>
+    <div class="dc-type" id="dcType"></div>
+    <h3 class="dc-title" id="dcTitle">Loading today&#x2019;s scenario&hellip;</h3>
+    <p class="dc-scene" id="dcScene"></p>
+    <div class="dc-prompt">What would you do?</div>
+    <div class="dc-choices" id="dcChoices" role="group" aria-label="Choose your response">
+      <!-- Populated by JS after page load -->
+    </div>
+    <div class="dc-result" id="dcResult" role="status" aria-live="polite">
+      <div class="dc-res-head" id="dcResHead"></div>
+      <p class="dc-res-body" id="dcResBody"></p>
+      <div class="dc-nudge" id="dcNudge" style="display:none">
+        <span class="dc-nudge-lbl">Better path</span>
+        <span id="dcNudgeBody"></span>
+      </div>
+    </div>
+    <div class="dc-nav">
+      <span class="dc-date-lbl" id="dcDateLbl"></span>
+      <button class="dc-share-btn" id="dcShareBtn" onclick="shareChallenge()" type="button" aria-label="Share today&#x2019;s challenge result">Share result &#x2197;</button>
+    </div>
+  </div>
 </section>
 
 <!-- FUN ZONE: Interactive Widgets — purely client-side, no SEO impact -->
@@ -1200,6 +1299,206 @@ rt.appendChild(strong);
 if(btn){btn.disabled=false;btn.textContent='\uD83C\uDFB0 Spin Again!';}
 },delay);
 };
+})();
+</script>
+
+<script>
+/* ── Return Visitor Banner ── */
+(function(){
+try{
+var VK='mb.visits.v2',DK='mb.banner.dis';
+var today=new Date().toISOString().slice(0,10);
+var st={};
+try{st=JSON.parse(localStorage.getItem(VK)||'{}')||{};}catch(e){}
+var count=st.count||0,lastVisit=st.lastVisit||'',streak=st.streak||0;
+function daysDiff(a,b){var pa=a.split('-'),pb=b.split('-');return Math.round((Date.UTC(+pb[0],+pb[1]-1,+pb[2])-Date.UTC(+pa[0],+pa[1]-1,+pa[2]))/86400000);}
+if(lastVisit!==today){
+  if(lastVisit){var dd=daysDiff(lastVisit,today);streak=dd===1?streak+1:1;}else{streak=1;}
+  count++;
+  try{localStorage.setItem(VK,JSON.stringify({count:count,lastVisit:today,streak:streak,firstVisit:st.firstVisit||today}));}catch(e){}
+}
+if(count>=2){
+  var dismissed='';try{dismissed=localStorage.getItem(DK)||'';}catch(e){}
+  if(dismissed!==today){
+    var msgs=[
+      'Welcome back. Today\u2019s global challenge is live.',
+      'Good to see you again \u2014 a new scenario awaits.',
+      'You\u2019re back. Ready to burn another useless meeting?',
+      'Welcome back. The meetings haven\u2019t stopped, but you have options.',
+      'Another day, another meeting that could\u2019ve been a doc. Welcome back.'
+    ];
+    var banner=document.getElementById('returnBanner');
+    var msgEl=document.getElementById('rbMsg');
+    var spEl=document.getElementById('rbStreakPill');
+    var snEl=document.getElementById('rbStreakNum');
+    if(banner&&msgEl){
+      msgEl.textContent=msgs[(count-2)%msgs.length];
+      if(streak>=2&&spEl&&snEl){snEl.textContent=streak;spEl.classList.add('show');}
+      banner.style.display='';
+    }
+  }
+}
+window.dismissReturnBanner=function(){
+  var b=document.getElementById('returnBanner');if(b)b.style.display='none';
+  try{localStorage.setItem(DK,today);}catch(e){};
+};
+}catch(e){}
+})();
+
+/* ── Daily Global Meeting Challenge ── */
+(function(){
+try{
+var DC_KEY='mb.challenge.v1';
+var SC=[
+{ic:'\uD83C\uDF0D',tg:'Cross-Timezone',ti:'The Launch Sync at 11 PM',sc:'A 12-person weekly product sync: 9 AM New York \xb7 2 PM London \xb7 7:30 PM Mumbai \xb7 11 PM Singapore. It has been recurring for 6 months.',ch:[{id:'keep',lb:'\u2705 Keep it as is',tn:'no',oc:'Singapore engineers work past midnight twice a week. Two quietly stop attending. The "required" label stays on the invite.'},{id:'shorten',lb:'\u231a Cut to 25 min',tn:'warn',oc:'A small improvement. Singapore ends at 11:25 PM. Half the call is still status updates that could be a shared doc.'},{id:'async',lb:'\uD83D\uDCC4 Go fully async',tn:'ok',oc:'A shared update doc covers all zones. Singapore reviews it at breakfast. Decisions happen faster across the team.'},{id:'cancel',lb:'\uD83D\uDDD1 Cancel the series',tn:'ok',oc:'Decisions move to a weekly digest and Slack. No one misses the midnight call. The project continues.'}],bst:'async'},
+{ic:'\uD83D\uDCCA',tg:'Status Theatre',ti:'The Spreadsheet Reading',sc:'A 60-minute weekly pipeline review. The host shares their screen and reads rows aloud from a CRM spreadsheet while 14 people watch.',ch:[{id:'keep',lb:'\u2705 Keep it',tn:'no',oc:'13 people spend an hour watching someone read a document they could access themselves in 30 seconds.'},{id:'shorten',lb:'\u231a Cut to 20 min',tn:'warn',oc:'Shorter, but still a live reading of a document. Most people update their own row and stay silent.'},{id:'async',lb:'\uD83D\uDCC4 Share the doc beforehand',tn:'ok',oc:'Everyone reads their rows in two minutes. The meeting becomes a 10-minute exceptions-only call.'},{id:'cancel',lb:'\uD83D\uDDD1 Cancel it',tn:'ok',oc:'The spreadsheet exists. People update their rows. A Slack message covers exceptions. Life goes on.'}],bst:'async'},
+{ic:'\u26A1',tg:'Scope Creep',ti:'The 5-Minute Sync That Isn\u2019t',sc:'"Can we have a quick 5-minute sync?" has become a 45-minute bi-weekly meeting with a slide deck and a pre-read.',ch:[{id:'keep',lb:'\u2705 Keep it',tn:'no',oc:'It has grown to 60 minutes with a guest presenter slot. Nobody knows the exit criteria.'},{id:'shorten',lb:'\u231a Hard-cap at 5 minutes',tn:'warn',oc:'Helpful, but without an agenda the 5 minutes gets extended most weeks. "Just five more\u2026"'},{id:'async',lb:'\uD83D\uDCC4 Replace with a Slack thread',tn:'ok',oc:'The original question gets answered in 3 messages. Both people have their afternoons back.'},{id:'cancel',lb:'\uD83D\uDDD1 Kill it',tn:'ok',oc:'Work continues fine. The one real question gets resolved in a 2-line direct message.'}],bst:'async'},
+{ic:'\uD83D\uDCC6',tg:'Pre-Meeting',ti:'Meeting to Prepare for the Meeting',sc:'A 45-minute alignment call is scheduled the afternoon before a 1-hour strategy meeting with the same 8 people.',ch:[{id:'keep',lb:'\u2705 Keep both',tn:'no',oc:'The team spends 1h 45m discussing something one well-prepared person could present in 20 minutes.'},{id:'shorten',lb:'\u231a Merge into one 30-min session',tn:'warn',oc:'Better. But a shared pre-read sent 24 hours ahead would do the same job more efficiently.'},{id:'async',lb:'\uD83D\uDCC4 Pre-read + async questions',tn:'ok',oc:'Stakeholders read the brief and flag blockers async. The main meeting resolves open questions in 20 minutes.'},{id:'cancel',lb:'\uD83D\uDDD1 Cancel the pre-meeting',tn:'ok',oc:'The strategy meeting runs fine. Everyone already had the context. They just needed to say so.'}],bst:'async'},
+{ic:'\uD83D\uDD01',tg:'Recurring Ghost',ti:'The Meeting Nobody Owns',sc:'A weekly team sync has been on the calendar for 14 months. The original organizer left 6 months ago. Nobody knows if it is still needed.',ch:[{id:'keep',lb:'\u2705 Keep attending',tn:'no',oc:'The meeting runs another 14 months. 11 people collectively lose 200+ hours. Nothing changes.'},{id:'shorten',lb:'\u231a Shorten to 30 min',tn:'warn',oc:'It is now a shorter mystery. Nobody still knows what decisions, if any, are being made.'},{id:'async',lb:'\uD83D\uDCC4 Replace with a shared doc',tn:'ok',oc:'A shared page captures the same updates asynchronously. The calendar clears without drama.'},{id:'cancel',lb:'\uD83D\uDDD1 Cancel it',tn:'ok',oc:'Nobody complains. Three people privately message: "Thank you. That was long overdue."'}],bst:'cancel'},
+{ic:'\uD83D\uDEA8',tg:'Post-Mortem',ti:'The 25-Person Incident Debrief',sc:'A minor production bug was resolved by 4 engineers. A post-mortem is now on the calendar with 25 attendees for "organizational awareness".',ch:[{id:'keep',lb:'\u2705 All 25 attend',tn:'no',oc:'21 people listen quietly. The 4 engineers who fixed it explain what they already wrote in the incident doc.'},{id:'shorten',lb:'\u231a Only the 4 involved',tn:'warn',oc:'Much better. The right people, the right conversation \u2014 though the written doc would cover most of it.'},{id:'async',lb:'\uD83D\uDCC4 Incident doc + async comments',tn:'ok',oc:'The write-up is thorough. Everyone adds notes and reads learnings at their own pace. Action items assigned.'},{id:'cancel',lb:'\uD83D\uDDD1 Skip the meeting',tn:'warn',oc:'The 4 engineers debrief over Slack. The fix is documented. No action items are missed.'}],bst:'async'},
+{ic:'\uD83D\uDCE3',tg:'All-Hands',ti:'The 200-Person Announcement',sc:'A company-wide all-hands is called for a 15-minute product update. The same announcement is also in this week\u2019s company newsletter.',ch:[{id:'keep',lb:'\u2705 Run the all-hands',tn:'warn',oc:'200 people pause work for 15 minutes. The Q&A questions could have been a Slack thread.'},{id:'shorten',lb:'\u231a Cut to 10 min',tn:'warn',oc:'Marginally better, but 200 people still interrupt deep work for a message already in the newsletter.'},{id:'async',lb:'\uD83C\uDFA5 Record a 5-min video',tn:'ok',oc:'People watch when it suits them. Comments are async. The engineering team keeps shipping.'},{id:'cancel',lb:'\uD83D\uDCE7 Just the newsletter',tn:'ok',oc:'85% of people had already read it before the invite arrived. The newsletter was enough.'}],bst:'async'},
+{ic:'\uD83D\uDCA1',tg:'Brainstorm',ti:'The Brainstorm Where One Person Talks',sc:'An hour-long "open brainstorm" with 10 people. In practice the PM presents slides for 40 minutes while everyone else listens.',ch:[{id:'keep',lb:'\u2705 Keep the format',tn:'no',oc:'Eight people feel like observers. The PM gets validation for ideas already decided. Repeat next quarter.'},{id:'shorten',lb:'\u231a Hard-limit to 30 min ideas-only',tn:'warn',oc:'Better. But without structure, the loudest voice still shapes the outcome.'},{id:'async',lb:'\uD83D\uDCC4 Silent async brainstorm first',tn:'ok',oc:'Everyone submits ideas in a shared doc before the call. The 30-minute session builds on genuinely diverse thinking.'},{id:'cancel',lb:'\uD83D\uDDD1 Let teams submit ideas async',tn:'ok',oc:'The best idea comes from someone who rarely speaks in meetings. Introverts finally contribute.'}],bst:'async'},
+{ic:'\uD83C\uDFA8',tg:'Design Review',ti:'The 15-Observer Design Critique',sc:'A design review has 3 designers presenting to 12 observers \u2014 engineers, PMs, and leadership \u2014 mostly there to "stay in the loop".',ch:[{id:'keep',lb:'\u2705 Keep all 15',tn:'no',oc:'12 people sit quietly. Two Slack during the call. Actual feedback comes from 3 people.'},{id:'shorten',lb:'\u231a Designers and stakeholders only',tn:'warn',oc:'Better. 6 people. Real discussion. But a recorded Loom with async comments would work equally well.'},{id:'async',lb:'\uD83C\uDFA5 Record + async feedback',tn:'ok',oc:'Designers record a 10-min walkthrough. Written feedback arrives from 12 engaged reviewers within 24 hours.'},{id:'cancel',lb:'\uD83D\uDCC4 Figma link + comment thread',tn:'ok',oc:'Feedback is specific and timestamped. The design ships faster. No one had to clear a calendar slot.'}],bst:'async'},
+{ic:'\uD83D\uDDD3\uFE0F',tg:'Sprint Ritual',ti:'Sprint Planning Nobody Prepared For',sc:'Sprint planning starts. The backlog is unrefined, three engineers are mid-hotfix, and the board has six unestimated tickets.',ch:[{id:'keep',lb:'\u2705 Run it anyway',tn:'no',oc:'Two hours of improvised estimation. Commitments are guesses. Half the sprint gets reprioritized by Wednesday.'},{id:'shorten',lb:'\u231a Cancel and reschedule tomorrow',tn:'warn',oc:'Better. Tomorrow\u2019s session with a ready backlog takes 40 focused minutes.'},{id:'async',lb:'\uD83D\uDCC4 Async refinement first',tn:'ok',oc:'Engineers add estimates and notes overnight. The actual planning session is 45 sharp minutes.'},{id:'cancel',lb:'\uD83D\uDDD1 Skip planning this sprint',tn:'no',oc:'Two blockers emerge by day 3 because new dependencies were never discussed.'}],bst:'async'},
+{ic:'\uD83D\uDCB8',tg:'Budget Review',ti:'The One-Person Sign-Off',sc:'An 8-person budget approval meeting is on the calendar for a \u20ac12,000 procurement. Only one person in the room has approval authority.',ch:[{id:'keep',lb:'\u2705 Run the 8-person meeting',tn:'no',oc:'Seven people explain context to the one person who needs to say yes. An hour of combined salary for one signature.'},{id:'shorten',lb:'\u231a Shrink to 2 people',tn:'warn',oc:'Much better. The decision is made in 15 minutes. The other 6 find the outcome in their inbox.'},{id:'async',lb:'\uD83D\uDCC4 Email the approver a 1-page brief',tn:'ok',oc:'The approver reviews it in 5 minutes, signs off before lunch. Everyone else keeps working.'},{id:'cancel',lb:'\uD83D\uDDD1 Direct async request',tn:'ok',oc:'The brief is approved in 2 hours. The project moves without any meeting at all.'}],bst:'async'},
+{ic:'\uD83E\uDD1D',tg:'Onboarding',ti:'The 8-Timezone New Joiner Sync',sc:'A new engineer joins the team. An onboarding sync is scheduled at a time that forces 4 of 10 team members into late-evening slots.',ch:[{id:'keep',lb:'\u2705 Run it across all zones',tn:'warn',oc:'Four people join at 9:30 PM. They smile politely and log off early. The connection feels forced.'},{id:'shorten',lb:'\u231a Split into two regional syncs',tn:'warn',oc:'Better. Two 20-minute calls in friendlier windows. Less forced coverage, more genuine conversation.'},{id:'async',lb:'\uD83C\uDFA5 Async intro video + team doc',tn:'ok',oc:'The new joiner records a 3-min intro. Real conversations happen in focused 1:1s over the first week.'},{id:'cancel',lb:'\uD83D\uDCC5 1:1s with key collaborators only',tn:'ok',oc:'Six focused 15-minute conversations beat one awkward group call. Context arrives in 2 days, not 2 weeks.'}],bst:'async'},
+{ic:'\uD83D\uDCC9',tg:'OKR Theatre',ti:'The Quarterly Review That Replays Itself',sc:'A quarterly OKR review. The slides look nearly identical to last quarter\u2019s. Three of four owners report "on track" with no supporting data.',ch:[{id:'keep',lb:'\u2705 Run it as always',tn:'no',oc:'90 minutes. Zero decisions. The OKRs roll over unchanged. Next quarter\u2019s slides will look the same.'},{id:'shorten',lb:'\u231a Exceptions only, 30 min',tn:'warn',oc:'Better. Only at-risk OKRs get airtime. But without data pre-shared, it is still mostly narrative.'},{id:'async',lb:'\uD83D\uDCC4 Dashboard + written updates',tn:'ok',oc:'Owners submit honest updates 48 hours before. The meeting becomes a 20-minute decision session on blockers.'},{id:'cancel',lb:'\uD83D\uDDD1 Monthly written update only',tn:'ok',oc:'A short written update forces clarity. Blockers get addressed proactively instead of once per quarter.'}],bst:'async'},
+{ic:'\uD83E\uDDEA',tg:'Tech Debt',ti:'The Architecture Decision That Won\u2019t Land',sc:'A recurring tech review has been debating the same infrastructure choice for 6 weeks. Each session ends with "let\u2019s gather more data".',ch:[{id:'keep',lb:'\u2705 Keep meeting weekly',tn:'no',oc:'It\u2019s week 10. Two parallel solutions are being built "just in case." Tech debt accumulates.'},{id:'shorten',lb:'\u231a Set a hard decision deadline',tn:'warn',oc:'Better. A deadline forces clarity. The next meeting produces an actual written recommendation.'},{id:'async',lb:'\uD83D\uDCC4 RFC document with async voting',tn:'ok',oc:'An RFC is written in a day. Engineers comment async over 48 hours. A decision is logged by Thursday.'},{id:'cancel',lb:'\uD83D\uDDD1 Assign one decision owner',tn:'ok',oc:'The directly responsible individual makes the call in 24 hours. The team agrees to disagree and ships.'}],bst:'async'},
+{ic:'\uD83D\uDD12',tg:'Security',ti:'The Briefing for 20 Engineers',sc:'A security update is mandatory for all 20 engineers. The changes directly affect 3 of them. The other 17 are there for "general awareness".',ch:[{id:'keep',lb:'\u2705 Require all 20',tn:'no',oc:'17 engineers sit through 40 minutes of information that changes nothing about their work. Combined cost: ~$1,400.'},{id:'shorten',lb:'\u231a Target the 3 affected only',tn:'warn',oc:'Much better. A 15-minute call covers what they need. The other 17 get a 2-paragraph written summary.'},{id:'async',lb:'\uD83C\uDFA5 Record the briefing + async Q&A',tn:'ok',oc:'Engineers watch it when relevant to their work. The 3 affected get a direct follow-up call.'},{id:'cancel',lb:'\uD83D\uDCC4 Written policy update only',tn:'ok',oc:'A clear written update is read in 3 minutes. The 3 affected ask follow-up questions in a thread.'}],bst:'async'},
+{ic:'\uD83D\uDCCB',tg:'Hiring',ti:'The Debrief Where Everyone Already Agreed',sc:'After a 5-stage interview, all 6 interviewers independently gave the same feedback: strong hire. A 45-minute debrief is still on the calendar.',ch:[{id:'keep',lb:'\u2705 Run the full debrief',tn:'no',oc:'Six people repeat the same opinion for 45 minutes. The decision was made at minute 3.'},{id:'shorten',lb:'\u231a Check for consensus async first',tn:'warn',oc:'A quick Slack poll reveals unanimous agreement. The meeting still happens but is now 10 minutes.'},{id:'async',lb:'\uD83D\uDCC4 Async scorecard + Slack decision',tn:'ok',oc:'Scores are visible in the ATS. A quick thread confirms consensus. The offer goes out 6 hours faster.'},{id:'cancel',lb:'\uD83D\uDDD1 Auto-approve unanimous decisions',tn:'ok',oc:'If all 6 scorecards say strong hire, the system triggers next steps. The candidate gets a faster answer.'}],bst:'async'},
+{ic:'\uD83D\uDEE0\uFE0F',tg:'Code Review',ti:'The Pull Request Meeting',sc:'A developer schedules a live code review for a 200-line PR. Three engineers clear 30 minutes to watch someone walk through the diff on screen.',ch:[{id:'keep',lb:'\u2705 Run the PR review meeting',tn:'no',oc:'Three engineers watch a screen for 30 minutes. Their comments could have been written in the PR tool at their own pace.'},{id:'shorten',lb:'\u231a 10-min sync for blockers only',tn:'warn',oc:'Better. The PR is reviewed async. A short call resolves the one ambiguous architectural question.'},{id:'async',lb:'\uD83D\uDCDD PR review in the tool',tn:'ok',oc:'Reviewers comment thoughtfully in the PR thread. Feedback is written and referenceable. PR merges in 12 hours.'},{id:'cancel',lb:'\uD83D\uDDD1 No meeting \u2014 just the PR',tn:'ok',oc:'The PR gets thorough written review. It ships. The 30-minute slot becomes focused build time.'}],bst:'async'},
+{ic:'\uD83C\uDF19',tg:'Timezone Tax',ti:'The "Quick" 9 PM Cross-Timezone Catch-Up',sc:'A US-based manager schedules a "quick 30-min catch-up" at 4 PM Eastern \u2014 9 PM London, 1:30 AM Abu Dhabi, 2:30 AM Bangalore.',ch:[{id:'keep',lb:'\u2705 Keep the 4 PM ET slot',tn:'no',oc:'London attends tired. Bangalore declines. The catch-up becomes a US-only call that pretends to be global.'},{id:'shorten',lb:'\u231a Find a rotating overlap window',tn:'warn',oc:'More equitable. No single timezone always bears the late night. Still a meeting that could be async.'},{id:'async',lb:'\uD83C\uDFA5 Async Loom + questions doc',tn:'ok',oc:'The manager records a 3-minute summary. London and Bangalore respond async at a sane hour.'},{id:'cancel',lb:'\uD83D\uDCE7 Weekly written note instead',tn:'ok',oc:'A weekly paragraph covers what the 30-min call would have. Both teams read it when rested.'}],bst:'async'},
+{ic:'\uD83C\uDFAF',tg:'Goal Setting',ti:'The Year-Start Planning Marathon',sc:'It\u2019s January. A 3-hour kickoff meeting begins. By hour 2, the new goals look almost identical to last year\u2019s Q4 plan.',ch:[{id:'keep',lb:'\u2705 Run the 3-hour session',tn:'no',oc:'Hour 3 is politely agreeing to copy-paste last year\u2019s OKRs. The room is tired. The doc looks the same.'},{id:'shorten',lb:'\u231a Cut to 90 minutes',tn:'warn',oc:'Better. But without pre-work, the first 30 minutes are still catching up to context from last December.'},{id:'async',lb:'\uD83D\uDCC4 Pre-work + 1-hour decision session',tn:'ok',oc:'Teams submit draft goals async. The live hour resolves conflicts and aligns priorities \u2014 not context.'},{id:'cancel',lb:'\uD83D\uDDD1 Written strategy memo first',tn:'ok',oc:'Leadership writes a 1-page context document. Teams build goals against it. Planning becomes crisp.'}],bst:'async'},
+{ic:'\uD83D\uDC65',tg:'Account Sync',ti:'The 10-Person Single-Account Sync',sc:'A weekly customer success meeting has 10 internal team members for one account. Three of them spoke to the customer this week.',ch:[{id:'keep',lb:'\u2705 Keep all 10 on the call',tn:'no',oc:'Seven people are in listen-only mode. The 3 active voices could have shared the same update in a 5-minute post.'},{id:'shorten',lb:'\u231a Invite active members only',tn:'warn',oc:'Better. A 3-person call with a written summary for the rest. The right decisions get made.'},{id:'async',lb:'\uD83D\uDCC4 Account brief + Slack thread',tn:'ok',oc:'The three active members write a weekly brief. The other seven read and comment on their own time.'},{id:'cancel',lb:'\uD83D\uDDD1 Flag-based escalation only',tn:'ok',oc:'The account runs fine on async updates until an actual escalation arises. No meeting needed until then.'}],bst:'async'},
+{ic:'\uD83D\uDD2C',tg:'Research',ti:'The User Research Read-Through',sc:'A 90-minute user research readout. A researcher presents slides while 11 attendees follow along. The findings report was emailed 3 days ago.',ch:[{id:'keep',lb:'\u2705 Run the full readout',tn:'no',oc:'Most people have already read the report. The live session is a second pass. Insights sat unused for 3 days.'},{id:'shorten',lb:'\u231a 30-min implications discussion only',tn:'warn',oc:'Good improvement. The discussion focuses on "so what?" instead of "what happened." Decisions get made.'},{id:'async',lb:'\uD83D\uDCC4 Written report + async comments',tn:'ok',oc:'Teams add written reactions. The 30-minute live session focuses exclusively on the 3 key decisions.'},{id:'cancel',lb:'\uD83D\uDDD1 Report speaks for itself',tn:'ok',oc:'The written report contains the insights. Teams act on it. Follow-up questions go to a Slack thread.'}],bst:'async'},
+{ic:'\uD83E\uDDFE',tg:'Finance',ti:'The Monthly Expense Briefing',sc:'Every month: a 45-minute meeting where finance presents last month\u2019s expense report to 14 department heads. The report was shared as a PDF on Monday.',ch:[{id:'keep',lb:'\u2705 Keep the monthly briefing',tn:'no',oc:'14 leaders spend 45 minutes on a live reading of a document they could read in 8 minutes. Repeat monthly.'},{id:'shorten',lb:'\u231a Exceptions only, 15 min',tn:'warn',oc:'Much better. Anomalies and overruns are the only items worth live discussion.'},{id:'async',lb:'\uD83D\uDCC4 PDF + Slack thread for questions',tn:'ok',oc:'Leaders read the report on their own timeline. Unusual items get flagged in a thread. Decisions in hours.'},{id:'cancel',lb:'\uD83D\uDDD1 Monthly email with PDF is enough',tn:'ok',oc:'14 leaders read the report in 8 minutes. Exceptions are flagged directly. The 45-minute slot disappears.'}],bst:'async'},
+{ic:'\uD83C\uDFC1',tg:'Launch Day',ti:'The War Room That Never Ends',sc:'Product launch day. A "war room" video call is open for 8 hours "just in case." All 15 team members must stay connected throughout.',ch:[{id:'keep',lb:'\u2705 Keep the 8-hour open call',tn:'no',oc:'Team members mute and rejoin when their name is called. Net focus time: near zero. Actual incidents resolved: 2.'},{id:'shorten',lb:'\u231a Open for 2-hour critical window',tn:'warn',oc:'Better. The window that matters is covered. The rest of the day runs on async channel updates.'},{id:'async',lb:'\uD83D\uDCF2 Slack channel + on-call rotation',tn:'ok',oc:'A dedicated channel handles real-time updates. Two on-call engineers handle incidents. Everyone else ships.'},{id:'cancel',lb:'\uD83D\uDDD1 Standard on-call process',tn:'ok',oc:'Incidents are flagged in the on-call channel. Escalations take 3 minutes. No one loses 8 hours.'}],bst:'async'},
+{ic:'\uD83D\uDDFA\uFE0F',tg:'Roadmap',ti:'The 18-Stakeholder Roadmap Debate',sc:'Quarterly roadmap planning. 18 people in the room. A product manager presents 40 slides. Every stakeholder has a different top priority.',ch:[{id:'keep',lb:'\u2705 All 18 in one session',tn:'no',oc:'Four hours of competing priorities. The roadmap is built by whoever spoke loudest. Repeat next quarter.'},{id:'shorten',lb:'\u231a Max 8 people, focused',tn:'warn',oc:'Better. The right voices in the room, fewer agendas. But pre-work would make this sharper still.'},{id:'async',lb:'\uD83D\uDCC4 Priority voting + async input first',tn:'ok',oc:'All 18 submit ranked priorities in a shared form. The meeting synthesizes pre-agreed inputs in 90 minutes.'},{id:'cancel',lb:'\uD83D\uDDD1 PM decides with written input',tn:'warn',oc:'Stakeholders submit written input. The PM makes the call. Not every decision needs a group meeting.'}],bst:'async'},
+{ic:'\uD83D\uDCF1',tg:'Global Team',ti:'The 7 AM Monday Timezone Tax',sc:'A distributed team\u2019s weekly sprint kick-off is fixed at 7 AM Pacific \u2014 3 PM Berlin, 9 PM Bangalore, 11 PM Tokyo. Every single Monday.',ch:[{id:'keep',lb:'\u2705 Keep 7 AM Pacific fixed',tn:'no',oc:'Berlin is fine. Bangalore is tired. Tokyo joins past 11 PM every week, and it is showing in the work.'},{id:'shorten',lb:'\u231a Rotate the time slot monthly',tn:'warn',oc:'More equitable. Each region takes one month of the worst slot. Still a live call that could be async.'},{id:'async',lb:'\uD83D\uDCDD Async sprint planning doc',tn:'ok',oc:'Engineers add estimates and blockers async over 24 hours. A 20-minute recap runs in the best overlap window.'},{id:'cancel',lb:'\uD83D\uDDD1 Sprint doc + Slack kickoff thread',tn:'ok',oc:'Sprint goals live in the project board. Monday\u2019s Slack message sets context. No live call required.'}],bst:'async'},
+{ic:'\uD83E\uDDE9',tg:'Dependencies',ti:'The 22-Person Alignment Meeting',sc:'Four teams meet weekly to discuss cross-team dependencies. 22 attendees attend. Active blockers involve just 4 people across 2 pairs.',ch:[{id:'keep',lb:'\u2705 All 22, every week',tn:'no',oc:'18 people attend each week in case they are mentioned. They usually are not. Monthly calendar cost: $3,000+.'},{id:'shorten',lb:'\u231a Only teams with active blockers',tn:'warn',oc:'Better. 4 people meet when there is an actual blocker. The other 18 get a weekly summary async.'},{id:'async',lb:'\uD83D\uDCC4 Dependency board + async flagging',tn:'ok',oc:'Teams update a shared board with blockers. Cross-team pairs resolve them in direct 15-minute calls as needed.'},{id:'cancel',lb:'\uD83D\uDDD1 Remove the standing meeting',tn:'ok',oc:'Teams flag blockers in a shared channel. The right people join short calls as issues arise.'}],bst:'async'},
+{ic:'\uD83D\uDCCC',tg:'Retrospective',ti:'The Retro Nobody Prepared For',sc:'Sprint retro starts. Nobody filled in the board beforehand. The first 20 minutes are spent trying to recall what happened two weeks ago.',ch:[{id:'keep',lb:'\u2705 Run it unrehearsed',tn:'no',oc:'The retro produces vague action items. Two "keeps" and one "improve" everyone already knew about. Nothing changes.'},{id:'shorten',lb:'\u231a Cancel and reschedule with prep',tn:'warn',oc:'Better. Tomorrow\u2019s session with a filled board takes 30 minutes and produces three concrete action items.'},{id:'async',lb:'\uD83D\uDCDD Async board + 30-min synthesis',tn:'ok',oc:'Team fills the board async over 2 days. The live 30 minutes focuses on patterns, not memory. Outputs are sharper.'},{id:'cancel',lb:'\uD83D\uDDD1 Async retro entirely',tn:'warn',oc:'The board captures insights over a full week. A summary is posted. Action items are assigned without a meeting.'}],bst:'async'},
+{ic:'\uD83E\uDDD1\u200D\uD83D\uDCBC',tg:'1:1 Inflation',ti:'The 1:1 That Became a Team Meeting',sc:'A 30-minute weekly 1:1 gradually expanded. Other members were added "for visibility." It is now 8 people and 60 minutes.',ch:[{id:'keep',lb:'\u2705 Keep the expanded format',tn:'no',oc:'The 1:1 is a team meeting in everything but name. The original coaching purpose is completely lost.'},{id:'shorten',lb:'\u231a Restore the 1:1 format',tn:'warn',oc:'Better. The 1:1 goes back to 2 people. The other 6 attend a separate team sync when actually needed.'},{id:'async',lb:'\uD83D\uDCC4 Async status + 1:1 for coaching',tn:'ok',oc:'Status updates move to async. The 30-minute 1:1 becomes a focused coaching and unblocking session.'},{id:'cancel',lb:'\uD83D\uDDD1 Drop the team additions',tn:'ok',oc:'The 6 additions get a shared channel for visibility. The 1:1 is restored to its intended purpose.'}],bst:'async'},
+{ic:'\uD83C\uDFE2',tg:'Vendor Review',ti:'The Decision That\u2019s Already Made',sc:'A vendor evaluation call is on the calendar with 8 stakeholders. The procurement team has already completed scoring. One vendor clearly leads.',ch:[{id:'keep',lb:'\u2705 Run the full group call',tn:'no',oc:'8 people spend 90 minutes discussing a decision that is already on paper. The outcome does not change.'},{id:'shorten',lb:'\u231a 20-min final check only',tn:'warn',oc:'Acceptable. A quick alignment that the scoring is accurate, then the decision is officially confirmed.'},{id:'async',lb:'\uD83D\uDCC4 Share the scoring, confirm async',tn:'ok',oc:'The scoring sheet is shared with stakeholders. Three Slack messages confirm agreement. The process moves forward.'},{id:'cancel',lb:'\uD83D\uDDD1 Procurement decides from the data',tn:'ok',oc:'The scoring data is sufficient. The procurement owner makes the call. No meeting necessary.'}],bst:'async'}
+];
+var today=new Date().toISOString().slice(0,10);
+var daysSinceEpoch=Math.floor(Date.now()/86400000);
+var S=SC[daysSinceEpoch%SC.length];
+var state={lastDate:'',streak:0,todayChoice:null};
+try{var sv=JSON.parse(localStorage.getItem(DC_KEY)||'{}');state={lastDate:sv.lastDate||'',streak:sv.streak||0,todayChoice:sv.todayChoice||null};}catch(e){}
+
+function dcInit(){
+  var tagEl=document.getElementById('dcTag');
+  var iconEl=document.getElementById('dcIcon');
+  var typeEl=document.getElementById('dcType');
+  var titleEl=document.getElementById('dcTitle');
+  var sceneEl=document.getElementById('dcScene');
+  var dateLblEl=document.getElementById('dcDateLbl');
+  var choicesEl=document.getElementById('dcChoices');
+  var spEl=document.getElementById('dcStreakPill');
+  var snEl=document.getElementById('dcStreakCount');
+  if(!tagEl||!choicesEl)return;
+  var dayNum=(daysSinceEpoch%365)+1;
+  tagEl.textContent='Day '+dayNum+' Challenge';
+  iconEl.textContent=S.ic;
+  typeEl.textContent=S.tg;
+  titleEl.textContent=S.ti;
+  sceneEl.textContent=S.sc;
+  var d=new Date();
+  dateLblEl.textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+  if(state.streak>=2&&spEl&&snEl){snEl.textContent=state.streak;spEl.classList.add('show');}
+  while(choicesEl.firstChild)choicesEl.removeChild(choicesEl.firstChild);
+  for(var i=0;i<S.ch.length;i++){
+    (function(choice){
+      var btn=document.createElement('button');
+      btn.className='dc-btn';
+      btn.textContent=choice.lb;
+      btn.setAttribute('data-cid',choice.id);
+      btn.setAttribute('aria-label',choice.lb);
+      btn.type='button';
+      btn.addEventListener('click',function(){dcChoose(choice);});
+      choicesEl.appendChild(btn);
+    })(S.ch[i]);
+  }
+  if(state.lastDate===today&&state.todayChoice){dcRestore(state.todayChoice);}
+}
+
+function dcChoose(choice){
+  if(state.lastDate!==today){
+    var yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
+    state.streak=state.lastDate===yesterday?state.streak+1:1;
+    state.lastDate=today;
+  }
+  state.todayChoice=choice.id;
+  try{localStorage.setItem(DC_KEY,JSON.stringify(state));}catch(e){}
+  var buttons=document.querySelectorAll('#dcChoices .dc-btn');
+  for(var j=0;j<buttons.length;j++){
+    buttons[j].disabled=true;
+    if(buttons[j].getAttribute('data-cid')===choice.id){buttons[j].classList.add('chosen','tone-'+choice.tn);}
+  }
+  dcShowResult(choice);
+  var spEl=document.getElementById('dcStreakPill');
+  var snEl=document.getElementById('dcStreakCount');
+  if(spEl&&snEl){snEl.textContent=state.streak;spEl.classList.add('show');}
+  var sb=document.getElementById('dcShareBtn');
+  if(sb)sb.classList.add('show');
+}
+
+function dcShowResult(choice){
+  var rEl=document.getElementById('dcResult');
+  var hEl=document.getElementById('dcResHead');
+  var bEl=document.getElementById('dcResBody');
+  var nudgeEl=document.getElementById('dcNudge');
+  var nudgeBodyEl=document.getElementById('dcNudgeBody');
+  if(!rEl)return;
+  var heads={ok:'\u2705 Good call.',warn:'\u26A0\uFE0F Could be sharper.',no:'\uD83D\uDE2C Expensive choice.'};
+  if(hEl){hEl.textContent=heads[choice.tn]||'Here\u2019s what happens:';hEl.className='dc-res-head tone-'+choice.tn;}
+  if(bEl)bEl.textContent=choice.oc;
+  if(nudgeEl&&nudgeBodyEl){
+    if(choice.id!==S.bst){
+      var best=null;
+      for(var i=0;i<S.ch.length;i++){if(S.ch[i].id===S.bst){best=S.ch[i];break;}}
+      if(best){
+        nudgeBodyEl.textContent=best.lb+' \u2014 '+best.oc.slice(0,100)+(best.oc.length>100?'\u2026':'');
+        nudgeEl.style.display='';
+      }
+    }else{nudgeEl.style.display='none';}
+  }
+  rEl.className='dc-result show tone-'+choice.tn;
+}
+
+function dcRestore(choiceId){
+  var choice=null;
+  for(var i=0;i<S.ch.length;i++){if(S.ch[i].id===choiceId){choice=S.ch[i];break;}}
+  if(!choice)return;
+  var buttons=document.querySelectorAll('#dcChoices .dc-btn');
+  for(var j=0;j<buttons.length;j++){
+    buttons[j].disabled=true;
+    if(buttons[j].getAttribute('data-cid')===choiceId){buttons[j].classList.add('chosen','tone-'+choice.tn);}
+  }
+  dcShowResult(choice);
+  var sb=document.getElementById('dcShareBtn');
+  if(sb)sb.classList.add('show');
+}
+
+window.shareChallenge=function(){
+  if(!state.todayChoice)return;
+  var choice=null;
+  for(var i=0;i<S.ch.length;i++){if(S.ch[i].id===state.todayChoice){choice=S.ch[i];break;}}
+  if(!choice)return;
+  var text='MeetingBurn Daily Challenge: "'+S.ti+'"\nMy choice: '+choice.lb+'\nmeetingburn.in/#daily-challenge';
+  if(navigator.share){
+    navigator.share({title:'MeetingBurn Daily Challenge',text:text,url:'https://meetingburn.in/#daily-challenge'});
+  }else{
+    navigator.clipboard.writeText(text).then(function(){
+      if(window.toast)window.toast('Result copied!');
+    }).catch(function(){
+      if(window.toast)window.toast('Could not copy \u2014 please try manually.');
+    });
+  }
+};
+
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',dcInit);}else{dcInit();}
+}catch(e){}
 })();
 </script>
 </body>
