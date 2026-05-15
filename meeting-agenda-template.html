@@ -103,6 +103,12 @@ a:hover{text-decoration:none}
 .callout{background:var(--puD);border-left:3px solid var(--pu);border-radius:var(--r);padding:18px 22px;margin:24px 0}
 .callout p{margin-bottom:0;font-size:14.5px;color:var(--t2);font-family:var(--fB)}
 .callout b{color:var(--pu)}
+.checker{background:var(--bgE);border:1px solid var(--bd);border-radius:var(--rL);padding:24px;margin:28px 0}
+.checker-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--bd);font-size:14.5px;color:var(--t2);font-family:var(--fB);line-height:1.6}
+.checker-row:last-of-type{border-bottom:none}
+.checker-row input{margin-top:4px;accent-color:var(--ac)}
+.checker-status{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--bgC);font-size:13px;font-family:var(--fB);color:var(--t1)}
+.checker-note{font-size:12px;color:var(--t3);margin-top:10px;line-height:1.6}
 .quiz-cta{text-align:center;padding:16px;margin:20px 0;background:var(--bgC);border:1px dashed var(--bdH);border-radius:var(--r)}
 .quiz-cta a{font-size:13px;color:var(--ac);text-decoration:none;font-weight:600}
 .faq-sec{margin-top:48px;padding-top:36px;border-top:1px solid var(--bd)}
@@ -190,6 +196,8 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 
 <p>This template is not a magic fix. It is what remains after stripping everything unnecessary from a decade of meeting templates we have seen work. Most teams do not need more complexity. They need a simple structure they can reuse every time, and the discipline to fill it out <em>before</em> the meeting starts rather than walking in and winging it.</p>
 
+<p>Use this page when the meeting is worth keeping and you need a better invite. If you also need a clean follow-up record, pair it with our <a href="/meeting-minutes-template.html">meeting minutes template</a>. If the purpose is still fuzzy, run the <a href="/should-this-meeting-be-an-email.html">meeting vs email quiz</a> before you send anything.</p>
+
 <h2 id="template">The Template</h2>
 <p>Copy this into a calendar invite description, a Google Doc, or a Slack message before your next meeting. Fill in every field. If you cannot fill in the Purpose or Desired Outcome, that is a strong signal this meeting may not need to happen.</p>
 
@@ -210,6 +218,18 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="tr"><span class="tl">Topic 3 (X min)</span><span class="tv">Description and who leads it</span></div>
 <div class="tr"><span class="tl">Parking Lot</span><span class="tv">Things to revisit later</span></div>
 <div class="tr"><span class="tl">Action Items</span><span class="tv">Who does what by when?</span></div>
+</div>
+
+<h2 id="quality-checker">Agenda Quality Checker</h2>
+<p>Use this 20 second check before you send the invite. If you miss more than one box, tighten the agenda or replace the meeting with an async update.</p>
+<div class="checker">
+<label class="checker-row"><input type="checkbox" class="agenda-check" onchange="updateAgendaChecker()"> <span>The purpose fits in one sentence and explains why this meeting exists.</span></label>
+<label class="checker-row"><input type="checkbox" class="agenda-check" onchange="updateAgendaChecker()"> <span>The desired outcome names the decision, deliverable, or unblocker we need by the end.</span></label>
+<label class="checker-row"><input type="checkbox" class="agenda-check" onchange="updateAgendaChecker()"> <span>Every topic has a time box and an owner, so nobody has to guess who leads.</span></label>
+<label class="checker-row"><input type="checkbox" class="agenda-check" onchange="updateAgendaChecker()"> <span>The attendee list only includes people who need to decide, speak, or directly unblock work.</span></label>
+<label class="checker-row"><input type="checkbox" class="agenda-check" onchange="updateAgendaChecker()"> <span>Remote attendees have a humane time slot, ideally chosen with the <a href="/tools/">timezone meeting planner</a>.</span></label>
+<div class="checker-status" id="agendaCheckerStatus" role="status" aria-live="polite">0 of 5 checks complete · likely too fuzzy to send.</div>
+<div class="checker-note">If this invite still feels weak, run the <a href="/should-this-meeting-be-an-email.html">meeting vs email quiz</a> or price it out in the <a href="/">meeting cost calculator</a>.</div>
 </div>
 
 <div class="quiz-cta"><a href="/should-this-meeting-be-an-email.html">Not sure if this meeting should happen at all? Take the 30 second quiz &rarr;</a></div>
@@ -312,7 +332,9 @@ function togF(el){var w=el.classList.contains('open');document.querySelectorAll(
 function agendaTemplateText(){return 'Meeting Agenda\\n\\nMeeting Title: \\nDate and Time: \\nOrganizer: \\nAttendees: \\nPurpose: \\nDesired Outcome: \\nTopic 1 (X min): \\nTopic 2 (X min): \\nTopic 3 (X min): \\nParking Lot: \\nAction Items: \\n'}
 function copyAgendaTemplate(){navigator.clipboard.writeText(agendaTemplateText()).then(function(){alert('Agenda template copied')})}
 function openAgendaGoogleDoc(){copyAgendaTemplate();window.open('https://docs.new','_blank','noopener')}
+function updateAgendaChecker(){var checks=document.querySelectorAll('.agenda-check'),done=0;checks.forEach(function(box){if(box.checked)done++});var msg=done+' of '+checks.length+' checks complete';if(done===checks.length){msg+=' · ready to send.'}else if(done>=3){msg+=' · close, but tighten the missing fields.'}else{msg+=' · likely too fuzzy to send.'}document.getElementById('agendaCheckerStatus').textContent=msg}
 function handleLeadMagnet(e){e.preventDefault();var form=e.target,email=form.querySelector('input[type=\"email\"]').value;fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email_address:email})}).then(function(r){if(r.ok){document.getElementById('leadWrap').style.display='none';document.getElementById('leadOk').style.display='block'}else{form.submit()}}).catch(function(){form.submit()})}
+updateAgendaChecker();
 </script>
 </body>
 </html>
