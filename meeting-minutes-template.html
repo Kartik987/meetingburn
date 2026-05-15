@@ -103,6 +103,17 @@ a:hover{text-decoration:none}
 .callout{background:var(--puD);border-left:3px solid var(--pu);border-radius:var(--r);padding:18px 22px;margin:24px 0}
 .callout p{margin-bottom:0;font-size:14.5px;color:var(--t2);font-family:var(--fB)}
 .callout b{color:var(--pu)}
+.checker{background:var(--bgE);border:1px solid var(--bd);border-radius:var(--rL);padding:24px;margin:28px 0}
+.checker-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--bd);font-size:14.5px;color:var(--t2);font-family:var(--fB);line-height:1.6}
+.checker-row:last-of-type{border-bottom:none}
+.checker-row input{margin-top:4px;accent-color:var(--ac)}
+.checker-status{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--bgC);font-size:13px;font-family:var(--fB);color:var(--t1)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 6px}
+.compare-card{background:var(--bgE);border:1px solid var(--bd);border-radius:var(--r);padding:18px}
+.compare-card.bad{border-color:rgba(248,113,113,.2);background:rgba(248,113,113,.05)}
+.compare-card.good{border-color:rgba(52,211,153,.22);background:rgba(52,211,153,.06)}
+.compare-kicker{font-family:var(--fM);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t4);margin-bottom:8px}
+.compare-copy{font-family:var(--fB);font-size:14px;line-height:1.7;color:var(--t2)}
 .quiz-cta{text-align:center;padding:16px;margin:20px 0;background:var(--bgC);border:1px dashed var(--bdH);border-radius:var(--r)}
 .quiz-cta a{font-size:13px;color:var(--ac);text-decoration:none;font-weight:600}
 .faq-sec{margin-top:48px;padding-top:36px;border-top:1px solid var(--bd)}
@@ -135,7 +146,7 @@ h1{font-size:26px}h2{font-size:20px}h3{font-size:16px}
 .cta{padding:24px;border-radius:16px}
 .cta h3{font-size:17px}.cta-b{padding:12px 26px;font-size:13px}
 .callout,.tip{padding:14px 16px}
-.r-grid{grid-template-columns:1fr}
+.r-grid,.compare-grid{grid-template-columns:1fr}
 .faq-q{font-size:14px;padding:15px 0}.faq-a{font-size:13.5px}
 }
 @media(max-width:480px){
@@ -190,6 +201,8 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 
 <p>Good minutes do the opposite. They are short, scannable, and focus on three things: what was decided, who is doing what, and what needs to happen next. Someone who missed the meeting should be able to read the minutes in 60 seconds and know everything they need to know.</p>
 
+<p>This page is for the follow-up record, not the invite. Use it with the <a href="/meeting-agenda-template.html">meeting agenda template</a> when a meeting really needs to stay live, then send the minutes to everyone who only needed the outcome.</p>
+
 <h2 id="template">The Template</h2>
 <p>Copy this into a shared doc (Google Docs, Notion, Confluence) during the meeting. Fill it in live. Share the link at the end of the meeting so it is done before everyone closes their laptop.</p>
 
@@ -208,6 +221,23 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="tr"><span class="tl">Action Items</span><span class="tv">Who + what + due date</span></div>
 <div class="tr"><span class="tl">Open Questions</span><span class="tv">What we did not decide</span></div>
 <div class="tr"><span class="tl">Next Meeting</span><span class="tv">When and with whom</span></div>
+</div>
+
+<h2 id="minutes-check">Minutes Completeness Check</h2>
+<p>Before you hit send, make sure anyone who skipped the meeting can still act on the notes.</p>
+<div class="checker">
+<label class="checker-row"><input type="checkbox" class="minutes-check" onchange="updateMinutesChecker()"> <span>The decisions section answers what changed, not who talked the longest.</span></label>
+<label class="checker-row"><input type="checkbox" class="minutes-check" onchange="updateMinutesChecker()"> <span>Every action item names one owner and one due date.</span></label>
+<label class="checker-row"><input type="checkbox" class="minutes-check" onchange="updateMinutesChecker()"> <span>Open questions are separated from decisions so nobody mistakes them for commitments.</span></label>
+<label class="checker-row"><input type="checkbox" class="minutes-check" onchange="updateMinutesChecker()"> <span>The next step is clear enough that an absent teammate could continue the work.</span></label>
+<label class="checker-row"><input type="checkbox" class="minutes-check" onchange="updateMinutesChecker()"> <span>The note is short enough to scan on one screen without reading a transcript.</span></label>
+<div class="checker-status" id="minutesCheckerStatus" role="status" aria-live="polite">0 of 5 checks complete · still too vague to share.</div>
+</div>
+
+<h2 id="bad-vs-good">Bad Minutes vs Useful Minutes</h2>
+<div class="compare-grid">
+<div class="compare-card bad"><div class="compare-kicker">Bad minutes</div><p class="compare-copy">"Discussed launch timing, pricing concerns, onboarding issues, and next steps. Team agreed to keep talking next week."</p></div>
+<div class="compare-card good"><div class="compare-kicker">Useful minutes</div><p class="compare-copy">"Decision: launch moves to 12 June. Action: Priya updates pricing page by Tuesday. Action: Dan sends onboarding checklist by Thursday. Open question: support coverage for launch week, owner Jess."</p></div>
 </div>
 
 <div class="quiz-cta"><a href="/should-this-meeting-be-an-email.html">Too many meetings? Take the 30 second "should this be an email?" quiz &rarr;</a></div>
@@ -307,7 +337,9 @@ function togF(el){var w=el.classList.contains('open');document.querySelectorAll(
 function minutesTemplateText(){return 'Meeting Minutes\\n\\nMeeting Title: \\nDate and Time: \\nAttendees: \\nAbsent: \\nPurpose: \\nDecisions Made: \\nAction Items (owner + due date): \\nOpen Questions: \\nNext Meeting: \\n'}
 function copyMinutesTemplate(){navigator.clipboard.writeText(minutesTemplateText()).then(function(){alert('Minutes template copied')})}
 function openMinutesGoogleDoc(){copyMinutesTemplate();window.open('https://docs.new','_blank','noopener')}
+function updateMinutesChecker(){var checks=document.querySelectorAll('.minutes-check'),done=0;checks.forEach(function(box){if(box.checked)done++});var msg=done+' of '+checks.length+' checks complete';if(done===checks.length){msg+=' · ready to send.'}else if(done>=3){msg+=' · almost there, but tighten the gaps.'}else{msg+=' · still too vague to share.'}document.getElementById('minutesCheckerStatus').textContent=msg}
 function handleLeadMagnet(e){e.preventDefault();var form=e.target,email=form.querySelector('input[type=\"email\"]').value;fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email_address:email})}).then(function(r){if(r.ok){document.getElementById('leadWrap').style.display='none';document.getElementById('leadOk').style.display='block'}else{form.submit()}}).catch(function(){form.submit()})}
+updateMinutesChecker();
 </script>
 </body>
 </html>

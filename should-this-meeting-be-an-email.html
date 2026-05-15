@@ -90,6 +90,15 @@ h1{font-family:var(--fH);font-size:clamp(24px,5vw,36px);font-weight:700;letter-s
 .share-btn:hover{border-color:var(--bdH);background:var(--bgH)}
 .share-btn.primary{background:var(--ac);color:#fff;border-color:var(--ac)}
 .share-btn.primary:hover{opacity:.9}
+.result-next{background:var(--bgC);border:1px solid var(--bd);border-radius:16px;padding:20px;max-width:520px;margin:0 auto 24px;text-align:left}
+.result-next h3{font-family:var(--fH);font-size:18px;font-weight:700;margin:0 0 8px}
+.result-next p{font-size:14px;color:var(--t2);margin:0 0 14px;line-height:1.7;font-weight:300}
+.result-links{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.result-link{display:inline-flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--t1);font-size:13px;font-weight:600;text-decoration:none}
+.result-link:hover{border-color:var(--bdH);background:var(--bgH)}
+.result-template{background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:14px}
+.result-template-label{font-family:var(--fM);font-size:10px;color:var(--t4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.result-template pre{white-space:pre-wrap;font-family:var(--fB);font-size:13px;line-height:1.7;color:var(--t2);margin:0}
 
 /* CTA */
 .cta-box{background:var(--acD);border:1px solid var(--acG);border-radius:16px;padding:24px;text-align:center;margin:28px 0}
@@ -173,6 +182,18 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="result-bar"><div class="result-fill" id="resFill"></div></div>
 <div class="result-score" id="resScore"></div>
 <div class="result-desc" id="resDesc"></div>
+<div class="result-next" id="resultNext" hidden>
+<h3 id="nextTitle"></h3>
+<p id="nextBody"></p>
+<div class="result-links" id="nextLinks"></div>
+<div class="result-template">
+<div class="result-template-label">Copyable next step</div>
+<pre id="nextTemplate"></pre>
+</div>
+<div class="share-btns" style="justify-content:flex-start;margin:14px 0 0">
+<button class="share-btn" type="button" onclick="copyNextTemplate()">Copy action template</button>
+</div>
+</div>
 <div class="result-capture" id="resultCapture">
 <h3>Want the printable verdict + audit kit?</h3>
 <p>Get the free Meeting Cost Audit Kit and a copy of this result you can forward to your team.</p>
@@ -209,6 +230,12 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <p>A 30 minute meeting with 6 people earning an average of $85,000 per year costs roughly $159 in loaded salary. If it is a weekly recurring meeting, that is $8,268 per year. For a single meeting. If that meeting could have been an email that took 5 minutes to write and 2 minutes to read, the organization just wasted over $8,000 annually on what is essentially an expensive group email reading session.</p>
 
 <p>Use our <a href="/">meeting cost calculator</a> to see the exact numbers for your specific situation. The <a href="/reduce-meeting-costs.html">guide to reducing meeting costs</a> covers seven practical strategies for cutting this waste. And our <a href="/meeting-agenda-template.html">agenda template</a> ensures that the meetings you do keep are structured for maximum value.</p>
+
+<h2>Signs This Should Move Async</h2>
+<p>If the main job is sharing status, collecting lightweight input, or broadcasting context, it usually belongs in an email, Slack thread, or shared doc. Missing agenda, fuzzy purpose, and bloated invite lists are all hints that the live version is doing broadcast work instead of decision work. That is where the <a href="/downloads/meeting-audit-template.html">meeting audit template</a> helps most.</p>
+
+<h2>When a Real-Time Meeting Is Worth It</h2>
+<p>Keep the meeting when you need fast disagreement resolution, a sensitive conversation, or a live decision with a clear owner in the room. In those cases, tighten the structure with the <a href="/meeting-agenda-template.html">meeting agenda template</a>, document the outcome with the <a href="/meeting-minutes-template.html">meeting minutes template</a>, and if your team spans time zones, use <a href="/tools/">Goldhour</a> to pick a humane slot.</p>
 
 <section class="related">
 <h2>Related Resources</h2>
@@ -268,6 +295,18 @@ var questions=[
 ];
 
 var currentQ=0,score=0;
+var nextTemplateText='';
+
+function escHtml(text){return String(text).replace(/[&<>\"']/g,function(ch){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch]})}
+
+function renderNext(next){
+document.getElementById('nextTitle').textContent=next.title;
+document.getElementById('nextBody').textContent=next.body;
+document.getElementById('nextTemplate').textContent=next.template;
+nextTemplateText=next.template;
+document.getElementById('nextLinks').innerHTML=next.links.map(function(link){return '<a class=\"result-link\" href=\"'+link.href+'\">'+escHtml(link.label)+'</a>'}).join('');
+document.getElementById('resultNext').hidden=false;
+}
 
 function renderQ(){
 var q=questions[currentQ];
@@ -303,14 +342,17 @@ if(pct>=70){
 icon='\u2705';title='Keep the Meeting';
 desc='Based on your answers, this meeting has a clear purpose, the right people, and needs real time interaction. It is likely worth the cost. Use our agenda template to make sure it stays on track and produces documented outcomes.';
 color='var(--ok)';
+renderNext({title:'Next step: tighten the live version',body:'Send a written agenda before the meeting, name the decision owner, and publish minutes immediately after the call so absent stakeholders can stay out of the room.',template:'Subject: Agenda for tomorrow\'s meeting\n\nPurpose: Make the launch decision and confirm owners.\nDesired outcome: Leave with one approved plan, one owner per action item, and the next checkpoint on the calendar.\n\nTopics\n1. Decision framing (5 min)\n2. Trade-offs and open risks (10 min)\n3. Final decision + owners (10 min)\n',links:[{href:'/meeting-agenda-template.html',label:'Use the meeting agenda template'},{href:'/meeting-minutes-template.html',label:'Capture outcomes with meeting minutes'},{href:'/',label:'Estimate the meeting cost first'}]});
 }else if(pct>=40){
 icon='\u26A0\uFE0F';title='Consider a Shorter Format';
 desc='This meeting has some value but could probably accomplish the same thing in half the time or with fewer people. Consider cutting the duration to 15 minutes, trimming the invite list, or trying a written brief with a short follow up call only if questions arise.';
 color='var(--ac)';
+renderNext({title:'Next step: trim the scope before it grows',body:'Keep only the decision makers, cut the meeting to 15 minutes, and send a written pre-read so the live portion is only for unresolved questions.',template:'Slack draft\n\nI\'m cutting this to 15 minutes and limiting attendance to the people who need to decide. Please add comments to the brief before noon. If your feedback can stay async, skip the call and leave notes in the doc instead.\n',links:[{href:'/reduce-meeting-costs.html',label:'Use the reduce meeting costs guide'},{href:'/meeting-agenda-template.html',label:'Start from a tighter agenda template'},{href:'/',label:'Check the smaller meeting cost'}]});
 }else{
 icon='\u2709\uFE0F';title='This Should Be an Email';
 desc='The data points to this being a meeting that does not need real time interaction. An email, a Slack message, or a shared document would get the job done faster and save your team the salary cost. If 6 people at $85K average attend a 30 minute version of this, it costs about $159 in loaded salary each time.';
 color='var(--no)';
+renderNext({title:'Next step: replace the meeting with an async note',body:'Cancel the live slot, set a response deadline, and only reopen a meeting if written feedback exposes a real conflict or blocked decision.',template:'Slack / email draft\n\nCancelling the live meeting for now. Here\'s the update and the decision we need. Please reply with comments by 3pm tomorrow. If we still have unresolved disagreement after that, I\'ll book a 15 minute follow-up with only the decision makers.\n',links:[{href:'/downloads/meeting-audit-template.html',label:'Open the meeting audit template'},{href:'/reduce-meeting-costs.html',label:'Read the async replacement guide'},{href:'/',label:'Show what the cancelled meeting would have cost'}]});
 }
 
 document.getElementById('resIcon').textContent=icon;
@@ -337,6 +379,8 @@ var text='Should This Meeting Be an Email? Quiz Result\nScore: '+pct+'%\nVerdict
 navigator.clipboard.writeText(text).then(function(){alert('Result copied!')});
 }
 
+function copyNextTemplate(){navigator.clipboard.writeText(nextTemplateText).then(function(){alert('Action template copied!')})}
+
 function handleLeadCapture(e){
 e.preventDefault();
 var form=e.target,input=form.querySelector('input[type=\"email\"]'),email=input.value.trim();
@@ -356,6 +400,8 @@ document.getElementById('resFill').style.width='0%';
 document.getElementById('resultCapture').style.display='block';
 document.getElementById('resultOk').style.display='none';
 document.getElementById('resultErr').style.display='none';
+document.getElementById('resultNext').hidden=true;
+nextTemplateText='';
 renderQ();
 }
 

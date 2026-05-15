@@ -292,6 +292,7 @@ input[type="range"]::-moz-range-thumb{width:20px;height:20px;background:var(--ac
 .tool-cta{font-size:12px;font-weight:700;color:var(--ac);letter-spacing:.01em}
 .tool-cta::after{content:' \2192';transition:.2s;display:inline-block}
 .tool:hover .tool-cta::after{transform:translateX(3px)}
+.hub-g{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px}.hub-card{background:var(--bgE);border:1px solid var(--bd);border-radius:var(--rL);padding:22px;transition:.25s;text-decoration:none;color:inherit;display:block}.hub-card:hover{border-color:var(--bdS);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.12)}.hub-k{font-family:var(--fM);font-size:10px;color:var(--t4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}.hub-h{font-size:15px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}.hub-p{font-size:13px;color:var(--t2);line-height:1.65}
 
 /* ═══════════ CONTENT SECTIONS ═══════════ */
 .sec{margin-bottom:72px;scroll-margin-top:80px}
@@ -389,7 +390,7 @@ footer{border-top:1px solid var(--bd);padding:48px 0 56px;margin-top:32px;backgr
 .steps{grid-template-columns:1fr}
 .stat-row{grid-template-columns:1fr}
 .ft-r{grid-template-columns:1fr 1fr;gap:24px}
-.tools-g{grid-template-columns:1fr}
+.tools-g,.hub-g{grid-template-columns:1fr}
 .hero{padding:48px 0 32px}
 }
 @media(max-width:600px){
@@ -727,6 +728,22 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="tool-desc">Take our 6 question quiz to find out if your next meeting should be an email instead. Based on workplace research from Atlassian, Harvard, and Flowtrace. Shareable results.</div>
 <span class="tool-cta">Take the quiz</span>
 </a>
+</div>
+</section>
+
+<section class="sec" id="start-here" aria-labelledby="startHereHeading">
+<div class="sec-h-wrap">
+<div class="sec-ey">Start here</div>
+<h2 class="sec-h" id="startHereHeading">Best MeetingBurn Resources for Fewer, Better Meetings</h2>
+<p class="sec-sub">Use the calculator to find the cost, then move through the right template, guide, or audit kit depending on what you need next.</p>
+</div>
+<div class="hub-g">
+<a href="/meeting-agenda-template.html" class="hub-card"><div class="hub-k">Plan the meeting</div><div class="hub-h">Free meeting agenda template</div><div class="hub-p">Use a copyable agenda format with time boxes, owners, and a quick quality check before you send the invite.</div></a>
+<a href="/meeting-minutes-template.html" class="hub-card"><div class="hub-k">Document the outcome</div><div class="hub-h">Meeting minutes template</div><div class="hub-p">Capture decisions, owners, and due dates so people can skip the meeting and still keep up.</div></a>
+<a href="/meeting-cost-per-employee.html" class="hub-card"><div class="hub-k">Make the budget case</div><div class="hub-h">Meeting cost per employee guide</div><div class="hub-p">Translate one recurring meeting into an annual per-person cost leadership can compare against headcount and tooling.</div></a>
+<a href="/reduce-meeting-costs.html" class="hub-card"><div class="hub-k">Cut the waste</div><div class="hub-h">How to reduce meeting costs</div><div class="hub-p">Work through the seven highest-leverage ways to shrink recurring meeting load without changing your whole company overnight.</div></a>
+<a href="/should-this-meeting-be-an-email.html" class="hub-card"><div class="hub-k">Challenge the invite</div><div class="hub-h">Should this meeting be an email quiz</div><div class="hub-p">Run a 30 second async-vs-live check, then copy the right follow-up message for the verdict you get.</div></a>
+<a href="/downloads/meeting-audit-template.html" class="hub-card"><div class="hub-k">Run an audit</div><div class="hub-h">Meeting cost audit template</div><div class="hub-p">Print the worksheet, review your most expensive recurring meetings, and turn the result into an async replacement plan.</div></a>
 </div>
 </section>
 
