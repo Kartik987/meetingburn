@@ -360,6 +360,18 @@ footer{border-top:1px solid var(--bd);padding:48px 0 56px;margin-top:32px;backgr
 .ft-a:hover{color:var(--ac)}
 .ft-bot{margin-top:40px;padding-top:20px;border-top:1px solid var(--bd);font-size:12px;color:var(--t4);max-width:1120px;margin-left:auto;margin-right:auto;padding-left:24px;padding-right:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-weight:500}
 
+/* ═══ INSTAGRAM HANDLE ═══ */
+.ig-card{display:inline-flex;align-items:center;gap:13px;text-decoration:none;background:var(--bgE);border:1px solid var(--bd);border-radius:100px;padding:9px 18px 9px 11px;transition:.25s;position:relative;overflow:hidden}
+.ig-card:hover{border-color:var(--bdS);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.14)}
+.ig-glyph{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;background:linear-gradient(135deg,#feda75 0%,#fa7e1e 25%,#d62976 50%,#962fbf 75%,#4f5bd5 100%);box-shadow:0 3px 10px rgba(214,41,118,.35);position:relative;overflow:hidden}
+.ig-glyph::after{content:'';position:absolute;top:-60%;left:-60%;width:50%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:rotate(25deg);transition:.6s}
+.ig-card:hover .ig-glyph::after{left:140%}
+.ig-text{display:flex;flex-direction:column;line-height:1.25}
+.ig-label{font-family:var(--fM);font-size:9px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em}
+.ig-handle{font-size:14px;font-weight:700;color:var(--t1);letter-spacing:-.01em}
+.ig-arrow{font-size:15px;color:var(--t4);transition:.2s;flex-shrink:0}
+.ig-card:hover .ig-arrow{color:var(--ac);transform:translateX(3px)}
+  
 /* ═══════════ TOAST ═══════════ */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--t1);color:var(--bg);padding:12px 28px;border-radius:100px;font-size:13px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.3);z-index:2000;opacity:0;transition:all .35s cubic-bezier(.4,0,.2,1);pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
@@ -939,6 +951,23 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="ft-bot">
 <span>&copy; 2026 MeetingBurn.in &middot; Free meeting cost calculator. All citations attributed to original sources.</span>
 </div>
+  <div style="max-width:1120px;margin:28px auto 0;padding:0 24px">
+  <a href="https://instagram.com/officialmeetingburn" target="_blank" rel="noopener noreferrer" class="ig-card" aria-label="Follow MeetingBurn on Instagram">
+  <span class="ig-glyph" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5.5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="1.2" fill="#fff" stroke="none"/>
+    </svg>
+  </span>
+  <span class="ig-text">
+    <span class="ig-label">Follow along</span>
+    <span class="ig-handle">@officialmeetingburn</span>
+  </span>
+  <span class="ig-arrow" aria-hidden="true">&rarr;</span>
+</a>
+</div>
+  
 </footer>
 
 <div class="toast" id="toast"></div>
