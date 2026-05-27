@@ -360,18 +360,6 @@ footer{border-top:1px solid var(--bd);padding:48px 0 56px;margin-top:32px;backgr
 .ft-a:hover{color:var(--ac)}
 .ft-bot{margin-top:40px;padding-top:20px;border-top:1px solid var(--bd);font-size:12px;color:var(--t4);max-width:1120px;margin-left:auto;margin-right:auto;padding-left:24px;padding-right:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-weight:500}
 
-/* ═══ INSTAGRAM HANDLE ═══ */
-.ig-card{display:inline-flex;align-items:center;gap:13px;text-decoration:none;background:var(--bgE);border:1px solid var(--bd);border-radius:100px;padding:9px 18px 9px 11px;transition:.25s;position:relative;overflow:hidden}
-.ig-card:hover{border-color:var(--bdS);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.14)}
-.ig-glyph{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;background:linear-gradient(135deg,#feda75 0%,#fa7e1e 25%,#d62976 50%,#962fbf 75%,#4f5bd5 100%);box-shadow:0 3px 10px rgba(214,41,118,.35);position:relative;overflow:hidden}
-.ig-glyph::after{content:'';position:absolute;top:-60%;left:-60%;width:50%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:rotate(25deg);transition:.6s}
-.ig-card:hover .ig-glyph::after{left:140%}
-.ig-text{display:flex;flex-direction:column;line-height:1.25}
-.ig-label{font-family:var(--fM);font-size:9px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em}
-.ig-handle{font-size:14px;font-weight:700;color:var(--t1);letter-spacing:-.01em}
-.ig-arrow{font-size:15px;color:var(--t4);transition:.2s;flex-shrink:0}
-.ig-card:hover .ig-arrow{color:var(--ac);transform:translateX(3px)}
-  
 /* ═══════════ TOAST ═══════════ */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--t1);color:var(--bg);padding:12px 28px;border-radius:100px;font-size:13px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.3);z-index:2000;opacity:0;transition:all .35s cubic-bezier(.4,0,.2,1);pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
@@ -484,6 +472,121 @@ footer{border-top:1px solid var(--bd);padding:48px 0 56px;margin-top:32px;backgr
 .dc-share-btn.show{display:inline-block}
 .dc-share-btn:hover{border-color:var(--bdH);color:var(--t1)}
 @media(max-width:600px){.dc-choices{grid-template-columns:1fr}.dc-card{padding:22px 18px;border-radius:var(--rL)}}
+
+/* ════════════════════════════════════════════════════
+   UI ENHANCEMENT LAYER — additive only, uses existing tokens
+   Theme, fonts, colors unchanged. Pure depth + motion polish.
+   ════════════════════════════════════════════════════ */
+
+/* ── Respect reduced-motion globally ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+}
+
+/* ── Scroll-reveal: sections fade up as they enter view ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+
+/* ── Hero: staggered entrance ── */
+.hero h1,.hero .hero-p,.hero .hero-sub,.hero .hero-cta,.hero .trust-bar{animation:heroIn .8s cubic-bezier(.16,1,.3,1) both}
+.hero .badge{animation:heroIn .7s cubic-bezier(.16,1,.3,1) both}
+.hero h1{animation-delay:.05s}
+.hero .hero-p{animation-delay:.16s}
+.hero .hero-sub{animation-delay:.24s}
+.hero .hero-cta{animation-delay:.32s}
+.hero .trust-bar{animation-delay:.42s}
+@keyframes heroIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* ── Hero headline: animated gradient sheen on the highlight ── */
+h1 .hl{background-size:200% auto;animation:hlShift 6s ease-in-out infinite}
+@keyframes hlShift{0%,100%{background-position:0% center}50%{background-position:100% center}}
+
+/* ── Trust bar: turn items into tactile chips ── */
+.trust-bar{gap:14px !important;border-top:none !important;padding-top:24px !important}
+.trust-item a{background:var(--bgE);border:1px solid var(--bd);border-radius:16px;padding:14px 18px !important;transition:.28s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
+.trust-item a::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--acG),transparent 60%);opacity:0;transition:opacity .3s}
+.trust-item a:hover{border-color:var(--bdS);transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.16)}
+.trust-item a:hover::before{opacity:.5}
+.trust-item strong{font-size:20px !important;background:var(--gradB);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;position:relative;z-index:1}
+.trust-item a > *{position:relative;z-index:1}
+
+/* ── Primary CTA: subtle living glow ── */
+.hb-p{position:relative;isolation:isolate}
+.hb-p::after{content:'';position:absolute;inset:-2px;border-radius:14px;background:var(--gradT);filter:blur(14px);opacity:.35;z-index:-1;transition:opacity .3s}
+.hb-p:hover::after{opacity:.6}
+
+/* ── Main card: richer layered depth + top light edge ── */
+.card,.dc-card{box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 2px 8px rgba(0,0,0,.06),0 16px 48px rgba(0,0,0,.16)}
+[data-theme="light"] .card,[data-theme="light"] .dc-card{box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 2px 8px rgba(30,25,20,.04),0 16px 40px rgba(30,25,20,.08)}
+
+/* ── Live burn display: breathing glow when active ── */
+.burn.live{animation:breathe 3.2s ease-in-out infinite}
+@keyframes breathe{0%,100%{box-shadow:0 0 0 1px var(--acG),0 0 0 0 transparent}50%{box-shadow:0 0 0 1px var(--acG),0 0 38px -6px var(--acG)}}
+.cost{transition:color .4s,transform .15s}
+.burn.live .cost{animation:costPulse 1s ease-in-out infinite}
+@keyframes costPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.012)}}
+
+/* ── Side stat cards + projection cards: hover lift with accent edge ── */
+.sc{transition:.26s cubic-bezier(.16,1,.3,1);position:relative}
+.sc::after{content:'';position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--gradT);opacity:0;transition:opacity .26s}
+.sc:hover{transform:translateY(-2px);border-color:var(--bdS)}
+.sc:hover::after{opacity:1}
+
+/* ── Step / bento / tool / research / about / stat: unified richer hover ── */
+.step,.bento-c,.tool,.res,.about-c,.stat,.hub-card{transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s}
+.step:hover,.bento-c:hover,.tool:hover,.res:hover,.about-c:hover,.stat:hover,.hub-card:hover{box-shadow:0 18px 44px rgba(0,0,0,.18)}
+[data-theme="light"] .step:hover,[data-theme="light"] .bento-c:hover,[data-theme="light"] .tool:hover,[data-theme="light"] .res:hover,[data-theme="light"] .about-c:hover,[data-theme="light"] .stat:hover,[data-theme="light"] .hub-card:hover{box-shadow:0 18px 40px rgba(30,25,20,.12)}
+
+/* ── Step numbers: gradient glow ── */
+.step{overflow:hidden;position:relative}
+.step::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:radial-gradient(circle,var(--acG),transparent 70%);opacity:0;transition:opacity .35s}
+.step:hover::before{opacity:.6}
+
+/* ── Section eyebrow: animated underline accent ── */
+.sec-ey{display:inline-block;position:relative;padding-bottom:6px}
+.sec-ey::after{content:'';position:absolute;left:50%;bottom:0;width:28px;height:2px;border-radius:2px;background:var(--gradT);transform:translateX(-50%)}
+
+/* ── Stat numbers in research: count-up ready (scale-in) ── */
+.stat-n{display:inline-block;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.stat:hover .stat-n{transform:scale(1.06)}
+
+/* ── Bento big-stat: animated gradient flow ── */
+.bento-stat{background-size:200% auto;animation:hlShift 7s ease-in-out infinite}
+
+/* ── Daily Challenge choices: tactile press + arrow hint ── */
+.dc-btn{transition:.2s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
+.dc-btn:not([disabled]):hover{transform:translateY(-2px)}
+.dc-btn:not([disabled]):active{transform:translateY(0) scale(.985)}
+.dc-btn::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gradT);transform:scaleY(0);transform-origin:center;transition:transform .22s}
+.dc-btn:not([disabled]):hover::before{transform:scaleY(1)}
+
+/* ── Daily Challenge icon: gentle float ── */
+.dc-icon{animation:floatY 4s ease-in-out infinite;transform-origin:center}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+/* ── Nav: subtle scrolled-state shadow (toggled via JS) ── */
+.nav.scrolled{box-shadow:0 8px 30px rgba(0,0,0,.18)}
+[data-theme="light"] .nav.scrolled{box-shadow:0 8px 24px rgba(30,25,20,.08)}
+
+/* ── Ticker: shimmer on the live dot row ── */
+.ticker{transition:border-color .3s,background .3s}
+.ticker:hover{border-color:var(--bdH)}
+
+/* ── Savings block: animated aurora ── */
+.savings::after{content:'';position:absolute;bottom:-40%;left:-10%;width:240px;height:240px;background:radial-gradient(circle,rgba(52,211,153,.12),transparent 70%);pointer-events:none;animation:floatSlow 9s ease-in-out infinite}
+@keyframes floatSlow{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-20px)}}
+
+/* ── Buttons: shared smooth scale on press ── */
+.btn-main:active,.hb-p:active,.btn-s:active{transform:scale(.98)}
+
+/* ── Focus-visible polish for accessibility ── */
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--ac);outline-offset:2px;border-radius:8px}
+
+/* ── Count-up number flash ── */
+.cost.flash{animation:numFlash .4s ease}
+@keyframes numFlash{0%{color:var(--ac)}100%{}}
+
 </style>
 </head>
 <body data-theme="dark">
@@ -547,7 +650,7 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <!-- CALCULATOR -->
 <main class="w" id="calculator" role="main" aria-label="Meeting cost calculator">
 
-<div style="margin-top:40px" class="ticker"><div class="tbd"> Live Insight</div><div class="msg" id="tickMsg">Move the sliders below to estimate what your meeting costs.</div></div>
+<div style="margin-top:40px" class="ticker"><div class="tbd"><span class="dot"></span> Live Insight</div><div class="msg" id="tickMsg">Move the sliders below to estimate what your meeting costs.</div></div>
 
 <div class="row-ctrl">
 <div class="pg" role="tablist" aria-label="Currency"><button class="pb on" data-c="USD" onclick="setCur('USD','$')" aria-label="USD">USD $</button><button class="pb" data-c="INR" onclick="setCur('INR','&#8377;')" aria-label="INR">INR &#8377;</button><button class="pb" data-c="EUR" onclick="setCur('EUR','&#8364;')" aria-label="EUR">EUR &#8364;</button><button class="pb" data-c="GBP" onclick="setCur('GBP','&#163;')" aria-label="GBP">GBP &#163;</button></div>
@@ -812,7 +915,7 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
   <div class="sec-h-wrap">
     <div class="sec-ey">Built in the open</div>
     <h2 class="sec-h">A Free Tool That Does One Thing Well</h2>
-    <p class="sec-sub">MeetingBurn is a solo-dev project built to make meeting costs visible. Try it and tell us what you think.</p>
+    <p class="sec-sub">MeetingBurn is a solo-dev project built to make meeting costs visible. No VC funding, no enterprise sales team. Try it and tell us what you think.</p>
   </div>
   <div class="about-g">
     <div class="about-c">
@@ -951,23 +1054,6 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="ft-bot">
 <span>&copy; 2026 MeetingBurn.in &middot; Free meeting cost calculator. All citations attributed to original sources.</span>
 </div>
-  <div style="max-width:1120px;margin:28px auto 0;padding:0 24px">
-  <a href="https://instagram.com/officialmeetingburn" target="_blank" rel="noopener noreferrer" class="ig-card" aria-label="Follow MeetingBurn on Instagram">
-  <span class="ig-glyph" aria-hidden="true">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="2" y="2" width="20" height="20" rx="5.5"/>
-      <circle cx="12" cy="12" r="4"/>
-      <circle cx="17.5" cy="6.5" r="1.2" fill="#fff" stroke="none"/>
-    </svg>
-  </span>
-  <span class="ig-text">
-    <span class="ig-label">Follow along</span>
-    <span class="ig-handle">@officialmeetingburn</span>
-  </span>
-  <span class="ig-arrow" aria-hidden="true">&rarr;</span>
-</a>
-</div>
-  
 </footer>
 
 <div class="toast" id="toast"></div>
@@ -1319,3 +1405,114 @@ window.shareChallenge=function(){
     });
   }
 };
+
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',dcInit);}else{dcInit();}
+}catch(e){console.error('[MeetingBurn Challenge] init failed:',e);var _t=document.getElementById('dcTitle');if(_t)_t.textContent='Challenge could not load \u2014 open console (F12) for details.';}
+})();
+</script>
+
+<script>
+/* ════ UI ENHANCEMENT JS — additive, non-breaking ════ */
+(function(){
+  if(typeof window==='undefined')return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  function onReady(fn){if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fn);}else{fn();}}
+
+  onReady(function(){
+    /* 1) Scroll-reveal for sections */
+    try{
+      if(!reduce && 'IntersectionObserver' in window){
+        var targets=document.querySelectorAll('.sec, .card, .email-sec, .dc-card, .steps .step, .bento-c, .tool, .res, .about-c, .stat, .hub-card');
+        targets.forEach(function(el){el.classList.add('reveal');});
+        var io=new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+          });
+        },{threshold:.08,rootMargin:'0px 0px -8% 0px'});
+        targets.forEach(function(el){io.observe(el);});
+      }
+    }catch(e){console.warn('[MB] reveal skipped',e);}
+
+    /* 2) Nav scrolled state */
+    try{
+      var nav=document.querySelector('.nav');
+      if(nav){
+        var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>12);};
+        window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+      }
+    }catch(e){console.warn('[MB] nav scroll skipped',e);}
+
+    /* 3) Count-up on trust-bar numbers (one-time, when hero in view) */
+    try{
+      if(!reduce){
+        var nums=document.querySelectorAll('.trust-item strong');
+        nums.forEach(function(el){
+          var raw=el.textContent.trim();
+          var m=raw.match(/^([^\d]*)([\d.]+)(.*)$/);
+          if(!m)return;
+          var prefix=m[1],target=parseFloat(m[2]),suffix=m[3],decimals=(m[2].split('.')[1]||'').length;
+          var dur=900,start=null;
+          function step(ts){
+            if(!start)start=ts;
+            var p=Math.min((ts-start)/dur,1);
+            var eased=1-Math.pow(1-p,3);
+            var val=(target*eased).toFixed(decimals);
+            el.textContent=prefix+val+suffix;
+            if(p<1)requestAnimationFrame(step);else el.textContent=raw;
+          }
+          // trigger when hero scrolls into view (or immediately if already there)
+          if('IntersectionObserver' in window){
+            var o=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){requestAnimationFrame(step);o.disconnect();}});});
+            o.observe(el);
+          }else{requestAnimationFrame(step);}
+        });
+      }
+    }catch(e){console.warn('[MB] countup skipped',e);}
+
+    /* 4) Count-up on research + bento stat numbers (even treatment across sections) */
+    try{
+      if(!reduce && 'IntersectionObserver' in window){
+        var stats=document.querySelectorAll('.stat-n, .bento-stat');
+        stats.forEach(function(el){
+          var raw=el.textContent.trim();
+          // Match: optional prefix, ONE number (with optional decimal/comma), then the rest.
+          var m=raw.match(/^([^\d]*)([\d,]+(?:\.\d+)?)(.*)$/);
+          if(!m){return;}
+          var rest=m[3];
+          // Skip multi-number strings like "23m 15s" — animating would distort them.
+          if(/\d/.test(rest)){return;}
+          var prefix=m[1];
+          var numStr=m[2].replace(/,/g,'');
+          var target=parseFloat(numStr);
+          if(isNaN(target)||target<=0){return;}
+          var decimals=(numStr.split('.')[1]||'').length;
+          var useComma=m[2].indexOf(',')!==-1;
+          function fmt(v){
+            var out=v.toFixed(decimals);
+            if(useComma){var parts=out.split('.');parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,',');out=parts.join('.');}
+            return out;
+          }
+          var dur=1100;
+          function run(){
+            var start=null;
+            function step(ts){
+              if(!start)start=ts;
+              var p=Math.min((ts-start)/dur,1);
+              var eased=1-Math.pow(1-p,3);
+              el.textContent=prefix+fmt(target*eased)+rest;
+              if(p<1){requestAnimationFrame(step);}else{el.textContent=raw;}
+            }
+            requestAnimationFrame(step);
+          }
+          var o=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){run();o.disconnect();}});},{threshold:.3});
+          o.observe(el);
+        });
+      }
+    }catch(e){console.warn('[MB] stat countup skipped',e);}
+  });
+})();
+</script>
+
+</body>
+</html>
