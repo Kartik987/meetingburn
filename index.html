@@ -24,6 +24,9 @@
 <meta property="og:site_name" content="MeetingBurn">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://meetingburn.in/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MeetingBurn meeting cost calculator showing live cost tracking">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Meeting Cost Calculator | Free Live Tracker">
 <meta name="twitter:description" content="See exactly how much your meetings cost per second. Free tool with salary based calculations.">
@@ -37,6 +40,8 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://meetingburn.in"},{"@type":"ListItem","position":2,"name":"Calculator","item":"https://meetingburn.in/#calculator"},{"@type":"ListItem","position":3,"name":"Research","item":"https://meetingburn.in/#research"},{"@type":"ListItem","position":4,"name":"FAQ","item":"https://meetingburn.in/#faq"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to Calculate Meeting Cost","description":"Calculate the true cost of any business meeting in four steps.","step":[{"@type":"HowToStep","name":"Convert salary to hourly rate","text":"Divide annual salary by 2,080 working hours per year."},{"@type":"HowToStep","name":"Add benefits overhead","text":"Multiply hourly rate by 1.30 for benefits, taxes, and overhead."},{"@type":"HowToStep","name":"Calculate per minute cost for all attendees","text":"Divide loaded hourly rate by 60, then multiply by the number of attendees."},{"@type":"HowToStep","name":"Multiply by meeting duration","text":"Multiply per minute cost by the meeting duration in minutes to get total cost."}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"MeetingBurn","url":"https://meetingburn.in","logo":"https://meetingburn.in/favicon.svg","description":"Free meeting cost tools and workplace productivity resources. Built on published research from Harvard Business Review, Atlassian, UC Irvine, and Flowtrace."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"MeetingBurn","url":"https://meetingburn.in","description":"Free meeting cost calculator and workplace productivity tools.","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://meetingburn.in/?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Free Meeting Toolkit","description":"Free meeting planning and cost tools: agenda timeboxer, cost per attendee calculator, time reclaimed calculator, and meeting ROI calculator.","itemListElement":[{"@type":"ListItem","position":1,"name":"Meeting Agenda Timeboxer","url":"https://meetingburn.in/#toolkit"},{"@type":"ListItem","position":2,"name":"Meeting Cost Per Attendee Calculator","url":"https://meetingburn.in/#toolkit"},{"@type":"ListItem","position":3,"name":"Meeting Time Reclaimed Calculator","url":"https://meetingburn.in/#toolkit"},{"@type":"ListItem","position":4,"name":"Meeting ROI Calculator","url":"https://meetingburn.in/#toolkit"}]}</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -587,9 +592,157 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .cost.flash{animation:numFlash .4s ease}
 @keyframes numFlash{0%{color:var(--ac)}100%{}}
 
+
+/* ════════════════════════════════════════════════════
+   UI ENHANCEMENT LAYER 2 — additive, tokens only
+   ════════════════════════════════════════════════════ */
+
+/* ── Slim scroll progress bar at very top ── */
+.mb-progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;background:var(--gradT);box-shadow:0 0 12px var(--acG);transition:width .1s linear;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.mb-progress{display:none}}
+
+/* ── Range sliders: glowing fill track on interaction ── */
+input[type="range"]:hover::-webkit-slider-thumb{box-shadow:0 0 0 1px var(--ac),0 0 14px var(--acG),0 2px 8px rgba(245,158,11,.5)}
+input[type="range"]:active::-webkit-slider-thumb{transform:scale(1.18)}
+input[type="range"]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 2px var(--bgE),0 0 0 4px var(--ac)}
+
+/* ── Pill toggles: smooth slide feel ── */
+.pb{transition:.22s cubic-bezier(.16,1,.3,1)}
+.pb.on{transform:translateY(-1px)}
+
+/* ── Role +/- buttons: satisfying press ── */
+.rbtn{transition:.16s cubic-bezier(.34,1.56,.64,1)}
+.rbtn:active{transform:scale(.88)}
+
+/* ── Diagnostic checkboxes: check-in bounce ── */
+.dg-i{transition:.2s cubic-bezier(.16,1,.3,1)}
+.dg-i.on{animation:dgPop .3s cubic-bezier(.34,1.56,.64,1)}
+@keyframes dgPop{0%{transform:scale(1)}40%{transform:scale(1.03)}100%{transform:scale(1)}}
+
+/* ── FAQ: smooth accent on open ── */
+.faq{transition:background .25s}
+.faq.open{background:linear-gradient(90deg,var(--acD),transparent 40%)}
+
+/* ── Tool cards: directional shine sweep on hover ── */
+.tool{position:relative;overflow:hidden}
+.tool::before{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);transform:skewX(-20deg);transition:left .6s;pointer-events:none}
+.tool:hover::before{left:140%}
+
+/* ── Email section: pulse the CTA gently to draw the eye ── */
+.email-form button{position:relative}
+.email-form button::after{content:'';position:absolute;inset:0;border-radius:12px;box-shadow:0 0 0 0 var(--acG);animation:ctaPulse 3.5s ease-out infinite}
+@keyframes ctaPulse{0%{box-shadow:0 0 0 0 var(--acG)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@media(prefers-reduced-motion:reduce){.email-form button::after{display:none}}
+
+/* ── Comparison table: row hover highlight ── */
+.comp-tbl tbody tr{transition:background .18s}
+.comp-tbl tbody tr:hover{background:var(--acD)}
+
+/* ── Logo mark: subtle flame flicker on hover ── */
+.logo:hover .logo-ic{animation:flick .6s ease-in-out}
+@keyframes flick{0%,100%{transform:rotate(0) scale(1)}30%{transform:rotate(-6deg) scale(1.08)}60%{transform:rotate(4deg) scale(1.04)}}
+
+/* ── Daily Challenge result: slide+fade in ── */
+.dc-result.show{animation:dcReveal .45s cubic-bezier(.16,1,.3,1)}
+@keyframes dcReveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ── Lifetime tracker: gentle highlight when value present ── */
+.lifetime{transition:box-shadow .3s}
+.lifetime:hover{box-shadow:0 0 0 1px rgba(52,211,153,.25),0 8px 20px rgba(52,211,153,.08)}
+
+
+/* ════════════════════════════════════════════════════
+   MEETING TOOLKIT — utility tools, tokens only, theme-safe
+   ════════════════════════════════════════════════════ */
+#toolkit{scroll-margin-top:80px}
+.tk-tabs{display:flex;gap:6px;background:var(--bgC);padding:6px;border-radius:16px;border:1px solid var(--bd);margin:0 auto 28px;max-width:680px;flex-wrap:wrap;justify-content:center}
+.tk-tab{flex:1;min-width:130px;background:transparent;border:none;color:var(--t3);padding:11px 14px;border-radius:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--fB);transition:.22s cubic-bezier(.16,1,.3,1);display:flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap}
+.tk-tab .tk-ico{font-size:15px}
+.tk-tab:hover:not(.on){color:var(--t1);background:var(--bgH)}
+.tk-tab.on{background:var(--bgE);color:var(--ac);box-shadow:var(--sh1);transform:translateY(-1px)}
+.tk-panel{display:none;animation:tkFade .4s cubic-bezier(.16,1,.3,1)}
+.tk-panel.on{display:block}
+@keyframes tkFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.tk-panel{animation:none}}
+
+.tk-card{background:var(--bgE);border:1px solid var(--bd);border-radius:var(--rXL);padding:32px;box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 2px 8px rgba(0,0,0,.06),0 16px 48px rgba(0,0,0,.16);position:relative;overflow:hidden}
+[data-theme="light"] .tk-card{box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 16px 40px rgba(30,25,20,.08)}
+.tk-card::before{content:'';position:absolute;inset:0;border-radius:var(--rXL);padding:1px;background:linear-gradient(135deg,var(--acG),transparent 50%,var(--puD));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.4}
+.tk-head{margin-bottom:22px}
+.tk-title{font-family:var(--fH);font-size:21px;font-weight:800;letter-spacing:-.02em;margin-bottom:5px;display:flex;align-items:center;gap:10px}
+.tk-desc{font-size:13px;color:var(--t3);line-height:1.6}
+
+.tk-row{display:grid;gap:16px;margin-bottom:18px}
+.tk-row.c2{grid-template-columns:1fr 1fr}
+.tk-row.c3{grid-template-columns:1fr 1fr 1fr}
+.tk-field label{display:block;font-family:var(--fM);font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
+.tk-input{width:100%;padding:12px 14px;border-radius:11px;border:1px solid var(--bdH);background:var(--bg);color:var(--t1);font-size:15px;font-family:var(--fM);font-weight:600;outline:none;transition:.2s}
+.tk-input:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--acD)}
+.tk-out{background:var(--bgC);border:1px solid var(--bd);border-radius:var(--rL);padding:20px;text-align:center}
+.tk-out-lbl{font-family:var(--fM);font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.tk-out-val{font-family:var(--fM);font-size:clamp(28px,6vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--ac);font-variant-numeric:tabular-nums}
+.tk-out-sub{font-size:12px;color:var(--t3);margin-top:8px;line-height:1.5}
+.tk-out.ok .tk-out-val{color:var(--ok)}
+.tk-out.no .tk-out-val{color:var(--no)}
+
+.tk-outs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:4px}
+.tk-mini{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:14px;text-align:center}
+.tk-mini-l{font-family:var(--fM);font-size:9px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.tk-mini-v{font-family:var(--fM);font-size:18px;font-weight:800;color:var(--t1);font-variant-numeric:tabular-nums}
+
+/* timebox agenda list */
+.tk-agenda{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+.tk-item{display:flex;gap:10px;align-items:center;background:var(--bg);border:1px solid var(--bd);border-radius:11px;padding:10px 12px;transition:.18s}
+.tk-item:hover{border-color:var(--bdH)}
+.tk-item input[type="text"]{flex:1;background:none;border:none;color:var(--t1);font-size:14px;font-family:var(--fB);font-weight:500;outline:none;min-width:0}
+.tk-item input[type="number"]{width:64px;background:var(--bgC);border:1px solid var(--bd);border-radius:8px;color:var(--ac);font-size:13px;font-family:var(--fM);font-weight:700;padding:6px 8px;text-align:center;outline:none}
+.tk-item .tk-min{font-family:var(--fM);font-size:10px;color:var(--t4);font-weight:600}
+.tk-item-del{background:none;border:none;color:var(--t4);font-size:16px;cursor:pointer;padding:3px 7px;border-radius:7px;transition:.15s;line-height:1}
+.tk-item-del:hover{color:var(--no);background:var(--noD)}
+.tk-bar{height:9px;border-radius:6px;background:var(--bgC);overflow:hidden;display:flex;margin-bottom:10px;border:1px solid var(--bd)}
+.tk-bar span{height:100%;transition:width .35s cubic-bezier(.16,1,.3,1)}
+
+.tk-btn{padding:11px 18px;border-radius:11px;border:1px solid var(--bd);background:var(--bgC);color:var(--t2);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--fB);transition:.18s}
+.tk-btn:hover{border-color:var(--bdS);color:var(--t1);background:var(--bgH)}
+.tk-btn:active{transform:scale(.97)}
+.tk-btn-row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.tk-btn.primary{background:var(--gradT);color:#fff;border:none;box-shadow:0 4px 14px rgba(245,158,11,.3)}
+.tk-btn.primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(245,158,11,.4)}
+
+.tk-verdict{margin-top:16px;padding:16px 18px;border-radius:var(--rL);font-size:14px;line-height:1.6;font-family:var(--fS);display:none}
+.tk-verdict.show{display:block;animation:tkFade .4s}
+.tk-verdict.ok{background:var(--okD);border:1px solid rgba(52,211,153,.2);color:var(--ok)}
+.tk-verdict.warn{background:var(--acD);border:1px solid var(--acG);color:var(--ac)}
+.tk-verdict.no{background:var(--noD);border:1px solid rgba(248,113,113,.2);color:var(--no)}
+.tk-verdict b{font-family:var(--fB);font-weight:800}
+
+.tk-foot{margin-top:18px;padding-top:16px;border-top:1px solid var(--bd);font-size:12px;color:var(--t4);text-align:center;line-height:1.6}
+.tk-foot a{color:var(--ac);text-decoration:none;font-weight:600}
+
+@media(max-width:600px){
+.tk-row.c2,.tk-row.c3{grid-template-columns:1fr}
+.tk-outs{grid-template-columns:1fr}
+.tk-card{padding:22px 18px}
+.tk-tab{min-width:calc(50% - 3px)}
+}
+
+
+/* ── INSTAGRAM HANDLE ── */
+.ig-card{display:inline-flex;align-items:center;gap:13px;text-decoration:none;background:var(--bgE);border:1px solid var(--bd);border-radius:100px;padding:9px 18px 9px 11px;transition:.25s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
+.ig-card:hover{border-color:var(--bdS);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.16)}
+.ig-glyph{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;background:linear-gradient(135deg,#feda75 0%,#fa7e1e 25%,#d62976 50%,#962fbf 75%,#4f5bd5 100%);box-shadow:0 3px 10px rgba(214,41,118,.35);position:relative;overflow:hidden}
+.ig-glyph::after{content:'';position:absolute;top:-60%;left:-60%;width:50%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:rotate(25deg);transition:.6s}
+.ig-card:hover .ig-glyph::after{left:140%}
+.ig-text{display:flex;flex-direction:column;line-height:1.25}
+.ig-label{font-family:var(--fM);font-size:9px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em}
+.ig-handle{font-size:14px;font-weight:700;color:var(--t1);letter-spacing:-.01em}
+.ig-arrow{font-size:15px;color:var(--t4);transition:.2s;flex-shrink:0}
+.ig-card:hover .ig-arrow{color:var(--ac);transform:translateX(3px)}
+
 </style>
 </head>
 <body data-theme="dark">
+<div class="mb-progress" id="mbProgress" aria-hidden="true"></div>
 <script>
 (function(){
 var themeKey='goldhour.theme';
@@ -610,6 +763,7 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <a href="/" class="logo"><div class="logo-ic">&#x1f525;</div>MeetingBurn</a>
 <div class="nav-r">
 <a href="#calculator" class="nav-a">Calculator</a>
+<a href="#toolkit" class="nav-a">Toolkit</a>
 <a href="/tools/" class="nav-a">&#x1F30D; Timezone Planner</a>
 <a href="#research" class="nav-a">Research</a>
 <a href="#faq" class="nav-a">FAQ</a>
@@ -786,6 +940,105 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="step-num">03</div>
 <div class="step-t">Start the live timer</div>
 <div class="step-d">Hit start and watch the cost climb second by second, in real time. Download a report for leadership, or run the savings tool to find the biggest wins.</div>
+</div>
+</div>
+</section>
+
+
+<!-- ═══ MEETING TOOLKIT ═══ -->
+<section class="sec w" id="toolkit" aria-labelledby="toolkitHeading">
+<div class="sec-h-wrap">
+<div class="sec-ey">Free Toolkit</div>
+<h2 class="sec-h" id="toolkitHeading">The Free Meeting Toolkit</h2>
+<p class="sec-sub">Four quick tools to plan, price, and justify your meetings. No signup, runs in your browser, instant results. Pick a tool below.</p>
+</div>
+
+<div class="tk-tabs" role="tablist" aria-label="Meeting toolkit">
+<button class="tk-tab on" role="tab" aria-selected="true" data-tk="timebox" onclick="tkTab('timebox')"><span class="tk-ico">&#x23F1;</span> Agenda Timeboxer</button>
+<button class="tk-tab" role="tab" aria-selected="false" data-tk="perhead" onclick="tkTab('perhead')"><span class="tk-ico">&#x1F465;</span> Cost Per Attendee</button>
+<button class="tk-tab" role="tab" aria-selected="false" data-tk="reclaim" onclick="tkTab('reclaim')"><span class="tk-ico">&#x231B;</span> Time Reclaimed</button>
+<button class="tk-tab" role="tab" aria-selected="false" data-tk="roi" onclick="tkTab('roi')"><span class="tk-ico">&#x1F4C8;</span> Meeting ROI</button>
+</div>
+
+<!-- TOOL 1: AGENDA TIMEBOXER -->
+<div class="tk-panel on" id="tk-timebox" role="tabpanel">
+<div class="tk-card">
+<div class="tk-head">
+<div class="tk-title"><span>&#x23F1;</span> Meeting Agenda Timeboxer</div>
+<div class="tk-desc">Build a timeboxed agenda and see if it fits your meeting length. Allocate minutes per topic and keep meetings on track.</div>
+</div>
+<div class="tk-row c2">
+<div class="tk-field"><label for="tbTotal">Total meeting length (min)</label><input class="tk-input" type="number" id="tbTotal" value="30" min="5" max="480" oninput="tbCalc()"></div>
+<div class="tk-field"><label>Allocated / Remaining</label><div class="tk-input" id="tbStatus" style="display:flex;align-items:center;justify-content:space-between"><span id="tbAllocated">0 min</span><span id="tbRemaining" style="color:var(--ok)">30 left</span></div></div>
+</div>
+<div class="tk-bar" id="tbBar" aria-hidden="true"></div>
+<div class="tk-agenda" id="tbList"></div>
+<div class="tk-btn-row">
+<button class="tk-btn" onclick="tbAdd()" type="button">+ Add agenda item</button>
+<button class="tk-btn" onclick="tbReset()" type="button">Reset</button>
+<button class="tk-btn primary" onclick="tbCopy()" type="button">Copy agenda</button>
+</div>
+<div class="tk-verdict" id="tbVerdict"></div>
+<div class="tk-foot">Need a reusable format? Grab the free <a href="/meeting-agenda-template.html">meeting agenda template &rarr;</a></div>
+</div>
+</div>
+
+<!-- TOOL 2: COST PER ATTENDEE -->
+<div class="tk-panel" id="tk-perhead" role="tabpanel">
+<div class="tk-card">
+<div class="tk-head">
+<div class="tk-title"><span>&#x1F465;</span> Meeting Cost Per Attendee</div>
+<div class="tk-desc">See exactly what each person's seat costs and what the meeting totals. Quick per-head breakdown for any meeting.</div>
+</div>
+<div class="tk-row c3">
+<div class="tk-field"><label for="phPeople">Attendees</label><input class="tk-input" type="number" id="phPeople" value="6" min="1" max="200" oninput="phCalc()"></div>
+<div class="tk-field"><label for="phSalary">Avg salary ($/yr)</label><input class="tk-input" type="number" id="phSalary" value="85000" min="10000" step="1000" oninput="phCalc()"></div>
+<div class="tk-field"><label for="phMins">Duration (min)</label><input class="tk-input" type="number" id="phMins" value="30" min="5" max="480" oninput="phCalc()"></div>
+</div>
+<div class="tk-outs">
+<div class="tk-mini"><div class="tk-mini-l">Per Attendee</div><div class="tk-mini-v" id="phPer">$0</div></div>
+<div class="tk-mini"><div class="tk-mini-l">Per Minute</div><div class="tk-mini-v" id="phMin">$0</div></div>
+<div class="tk-mini"><div class="tk-mini-l">Total Cost</div><div class="tk-mini-v" id="phTotal" style="color:var(--ac)">$0</div></div>
+</div>
+<div class="tk-foot">Includes 30% benefits overhead (true cost to employer). Want the live version? <a href="#calculator">Open the full calculator &rarr;</a></div>
+</div>
+</div>
+
+<!-- TOOL 3: TIME RECLAIMED -->
+<div class="tk-panel" id="tk-reclaim" role="tabpanel">
+<div class="tk-card">
+<div class="tk-head">
+<div class="tk-title"><span>&#x231B;</span> Meeting Time Reclaimed Calculator</div>
+<div class="tk-desc">Cutting or shortening a recurring meeting? See how many work hours and days you give back to your team each year.</div>
+</div>
+<div class="tk-row c3">
+<div class="tk-field"><label for="rcPeople">Attendees</label><input class="tk-input" type="number" id="rcPeople" value="8" min="1" max="200" oninput="rcCalc()"></div>
+<div class="tk-field"><label for="rcMins">Minutes saved each time</label><input class="tk-input" type="number" id="rcMins" value="30" min="1" max="480" oninput="rcCalc()"></div>
+<div class="tk-field"><label for="rcFreq">Times per month</label><input class="tk-input" type="number" id="rcFreq" value="4" min="1" max="60" oninput="rcCalc()"></div>
+</div>
+<div class="tk-out ok"><div class="tk-out-lbl">Reclaimed Per Year</div><div class="tk-out-val" id="rcHours">0 hrs</div><div class="tk-out-sub" id="rcSub">That's 0 full work days handed back to your team.</div></div>
+<div class="tk-foot">Hours add up fast. Learn the highest-leverage cuts in <a href="/reduce-meeting-costs.html">how to reduce meeting costs &rarr;</a></div>
+</div>
+</div>
+
+<!-- TOOL 4: MEETING ROI -->
+<div class="tk-panel" id="tk-roi" role="tabpanel">
+<div class="tk-card">
+<div class="tk-head">
+<div class="tk-title"><span>&#x1F4C8;</span> Meeting ROI Calculator</div>
+<div class="tk-desc">Is the meeting worth its cost? Enter the expected value of the outcome and see whether it clears the bar.</div>
+</div>
+<div class="tk-row c2">
+<div class="tk-field"><label for="roiCost">Meeting cost ($)</label><input class="tk-input" type="number" id="roiCost" value="160" min="0" step="10" oninput="roiCalc()"></div>
+<div class="tk-field"><label for="roiValue">Expected value of outcome ($)</label><input class="tk-input" type="number" id="roiValue" value="500" min="0" step="50" oninput="roiCalc()"></div>
+</div>
+<div class="tk-outs">
+<div class="tk-mini"><div class="tk-mini-l">Net Value</div><div class="tk-mini-v" id="roiNet">$0</div></div>
+<div class="tk-mini"><div class="tk-mini-l">ROI</div><div class="tk-mini-v" id="roiPct">0%</div></div>
+<div class="tk-mini"><div class="tk-mini-l">Return Ratio</div><div class="tk-mini-v" id="roiRatio">0x</div></div>
+</div>
+<div class="tk-verdict" id="roiVerdict"></div>
+<div class="tk-foot">Not sure it needs to be live at all? <a href="/should-this-meeting-be-an-email.html">Take the 30-second quiz &rarr;</a></div>
 </div>
 </div>
 </section>
@@ -1027,6 +1280,11 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div>
 <div class="ft-bn"><div class="ft-bn-ic">&#x1f525;</div>MeetingBurn</div>
 <div class="ft-bd">A free meeting cost calculator and workplace productivity toolkit, built on published research. No signup required. Runs entirely in your browser. Your data stays private.</div>
+<a href="https://instagram.com/officialmeetingburn" target="_blank" rel="noopener noreferrer" class="ig-card" aria-label="Follow MeetingBurn on Instagram" style="margin-top:16px">
+<span class="ig-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="#fff" stroke="none"/></svg></span>
+<span class="ig-text"><span class="ig-label">Follow along</span><span class="ig-handle">@officialmeetingburn</span></span>
+<span class="ig-arrow" aria-hidden="true">&rarr;</span>
+</a>
 </div>
 <div>
 <div class="ft-ch">Tool</div>
@@ -1510,7 +1768,146 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
         });
       }
     }catch(e){console.warn('[MB] stat countup skipped',e);}
+
+    /* 5) Scroll progress bar */
+    try{
+      var bar=document.getElementById('mbProgress');
+      if(bar){
+        var tick=function(){
+          var h=document.documentElement;
+          var max=(h.scrollHeight-h.clientHeight)||1;
+          var pct=Math.min(100,Math.max(0,(h.scrollTop||window.scrollY)/max*100));
+          bar.style.width=pct+'%';
+        };
+        window.addEventListener('scroll',tick,{passive:true});
+        window.addEventListener('resize',tick,{passive:true});tick();
+      }
+    }catch(e){console.warn('[MB] progress skipped',e);}
   });
+})();
+</script>
+
+<script>
+/* ════ MEETING TOOLKIT JS — self-contained, namespaced ════ */
+(function(){
+if(typeof window==='undefined')return;
+try{
+var TK={};
+function $(id){return document.getElementById(id);}
+function money(n){if(n>=1e6)return '$'+(n/1e6).toFixed(2)+'M';if(n>=1e4)return '$'+Math.round(n).toLocaleString();return '$'+n.toFixed(n<100?2:0);}
+
+/* ── Tabs ── */
+window.tkTab=function(name){
+  var tabs=document.querySelectorAll('.tk-tab');
+  for(var i=0;i<tabs.length;i++){
+    var on=tabs[i].getAttribute('data-tk')===name;
+    tabs[i].classList.toggle('on',on);
+    tabs[i].setAttribute('aria-selected',on?'true':'false');
+  }
+  var panels=document.querySelectorAll('.tk-panel');
+  for(var j=0;j<panels.length;j++){panels[j].classList.remove('on');}
+  var p=$('tk-'+name);if(p)p.classList.add('on');
+};
+
+/* ── Tool 1: Agenda Timeboxer ── */
+TK.items=[{t:'Review & context',m:5},{t:'Main discussion',m:15},{t:'Decisions & next steps',m:8},{t:'Wrap-up',m:2}];
+window.tbAdd=function(){TK.items.push({t:'New item',m:5});tbRender();tbCalc();};
+window.tbDel=function(i){TK.items.splice(i,1);tbRender();tbCalc();};
+window.tbReset=function(){TK.items=[{t:'Review & context',m:5},{t:'Main discussion',m:15},{t:'Decisions & next steps',m:8},{t:'Wrap-up',m:2}];if($('tbTotal'))$('tbTotal').value=30;tbRender();tbCalc();};
+window.tbName=function(i,v){if(TK.items[i])TK.items[i].t=v;};
+window.tbMin=function(i,v){if(TK.items[i])TK.items[i].m=Math.max(0,parseInt(v)||0);tbCalc();};
+function tbRender(){
+  var list=$('tbList');if(!list)return;
+  while(list.firstChild)list.removeChild(list.firstChild);
+  TK.items.forEach(function(it,i){
+    var row=document.createElement('div');row.className='tk-item';
+    var name=document.createElement('input');name.type='text';name.value=it.t;name.setAttribute('aria-label','Agenda item name');
+    name.addEventListener('input',function(){tbName(i,this.value);});
+    var num=document.createElement('input');num.type='number';num.value=it.m;num.min=0;num.max=480;num.setAttribute('aria-label','Minutes');
+    num.addEventListener('input',function(){tbMin(i,this.value);});
+    var min=document.createElement('span');min.className='tk-min';min.textContent='min';
+    var del=document.createElement('button');del.className='tk-item-del';del.type='button';del.innerHTML='&#x2715;';del.setAttribute('aria-label','Remove item');
+    del.addEventListener('click',function(){tbDel(i);});
+    row.appendChild(name);row.appendChild(num);row.appendChild(min);row.appendChild(del);
+    list.appendChild(row);
+  });
+}
+window.tbCalc=function(){
+  var total=parseInt(($('tbTotal')||{}).value)||0;
+  var alloc=TK.items.reduce(function(s,it){return s+(it.m||0);},0);
+  var rem=total-alloc;
+  if($('tbAllocated'))$('tbAllocated').textContent=alloc+' min';
+  var remEl=$('tbRemaining');
+  if(remEl){remEl.textContent=(rem>=0?rem+' left':Math.abs(rem)+' over');remEl.style.color=rem>=0?'var(--ok)':'var(--no)';}
+  var bar=$('tbBar');
+  if(bar){while(bar.firstChild)bar.removeChild(bar.firstChild);
+    var cols=['var(--ac)','var(--pu)','var(--cy)','var(--ok)','var(--no)'];
+    TK.items.forEach(function(it,i){var seg=document.createElement('span');var w=total>0?Math.min(100,(it.m/total)*100):0;seg.style.width=w+'%';seg.style.background=cols[i%cols.length];seg.style.opacity='.85';bar.appendChild(seg);});
+  }
+  var v=$('tbVerdict');
+  if(v){v.className='tk-verdict show '+(rem<0?'no':(rem>total*0.25?'warn':'ok'));
+    if(rem<0)v.innerHTML='<b>Over by '+Math.abs(rem)+' min.</b> Trim a topic or extend the meeting to fit your agenda.';
+    else if(rem>total*0.25)v.innerHTML='<b>'+rem+' min unallocated.</b> You have room \u2014 or you could shorten the meeting and hand the time back.';
+    else v.innerHTML='<b>Nicely timeboxed.</b> Your agenda fits with '+rem+' min of buffer.';
+  }
+};
+window.tbCopy=function(){
+  var total=parseInt(($('tbTotal')||{}).value)||0;
+  var lines=['Meeting Agenda ('+total+' min)','------------------------'];
+  TK.items.forEach(function(it){lines.push('['+it.m+' min] '+it.t);});
+  lines.push('------------------------','via meetingburn.in');
+  var txt=lines.join('\n');
+  if(navigator.clipboard)navigator.clipboard.writeText(txt).then(function(){if(window.toast)window.toast('Agenda copied');});
+};
+
+/* ── Tool 2: Cost Per Attendee ── */
+window.phCalc=function(){
+  var ppl=parseFloat(($('phPeople')||{}).value)||0;
+  var sal=parseFloat(($('phSalary')||{}).value)||0;
+  var mins=parseFloat(($('phMins')||{}).value)||0;
+  var perMinOne=(sal*1.30)/2080/60;
+  var perAttendee=perMinOne*mins;
+  var perMinAll=perMinOne*ppl;
+  var total=perAttendee*ppl;
+  if($('phPer'))$('phPer').textContent=money(perAttendee);
+  if($('phMin'))$('phMin').textContent=money(perMinAll);
+  if($('phTotal'))$('phTotal').textContent=money(total);
+};
+
+/* ── Tool 3: Time Reclaimed ── */
+window.rcCalc=function(){
+  var ppl=parseFloat(($('rcPeople')||{}).value)||0;
+  var mins=parseFloat(($('rcMins')||{}).value)||0;
+  var freq=parseFloat(($('rcFreq')||{}).value)||0;
+  var hrsYr=(ppl*mins*freq*12)/60;
+  var days=hrsYr/8;
+  if($('rcHours'))$('rcHours').textContent=Math.round(hrsYr).toLocaleString()+' hrs';
+  if($('rcSub'))$('rcSub').textContent="That's "+Math.round(days).toLocaleString()+" full work days handed back to your team.";
+};
+
+/* ── Tool 4: Meeting ROI ── */
+window.roiCalc=function(){
+  var cost=parseFloat(($('roiCost')||{}).value)||0;
+  var val=parseFloat(($('roiValue')||{}).value)||0;
+  var net=val-cost;
+  var pct=cost>0?(net/cost)*100:0;
+  var ratio=cost>0?val/cost:0;
+  if($('roiNet'))$('roiNet').textContent=money(net);
+  if($('roiPct'))$('roiPct').textContent=Math.round(pct)+'%';
+  if($('roiRatio'))$('roiRatio').textContent=ratio.toFixed(1)+'x';
+  if($('roiNet'))$('roiNet').style.color=net>=0?'var(--ok)':'var(--no)';
+  var v=$('roiVerdict');
+  if(v){v.className='tk-verdict show '+(ratio>=2?'ok':(ratio>=1?'warn':'no'));
+    if(ratio>=2)v.innerHTML='<b>Worth it.</b> The expected payoff is '+ratio.toFixed(1)+'x the cost. This meeting earns its place.';
+    else if(ratio>=1)v.innerHTML='<b>Marginal.</b> It just clears cost. Tighten the guest list or shorten it to improve the return.';
+    else v.innerHTML='<b>Hard to justify.</b> The cost exceeds the expected value. Consider an async update instead.';
+  }
+};
+
+/* init */
+function tkInit(){tbRender();tbCalc();phCalc();rcCalc();roiCalc();}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tkInit);else tkInit();
+}catch(e){console.error('[MeetingBurn Toolkit] error:',e);}
 })();
 </script>
 
