@@ -765,10 +765,109 @@ input[type="range"]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 2px var
 .fz-stat .l{font-size:10px;color:var(--t4);font-weight:600;margin-top:3px}
 .fz-dial.run .fz-prog{filter:drop-shadow(0 0 6px var(--acG))}
 
+
+/* ── FIRST-VISIT CAT WELCOME BANNER ── */
+.cw-ov{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(8,10,16,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity .4s ease}
+.cw-ov.show{opacity:1}
+.cw-ov.hide{opacity:0;pointer-events:none}
+.cw-card{position:relative;background:var(--bgE);border:1px solid var(--bdH);border-radius:var(--rXL);padding:34px 30px 30px;max-width:380px;width:100%;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.45);transform:translateY(24px) scale(.96);opacity:0;transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .5s}
+.cw-ov.show .cw-card{transform:none;opacity:1}
+.cw-card::before{content:'';position:absolute;inset:0;border-radius:var(--rXL);padding:1px;background:linear-gradient(135deg,var(--acG),transparent 50%,var(--puD));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.5}
+.cw-close{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;border:1px solid var(--bd);background:var(--bgC);color:var(--t3);font-size:15px;cursor:pointer;display:grid;place-items:center;transition:.18s;z-index:5;line-height:1}
+.cw-close:hover{color:var(--t1);border-color:var(--bdS);transform:rotate(90deg)}
+.cw-emoji{font-size:34px;margin-bottom:8px;display:block}
+.cw-h{font-family:var(--fH);font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.cw-p{font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:22px}
+.cw-ig{display:inline-flex;align-items:center;gap:11px;text-decoration:none;background:linear-gradient(135deg,#feda75,#fa7e1e 25%,#d62976 55%,#962fbf 80%,#4f5bd5);padding:13px 22px;border-radius:100px;font-weight:700;font-size:15px;color:#fff;box-shadow:0 8px 22px rgba(214,41,118,.4);transition:.22s;position:relative;z-index:3}
+.cw-ig:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(214,41,118,.5)}
+.cw-ig svg{flex-shrink:0}
+.cw-skip{display:block;margin:16px auto 0;background:none;border:none;color:var(--t4);font-size:12px;cursor:pointer;font-family:var(--fB);font-weight:500;transition:.15s}
+.cw-skip:hover{color:var(--t2)}
+
+/* The cat */
+.cw-cat{position:absolute;right:-6px;bottom:62px;width:96px;height:110px;pointer-events:none;z-index:2;opacity:0;transform:translateX(40px)}
+.cw-ov.show .cw-cat{animation:catPeek .9s cubic-bezier(.16,1,.3,1) .5s forwards}
+@keyframes catPeek{to{opacity:1;transform:translateX(0)}}
+.cw-cat .ear,.cw-cat .head,.cw-cat .body{transform-origin:center}
+.cw-cat .paw{transform-origin:24px 8px;animation:none}
+.cw-ov.show .cw-cat .paw{animation:pawPoint 1.4s ease-in-out 1.4s infinite}
+@keyframes pawPoint{0%,100%{transform:rotate(0)}25%{transform:rotate(-16deg)}50%{transform:rotate(-6deg)}}
+.cw-ov.show .cw-cat .tail{animation:tailWag 2.2s ease-in-out 1.4s infinite;transform-origin:8px 70px}
+@keyframes tailWag{0%,100%{transform:rotate(0)}50%{transform:rotate(-12deg)}}
+.cw-cat .blink{animation:catBlink 4s step-end 2s infinite}
+@keyframes catBlink{0%,94%,100%{opacity:1}96%,98%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.cw-ov,.cw-card,.cw-cat{transition:none!important;animation:none!important;opacity:1!important;transform:none!important}.cw-cat .paw,.cw-cat .tail,.cw-cat .blink{animation:none!important}}
+@media(max-width:420px){.cw-cat{width:78px;height:90px;bottom:58px}.cw-card{padding:30px 22px 26px}}
+
 </style>
 </head>
 <body data-theme="dark">
 <div class="mb-progress" id="mbProgress" aria-hidden="true"></div>
+<!-- ═══ FIRST-VISIT CAT WELCOME BANNER ═══ -->
+<div class="cw-ov" id="cwOverlay" role="dialog" aria-modal="true" aria-labelledby="cwHeading" style="display:none">
+<div class="cw-card">
+<button class="cw-close" onclick="cwClose()" aria-label="Close welcome" type="button">&#x2715;</button>
+<span class="cw-emoji" aria-hidden="true">&#x1F44B;</span>
+<h2 class="cw-h" id="cwHeading">Pssst&hellip; over here!</h2>
+<p class="cw-p">Our little mascot wants you to follow along. Get fresh meeting tools, tips, and the occasional cat cameo on Instagram.</p>
+<a class="cw-ig" href="https://instagram.com/officialmeetingburn" target="_blank" rel="noopener noreferrer" onclick="cwFollow()">
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="#fff" stroke="none"/></svg>
+Follow @officialmeetingburn
+</a>
+<button class="cw-skip" onclick="cwClose()" type="button">Maybe later</button>
+
+<!-- The cat, peeking from behind the card -->
+<svg class="cw-cat" viewBox="0 0 96 110" aria-hidden="true">
+<g class="tail"><path d="M10 96 Q-6 80 6 64 Q12 56 20 60" fill="none" stroke="#e8862b" stroke-width="9" stroke-linecap="round"/></g>
+<g class="body"><ellipse cx="50" cy="92" rx="30" ry="22" fill="#f59731"/></g>
+<g class="head">
+<path class="ear" d="M30 40 L24 22 L42 34 Z" fill="#f59731"/>
+<path class="ear" d="M70 40 L76 22 L58 34 Z" fill="#f59731"/>
+<path d="M31 39 L27 28 L38 35 Z" fill="#ffd9a8"/>
+<path d="M69 39 L73 28 L62 35 Z" fill="#ffd9a8"/>
+<ellipse cx="50" cy="52" rx="26" ry="23" fill="#f7a945"/>
+<ellipse cx="50" cy="58" rx="17" ry="13" fill="#fff2dd"/>
+<g class="blink"><ellipse cx="40" cy="48" rx="4.2" ry="5" fill="#2a2a2a"/><ellipse cx="60" cy="48" rx="4.2" ry="5" fill="#2a2a2a"/><circle cx="41.5" cy="46" r="1.3" fill="#fff"/><circle cx="61.5" cy="46" r="1.3" fill="#fff"/></g>
+<path d="M47 57 Q50 60 53 57" fill="none" stroke="#c8702a" stroke-width="2" stroke-linecap="round"/>
+<path d="M50 57 L50 60" stroke="#c8702a" stroke-width="1.6" stroke-linecap="round"/>
+<g stroke="#d99a5b" stroke-width="1.2" stroke-linecap="round"><line x1="34" y1="55" x2="18" y2="52"/><line x1="34" y1="58" x2="18" y2="60"/><line x1="66" y1="55" x2="82" y2="52"/><line x1="66" y1="58" x2="82" y2="60"/></g>
+</g>
+<!-- pointing paw -->
+<g class="paw"><ellipse cx="20" cy="74" rx="9" ry="11" fill="#f7a945" transform="rotate(-30 20 74)"/><circle cx="14" cy="66" r="3.5" fill="#ffd9a8"/></g>
+</svg>
+</div>
+</div>
+<script>
+/* ── First-visit cat banner ── */
+(function(){
+if(typeof window==='undefined')return;
+try{
+var KEY='mb.welcome.v1';
+var seen=false;
+try{seen=localStorage.getItem(KEY)==='1';}catch(e){}
+window.cwClose=function(){
+  var ov=document.getElementById('cwOverlay');if(!ov)return;
+  ov.classList.remove('show');ov.classList.add('hide');
+  try{localStorage.setItem(KEY,'1');}catch(e){}
+  setTimeout(function(){ov.style.display='none';},420);
+  document.removeEventListener('keydown',cwEsc);
+};
+window.cwFollow=function(){try{localStorage.setItem(KEY,'1');}catch(e){}};
+function cwEsc(e){if(e.key==='Escape')cwClose();}
+function cwOpen(){
+  var ov=document.getElementById('cwOverlay');if(!ov)return;
+  ov.style.display='flex';
+  requestAnimationFrame(function(){requestAnimationFrame(function(){ov.classList.add('show');});});
+  document.addEventListener('keydown',cwEsc);
+}
+if(!seen){
+  function start(){setTimeout(cwOpen,900);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+}
+}catch(e){console.warn('[MB] welcome banner skipped',e);}
+})();
+</script>
+
 <script>
 (function(){
 var themeKey='goldhour.theme';
