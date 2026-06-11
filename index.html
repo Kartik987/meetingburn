@@ -234,6 +234,21 @@ input[type="range"]::-moz-range-thumb{width:20px;height:20px;background:var(--ac
 .lt-share-t{font-size:12px;color:var(--t2);font-weight:500}
 .lt-share-t b{color:var(--pu)}
 
+/* ═══════════ MEETING RECEIPT (share card) ═══════════ */
+.rcpt{display:none;margin-top:16px;background:var(--bgC);border:1px dashed var(--bdS);border-radius:var(--rL);padding:24px 22px;font-family:var(--fM);position:relative;overflow:hidden}
+.rcpt.show{display:block;animation:rcptIn .45s cubic-bezier(.16,1,.3,1)}
+@keyframes rcptIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.rcpt::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradT);opacity:.7}
+.rcpt-h{text-align:center;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t1);margin-bottom:2px}
+.rcpt-sub{text-align:center;font-size:10px;color:var(--t4);margin-bottom:16px}
+.rcpt-line{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--t2);padding:6px 0;border-bottom:1px dotted var(--bdH)}
+.rcpt-line b{color:var(--t1);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rcpt-total{display:flex;justify-content:space-between;gap:12px;font-size:16px;font-weight:800;color:var(--ac);padding:12px 0 4px;font-variant-numeric:tabular-nums}
+.rcpt-roast{text-align:center;font-size:11px;color:var(--t3);margin-top:12px;line-height:1.6;font-style:italic;font-family:var(--fS)}
+.rcpt-btns{display:flex;gap:8px;margin-top:14px}
+.rcpt-btns .btn-s{flex:1}
+@media(prefers-reduced-motion:reduce){.rcpt.show{animation:none}}
+
 /* ═══════════ QUIZ CALLOUT ═══════════ */
 .quiz-link{text-align:center;margin:14px 0 0;padding:14px;background:var(--bgC);border:1px dashed var(--bdH);border-radius:var(--r)}
 .quiz-link a{font-size:13px;color:var(--ac);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px}
@@ -1025,6 +1040,21 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="lt-share-t">You've now tracked <b id="ltShareAmount">$0.00</b> in meeting costs. Want to share that wake-up call?</div>
 <button class="btn-s" type="button" onclick="shareLifetime()">Share your total</button>
 </div>
+
+<!-- MEETING RECEIPT: appears when the timer is stopped -->
+<div class="rcpt" id="rcpt" aria-live="polite">
+<div class="rcpt-h">&#x1f9fe; Meeting Receipt</div>
+<div class="rcpt-sub" id="rcptDate"></div>
+<div class="rcpt-line"><span id="rcptPplLine">Salary time (6 people)</span><b id="rcptBase">$0.00</b></div>
+<div class="rcpt-line"><span>Refocus tax (~23 min)</span><b id="rcptFocus">$0.00</b></div>
+<div class="rcpt-line"><span>Time on the clock</span><b id="rcptDur">00:00:00</b></div>
+<div class="rcpt-total"><span>TOTAL BURNED</span><span id="rcptTotal">$0.00</span></div>
+<div class="rcpt-roast" id="rcptRoast">Thank you for meeting. Please don't come again.</div>
+<div class="rcpt-btns">
+<button class="btn-s" type="button" onclick="shareReceipt()">Share this receipt</button>
+<button class="btn-s" type="button" onclick="hideReceipt()">Dismiss</button>
+</div>
+</div>
 </section>
 
 <!-- EMAIL -->
@@ -1558,8 +1588,8 @@ function fK(n){if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).to
 
 function toggleTimer(){
 const b=document.getElementById('mainB');
-if(!S.on){S.on=true;b.innerHTML='&#x25A0;&nbsp; Stop Tracking';b.className='btn-main stop';document.getElementById('burnP').classList.add('live');document.getElementById('burnLbl').textContent='Live Meeting Cost';document.getElementById('resB').classList.remove('hide');document.getElementById('snpB').classList.remove('hide');S.tmr=setInterval(tick,1000)}
-else{S.on=false;b.innerHTML='&#x25B6;&nbsp; Resume Tracking';b.className='btn-main paused';clearInterval(S.tmr);saveLt()}
+if(!S.on){S.on=true;b.innerHTML='&#x25A0;&nbsp; Stop Tracking';b.className='btn-main stop';document.getElementById('burnP').classList.add('live');document.getElementById('burnLbl').textContent='Live Meeting Cost';document.getElementById('resB').classList.remove('hide');document.getElementById('snpB').classList.remove('hide');hideReceipt();S.tmr=setInterval(tick,1000)}
+else{S.on=false;b.innerHTML='&#x25B6;&nbsp; Resume Tracking';b.className='btn-main paused';clearInterval(S.tmr);saveLt();showReceipt()}
 }
 
 function tick(){
@@ -1587,6 +1617,46 @@ function togD(el){const cb=el.querySelector('.dc');cb.checked=!cb.checked;el.cla
 
 function saveLt(){try{let v=parseFloat(localStorage.getItem('mb_'+S.cur)||'0');v+=S.rps*S.sec;localStorage.setItem('mb_'+S.cur,v.toString());updLt()}catch(e){}}
 
+/* ── Meeting Receipt: shown when the timer is stopped ── */
+const ROASTS=[
+"Thank you for meeting. Please don't come again.",
+"This receipt is non-refundable. So was everyone's time.",
+"Tip not included. Neither was an agenda, probably.",
+"Customer satisfaction rate for meetings: 11%. You do the math.",
+"Next time, try the house special: an email.",
+"Loyalty program: attend 10 meetings, lose 10 afternoons."
+];
+function showReceipt(){
+try{
+if(S.sec<5)return;
+const sym=S.sym,base=S.rps*S.sec;
+const focusOn=document.getElementById('chkF').checked,fc=focusOn?S.rps*1395:0;
+const ppl=document.getElementById('fP').textContent;
+document.getElementById('rcptDate').textContent=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})+' \u00b7 meetingburn.in';
+document.getElementById('rcptPplLine').textContent='Salary time ('+ppl+' people)';
+document.getElementById('rcptBase').textContent=sym+base.toFixed(2);
+document.getElementById('rcptFocus').textContent=focusOn?sym+fc.toFixed(2):'waived';
+document.getElementById('rcptDur').textContent=document.getElementById('timerN').textContent;
+document.getElementById('rcptTotal').textContent=sym+(base+fc).toFixed(2);
+document.getElementById('rcptRoast').textContent=ROASTS[Math.floor(Math.random()*ROASTS.length)];
+document.getElementById('rcpt').classList.add('show');
+}catch(e){}
+}
+function hideReceipt(){var r=document.getElementById('rcpt');if(r)r.classList.remove('show')}
+function shareReceipt(){
+try{
+var line='------------------------';
+var t='\uD83E\uDDFE MEETING RECEIPT\n'+line+'\n'
++document.getElementById('rcptPplLine').textContent+': '+document.getElementById('rcptBase').textContent+'\n'
++'Refocus tax (~23 min): '+document.getElementById('rcptFocus').textContent+'\n'
++'Time on the clock: '+document.getElementById('rcptDur').textContent+'\n'
++line+'\nTOTAL BURNED: '+document.getElementById('rcptTotal').textContent+'\n'+line+'\n'
++document.getElementById('rcptRoast').textContent+'\nGet your own receipt: '+shareUrl();
+if(navigator.share)navigator.share({title:'My Meeting Receipt | MeetingBurn',text:t});
+else navigator.clipboard.writeText(t).then(function(){toast('Receipt copied')});
+}catch(e){}
+}
+
 function resetAll(){
 clearInterval(S.tmr);S.sec=0;S.on=false;
 document.getElementById('mainB').innerHTML='&#x25B6;&nbsp; Start the Live Timer';document.getElementById('mainB').className='btn-main';
@@ -1595,7 +1665,7 @@ document.getElementById('costN').textContent=S.sym+'0.00';document.getElementByI
 document.getElementById('timerN').textContent='00:00:00';document.getElementById('tickMsg').textContent='Move the sliders below to estimate what your meeting costs.';
 document.getElementById('resB').classList.add('hide');document.getElementById('snpB').classList.add('hide');
 document.getElementById('healthV').textContent='Not started yet';document.getElementById('healthV').style.color='var(--t4)';document.getElementById('healthH').textContent='Start tracking to see your score';
-document.querySelectorAll('.dg-i').forEach(function(el){el.classList.remove('on');el.querySelector('.dc').checked=false});recalc()
+document.querySelectorAll('.dg-i').forEach(function(el){el.classList.remove('on');el.querySelector('.dc').checked=false});hideReceipt();recalc()
 }
 
 function copySnap(){const t='Meeting Cost Snapshot\n'+('_').repeat(28)+'\nDuration: '+document.getElementById('timerN').textContent+'\nCost: '+document.getElementById('costN').textContent+'\nHealth: '+document.getElementById('healthV').textContent+'\nRefocus cost: '+document.getElementById('focusV').textContent+'\nAnnual: '+document.getElementById('pY').textContent+'\nShare: '+shareUrl()+'\n'+('_').repeat(28)+'\nvia meetingburn.in';navigator.clipboard.writeText(t).then(function(){toast('Snapshot copied')})}
@@ -1622,7 +1692,7 @@ function togF(el){const w=el.classList.contains('open');document.querySelectorAl
 function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},3000)}
 function updLt(){try{const v=parseFloat(localStorage.getItem('mb_'+S.cur)||'0');document.getElementById('ltL').textContent='Total Cost You\u2019ve Tracked ('+S.cur+')';document.getElementById('ltV').textContent=S.sym+v.toFixed(2);document.getElementById('ltShareAmount').textContent=S.sym+v.toFixed(2);document.getElementById('ltShare').classList.toggle('show',v>=1000)}catch(e){}}
 
-window.setCur=setCur;window.setMode=setMode;window.adj=adj;window.recalc=recalc;window.toggleTimer=toggleTimer;window.resetAll=resetAll;window.copySnap=copySnap;window.shareTool=shareTool;window.dlReport=dlReport;window.handleSub=handleSub;window.togD=togD;window.togF=togF;window.toast=toast;window.copyEmbed=copyEmbed;window.shareLifetime=shareLifetime;
+window.setCur=setCur;window.setMode=setMode;window.adj=adj;window.recalc=recalc;window.toggleTimer=toggleTimer;window.resetAll=resetAll;window.copySnap=copySnap;window.shareTool=shareTool;window.dlReport=dlReport;window.handleSub=handleSub;window.togD=togD;window.togF=togF;window.toast=toast;window.copyEmbed=copyEmbed;window.shareLifetime=shareLifetime;window.shareReceipt=shareReceipt;window.hideReceipt=hideReceipt;
 }catch(e){console.error('MeetingBurn JS Error:',e)}
 </script>
 
@@ -1668,7 +1738,9 @@ window.dismissReturnBanner=function(){
 };
 }catch(e){}
 })();
+</script>
 
+<script>
 /* ── Daily Global Meeting Challenge ── */
 (function(){
 try{
