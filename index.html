@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meeting Cost Calculator | Free Live Tracker | See What Meetings Cost | MeetingBurn</title>
-<meta name="description" content="Free meeting cost calculator that shows your salary burn rate per second in real time. Calculate how much meetings cost per hour, per employee, per year. Used by managers and team leads to calculate meeting costs. Based on Harvard, Atlassian, and UC Irvine research. No signup.">
+<title>Meeting Cost Calculator — Calculate the True Cost of Any Meeting | MeetingBurn</title>
+<meta name="description" content="Calculate the real cost of any meeting using attendee salaries, duration, recurring frequency, and optional employer overhead. Free live meeting cost calculator — no signup required.">
 <meta name="keywords" content="meeting cost calculator, meeting cost, meeting cost per hour, meeting cost per employee, how much do meetings cost, calculate meeting cost, meeting salary burn rate, meeting ROI calculator, unproductive meeting cost, meeting time tracker, cost of unnecessary meetings, reduce meeting costs, meeting waste calculator, timezone meeting planner, should this meeting be an email">
 <meta name="author" content="MeetingBurn Team">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -17,8 +17,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-<meta property="og:title" content="Meeting Cost Calculator | See What Your Meetings Really Cost">
-<meta property="og:description" content="Free tool to calculate meeting costs in real time based on attendee salaries. Track burn rate, focus recovery tax, and annual waste.">
+<meta property="og:title" content="Free Meeting Cost Calculator — See What Your Meetings Really Cost">
+<meta property="og:description" content="Enter attendee salaries, duration, and recurring frequency to calculate the true cost of any meeting. Includes employer overhead, refocus time, and annual projections. Free, no signup.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://meetingburn.in">
 <meta property="og:site_name" content="MeetingBurn">
@@ -28,8 +28,8 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="MeetingBurn meeting cost calculator showing live cost tracking">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Meeting Cost Calculator | Free Live Tracker">
-<meta name="twitter:description" content="See exactly how much your meetings cost per second. Free tool with salary based calculations.">
+<meta name="twitter:title" content="Free Meeting Cost Calculator | MeetingBurn">
+<meta name="twitter:description" content="Calculate the real cost of any meeting from attendee salaries, duration, and frequency. Free tool with no signup — see the annual cost instantly.">
 <meta name="twitter:image" content="https://meetingburn.in/og-image.png">
 
 <!-- Analytics: Add your Plausible or Umami script here -->
@@ -853,7 +853,7 @@ Follow @officialmeetingburn
 </div>
 </div>
 <script>
-/* ── First-visit cat banner ── */
+/* ── First-visit cat banner: shown after first calculation, not on page load ── */
 (function(){
 if(typeof window==='undefined')return;
 try{
@@ -868,17 +868,15 @@ window.cwClose=function(){
   document.removeEventListener('keydown',cwEsc);
 };
 window.cwFollow=function(){try{localStorage.setItem(KEY,'1');}catch(e){}};
-function cwEsc(e){if(e.key==='Escape')cwClose();}
-function cwOpen(){
+window.cwShowOnce=function(){
+  if(seen)return;
   var ov=document.getElementById('cwOverlay');if(!ov)return;
+  seen=true;
   ov.style.display='flex';
   requestAnimationFrame(function(){requestAnimationFrame(function(){ov.classList.add('show');});});
   document.addEventListener('keydown',cwEsc);
-}
-if(!seen){
-  function start(){setTimeout(cwOpen,900);}
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
-}
+};
+function cwEsc(e){if(e.key==='Escape')cwClose();}
 }catch(e){console.warn('[MB] welcome banner skipped',e);}
 })();
 </script>
@@ -913,9 +911,9 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 
 <!-- HERO -->
 <header class="hero w" role="banner">
-<h1>How Much Do Your Meetings<br><span class="hl">Actually Cost?</span></h1>
-<p class="hero-p">Add your team and watch the real cost of a meeting add up live, second by second. Free meeting cost calculator. No signup.</p>
-<p class="hero-sub">See what meetings cost per hour, per week, and per year, based on attendee salaries and published research from Harvard, UC Irvine, and Atlassian.</p>
+<h1>Free Meeting Cost Calculator<br><span class="hl">See What Meetings Actually Cost</span></h1>
+<p class="hero-p">Add your team and watch the real cost of a meeting add up live, second by second. No signup required.</p>
+<p class="hero-sub">Calculate meeting cost per hour, per week, and per year based on attendee salaries, optional employer overhead, and recurring frequency.</p>
 <div class="hero-cta">
 <a href="#calculator" class="hb-p">Calculate my meeting cost &nbsp;&rarr;</a>
 <a href="#how" class="hb-s">How it works</a>
@@ -1051,8 +1049,11 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="rcpt-total"><span>TOTAL BURNED</span><span id="rcptTotal">$0.00</span></div>
 <div class="rcpt-roast" id="rcptRoast">Thank you for meeting. Please don't come again.</div>
 <div class="rcpt-btns">
-<button class="btn-s" type="button" onclick="shareReceipt()">Share this receipt</button>
+<button class="btn-s" type="button" onclick="shareReceipt()" aria-label="Share this meeting receipt">Share this receipt</button>
 <button class="btn-s" type="button" onclick="hideReceipt()">Dismiss</button>
+</div>
+<div style="margin-top:12px;font-size:12px;color:var(--t3);text-align:center">
+  Is this meeting worth its cost? &nbsp;<a href="#toolkit" style="color:var(--ac);text-decoration:none;font-weight:600">Audit it with the free Meeting Toolkit &rarr;</a>
 </div>
 </div>
 </section>
@@ -1381,7 +1382,7 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="sec-h-wrap">
 <div class="sec-ey">Transparent Methodology</div>
 <h2 class="sec-h" id="methHeading">How We Calculate Meeting Cost</h2>
-<p class="sec-sub">Every number in this tool comes from your inputs and standard pay formulas. No hidden variables, no inflated figures. Here's the exact process, step by step.</p>
+<p class="sec-sub">Results are estimates based on attendee compensation, meeting duration, optional employer overhead, and optional post-meeting refocus time. Every number comes from your inputs and standard pay formulas — no hidden variables. <strong>Last reviewed: August 17, 2026.</strong></p>
 </div>
 <div class="meth">
 <h3 class="meth-t">Calculation Method</h3>
@@ -1589,7 +1590,7 @@ function fK(n){if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).to
 function toggleTimer(){
 const b=document.getElementById('mainB');
 if(!S.on){S.on=true;b.innerHTML='&#x25A0;&nbsp; Stop Tracking';b.className='btn-main stop';document.getElementById('burnP').classList.add('live');document.getElementById('burnLbl').textContent='Live Meeting Cost';document.getElementById('resB').classList.remove('hide');document.getElementById('snpB').classList.remove('hide');hideReceipt();S.tmr=setInterval(tick,1000)}
-else{S.on=false;b.innerHTML='&#x25B6;&nbsp; Resume Tracking';b.className='btn-main paused';clearInterval(S.tmr);saveLt();showReceipt()}
+else{S.on=false;b.innerHTML='&#x25B6;&nbsp; Resume Tracking';b.className='btn-main paused';clearInterval(S.tmr);saveLt();showReceipt();if(typeof cwShowOnce==='function')cwShowOnce();}
 }
 
 function tick(){
