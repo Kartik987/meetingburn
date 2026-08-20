@@ -813,6 +813,54 @@ input[type="range"]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 2px var
 @media(prefers-reduced-motion:reduce){.cw-ov,.cw-card,.cw-cat{transition:none!important;animation:none!important;opacity:1!important;transform:none!important}.cw-cat .paw,.cw-cat .tail,.cw-cat .blink{animation:none!important}}
 @media(max-width:420px){.cw-cat{width:78px;height:90px;bottom:58px}.cw-card{padding:30px 22px 26px}}
 
+/* ═══════════ COMPANY PRESETS ═══════════ */
+.presets-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0 0}
+.presets-lbl{font-family:var(--fM);font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+.preset-chip{font-size:12px;font-weight:600;font-family:var(--fB);padding:6px 14px;border-radius:100px;border:1px solid var(--bd);background:var(--bgC);color:var(--t3);cursor:pointer;transition:.2s;white-space:nowrap}
+.preset-chip:hover{border-color:var(--bdS);color:var(--t1);background:var(--bgH)}
+.preset-chip.on{border-color:var(--acG);background:var(--acD);color:var(--ac)}
+
+/* ═══════════ PURPOSE SELECTOR ═══════════ */
+.purpose-row{margin-bottom:18px;background:var(--bgC);border:1px solid var(--bd);border-radius:var(--rL);padding:14px 18px}
+.purpose-row-inner{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.purpose-lbl{font-family:var(--fM);font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+.purpose-sel{background:var(--bgE);border:1px solid var(--bdH);color:var(--t1);border-radius:8px;padding:7px 12px;font-size:13px;font-family:var(--fB);font-weight:500;cursor:pointer;outline:none;transition:.2s;flex:1;min-width:180px}
+.purpose-sel:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--acD)}
+.purpose-tip{font-size:12px;color:var(--t3);font-style:italic;margin-top:6px;line-height:1.5;display:none}
+.purpose-tip.show{display:block}
+
+/* ═══════════ EXTRA OPTIONS IN PANELS ═══════════ */
+.pan-extra{margin-top:16px;padding-top:14px;border-top:1px solid var(--bd)}
+.pan-num-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.pan-num-row label{font-family:var(--fM);font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;flex:1}
+.pan-num{width:60px;background:var(--bgE);border:1px solid var(--bdH);color:var(--t1);border-radius:8px;padding:5px 8px;font-family:var(--fM);font-size:13px;font-weight:600;text-align:center;outline:none;transition:.2s}
+.pan-num:focus{border-color:var(--ac);box-shadow:0 0 0 2px var(--acD)}
+.pan-num-hint{font-size:10px;color:var(--t4);font-weight:400;margin-top:1px}
+
+/* ═══════════ CUSTOM ROLE ═══════════ */
+.custom-role-wrap{margin-top:9px}
+.custom-role-name{width:100%;background:var(--bg);border:1px solid var(--bdH);color:var(--t1);border-radius:7px;padding:6px 10px;font-size:12px;font-family:var(--fB);font-weight:600;margin-bottom:6px;outline:none;transition:.2s}
+.custom-role-name:focus{border-color:var(--ac)}
+.custom-role-name::placeholder{color:var(--t4);font-weight:400}
+
+/* ═══════════ BURDEN BREAKDOWN ═══════════ */
+.burden{background:var(--bgC);border:1px solid var(--bd);border-radius:var(--rL);padding:18px;margin-bottom:22px}
+.burden-h{font-family:var(--fM);font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.burden-g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.burden-i{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px}
+.burden-l{font-family:var(--fM);font-size:9px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.burden-v{font-family:var(--fM);font-size:15px;font-weight:700;color:var(--t1);font-variant-numeric:tabular-nums}
+.burden-total{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;margin-top:10px;border-radius:var(--r);background:var(--acD);border:1px solid var(--acG)}
+.burden-total-l{font-family:var(--fM);font-size:10px;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:.08em}
+.burden-total-v{font-family:var(--fM);font-size:17px;font-weight:800;color:var(--ac);font-variant-numeric:tabular-nums}
+@media(max-width:600px){.burden-g{grid-template-columns:1fr 1fr}}
+
+/* ═══════════ HEALTH TIPS ═══════════ */
+.health-tips{margin-top:8px;padding:10px 14px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bd);display:none}
+.health-tips.show{display:block}
+.health-tip-item{font-size:12px;color:var(--t2);line-height:1.6;padding:3px 0;display:flex;align-items:flex-start;gap:8px}
+.health-tip-item::before{content:'→';color:var(--ac);font-family:var(--fM);font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px}
+
 </style>
 </head>
 <body data-theme="dark">
@@ -948,8 +996,32 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="pg" role="tablist" aria-label="Currency"><button class="pb on" data-c="USD" onclick="setCur('USD','$')" aria-label="USD">USD $</button><button class="pb" data-c="INR" onclick="setCur('INR','&#8377;')" aria-label="INR">INR &#8377;</button><button class="pb" data-c="EUR" onclick="setCur('EUR','&#8364;')" aria-label="EUR">EUR &#8364;</button><button class="pb" data-c="GBP" onclick="setCur('GBP','&#163;')" aria-label="GBP">GBP &#163;</button></div>
 <div class="pg" role="tablist" aria-label="Mode"><button class="pb on" id="tLite" onclick="setMode('lite')">Quick Calc</button><button class="pb" id="tPro" onclick="setMode('pro')">By Role</button></div>
 </div>
+<div class="presets-row" role="group" aria-label="Company profile presets">
+<span class="presets-lbl">Team profile:</span>
+<button class="preset-chip" id="presetStartup" onclick="applyPreset('startup')" type="button">🚀 Startup</button>
+<button class="preset-chip" id="presetAgency" onclick="applyPreset('agency')" type="button">🎨 Agency</button>
+<button class="preset-chip on" id="presetEnterprise" onclick="applyPreset('enterprise')" type="button">🏢 Enterprise</button>
+<button class="preset-chip" id="presetCustom" onclick="applyPreset('custom')" type="button">⚙️ Custom</button>
+</div>
 
 <section class="card">
+
+<div class="purpose-row">
+<div class="purpose-row-inner">
+<span class="purpose-lbl">Meeting goal</span>
+<select class="purpose-sel" id="purposeSel" onchange="onPurposeChange()" aria-label="Meeting goal or purpose">
+<option value="">— Select purpose (optional)</option>
+<option value="decision">✅ Decision-making</option>
+<option value="status">📊 Status update</option>
+<option value="brainstorm">💡 Brainstorming</option>
+<option value="planning">📅 Planning</option>
+<option value="1on1">🤝 1:1 check-in</option>
+<option value="interview">🎤 Interview</option>
+<option value="other">📋 Other</option>
+</select>
+</div>
+<div class="purpose-tip" id="purposeTip" aria-live="polite"></div>
+</div>
 
 <div class="mon">
 <div class="burn" id="burnP">
@@ -971,6 +1043,10 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <input type="range" id="rA" min="2" max="40" value="6" oninput="recalc()" aria-label="Number of meeting attendees">
 <div class="pan-h" style="margin-top:16px"><span class="pan-t">Avg Annual Salary</span><span class="pan-v" id="dS">$85,000</span></div>
 <input type="range" id="rS" min="25000" max="400000" step="5000" value="85000" oninput="recalc()" aria-label="Average annual salary">
+<div class="pan-extra">
+<div class="pan-num-row"><label for="optAttendeesN">Optional/external attendees <span title="People whose cost you want shown separately, e.g. clients or optional invitees" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="optAttendeesN" value="0" min="0" max="30" oninput="recalc()" aria-label="Number of optional or external attendees"></div>
+<div class="pan-num-hint">These attendees are included in total cost but shown separately below.</div>
+</div>
 </div>
 <div id="proUI" class="hidden">
 <div class="pan-h"><span class="pan-t">Team Composition</span></div>
@@ -978,6 +1054,13 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="role"><div class="role-top"><span class="role-n">&#x1f4ca; Managers</span><div class="role-ctrl"><button class="rbtn" onclick="adj('mgr',-1)" aria-label="Remove manager">&#x2212;</button><span class="rnum" id="cM">1</span><button class="rbtn" onclick="adj('mgr',1)" aria-label="Add manager">+</button></div></div><input type="range" id="sM" oninput="recalc()" aria-label="Manager salary"><div class="rsal" id="dsM">$160,000/yr</div></div>
 <div class="role"><div class="role-top"><span class="role-n">&#x1f3a8; Designers</span><div class="role-ctrl"><button class="rbtn" onclick="adj('des',-1)" aria-label="Remove designer">&#x2212;</button><span class="rnum" id="cD">1</span><button class="rbtn" onclick="adj('des',1)" aria-label="Add designer">+</button></div></div><input type="range" id="sD" oninput="recalc()" aria-label="Designer salary"><div class="rsal" id="dsD">$105,000/yr</div></div>
 <div class="role"><div class="role-top"><span class="role-n">&#x1f4de; Executives</span><div class="role-ctrl"><button class="rbtn" onclick="adj('exec',-1)" aria-label="Remove executive">&#x2212;</button><span class="rnum" id="cX">0</span><button class="rbtn" onclick="adj('exec',1)" aria-label="Add executive">+</button></div></div><input type="range" id="sX" oninput="recalc()" aria-label="Executive salary"><div class="rsal" id="dsX">$230,000/yr</div></div>
+<div class="custom-role-wrap">
+<div class="role" id="customRoleRow">
+<input class="custom-role-name" type="text" id="customRoleName" placeholder="✏️ Custom role (e.g. Product Manager)" maxlength="40" oninput="recalc()" aria-label="Custom role name">
+<div class="role-top"><span class="role-n" id="customRoleLabel">Custom</span><div class="role-ctrl"><button class="rbtn" onclick="adj('custom',-1)" aria-label="Remove custom role person">&#x2212;</button><span class="rnum" id="cCust">0</span><button class="rbtn" onclick="adj('custom',1)" aria-label="Add custom role person">+</button></div></div>
+<input type="range" id="sCust" oninput="recalc()" aria-label="Custom role salary"><div class="rsal" id="dsCust">$90,000/yr</div>
+</div>
+</div>
 </div>
 </div>
 <div class="pan">
@@ -988,6 +1071,11 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div style="font-size:10px;color:var(--t4);margin-top:3px;font-family:var(--fM)">Daily &middot; Weekly &middot; Twice monthly &middot; Monthly &middot; Once</div>
 <div class="chk" style="margin-top:16px"><input type="checkbox" id="chkB" checked onchange="recalc()"><label for="chkB">Add 30% for benefits &amp; overhead (true cost to employer)</label></div>
 <div class="chk"><input type="checkbox" id="chkF" checked onchange="recalc()"><label for="chkF">Add the cost of refocusing afterward (~23 min)</label></div>
+<div class="pan-extra">
+<div class="pan-num-row"><label for="prepTimeN">Prep time per person (min) <span title="Time attendees spend preparing before the meeting" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="prepTimeN" value="0" min="0" max="120" step="5" oninput="recalc()" aria-label="Preparation time per person in minutes"></div>
+<div class="pan-num-row" style="margin-top:8px"><label for="followTimeN">Follow-up time per person (min) <span title="Time spent on actions after the meeting, e.g. writing notes, emails" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="followTimeN" value="0" min="0" max="120" step="5" oninput="recalc()" aria-label="Follow-up time per person in minutes"></div>
+<div class="pan-num-hint">Optional: adds real burden cost shown in breakdown below.</div>
+</div>
 </div>
 </div>
 
@@ -1002,6 +1090,7 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <label class="dg-i" onclick="togD(this)"><input type="checkbox" class="dc"><span class="dg-d"></span>Ended on time or early</label>
 <label class="dg-i" onclick="togD(this)"><input type="checkbox" class="dc"><span class="dg-d"></span>Could not have been an email</label>
 </div>
+<div class="health-tips" id="healthTips" aria-live="polite"></div>
 </div>
 
 <div class="quiz-link"><a href="/should-this-meeting-be-an-email.html">Not sure this meeting needs to happen? Take the 30 second quiz &rarr;</a></div>
@@ -1013,6 +1102,19 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="sc"><div class="sc-l">Monthly</div><div class="sc-v" id="pM">$0.00</div></div>
 <div class="sc"><div class="sc-l">Annual</div><div class="sc-v danger" id="pY">$0.00</div></div>
 <div class="sc"><div class="sc-l">CO&#x2082;/yr</div><div class="sc-v" id="pC" style="font-size:14px">0 kg</div></div>
+</div>
+
+<div class="burden" id="burdenSec">
+<div class="burden-h">Total Meeting Burden Breakdown <span style="font-size:10px;font-weight:400;color:var(--t4)">(per session)</span></div>
+<div class="burden-g">
+<div class="burden-i"><div class="burden-l">Live meeting cost</div><div class="burden-v" id="bMeeting">$0.00</div></div>
+<div class="burden-i"><div class="burden-l">Prep time burden</div><div class="burden-v" id="bPrep">$0.00</div></div>
+<div class="burden-i"><div class="burden-l">Follow-up burden</div><div class="burden-v" id="bFollow">$0.00</div></div>
+<div class="burden-i"><div class="burden-l">Refocus cost</div><div class="burden-v" id="bRefocus">$0.00</div></div>
+<div class="burden-i"><div class="burden-l">Per attendee (session)</div><div class="burden-v" id="bPerHead">$0.00</div></div>
+<div class="burden-i"><div class="burden-l">Optional seat cost</div><div class="burden-v" id="bOptional">$0.00</div></div>
+</div>
+<div class="burden-total"><span class="burden-total-l">Total burden per session</span><span class="burden-total-v" id="bTotal">$0.00</span></div>
 </div>
 
 <div class="savings" id="savSec">
@@ -1322,6 +1424,9 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <tr><td>Annual and monthly projections</td><td class="chk-y us">Yes</td><td class="chk-y">Yes</td><td class="chk-y">Yes</td><td class="chk-y">Some</td></tr>
 <tr><td>Savings simulator</td><td class="chk-y us">Yes</td><td class="chk-n">No</td><td class="chk-n">No</td><td class="chk-n">No</td></tr>
 <tr><td>Meeting health checklist</td><td class="chk-y us">Yes</td><td class="chk-n">No</td><td class="chk-n">No</td><td class="chk-n">No</td></tr>
+<tr><td>Meeting purpose / goal selector</td><td class="chk-y us">Yes</td><td class="chk-n">No</td><td class="chk-n">No</td><td class="chk-n">No</td></tr>
+<tr><td>Prep &amp; follow-up burden cost</td><td class="chk-y us">Yes</td><td class="chk-n">No</td><td class="chk-n">No</td><td class="chk-n">No</td></tr>
+<tr><td>Team profile presets</td><td class="chk-y us">Yes</td><td class="chk-n">No</td><td class="chk-n">No</td><td class="chk-n">Rarely</td></tr>
 <tr><td>Downloadable audit report</td><td class="chk-y us">Yes</td><td class="chk-n">No</td><td class="chk-n">No</td><td class="chk-n">Rarely</td></tr>
 <tr><td>Multi currency support</td><td class="chk-y us">4 currencies</td><td class="chk-n">USD only</td><td class="chk-n">USD only</td><td class="chk-n">Limited</td></tr>
 <tr><td>Data stays in your browser</td><td class="chk-y us">Yes</td><td class="chk-n">Uploaded</td><td class="chk-n">Uploaded</td><td class="chk-n">Varies</td></tr>
@@ -1508,21 +1613,26 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 
 <script>
 try{
-const S={sec:0,on:false,tmr:null,rps:0,cur:'USD',sym:'$',mode:'lite',roles:{eng:3,mgr:1,des:1,exec:0}};
-const C={USD:{sym:'$',mn:25000,mx:400000,df:85000,eng:120000,mgr:160000,des:105000,exec:230000},INR:{sym:'\u20b9',mn:300000,mx:15000000,df:2000000,eng:1800000,mgr:3500000,des:1500000,exec:6000000},EUR:{sym:'\u20ac',mn:20000,mx:350000,df:70000,eng:90000,mgr:140000,des:80000,exec:200000},GBP:{sym:'\u00a3',mn:20000,mx:300000,df:60000,eng:80000,mgr:120000,des:70000,exec:180000}};
+const S={sec:0,on:false,tmr:null,rps:0,cur:'USD',sym:'$',mode:'lite',roles:{eng:3,mgr:1,des:1,exec:0,custom:0}};
+const C={USD:{sym:'$',mn:25000,mx:400000,df:85000,eng:120000,mgr:160000,des:105000,exec:230000,custom:90000},INR:{sym:'\u20b9',mn:300000,mx:15000000,df:2000000,eng:1800000,mgr:3500000,des:1500000,exec:6000000,custom:1200000},EUR:{sym:'\u20ac',mn:20000,mx:350000,df:70000,eng:90000,mgr:140000,des:80000,exec:200000,custom:65000},GBP:{sym:'\u00a3',mn:20000,mx:300000,df:60000,eng:80000,mgr:120000,des:70000,exec:180000,custom:55000}};
 const FL=['Daily','Weekly','Twice monthly','Monthly','Once'],FA=[260,52,26,12,1];
 const INS=[{t:0,m:"Move the sliders below to estimate what your meeting costs."},{t:10,m:"That is roughly a cup of specialty coffee burned."},{t:50,m:"You have spent the equivalent of a team lunch."},{t:200,m:"This meeting now costs more than a monthly software subscription."},{t:500,m:"Past $500. Is this meeting driving a decision worth that much?"},{t:1000,m:"Over $1,000 in salary committed to this one session."},{t:2500,m:"Approaching the cost of a conference sponsorship."},{t:5000,m:"Significant investment. Make sure action items are documented."}];
-const RM={eng:{c:'cE',s:'sE',d:'dsE'},mgr:{c:'cM',s:'sM',d:'dsM'},des:{c:'cD',s:'sD',d:'dsD'},exec:{c:'cX',s:'sX',d:'dsX'}};
+const RM={eng:{c:'cE',s:'sE',d:'dsE'},mgr:{c:'cM',s:'sM',d:'dsM'},des:{c:'cD',s:'sD',d:'dsD'},exec:{c:'cX',s:'sX',d:'dsX'},custom:{c:'cCust',s:'sCust',d:'dsCust'}};
 
-window.addEventListener('DOMContentLoaded',function(){initSl();applyStateFromUrl();handleEmbedMode();recalc()});
+window.addEventListener('DOMContentLoaded',function(){
+initSl();applyStateFromUrl();handleEmbedMode();
+/* Restore saved preset chip highlight */
+try{var sp=localStorage.getItem('mb.preset');if(sp){document.querySelectorAll('.preset-chip').forEach(function(c){c.classList.remove('on');});var chip=document.getElementById('preset'+sp.charAt(0).toUpperCase()+sp.slice(1));if(chip)chip.classList.add('on');}}catch(e){}
+recalc();
+});
 
-function initSl(){const c=C[S.cur],s=document.getElementById('rS');s.min=c.mn;s.max=c.mx;s.value=c.df;Object.keys(RM).forEach(function(r){const el=document.getElementById(RM[r].s);if(el){el.min=c.mn;el.max=c.mx;el.value=c[r]}})}
+function initSl(){const c=C[S.cur],s=document.getElementById('rS');s.min=c.mn;s.max=c.mx;s.value=c.df;Object.keys(RM).forEach(function(r){const el=document.getElementById(RM[r].s);if(el){el.min=c.mn;el.max=c.mx;el.value=c[r]||c.df}})}
 
 function syncCurrencyUI(){document.querySelectorAll('[data-c]').forEach(function(b){b.classList.toggle('on',b.dataset.c===S.cur)})}
 function syncModeUI(){document.getElementById('tLite').classList.toggle('on',S.mode==='lite');document.getElementById('tPro').classList.toggle('on',S.mode==='pro');document.getElementById('liteUI').classList.toggle('hidden',S.mode==='pro');document.getElementById('proUI').classList.toggle('hidden',S.mode==='lite')}
 function clamp(n,min,max){return Math.max(min,Math.min(max,n))}
 function setInputValue(id,val,min,max){var el=document.getElementById(id);if(!el||Number.isNaN(val))return;el.value=clamp(val,min,max)}
-function syncRoleCounts(){document.getElementById('cE').textContent=S.roles.eng;document.getElementById('cM').textContent=S.roles.mgr;document.getElementById('cD').textContent=S.roles.des;document.getElementById('cX').textContent=S.roles.exec}
+function syncRoleCounts(){document.getElementById('cE').textContent=S.roles.eng;document.getElementById('cM').textContent=S.roles.mgr;document.getElementById('cD').textContent=S.roles.des;document.getElementById('cX').textContent=S.roles.exec;document.getElementById('cCust').textContent=S.roles.custom}
 function applyStateFromUrl(){
 const p=new URLSearchParams(location.search);if(!p.toString())return;
 const cur=p.get('cur');if(cur&&C[cur]){S.cur=cur;S.sym=C[cur].sym;syncCurrencyUI();initSl()}
@@ -1532,7 +1642,11 @@ setInputValue('rA',parseInt(p.get('a'),10),2,40);setInputValue('rS',parseInt(p.g
 setInputValue('rDr',parseInt(p.get('dur'),10),10,180);setInputValue('rFr',parseInt(p.get('freq'),10),0,4);
 if(p.has('b'))document.getElementById('chkB').checked=p.get('b')!=='0';
 if(p.has('focus'))document.getElementById('chkF').checked=p.get('focus')!=='0';
-['eng','mgr','des','exec'].forEach(function(role){
+if(p.has('prep')){var pe=document.getElementById('prepTimeN');if(pe)pe.value=clamp(parseInt(p.get('prep'),10)||0,0,120);}
+if(p.has('follow')){var fe=document.getElementById('followTimeN');if(fe)fe.value=clamp(parseInt(p.get('follow'),10)||0,0,120);}
+if(p.has('opt')){var oe=document.getElementById('optAttendeesN');if(oe)oe.value=clamp(parseInt(p.get('opt'),10)||0,0,30);}
+if(p.has('purpose')){var purpEl=document.getElementById('purposeSel');if(purpEl){purpEl.value=p.get('purpose');onPurposeChange();}}
+['eng','mgr','des','exec','custom'].forEach(function(role){
 var key=role+'C',salKey=role+'S';
 if(p.has(key))S.roles[role]=clamp(parseInt(p.get(key),10)||0,0,15);
 if(p.has(salKey))setInputValue(RM[role].s,parseInt(p.get(salKey),10),c.mn,c.mx);
@@ -1541,8 +1655,12 @@ syncRoleCounts()
 }
 function buildStateParams(extra){
 const p=new URLSearchParams();p.set('cur',S.cur);p.set('mode',S.mode);p.set('dur',document.getElementById('rDr').value);p.set('freq',document.getElementById('rFr').value);p.set('b',document.getElementById('chkB').checked?'1':'0');p.set('focus',document.getElementById('chkF').checked?'1':'0');
+var prepEl=document.getElementById('prepTimeN');if(prepEl&&prepEl.value!=='0')p.set('prep',prepEl.value);
+var followEl=document.getElementById('followTimeN');if(followEl&&followEl.value!=='0')p.set('follow',followEl.value);
+var optEl=document.getElementById('optAttendeesN');if(optEl&&optEl.value!=='0')p.set('opt',optEl.value);
+var purposeEl=document.getElementById('purposeSel');if(purposeEl&&purposeEl.value)p.set('purpose',purposeEl.value);
 if(S.mode==='lite'){p.set('a',document.getElementById('rA').value);p.set('s',document.getElementById('rS').value)}
-else{['eng','mgr','des','exec'].forEach(function(role){p.set(role+'C',S.roles[role]);p.set(role+'S',document.getElementById(RM[role].s).value)})}
+else{['eng','mgr','des','exec','custom'].forEach(function(role){p.set(role+'C',S.roles[role]);p.set(role+'S',document.getElementById(RM[role].s).value)})}
 if(extra&&extra.embed)p.set('embed','1');
 return p
 }
@@ -1567,6 +1685,7 @@ S.rps=((sal*ben)/2080/3600)*ppl;avgSal=sal;
 }else{
 let tch=0;ppl=0;
 Object.keys(RM).forEach(function(r){const sal=parseInt(document.getElementById(RM[r].s).value);const cnt=S.roles[r];tch+=(sal*ben*cnt)/2080;ppl+=cnt;document.getElementById(RM[r].d).textContent=sym+sal.toLocaleString()+'/yr'});
+var custName=document.getElementById('customRoleName');var custLabel=document.getElementById('customRoleLabel');if(custName&&custLabel&&custName.value.trim())custLabel.textContent=custName.value.trim();
 S.rps=tch/3600;avgSal=ppl>0?Math.round(tch*2080/ben/ppl):0;
 }
 document.getElementById('rateV').innerHTML=sym+S.rps.toFixed(3)+'<small style="font-size:10px;color:var(--t4)">/sec</small>';
@@ -1584,6 +1703,25 @@ const bestSave=Math.max(save20,save2ppl);
 document.getElementById('savTime').textContent=sym+fK(save20);
 document.getElementById('savPpl').textContent=sym+fK(save2ppl);
 document.getElementById('savYear').textContent=sym+fK(bestSave);
+/* Burden breakdown */
+try{
+var prepMin=parseFloat((document.getElementById('prepTimeN')||{}).value)||0;
+var followMin=parseFloat((document.getElementById('followTimeN')||{}).value)||0;
+var optPpl=parseFloat((document.getElementById('optAttendeesN')||{}).value)||0;
+var rpsPerPerson=ppl>0?S.rps/ppl:0;
+var prepCost=rpsPerPerson*prepMin*60*ppl;
+var followCost=rpsPerPerson*followMin*60*ppl;
+var optCost=ppl>0?rpsPerPerson*optPpl*dur*60:0;
+var totalBurden=sessCost+prepCost+followCost+focusCost;
+var perHead=ppl>0?(sessCost/ppl):0;
+document.getElementById('bMeeting').textContent=sym+sessCost.toFixed(2);
+document.getElementById('bPrep').textContent=sym+prepCost.toFixed(2);
+document.getElementById('bFollow').textContent=sym+followCost.toFixed(2);
+document.getElementById('bRefocus').textContent=focusOn?(sym+focusCost.toFixed(2)):'Off';
+document.getElementById('bPerHead').textContent=sym+perHead.toFixed(2);
+document.getElementById('bOptional').textContent=optPpl>0?(sym+optCost.toFixed(2)):'—';
+document.getElementById('bTotal').textContent=sym+totalBurden.toFixed(2);
+}catch(e){}
 updLt();
 }
 
@@ -1614,9 +1752,27 @@ else if(ck>=3){el.textContent='\u2714 Good';el.style.color='var(--ok)';ht.textCo
 else if(ck>=1){el.textContent='\u26A0 Fair';el.style.color='var(--ac)';ht.textContent=ck+'/6, check more items to improve'}
 else{el.textContent='\u26A0 Unscored';el.style.color='var(--ac)';ht.textContent='Check items in the quick check above'}
 if(ck===0&&cost>500){el.textContent='\u26D4 At Risk';el.style.color='var(--no)';ht.textContent='High cost with no best practices checked'}
+/* Actionable tips based on unchecked items */
+try{
+var tipsEl=document.getElementById('healthTips');
+if(!tipsEl)return;
+var allChecked=document.querySelectorAll('.dg-i');
+var unchecked=[];
+allChecked.forEach(function(lbl){if(!lbl.querySelector('.dc').checked)unchecked.push(lbl.textContent.trim());});
+var tips=[];
+if(unchecked.some(function(t){return t.indexOf('Agenda')!==-1}))tips.push('Send a short written agenda at least 30 minutes before — it cuts meeting time by up to 20% (Harvard Business Review).');
+if(unchecked.some(function(t){return t.indexOf('decision')!==-1}))tips.push('Define and announce the decision to be made before starting. Ambiguous goals are the #1 cause of meetings that drag.');
+if(unchecked.some(function(t){return t.indexOf('essential')!==-1}))tips.push('Trim the invite list. Every extra person raises cost and often reduces decision quality (more than 7 attendees slows down decisions).');
+if(unchecked.some(function(t){return t.indexOf('Action')!==-1}))tips.push('Assign each action item an owner and a due date before the call ends — not later in follow-up notes.');
+if(unchecked.some(function(t){return t.indexOf('on time')!==-1}))tips.push('Protect the end time. Set a 5-minute warning and stop. Overruns are the biggest source of hidden meeting cost.');
+if(unchecked.some(function(t){return t.indexOf('email')!==-1}))tips.push('Ask: could a 2-paragraph written update achieve the same result? If yes, consider cancelling.');
+if(tips.length===0){tipsEl.innerHTML='';tipsEl.classList.remove('show');return;}
+tipsEl.innerHTML=tips.map(function(t){return '<div class="health-tip-item">'+t+'</div>';}).join('');
+tipsEl.classList.add('show');
+}catch(e){}
 }
 
-function togD(el){const cb=el.querySelector('.dc');cb.checked=!cb.checked;el.classList.toggle('on',cb.checked);if(S.on)updHealth(S.rps*S.sec)}
+function togD(el){const cb=el.querySelector('.dc');cb.checked=!cb.checked;el.classList.toggle('on',cb.checked);updHealth(S.rps*S.sec)}
 
 function saveLt(){try{let v=parseFloat(localStorage.getItem('mb_'+S.cur)||'0');v+=S.rps*S.sec;localStorage.setItem('mb_'+S.cur,v.toString());updLt()}catch(e){}}
 
@@ -1668,7 +1824,9 @@ document.getElementById('costN').textContent=S.sym+'0.00';document.getElementByI
 document.getElementById('timerN').textContent='00:00:00';document.getElementById('tickMsg').textContent='Move the sliders below to estimate what your meeting costs.';
 document.getElementById('resB').classList.add('hide');document.getElementById('snpB').classList.add('hide');
 document.getElementById('healthV').textContent='Not started yet';document.getElementById('healthV').style.color='var(--t4)';document.getElementById('healthH').textContent='Start tracking to see your score';
-document.querySelectorAll('.dg-i').forEach(function(el){el.classList.remove('on');el.querySelector('.dc').checked=false});hideReceipt();recalc()
+document.querySelectorAll('.dg-i').forEach(function(el){el.classList.remove('on');el.querySelector('.dc').checked=false});
+var ht=document.getElementById('healthTips');if(ht){ht.innerHTML='';ht.classList.remove('show');}
+hideReceipt();recalc()
 }
 
 function copySnap(){const t='Meeting Cost Snapshot\n'+('_').repeat(28)+'\nDuration: '+document.getElementById('timerN').textContent+'\nCost: '+document.getElementById('costN').textContent+'\nHealth: '+document.getElementById('healthV').textContent+'\nRefocus cost: '+document.getElementById('focusV').textContent+'\nAnnual: '+document.getElementById('pY').textContent+'\nShare: '+shareUrl()+'\n'+('_').repeat(28)+'\nvia meetingburn.in';navigator.clipboard.writeText(t).then(function(){toast('Snapshot copied')})}
@@ -1696,6 +1854,53 @@ function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.c
 function updLt(){try{const v=parseFloat(localStorage.getItem('mb_'+S.cur)||'0');document.getElementById('ltL').textContent='Total Cost You\u2019ve Tracked ('+S.cur+')';document.getElementById('ltV').textContent=S.sym+v.toFixed(2);document.getElementById('ltShareAmount').textContent=S.sym+v.toFixed(2);document.getElementById('ltShare').classList.toggle('show',v>=1000)}catch(e){}}
 
 window.setCur=setCur;window.setMode=setMode;window.adj=adj;window.recalc=recalc;window.toggleTimer=toggleTimer;window.resetAll=resetAll;window.copySnap=copySnap;window.shareTool=shareTool;window.dlReport=dlReport;window.handleSub=handleSub;window.togD=togD;window.togF=togF;window.toast=toast;window.copyEmbed=copyEmbed;window.shareLifetime=shareLifetime;window.shareReceipt=shareReceipt;window.hideReceipt=hideReceipt;
+
+const PURPOSE_TIPS={
+decision:'Decision meetings: keep under 8 people, circulate the options in writing beforehand, and define the decision criteria before the call starts.',
+status:'Status updates are often better as a brief async written note. Consider replacing with a shared doc that people update on their own schedule.',
+brainstorm:'Brainstorming works better when people submit ideas silently first. Try a 24-hour async idea collection before any live session.',
+planning:'Planning meetings benefit from a pre-shared draft agenda or roadmap. Aim for 60 min or less with a clear owner for each output.',
+'1on1':'1:1s should be coaching and unblocking focused — not status updates. Keep the format consistent: blockers first, feedback second.',
+interview:'Interviews: share the scorecard criteria with all interviewers before the call, debrief async if all feedback aligns (saves up to 45 min per hire).',
+other:'No goal selected — defining a meeting purpose before sending the invite is the single fastest way to reduce meeting length.'
+};
+
+window.onPurposeChange=function(){
+var sel=document.getElementById('purposeSel');
+var tip=document.getElementById('purposeTip');
+if(!sel||!tip)return;
+if(sel.value&&PURPOSE_TIPS[sel.value]){tip.textContent=PURPOSE_TIPS[sel.value];tip.classList.add('show');}
+else{tip.textContent='';tip.classList.remove('show');}
+};
+
+const PRESETS={
+startup:{eng:110000,mgr:140000,des:95000,exec:200000,custom:85000,df:80000,note:'Startup defaults: lean salaries, broad roles.'},
+agency:{eng:90000,mgr:120000,des:100000,exec:180000,custom:80000,df:75000,note:'Agency defaults: design/PM heavy, moderate salaries.'},
+enterprise:{eng:130000,mgr:165000,des:110000,exec:240000,custom:95000,df:90000,note:'Enterprise defaults: higher salaries and overhead.'},
+custom:{note:'Custom — your inputs are preserved.'}
+};
+
+window.applyPreset=function(name){
+document.querySelectorAll('.preset-chip').forEach(function(c){c.classList.remove('on');});
+var chip=document.getElementById('preset'+name.charAt(0).toUpperCase()+name.slice(1));
+if(chip)chip.classList.add('on');
+try{localStorage.setItem('mb.preset',name);}catch(e){}
+if(name==='custom')return;
+var p=PRESETS[name];if(!p)return;
+var c=C[S.cur];
+var scale=c.df/85000;/* scale preset USD salaries to current currency */
+function scaleSal(usdVal){return Math.round(Math.round((usdVal*scale)/1000)*1000);}
+/* Update lite mode salary range */
+var rS=document.getElementById('rS');if(rS)rS.value=scaleSal(p.df||85000);
+/* Update role sliders */
+Object.keys(p).forEach(function(k){
+if(k==='note'||k==='df')return;
+var rm=RM[k];if(!rm)return;
+var el=document.getElementById(rm.s);if(el)el.value=scaleSal(p[k]);
+});
+recalc();
+if(window.toast)window.toast(p.note||'Preset applied');
+};
 }catch(e){console.error('MeetingBurn JS Error:',e)}
 </script>
 
