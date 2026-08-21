@@ -861,6 +861,26 @@ input[type="range"]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 2px var
 .health-tip-item{font-size:12px;color:var(--t2);line-height:1.6;padding:3px 0;display:flex;align-items:flex-start;gap:8px}
 .health-tip-item::before{content:'→';color:var(--ac);font-family:var(--fM);font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px}
 
+
+/* Coffee-themed visual refresh */
+:root{--coffee-espresso:#3f2a1e;--coffee-latte:#f3e6d6;--coffee-beige:#d5b89a;--coffee-copper:#c27b4a}
+[data-theme="dark"]{--bg:#120d0a;--bgE:#1c140f;--bgC:#271b14;--bgH:#302219;--bd:rgba(213,184,154,.14);--bdH:rgba(213,184,154,.25);--t1:#f7efe7;--t2:#dbc6b2;--t3:#b6977d;--t4:#8f7563;--ac:var(--coffee-copper);--ac2:#d89966;--acD:rgba(194,123,74,.14);--acG:rgba(194,123,74,.24);--pu:#9d7458;--puD:rgba(157,116,88,.1)}
+[data-theme="light"]{--bg:#fcf7f1;--bgE:#fffaf5;--bgC:#f3e8dc;--bgH:#eadacb;--bd:rgba(84,58,40,.11);--bdH:rgba(84,58,40,.19);--t1:#2a1f17;--t2:#5b4638;--t3:#7d6858;--t4:#a18a78;--ac:#b7683a;--ac2:#cd8b5a;--acD:rgba(183,104,58,.1);--acG:rgba(183,104,58,.18)}
+body::before{background:radial-gradient(ellipse 72% 50% at 15% 0%,var(--acG) 0%,transparent 56%),radial-gradient(ellipse 62% 44% at 86% 20%,rgba(214,171,132,.14) 0%,transparent 58%)}
+.coffee-mark{width:58px;height:34px;border-radius:0 0 16px 16px;background:linear-gradient(180deg,#7a4a2b 0%,#5a341f 70%,#4b2a19 100%);position:relative;margin:0 0 14px;box-shadow:0 10px 20px rgba(51,30,18,.28)}
+.coffee-mark::before{content:'';position:absolute;right:-11px;top:8px;width:14px;height:12px;border:3px solid #b67e52;border-left:none;border-radius:0 10px 10px 0}
+.coffee-mark::after{content:'';position:absolute;left:16px;top:-21px;width:24px;height:22px;background:radial-gradient(closest-side at 26% 85%,transparent 62%,rgba(243,230,214,.85) 68%,transparent 74%),radial-gradient(closest-side at 78% 75%,transparent 60%,rgba(243,230,214,.8) 66%,transparent 72%);animation:steamRise 3.6s ease-in-out infinite}
+@keyframes steamRise{0%,100%{opacity:.42;transform:translateY(0)}50%{opacity:.9;transform:translateY(-5px)}}
+h2{position:relative;padding-top:16px}
+h2::before{content:'';position:absolute;top:0;left:0;width:76px;height:2px;background:linear-gradient(90deg,var(--ac),rgba(183,104,58,0))}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--ac2);outline-offset:2px;border-radius:8px}
+@media (prefers-reduced-motion:reduce){.coffee-mark::after{animation:none}}
+
+.hero .coffee-mark{margin:0 auto 18px}
+.hero h1{position:relative}
+.hb-p:hover,.hb-s:hover{filter:saturate(1.06)}
+.card,.burn,.sc,.pan{box-shadow:0 10px 30px rgba(44,28,18,.18)}
+
 </style>
 </head>
 <body data-theme="dark">
@@ -959,6 +979,7 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 
 <!-- HERO -->
 <header class="hero w" role="banner">
+<div class="coffee-mark" aria-hidden="true"></div>
 <h1>Free Meeting Cost Calculator<br><span class="hl">See What Meetings Actually Cost</span></h1>
 <p class="hero-p">Add your team and watch the real cost of a meeting add up live, second by second. No signup required.</p>
 <p class="hero-sub">Calculate meeting cost per hour, per week, and per year based on attendee salaries, optional employer overhead, and recurring frequency.</p>
