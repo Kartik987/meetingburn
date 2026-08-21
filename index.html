@@ -867,19 +867,35 @@ input[type="range"]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 2px var
 [data-theme="dark"]{--bg:#120d0a;--bgE:#1c140f;--bgC:#271b14;--bgH:#302219;--bd:rgba(213,184,154,.14);--bdH:rgba(213,184,154,.25);--t1:#f7efe7;--t2:#dbc6b2;--t3:#b6977d;--t4:#8f7563;--ac:var(--coffee-copper);--ac2:#d89966;--acD:rgba(194,123,74,.14);--acG:rgba(194,123,74,.24);--pu:#9d7458;--puD:rgba(157,116,88,.1)}
 [data-theme="light"]{--bg:#fcf7f1;--bgE:#fffaf5;--bgC:#f3e8dc;--bgH:#eadacb;--bd:rgba(84,58,40,.11);--bdH:rgba(84,58,40,.19);--t1:#2a1f17;--t2:#5b4638;--t3:#7d6858;--t4:#a18a78;--ac:#b7683a;--ac2:#cd8b5a;--acD:rgba(183,104,58,.1);--acG:rgba(183,104,58,.18)}
 body::before{background:radial-gradient(ellipse 72% 50% at 15% 0%,var(--acG) 0%,transparent 56%),radial-gradient(ellipse 62% 44% at 86% 20%,rgba(214,171,132,.14) 0%,transparent 58%)}
-.coffee-mark{width:58px;height:34px;border-radius:0 0 16px 16px;background:linear-gradient(180deg,#7a4a2b 0%,#5a341f 70%,#4b2a19 100%);position:relative;margin:0 0 14px;box-shadow:0 10px 20px rgba(51,30,18,.28)}
-.coffee-mark::before{content:'';position:absolute;right:-11px;top:8px;width:14px;height:12px;border:3px solid #b67e52;border-left:none;border-radius:0 10px 10px 0}
-.coffee-mark::after{content:'';position:absolute;left:16px;top:-21px;width:24px;height:22px;background:radial-gradient(closest-side at 26% 85%,transparent 62%,rgba(243,230,214,.85) 68%,transparent 74%),radial-gradient(closest-side at 78% 75%,transparent 60%,rgba(243,230,214,.8) 66%,transparent 72%);animation:steamRise 3.6s ease-in-out infinite}
-@keyframes steamRise{0%,100%{opacity:.42;transform:translateY(0)}50%{opacity:.9;transform:translateY(-5px)}}
+
+/* ── Refined editorial coffee cup SVG illustration ── */
+.coffee-cup-wrap{display:flex;justify-content:center;margin:0 auto 20px;width:72px}
+.coffee-cup-svg .steam-path{animation:steamDrift 3s ease-in-out infinite;transform-origin:50% 100%}
+.coffee-cup-svg .steam-path:nth-child(2){animation-delay:.9s}
+.coffee-cup-svg .steam-path:nth-child(3){animation-delay:1.8s}
+@keyframes steamDrift{0%,100%{opacity:.35;transform:translateY(0) scaleX(1)}50%{opacity:.7;transform:translateY(-5px) scaleX(.85)}}
+@media (prefers-reduced-motion:reduce){.coffee-cup-svg .steam-path{animation:none;opacity:.5}}
+
 h2{position:relative;padding-top:16px}
 h2::before{content:'';position:absolute;top:0;left:0;width:76px;height:2px;background:linear-gradient(90deg,var(--ac),rgba(183,104,58,0))}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--ac2);outline-offset:2px;border-radius:8px}
-@media (prefers-reduced-motion:reduce){.coffee-mark::after{animation:none}}
 
-.hero .coffee-mark{margin:0 auto 18px}
 .hero h1{position:relative}
 .hb-p:hover,.hb-s:hover{filter:saturate(1.06)}
 .card,.burn,.sc,.pan{box-shadow:0 10px 30px rgba(44,28,18,.18)}
+
+/* ── Brew Picker ── */
+.brew-wrap{background:var(--bgE);border:1px solid var(--bdH);border-radius:var(--rL);padding:20px 22px;margin:20px 0}
+.brew-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.brew-title{font-family:var(--fM);font-size:11px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em}
+.brew-result{font-size:13px;color:var(--t2);font-style:italic;line-height:1.5;min-height:20px;transition:opacity .3s}
+.brew-opts{display:flex;gap:8px;flex-wrap:wrap}
+.brew-btn{background:var(--bgC);border:1px solid var(--bd);border-radius:100px;padding:7px 16px;font-size:13px;font-weight:600;color:var(--t3);cursor:pointer;font-family:var(--fB);transition:.2s;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.brew-btn:hover{border-color:var(--bdH);color:var(--t1);background:var(--bgH);transform:translateY(-1px)}
+.brew-btn:focus-visible{outline:2px solid var(--ac2);outline-offset:2px}
+.brew-btn.active{background:var(--acD);border-color:var(--acG);color:var(--ac)}
+.brew-btn.active:hover{transform:translateY(-1px)}
+@media(max-width:480px){.brew-wrap{padding:16px}}
 
 </style>
 </head>
@@ -979,7 +995,28 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 
 <!-- HERO -->
 <header class="hero w" role="banner">
-<div class="coffee-mark" aria-hidden="true"></div>
+<div class="coffee-cup-wrap" aria-hidden="true">
+<svg class="coffee-cup-svg" viewBox="0 0 72 80" width="72" height="80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- steam lines -->
+  <g class="steam-path" stroke="var(--ac)" stroke-width="1.8" stroke-linecap="round">
+    <path d="M26 18 Q24 12 26 6"/>
+  </g>
+  <g class="steam-path" stroke="var(--ac)" stroke-width="1.8" stroke-linecap="round">
+    <path d="M36 16 Q34 10 36 4"/>
+  </g>
+  <g class="steam-path" stroke="var(--ac)" stroke-width="1.8" stroke-linecap="round">
+    <path d="M46 18 Q44 12 46 6"/>
+  </g>
+  <!-- cup body -->
+  <path d="M16 26 L20 62 Q20 66 24 66 L48 66 Q52 66 52 62 L56 26 Z" fill="var(--bgC)" stroke="var(--bdH)" stroke-width="1.5"/>
+  <!-- coffee surface -->
+  <ellipse cx="36" cy="26" rx="20" ry="5" fill="var(--ac)" opacity=".85"/>
+  <!-- handle -->
+  <path d="M52 34 Q64 34 64 44 Q64 54 52 54" stroke="var(--bdH)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <!-- saucer -->
+  <path d="M10 70 Q10 74 36 74 Q62 74 62 70" stroke="var(--bdH)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+</svg>
+</div>
 <h1>Free Meeting Cost Calculator<br><span class="hl">See What Meetings Actually Cost</span></h1>
 <p class="hero-p">Add your team and watch the real cost of a meeting add up live, second by second. No signup required.</p>
 <p class="hero-sub">Calculate meeting cost per hour, per week, and per year based on attendee salaries, optional employer overhead, and recurring frequency.</p>
@@ -1011,7 +1048,7 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <!-- CALCULATOR -->
 <main class="w" id="calculator" role="main" aria-label="Meeting cost calculator">
 
-<div style="margin-top:40px" class="ticker"><div class="tbd"><span class="dot"></span> Live Insight</div><div class="msg" id="tickMsg">Move the sliders below to estimate what your meeting costs.</div></div>
+<div style="margin-top:40px" class="ticker"><div class="msg" id="tickMsg">Move the sliders below to estimate what your meeting costs.</div></div>
 
 <div class="row-ctrl">
 <div class="pg" role="tablist" aria-label="Currency"><button class="pb on" data-c="USD" onclick="setCur('USD','$')" aria-label="USD">USD $</button><button class="pb" data-c="INR" onclick="setCur('INR','&#8377;')" aria-label="INR">INR &#8377;</button><button class="pb" data-c="EUR" onclick="setCur('EUR','&#8364;')" aria-label="EUR">EUR &#8364;</button><button class="pb" data-c="GBP" onclick="setCur('GBP','&#163;')" aria-label="GBP">GBP &#163;</button></div>
@@ -1178,6 +1215,23 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div style="margin-top:12px;font-size:12px;color:var(--t3);text-align:center">
   Is this meeting worth its cost? &nbsp;<a href="#toolkit" style="color:var(--ac);text-decoration:none;font-weight:600">Audit it with the free Meeting Toolkit &rarr;</a>
 </div>
+</div>
+</section>
+
+<!-- BREW PICKER -->
+<section class="w" id="brew-picker" aria-label="Coffee break mode">
+<div class="brew-wrap">
+  <div class="brew-header">
+    <span class="brew-title">☕ Coffee Break Mode — What are you working on?</span>
+    <span class="brew-result" id="brewResult" aria-live="polite"></span>
+  </div>
+  <div class="brew-opts" role="group" aria-label="Pick a brew to match your task">
+    <button class="brew-btn" data-brew="espresso" onclick="pickBrew(this)" type="button" aria-pressed="false">☕ Espresso — Quick decision</button>
+    <button class="brew-btn" data-brew="filter" onclick="pickBrew(this)" type="button" aria-pressed="false">🫖 Filter — Deep focus block</button>
+    <button class="brew-btn" data-brew="latte" onclick="pickBrew(this)" type="button" aria-pressed="false">🥛 Latte — Team brainstorm</button>
+    <button class="brew-btn" data-brew="cold" onclick="pickBrew(this)" type="button" aria-pressed="false">🧊 Cold brew — Async first</button>
+    <button class="brew-btn" data-brew="decaf" onclick="pickBrew(this)" type="button" aria-pressed="false">💤 Decaf — End of day</button>
+  </div>
 </div>
 </section>
 
@@ -2408,6 +2462,38 @@ window.fzReset=function(){TK.fz.left=TK.fz.dur;TK.fz.run=false;if(TK.fz.tmr){cle
 function tkInit(){tbRender();tbCalc();phCalc();rcCalc();roiCalc();fzPaint();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tkInit);else tkInit();
 }catch(e){console.error('[MeetingBurn Toolkit] error:',e);}
+})();
+</script>
+
+<script>
+/* ── Brew Picker ── */
+(function(){
+var BREWS={
+  espresso:{label:'Espresso shot',tip:'Short, sharp, decisive. Set the timer to 15 minutes and lock in one outcome before anyone touches their cup.',color:'var(--ac)'},
+  filter:{label:'Filter coffee',tip:'Slow and steady. Block 90 minutes of uninterrupted deep work. No meetings, no Slack — just flow.',color:'var(--ok)'},
+  latte:{label:'Latte hour',tip:'Collaborative, unhurried. Use the agenda timeboxer to give every idea a fair slot before the foam settles.',color:'var(--cy)'},
+  cold:{label:'Cold brew shift',tip:'Chilled and async. Write it in Notion, record a Loom, send the doc. Save the meeting for what only needs a room.',color:'var(--pu)'},
+  decaf:{label:'Wind-down',tip:'Day's nearly done. Wrap up open threads, document decisions made today, and protect tomorrow's morning.',color:'var(--t3)'}
+};
+window.pickBrew=function(btn){
+  var brew=btn.getAttribute('data-brew');
+  var data=BREWS[brew];if(!data)return;
+  document.querySelectorAll('.brew-btn').forEach(function(b){
+    b.classList.remove('active');
+    b.setAttribute('aria-pressed','false');
+  });
+  btn.classList.add('active');
+  btn.setAttribute('aria-pressed','true');
+  var result=document.getElementById('brewResult');
+  if(result){
+    result.style.opacity='0';
+    setTimeout(function(){
+      result.textContent=data.tip;
+      result.style.color=data.color;
+      result.style.opacity='1';
+    },180);
+  }
+};
 })();
 </script>
 
