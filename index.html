@@ -9,7 +9,7 @@
 <meta name="keywords" content="meeting cost calculator, meeting cost, meeting cost per hour, meeting cost per employee, how much do meetings cost, calculate meeting cost, meeting salary burn rate, meeting ROI calculator, unproductive meeting cost, meeting time tracker, cost of unnecessary meetings, reduce meeting costs, meeting waste calculator, timezone meeting planner, should this meeting be an email">
 <meta name="author" content="MeetingBurn Team">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<meta name="theme-color" content="#0f1219">
+<meta name="theme-color" content="#faf9f6">
 <link rel="canonical" href="https://meetingburn.in"/>
 <link rel="alternate" hreflang="en" href="https://meetingburn.in" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -862,93 +862,183 @@ input[type="range"]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 2px var
 .health-tip-item::before{content:'→';color:var(--ac);font-family:var(--fM);font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px}
 
 
-/* Coffee-themed visual refresh */
-:root{--coffee-espresso:#3f2a1e;--coffee-latte:#f3e6d6;--coffee-beige:#d5b89a;--coffee-copper:#c27b4a}
-[data-theme="dark"]{--bg:#120d0a;--bgE:#1c140f;--bgC:#271b14;--bgH:#302219;--bd:rgba(213,184,154,.14);--bdH:rgba(213,184,154,.25);--t1:#f7efe7;--t2:#dbc6b2;--t3:#b6977d;--t4:#8f7563;--ac:var(--coffee-copper);--ac2:#d89966;--acD:rgba(194,123,74,.14);--acG:rgba(194,123,74,.24);--pu:#9d7458;--puD:rgba(157,116,88,.1)}
-[data-theme="light"]{--bg:#fcf7f1;--bgE:#fffaf5;--bgC:#f3e8dc;--bgH:#eadacb;--bd:rgba(84,58,40,.11);--bdH:rgba(84,58,40,.19);--t1:#2a1f17;--t2:#5b4638;--t3:#7d6858;--t4:#a18a78;--ac:#b7683a;--ac2:#cd8b5a;--acD:rgba(183,104,58,.1);--acG:rgba(183,104,58,.18)}
-body::before{background:radial-gradient(ellipse 72% 50% at 15% 0%,var(--acG) 0%,transparent 56%),radial-gradient(ellipse 62% 44% at 86% 20%,rgba(214,171,132,.14) 0%,transparent 58%);opacity:.3}
-
-/* ── Refined editorial coffee cup SVG illustration ── */
-.coffee-cup-wrap{display:flex;justify-content:center;margin:0 auto 20px;width:72px}
-.coffee-cup-svg .steam-path{animation:steamDrift 3s ease-in-out infinite;transform-origin:50% 100%}
-.coffee-cup-svg .steam-path:nth-child(2){animation-delay:.9s}
-.coffee-cup-svg .steam-path:nth-child(3){animation-delay:1.8s}
-@keyframes steamDrift{0%,100%{opacity:.35;transform:translateY(0) scaleX(1)}50%{opacity:.7;transform:translateY(-5px) scaleX(.85)}}
-@media (prefers-reduced-motion:reduce){.coffee-cup-svg .steam-path{animation:none;opacity:.5}}
-
-h2{position:relative;padding-top:16px}
-h2::before{content:'';position:absolute;top:0;left:0;width:76px;height:2px;background:linear-gradient(90deg,var(--ac),rgba(183,104,58,0))}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--ac2);outline-offset:2px;border-radius:8px}
-
-.hero h1{position:relative}
-.hb-p:hover,.hb-s:hover{filter:saturate(1.06)}
-.card,.burn,.sc,.pan{box-shadow:0 10px 30px rgba(44,28,18,.18)}
-
-/* ── Brew Picker ── */
-.brew-wrap{background:var(--bgE);border:1px solid var(--bdH);border-radius:var(--rL);padding:20px 22px;margin:20px 0}
-.brew-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.brew-title{font-family:var(--fM);font-size:11px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em}
-.brew-result{font-size:13px;color:var(--t2);font-style:italic;line-height:1.5;min-height:20px;transition:opacity .3s}
-.brew-opts{display:flex;gap:8px;flex-wrap:wrap}
-.brew-btn{background:var(--bgC);border:1px solid var(--bd);border-radius:100px;padding:7px 16px;font-size:13px;font-weight:600;color:var(--t3);cursor:pointer;font-family:var(--fB);transition:.2s;display:flex;align-items:center;gap:6px;white-space:nowrap}
-.brew-btn:hover{border-color:var(--bdH);color:var(--t1);background:var(--bgH);transform:translateY(-1px)}
-.brew-btn:focus-visible{outline:2px solid var(--ac2);outline-offset:2px}
-.brew-btn.active{background:var(--acD);border-color:var(--acG);color:var(--ac)}
-.brew-btn.active:hover{transform:translateY(-1px)}
-@media(max-width:480px){.brew-wrap{padding:16px}}
-
-
-/* ═══════════ 2026 LANDING REFRESH (non-breaking overrides) ═══════════ */
-:root{--bg:#080c14;--bgE:#0f1726;--bgC:#152034;--bgH:#1d2a40;--t1:#f7f9fc;--t2:#d8e0ee;--t3:#9cabbe;--ac:#f97316;--ac2:#fb923c;--ok:#34d399;--rL:18px;--rXL:28px}
-[data-theme="light"]{--bg:#f4f7fb;--bgE:#ffffff;--bgC:#edf2f9;--bgH:#e2e9f3;--t1:#102039;--t2:#2f415e;--t3:#586b86;--ac:#c2410c;--ac2:#ea580c}
+/* ═══════════ v3 REDESIGN — WARM, CLEAN, PREMIUM ═══════════ */
+/* Light mode is the default; dark mode is toggled via data-theme="dark" */
+:root{
+  --bg:#faf9f6;--bgE:#ffffff;--bgC:#f3f1ec;--bgH:#e8e4dc;--bgG:#ddd8ce;
+  --bd:rgba(60,50,35,.09);--bdH:rgba(60,50,35,.16);--bdS:rgba(60,50,35,.25);
+  --t1:#1c1610;--t2:#4a4036;--t3:#7a6e62;--t4:#a89e92;
+  --ac:#c9512a;--ac2:#df6b3e;--acD:rgba(201,81,42,.09);--acG:rgba(201,81,42,.18);--acS:#a63e1f;
+  --ok:#197a56;--okD:rgba(25,122,86,.09);--ok2:#14694a;
+  --no:#b8312f;--noD:rgba(184,49,47,.07);
+  --pu:#5a3fa0;--puD:rgba(90,63,160,.07);
+  --cy:#1a6fa5;--cyD:rgba(26,111,165,.07);
+  --r:10px;--rL:16px;--rX:22px;--rXL:28px;
+  --sh1:0 1px 4px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.04);
+  --sh2:0 4px 20px rgba(0,0,0,.08),0 8px 36px rgba(0,0,0,.05);
+  --sh3:0 16px 56px rgba(0,0,0,.12);
+  --gradT:linear-gradient(135deg,#c9512a 0%,#e07440 100%);
+  --gradB:linear-gradient(135deg,#c9512a 0%,#e07440 50%,#5a3fa0 100%);
+}
+[data-theme="dark"]{
+  --bg:#100f0c;--bgE:#1a1815;--bgC:#231f1c;--bgH:#2d2925;--bgG:#38332e;
+  --bd:rgba(255,240,220,.08);--bdH:rgba(255,240,220,.14);--bdS:rgba(255,240,220,.22);
+  --t1:#f5ede4;--t2:#c8b8a8;--t3:#9a8878;--t4:#6e5e52;
+  --ac:#e07040;--ac2:#f08050;--acD:rgba(224,112,64,.12);--acG:rgba(224,112,64,.22);--acS:#c05830;
+  --ok:#2db87c;--okD:rgba(45,184,124,.1);--ok2:#24a06a;
+  --no:#e05050;--noD:rgba(224,80,80,.08);
+  --pu:#8b70d8;--puD:rgba(139,112,216,.1);
+  --cy:#3ab0e0;--cyD:rgba(58,176,224,.08);
+}
 html,body{max-width:100%}
-body{background:radial-gradient(1300px 520px at 15% -10%,rgba(251,146,60,.16),transparent 45%),radial-gradient(1200px 580px at 100% 0,rgba(59,130,246,.16),transparent 46%),var(--bg);color:var(--t1)}
-body::before{opacity:.35}
+body{
+  background:
+    radial-gradient(ellipse 900px 380px at 0% -5%,rgba(201,81,42,.06) 0%,transparent 55%),
+    radial-gradient(ellipse 700px 320px at 100% 8%,rgba(90,63,160,.04) 0%,transparent 50%),
+    var(--bg);
+  color:var(--t1);
+  font-feature-settings:"kern" 1,"liga" 1;
+}
+[data-theme="dark"] body{
+  background:
+    radial-gradient(ellipse 1000px 420px at 0% -5%,rgba(224,112,64,.1) 0%,transparent 55%),
+    radial-gradient(ellipse 800px 360px at 100% 8%,rgba(139,112,216,.07) 0%,transparent 50%),
+    var(--bg);
+}
+body::before{opacity:.6}
 .w,.wn{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
-.nav{background:rgba(8,12,20,.78)}
-[data-theme="light"] .nav{background:rgba(255,255,255,.86)}
-.nav-a{font-weight:600}
-.hero{padding:54px 0 28px;text-align:left}
-.hero .badge{margin-bottom:16px}
-.hero h1{max-width:920px;font-size:clamp(2rem,4.9vw,3.55rem)}
-.hero-p,.hero-sub{max-width:760px;margin-left:0}
-.hero-p{font-size:clamp(1.02rem,1.8vw,1.2rem)}
-.hero-cta{justify-content:flex-start;margin-bottom:26px}
-.hb-p,.hb-s,.btn-main,.btn-s,.pb,.preset-chip,.tk-btn,.thm{min-height:44px}
-.trust-bar{justify-content:flex-start;gap:18px;border-top:1px solid var(--bdH);padding-top:18px;max-width:100%}
-.trust-item{min-width:180px;text-align:left}
-.card{border-radius:24px;padding:24px;box-shadow:0 20px 45px rgba(0,0,0,.22)}
-.calc-intro{background:linear-gradient(130deg,var(--bgC) 0%,rgba(249,115,22,.12) 100%);border:1px solid var(--bdH);border-radius:16px;padding:14px 16px}
-.calc-intro-title{font-size:1rem;font-weight:700;line-height:1.4}
-.calc-intro-sub{font-size:.92rem;color:var(--t2);margin-top:4px}
-.ctrl-help{margin:0 0 14px;color:var(--t3);font-size:.84rem}
-.mon{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
-.burn{padding:28px 22px}
-.burn-lbl{font-size:.68rem;color:var(--t3)}
-.sc{background:rgba(16,25,40,.55)}
-[data-theme="light"] .sc{background:#f7f9fd}
-.cost{font-size:clamp(2.1rem,7.5vw,3.9rem)}
-.calc-summary{margin:14px 0 0;background:var(--cyD);color:var(--t2);border:1px solid var(--bdH);padding:10px 12px;border-radius:12px;font-size:.89rem}
-.pan-num[aria-invalid="true"]{border-color:var(--no)!important;outline:2px solid rgba(248,113,113,.18)}
-.support-sec{padding:14px 0 10px}
-.support-card{max-width:960px;margin:0 auto;background:var(--bgE);border:1px solid var(--bdH);border-radius:24px;padding:28px}
-.support-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+
+/* ── Nav ── */
+.nav{background:rgba(250,249,246,.9);border-bottom-color:var(--bd)}
+[data-theme="dark"] .nav{background:rgba(16,15,12,.9)}
+.nav-a{font-weight:500;font-size:13px}
+.logo{font-size:16px}
+
+/* ── Coffee cup (legacy, hidden) ── */
 .coffee-cup-wrap,#brew-picker{display:none}
-:focus-visible{outline:3px solid rgba(56,189,248,.6);outline-offset:2px;border-radius:8px}
-@media (max-width:980px){
+
+/* ── Hero ── */
+.hero{padding:64px 0 44px;text-align:left}
+.hero .badge{margin-bottom:18px}
+.hero h1{max-width:860px;font-size:clamp(1.9rem,4.5vw,3.2rem);letter-spacing:-.035em}
+.hero-p,.hero-sub{max-width:680px;margin-left:0}
+.hero-p{font-size:clamp(.95rem,1.6vw,1.12rem);color:var(--t2)}
+.hero-sub{font-size:.9rem;color:var(--t3)}
+.hero-cta{justify-content:flex-start;margin-bottom:28px}
+.trust-bar{justify-content:flex-start;gap:16px;border-top:1px solid var(--bd);padding-top:20px;max-width:100%}
+.trust-item{min-width:160px;text-align:left}
+.trust-bar strong{font-size:17px}
+.badge{font-size:10px}
+
+/* ── Buttons ── */
+.hb-p,.hb-s,.btn-main,.btn-s,.pb,.preset-chip,.tk-btn,.thm{min-height:44px}
+.hb-p{background:var(--gradT);box-shadow:0 4px 16px rgba(201,81,42,.28)}
+.hb-p:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,81,42,.36)}
+.hb-s{border-color:var(--bdS)}
+.btn-main{background:var(--gradT);box-shadow:0 4px 16px rgba(201,81,42,.28);font-size:15px;padding:16px}
+.btn-main:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,81,42,.36)}
+.btn-main.stop{background:linear-gradient(135deg,#b8312f 0%,#e05050 100%);box-shadow:0 4px 16px rgba(184,49,47,.28)}
+.btn-main.paused{background:linear-gradient(135deg,var(--t3) 0%,var(--t4) 100%);box-shadow:none}
+
+/* ── Calculator card ── */
+.card{border-radius:var(--rXL);padding:28px;background:var(--bgE);border:1px solid var(--bd);box-shadow:var(--sh2);margin-bottom:24px}
+.card::before{opacity:0}
+
+/* ── Ticker ── */
+.ticker{background:var(--bgC);border-color:var(--bd);border-radius:var(--rL)}
+
+/* ── Cost display ── */
+.mon{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
+.burn{padding:36px 28px;background:var(--bgC);border-color:var(--bd);border-radius:var(--rL)}
+.burn-lbl{font-size:.68rem;color:var(--t3);letter-spacing:.1em}
+.cost{font-size:clamp(2.4rem,8vw,4.2rem);color:var(--t1)}
+.timer{color:var(--t3);font-size:13px}
+.burn.live{border-color:rgba(201,81,42,.25);background:linear-gradient(135deg,var(--bgC),var(--bgH))}
+.burn.live .cost{color:var(--ac)}
+.burn.hot{border-color:rgba(184,49,47,.3)}
+.burn.hot .cost{color:var(--no)}
+.sc{background:var(--bgC);border:1px solid var(--bd)}
+[data-theme="light"] .sc{background:var(--bgC)}
+[data-theme="dark"] .sc{background:var(--bgC)}
+
+/* ── Config panels ── */
+.cfg{gap:16px}
+.pan{background:var(--bgC);border:1px solid var(--bd);border-radius:var(--rL);padding:20px}
+.pan-t{font-size:.7rem;font-weight:700;color:var(--t3)}
+.pan-v{font-size:.85rem}
+.role{background:var(--bg);border-color:var(--bd)}
+.chk label{font-size:13px;color:var(--t2)}
+
+/* ── Projections ── */
+.proj .sc-v{font-size:18px}
+
+/* ── Calc intro ── */
+.calc-intro{background:var(--bgC);border:1px solid var(--bd);border-radius:var(--rL);padding:14px 18px;margin-bottom:16px}
+.calc-intro-title{font-size:.95rem;font-weight:700}
+.calc-intro-sub{font-size:.875rem;color:var(--t3);margin-top:3px}
+.ctrl-help{font-size:.82rem;color:var(--t3);margin-bottom:14px}
+
+/* ── Formula / summary ── */
+.calc-summary{margin:14px 0 0;background:var(--cyD);color:var(--t2);border:1px solid var(--bdH);padding:10px 12px;border-radius:12px;font-size:.89rem}
+.formula{background:var(--bgC);border-color:var(--bd)}
+
+/* ── Advanced options disclosure ── */
+details.adv-opts{margin:16px 0 0}
+details.adv-opts>summary{
+  display:flex;align-items:center;gap:8px;cursor:pointer;
+  font-size:13px;font-weight:600;color:var(--ac);
+  padding:10px 16px;border-radius:var(--r);
+  background:var(--acD);border:1px solid var(--acG);
+  list-style:none;user-select:none;transition:.15s;
+}
+details.adv-opts>summary::-webkit-details-marker{display:none}
+details.adv-opts>summary::before{content:'+';font-family:var(--fM);font-size:16px;font-weight:700;width:18px;text-align:center;line-height:1}
+details.adv-opts[open]>summary::before{content:'−'}
+details.adv-opts>summary:hover{background:var(--acG)}
+details.adv-opts>summary:focus-visible{outline:2px solid var(--ac);outline-offset:2px;border-radius:var(--r)}
+details.adv-opts>summary span.adv-label{flex:1}
+details.adv-opts>summary span.adv-hint{font-size:11px;font-weight:400;color:var(--t3);font-family:var(--fB)}
+.adv-body{padding-top:16px;display:flex;flex-direction:column;gap:14px}
+.adv-field-group{background:var(--bgC);border:1px solid var(--bd);border-radius:var(--rL);padding:18px}
+.adv-field-group-title{font-family:var(--fM);font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+
+/* ── Support card ── */
+.support-sec{padding:14px 0 10px}
+.support-card{max-width:960px;margin:0 auto;background:var(--bgE);border:1px solid var(--bd);border-radius:var(--rX);padding:28px;box-shadow:var(--sh1)}
+.support-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+/* ── Validation ── */
+.pan-num[aria-invalid="true"]{border-color:var(--no)!important;outline:2px solid rgba(184,49,47,.18)}
+
+/* ── Focus styles ── */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,details>summary:focus-visible{outline:2px solid var(--ac);outline-offset:2px;border-radius:6px}
+
+/* ── h2 accent line ── */
+h2{position:relative;padding-top:12px}
+h2::before{content:'';position:absolute;top:0;left:0;width:76px;height:2px;background:linear-gradient(90deg,var(--ac),transparent)}
+
+/* ── Responsive ── */
+@media(max-width:980px){
   .hero{text-align:center}
   .hero-p,.hero-sub{margin-left:auto;margin-right:auto}
   .hero-cta,.trust-bar{justify-content:center}
-  .trust-item{text-align:center;min-width:148px}
+  .trust-item{text-align:center;min-width:140px}
   .mon,.cfg{grid-template-columns:1fr}
 }
-@media (prefers-reduced-motion:reduce){
+@media(max-width:600px){
+  .card{padding:18px}
+  .pan{padding:16px}
+  .burn{padding:24px 18px}
+  .hero{padding:48px 0 28px}
+  .sec-btns{grid-template-columns:repeat(2,1fr)}
+}
+@media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 
 </style>
 </head>
-<body data-theme="dark">
+<body data-theme="light">
 <div class="mb-progress" id="mbProgress" aria-hidden="true"></div>
 <!-- ═══ FIRST-VISIT CAT WELCOME BANNER ═══ -->
 <div class="cw-ov" id="cwOverlay" role="dialog" aria-modal="true" aria-labelledby="cwHeading" style="display:none">
@@ -1111,33 +1201,16 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 
 <section class="card">
 
-<div class="purpose-row">
-<div class="purpose-row-inner">
-<span class="purpose-lbl">Meeting goal</span>
-<select class="purpose-sel" id="purposeSel" onchange="onPurposeChange()" aria-label="Meeting goal or purpose">
-<option value="">— Select purpose (optional)</option>
-<option value="decision">✅ Decision-making</option>
-<option value="status">📊 Status update</option>
-<option value="brainstorm">💡 Brainstorming</option>
-<option value="planning">📅 Planning</option>
-<option value="1on1">🤝 1:1 check-in</option>
-<option value="interview">🎤 Interview</option>
-<option value="other">📋 Other</option>
-</select>
-</div>
-<div class="purpose-tip" id="purposeTip" aria-live="polite"></div>
-</div>
-
 <div class="mon">
 <div class="burn" id="burnP">
-<div class="burn-lbl" id="burnLbl">Estimated Meeting Cost (Live)</div>
+<div class="burn-lbl" id="burnLbl">Estimated Meeting Cost</div>
 <div class="cost" id="costN" role="status" aria-live="polite" aria-atomic="true">$0.00</div>
 <div class="timer" id="timerN">00:00:00</div>
 </div>
 <div class="side">
-<div class="sc"><div class="sc-l">Meeting Health</div><div class="sc-v" id="healthV" style="color:var(--t4)">Not started yet</div><div class="sc-h" id="healthH">Start tracking to see your score</div></div>
-<div class="sc"><div class="sc-l">Lost Focus Time</div><div class="sc-v" id="focusV">$0.00</div><div class="sc-h">Cost of the ~23 min it takes to refocus after</div></div>
-<div class="sc"><div class="sc-l">Burn Rate</div><div class="sc-v" id="rateV">$0.000<small style="font-size:10px;color:var(--t4)">/sec</small></div><div class="sc-h">How fast salary is spent</div></div>
+<div class="sc"><div class="sc-l">Meeting Health</div><div class="sc-v" id="healthV" style="color:var(--t4)">Not started</div><div class="sc-h" id="healthH">Start the timer to see your score</div></div>
+<div class="sc"><div class="sc-l">Lost Focus Time</div><div class="sc-v" id="focusV">$0.00</div><div class="sc-h">~23 min to fully refocus after</div></div>
+<div class="sc"><div class="sc-l">Burn Rate</div><div class="sc-v" id="rateV">$0.000<small style="font-size:10px;color:var(--t4)">/sec</small></div><div class="sc-h">Salary spent per second</div></div>
 </div>
 </div>
 
@@ -1148,10 +1221,6 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <input type="range" id="rA" min="2" max="40" value="6" oninput="recalc()" aria-label="Number of meeting attendees">
 <div class="pan-h" style="margin-top:16px"><span class="pan-t">Avg Annual Salary</span><span class="pan-v" id="dS">$85,000</span></div>
 <input type="range" id="rS" min="25000" max="400000" step="5000" value="85000" oninput="recalc()" aria-label="Average annual salary">
-<div class="pan-extra">
-<div class="pan-num-row"><label for="optAttendeesN">Optional/external attendees <span title="People whose cost you want shown separately, e.g. clients or optional invitees" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="optAttendeesN" value="0" min="0" max="30" oninput="validateNum(this);recalc()" aria-label="Number of optional or external attendees"></div>
-<div class="pan-num-hint">These attendees are included in total cost but shown separately below.</div>
-</div>
 </div>
 <div id="proUI" class="hidden">
 <div class="pan-h"><span class="pan-t">Team Composition</span></div>
@@ -1174,14 +1243,48 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="pan-h" style="margin-top:16px"><span class="pan-t">How Often It Repeats</span><span class="pan-v" id="dFr">Weekly</span></div>
 <input type="range" id="rFr" min="0" max="4" value="1" oninput="recalc()" aria-label="Frequency">
 <div style="font-size:10px;color:var(--t4);margin-top:3px;font-family:var(--fM)">Daily &middot; Weekly &middot; Twice monthly &middot; Monthly &middot; Once</div>
-<div class="chk" style="margin-top:16px"><input type="checkbox" id="chkB" checked onchange="recalc()"><label for="chkB">Add 30% for benefits &amp; overhead (estimated employer cost)</label></div>
-<div class="chk"><input type="checkbox" id="chkF" checked onchange="recalc()"><label for="chkF">Add the cost of refocusing afterward (~23 min)</label></div>
-<div class="pan-extra">
+<div class="chk" style="margin-top:16px"><input type="checkbox" id="chkB" checked onchange="recalc()"><label for="chkB">Include 30% benefits &amp; overhead</label></div>
+<div class="chk"><input type="checkbox" id="chkF" checked onchange="recalc()"><label for="chkF">Include refocus cost (~23 min)</label></div>
+</div>
+</div>
+
+<div class="calc-summary" id="calcSummary" aria-live="polite">Estimated per-session, monthly, and annual totals update instantly as you change inputs.</div>
+
+<div class="proj">
+<div class="sc"><div class="sc-l">This Session</div><div class="sc-v" id="pS">$0.00</div></div>
+<div class="sc"><div class="sc-l">Monthly</div><div class="sc-v" id="pM">$0.00</div></div>
+<div class="sc"><div class="sc-l">Annual</div><div class="sc-v danger" id="pY">$0.00</div></div>
+<div class="sc"><div class="sc-l">CO&#x2082;/yr</div><div class="sc-v" id="pC" style="font-size:14px">0 kg</div></div>
+</div>
+
+<!-- Advanced options: collapsed by default -->
+<details class="adv-opts" id="advOpts">
+<summary aria-controls="advBody"><span class="adv-label">Customize estimate</span><span class="adv-hint">Meeting goal, prep time, diagnostics &amp; breakdown</span></summary>
+<div class="adv-body" id="advBody">
+
+<div class="adv-field-group">
+<div class="adv-field-group-title">Meeting goal</div>
+<div class="purpose-row-inner">
+<select class="purpose-sel" id="purposeSel" onchange="onPurposeChange()" aria-label="Meeting goal or purpose">
+<option value="">— Select purpose (optional)</option>
+<option value="decision">✅ Decision-making</option>
+<option value="status">📊 Status update</option>
+<option value="brainstorm">💡 Brainstorming</option>
+<option value="planning">📅 Planning</option>
+<option value="1on1">🤝 1:1 check-in</option>
+<option value="interview">🎤 Interview</option>
+<option value="other">📋 Other</option>
+</select>
+</div>
+<div class="purpose-tip" id="purposeTip" aria-live="polite"></div>
+</div>
+
+<div class="adv-field-group">
+<div class="adv-field-group-title">Extra attendees &amp; time</div>
+<div class="pan-num-row"><label for="optAttendeesN">Optional / external attendees <span title="Shown separately in the breakdown; still included in total cost" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="optAttendeesN" value="0" min="0" max="30" oninput="validateNum(this);recalc()" aria-label="Number of optional or external attendees"></div>
+<div class="pan-num-hint" style="margin-bottom:10px">Included in total cost, shown separately in the breakdown.</div>
 <div class="pan-num-row"><label for="prepTimeN">Prep time per person (min) <span title="Time attendees spend preparing before the meeting" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="prepTimeN" value="0" min="0" max="120" step="5" oninput="validateNum(this);recalc()" aria-label="Preparation time per person in minutes"></div>
-<div class="pan-num-row" style="margin-top:8px"><label for="followTimeN">Follow-up time per person (min) <span title="Time spent on actions after the meeting, e.g. writing notes, emails" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="followTimeN" value="0" min="0" max="120" step="5" oninput="validateNum(this);recalc()" aria-label="Follow-up time per person in minutes"></div>
-<div class="pan-num-hint">Optional: adds real burden cost shown in breakdown below.</div>
-</div>
-</div>
+<div class="pan-num-row" style="margin-top:8px"><label for="followTimeN">Follow-up time per person (min) <span title="Notes, emails, and actions after the meeting" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="followTimeN" value="0" min="0" max="120" step="5" oninput="validateNum(this);recalc()" aria-label="Follow-up time per person in minutes"></div>
 </div>
 
 <div class="diag">
@@ -1200,15 +1303,7 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 
 <div class="quiz-link"><a href="/should-this-meeting-be-an-email.html">Not sure this meeting needs to happen? Take the 30 second quiz &rarr;</a></div>
 
-<div class="calc-summary" id="calcSummary" aria-live="polite">Estimated per-session, monthly, and annual totals update instantly as you change inputs.</div>
 <div class="formula" id="fBar"><b>Your formula:</b> (<span class="val" id="fS">$85,000</span> &divide; 2,080 hrs) &times; <span class="val" id="fB">1.30</span> overhead &divide; 60 &times; <span class="val" id="fP">6</span> people &times; <span class="val" id="fDu">30</span> min = <b><span class="val" id="fT">$0.00</span></b> per session</div>
-
-<div class="proj">
-<div class="sc"><div class="sc-l">This Session</div><div class="sc-v" id="pS">$0.00</div></div>
-<div class="sc"><div class="sc-l">Monthly</div><div class="sc-v" id="pM">$0.00</div></div>
-<div class="sc"><div class="sc-l">Annual</div><div class="sc-v danger" id="pY">$0.00</div></div>
-<div class="sc"><div class="sc-l">CO&#x2082;/yr</div><div class="sc-v" id="pC" style="font-size:14px">0 kg</div></div>
-</div>
 
 <div class="burden" id="burdenSec">
 <div class="burden-h">Total Meeting Burden Breakdown <span style="font-size:10px;font-weight:400;color:var(--t4)">(per session)</span></div>
@@ -1232,6 +1327,9 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="savings-stat"><div class="savings-num" id="savYear">$0</div><div class="savings-lbl">Best case savings</div></div>
 </div>
 </div>
+
+</div><!-- /adv-body -->
+</details><!-- /adv-opts -->
 
 <button class="btn-main" id="mainB" onclick="toggleTimer()">&#x25B6;&nbsp; Start the Live Timer</button>
 <div class="sec-btns">
