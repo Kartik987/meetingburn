@@ -897,6 +897,55 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .brew-btn.active:hover{transform:translateY(-1px)}
 @media(max-width:480px){.brew-wrap{padding:16px}}
 
+
+/* ═══════════ 2026 LANDING REFRESH (non-breaking overrides) ═══════════ */
+:root{--bg:#080c14;--bgE:#0f1726;--bgC:#152034;--bgH:#1d2a40;--t1:#f7f9fc;--t2:#d8e0ee;--t3:#9cabbe;--ac:#f97316;--ac2:#fb923c;--ok:#34d399;--rL:18px;--rXL:28px}
+[data-theme="light"]{--bg:#f4f7fb;--bgE:#ffffff;--bgC:#edf2f9;--bgH:#e2e9f3;--t1:#102039;--t2:#2f415e;--t3:#586b86;--ac:#c2410c;--ac2:#ea580c}
+html,body{max-width:100%}
+body{background:radial-gradient(1300px 520px at 15% -10%,rgba(251,146,60,.16),transparent 45%),radial-gradient(1200px 580px at 100% 0,rgba(59,130,246,.16),transparent 46%),var(--bg);color:var(--t1)}
+body::before{opacity:.35}
+.w,.wn{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+.nav{background:rgba(8,12,20,.78)}
+[data-theme="light"] .nav{background:rgba(255,255,255,.86)}
+.nav-a{font-weight:600}
+.hero{padding:54px 0 28px;text-align:left}
+.hero .badge{margin-bottom:16px}
+.hero h1{max-width:920px;font-size:clamp(2rem,4.9vw,3.55rem)}
+.hero-p,.hero-sub{max-width:760px;margin-left:0}
+.hero-p{font-size:clamp(1.02rem,1.8vw,1.2rem)}
+.hero-cta{justify-content:flex-start;margin-bottom:26px}
+.hb-p,.hb-s,.btn-main,.btn-s,.pb,.preset-chip,.tk-btn,.thm{min-height:44px}
+.trust-bar{justify-content:flex-start;gap:18px;border-top:1px solid var(--bdH);padding-top:18px;max-width:100%}
+.trust-item{min-width:180px;text-align:left}
+.card{border-radius:24px;padding:24px;box-shadow:0 20px 45px rgba(0,0,0,.22)}
+.calc-intro{background:linear-gradient(130deg,var(--bgC) 0%,rgba(249,115,22,.12) 100%);border:1px solid var(--bdH);border-radius:16px;padding:14px 16px}
+.calc-intro-title{font-size:1rem;font-weight:700;line-height:1.4}
+.calc-intro-sub{font-size:.92rem;color:var(--t2);margin-top:4px}
+.ctrl-help{margin:0 0 14px;color:var(--t3);font-size:.84rem}
+.mon{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
+.burn{padding:28px 22px}
+.burn-lbl{font-size:.68rem;color:var(--t3)}
+.sc{background:rgba(16,25,40,.55)}
+[data-theme="light"] .sc{background:#f7f9fd}
+.cost{font-size:clamp(2.1rem,7.5vw,3.9rem)}
+.calc-summary{margin:14px 0 0;background:var(--cyD);color:var(--t2);border:1px solid var(--bdH);padding:10px 12px;border-radius:12px;font-size:.89rem}
+.pan-num[aria-invalid="true"]{border-color:var(--no)!important;outline:2px solid rgba(248,113,113,.18)}
+.support-sec{padding:14px 0 10px}
+.support-card{max-width:960px;margin:0 auto;background:var(--bgE);border:1px solid var(--bdH);border-radius:24px;padding:28px}
+.support-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.coffee-cup-wrap,#brew-picker{display:none}
+:focus-visible{outline:3px solid rgba(56,189,248,.6);outline-offset:2px;border-radius:8px}
+@media (max-width:980px){
+  .hero{text-align:center}
+  .hero-p,.hero-sub{margin-left:auto;margin-right:auto}
+  .hero-cta,.trust-bar{justify-content:center}
+  .trust-item{text-align:center;min-width:148px}
+  .mon,.cfg{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
 </style>
 </head>
 <body data-theme="dark">
@@ -951,14 +1000,7 @@ window.cwClose=function(){
   document.removeEventListener('keydown',cwEsc);
 };
 window.cwFollow=function(){try{localStorage.setItem(KEY,'1');}catch(e){}};
-window.cwShowOnce=function(){
-  if(seen)return;
-  var ov=document.getElementById('cwOverlay');if(!ov)return;
-  seen=true;
-  ov.style.display='flex';
-  requestAnimationFrame(function(){requestAnimationFrame(function(){ov.classList.add('show');});});
-  document.addEventListener('keydown',cwEsc);
-};
+window.cwShowOnce=function(){return;};
 function cwEsc(e){if(e.key==='Escape')cwClose();}
 }catch(e){console.warn('[MB] welcome banner skipped',e);}
 })();
@@ -1017,18 +1059,18 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
   <path d="M10 70 Q10 74 36 74 Q62 74 62 70" stroke="var(--bdH)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
 </svg>
 </div>
-<h1>Free Meeting Cost Calculator<br><span class="hl">See What Meetings Actually Cost</span></h1>
-<p class="hero-p">Add your team and watch the real cost of a meeting add up live, second by second. No signup required.</p>
-<p class="hero-sub">Calculate meeting cost per hour, per week, and per year based on attendee salaries, optional employer overhead, and recurring frequency.</p>
+<h1>Meeting Cost Calculator for Smarter Team Decisions<br><span class="hl">See the True Cost Before You Schedule</span></h1>
+<p class="hero-p">Understand meeting spend in seconds. Add attendees, salary ranges, and duration to get a clear, live cost estimate your team can act on.</p>
+<p class="hero-sub">Built for global teams: clear inputs, instant results, privacy-friendly calculations in your browser, and practical next steps to reduce waste.</p>
 <div class="hero-cta">
-<a href="#calculator" class="hb-p">Calculate my meeting cost &nbsp;&rarr;</a>
-<a href="#how" class="hb-s">How it works</a>
+<a href="#calculator" class="hb-p">Start calculating now &nbsp;&rarr;</a>
+<a href="#how" class="hb-s">See how it works</a>
 </div>
 <div class="trust-bar">
-<div class="trust-item"><a href="#research"><strong>11.3 hrs</strong>spent in meetings weekly</a></div>
-<div class="trust-item"><a href="#research"><strong>$29K</strong>meeting cost per employee/yr</a></div>
-<div class="trust-item"><a href="#research"><strong>71%</strong>of managers call them wasted</a></div>
-<div class="trust-item"><a href="#research"><strong>23 min</strong>to refocus afterward</a></div>
+<div class="trust-item"><a href="#research"><strong>11.3 hrs</strong>Average time in meetings weekly</a></div>
+<div class="trust-item"><a href="#research"><strong>$29K</strong>Estimated annual cost per employee</a></div>
+<div class="trust-item"><a href="#research"><strong>71%</strong>Managers report many meetings are unproductive</a></div>
+<div class="trust-item"><a href="#research"><strong>23 min</strong>Average refocus time after interruptions</a></div>
 </div>
 </header>
 
@@ -1046,14 +1088,19 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 </div>
 
 <!-- CALCULATOR -->
-<main class="w" id="calculator" role="main" aria-label="Meeting cost calculator">
+<main class="w" id="calculator" role="main" aria-label="Meeting cost calculator" tabindex="-1">
 
-<div style="margin-top:40px" class="ticker"><div class="msg" id="tickMsg">Move the sliders below to estimate what your meeting costs.</div></div>
+<div class="calc-intro" aria-live="polite">
+<p class="calc-intro-title">Calculate a meeting in under 20 seconds</p>
+<p class="calc-intro-sub">Pick currency and mode, adjust people and duration, then start the live timer to track cost in real time.</p>
+</div>
+<div style="margin-top:16px" class="ticker"><div class="msg" id="tickMsg">Move the controls below to estimate what your meeting costs.</div></div>
 
 <div class="row-ctrl">
-<div class="pg" role="tablist" aria-label="Currency"><button class="pb on" data-c="USD" onclick="setCur('USD','$')" aria-label="USD">USD $</button><button class="pb" data-c="INR" onclick="setCur('INR','&#8377;')" aria-label="INR">INR &#8377;</button><button class="pb" data-c="EUR" onclick="setCur('EUR','&#8364;')" aria-label="EUR">EUR &#8364;</button><button class="pb" data-c="GBP" onclick="setCur('GBP','&#163;')" aria-label="GBP">GBP &#163;</button></div>
-<div class="pg" role="tablist" aria-label="Mode"><button class="pb on" id="tLite" onclick="setMode('lite')">Quick Calc</button><button class="pb" id="tPro" onclick="setMode('pro')">By Role</button></div>
+<div class="pg" role="tablist" aria-label="Currency"><button class="pb on" data-c="USD" onclick="setCur('USD','$')" aria-label="US Dollar">USD $</button><button class="pb" data-c="INR" onclick="setCur('INR','&#8377;')" aria-label="Indian Rupee">INR &#8377;</button><button class="pb" data-c="EUR" onclick="setCur('EUR','&#8364;')" aria-label="Euro">EUR &#8364;</button><button class="pb" data-c="GBP" onclick="setCur('GBP','&#163;')" aria-label="British Pound">GBP &#163;</button></div>
+<div class="pg" role="tablist" aria-label="Calculator mode"><button class="pb on" id="tLite" onclick="setMode('lite')" aria-describedby="calcModeHelp">Quick calc</button><button class="pb" id="tPro" onclick="setMode('pro')" aria-describedby="calcModeHelp">By role</button></div>
 </div>
+<p class="ctrl-help" id="calcModeHelp">Quick calc uses average salary. By role lets you set salary bands by function.</p>
 <div class="presets-row" role="group" aria-label="Company profile presets">
 <span class="presets-lbl">Team profile:</span>
 <button class="preset-chip" id="presetStartup" onclick="applyPreset('startup')" type="button">🚀 Startup</button>
@@ -1083,8 +1130,8 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 
 <div class="mon">
 <div class="burn" id="burnP">
-<div class="burn-lbl" id="burnLbl">Estimated Meeting Cost</div>
-<div class="cost" id="costN" aria-live="polite">$0.00</div>
+<div class="burn-lbl" id="burnLbl">Estimated Meeting Cost (Live)</div>
+<div class="cost" id="costN" role="status" aria-live="polite" aria-atomic="true">$0.00</div>
 <div class="timer" id="timerN">00:00:00</div>
 </div>
 <div class="side">
@@ -1102,7 +1149,7 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="pan-h" style="margin-top:16px"><span class="pan-t">Avg Annual Salary</span><span class="pan-v" id="dS">$85,000</span></div>
 <input type="range" id="rS" min="25000" max="400000" step="5000" value="85000" oninput="recalc()" aria-label="Average annual salary">
 <div class="pan-extra">
-<div class="pan-num-row"><label for="optAttendeesN">Optional/external attendees <span title="People whose cost you want shown separately, e.g. clients or optional invitees" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="optAttendeesN" value="0" min="0" max="30" oninput="recalc()" aria-label="Number of optional or external attendees"></div>
+<div class="pan-num-row"><label for="optAttendeesN">Optional/external attendees <span title="People whose cost you want shown separately, e.g. clients or optional invitees" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="optAttendeesN" value="0" min="0" max="30" oninput="validateNum(this);recalc()" aria-label="Number of optional or external attendees"></div>
 <div class="pan-num-hint">These attendees are included in total cost but shown separately below.</div>
 </div>
 </div>
@@ -1127,11 +1174,11 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="pan-h" style="margin-top:16px"><span class="pan-t">How Often It Repeats</span><span class="pan-v" id="dFr">Weekly</span></div>
 <input type="range" id="rFr" min="0" max="4" value="1" oninput="recalc()" aria-label="Frequency">
 <div style="font-size:10px;color:var(--t4);margin-top:3px;font-family:var(--fM)">Daily &middot; Weekly &middot; Twice monthly &middot; Monthly &middot; Once</div>
-<div class="chk" style="margin-top:16px"><input type="checkbox" id="chkB" checked onchange="recalc()"><label for="chkB">Add 30% for benefits &amp; overhead (true cost to employer)</label></div>
+<div class="chk" style="margin-top:16px"><input type="checkbox" id="chkB" checked onchange="recalc()"><label for="chkB">Add 30% for benefits &amp; overhead (estimated employer cost)</label></div>
 <div class="chk"><input type="checkbox" id="chkF" checked onchange="recalc()"><label for="chkF">Add the cost of refocusing afterward (~23 min)</label></div>
 <div class="pan-extra">
-<div class="pan-num-row"><label for="prepTimeN">Prep time per person (min) <span title="Time attendees spend preparing before the meeting" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="prepTimeN" value="0" min="0" max="120" step="5" oninput="recalc()" aria-label="Preparation time per person in minutes"></div>
-<div class="pan-num-row" style="margin-top:8px"><label for="followTimeN">Follow-up time per person (min) <span title="Time spent on actions after the meeting, e.g. writing notes, emails" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="followTimeN" value="0" min="0" max="120" step="5" oninput="recalc()" aria-label="Follow-up time per person in minutes"></div>
+<div class="pan-num-row"><label for="prepTimeN">Prep time per person (min) <span title="Time attendees spend preparing before the meeting" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="prepTimeN" value="0" min="0" max="120" step="5" oninput="validateNum(this);recalc()" aria-label="Preparation time per person in minutes"></div>
+<div class="pan-num-row" style="margin-top:8px"><label for="followTimeN">Follow-up time per person (min) <span title="Time spent on actions after the meeting, e.g. writing notes, emails" style="cursor:help;color:var(--t4)">ⓘ</span></label><input class="pan-num" type="number" id="followTimeN" value="0" min="0" max="120" step="5" oninput="validateNum(this);recalc()" aria-label="Follow-up time per person in minutes"></div>
 <div class="pan-num-hint">Optional: adds real burden cost shown in breakdown below.</div>
 </div>
 </div>
@@ -1153,6 +1200,7 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 
 <div class="quiz-link"><a href="/should-this-meeting-be-an-email.html">Not sure this meeting needs to happen? Take the 30 second quiz &rarr;</a></div>
 
+<div class="calc-summary" id="calcSummary" aria-live="polite">Estimated per-session, monthly, and annual totals update instantly as you change inputs.</div>
 <div class="formula" id="fBar"><b>Your formula:</b> (<span class="val" id="fS">$85,000</span> &divide; 2,080 hrs) &times; <span class="val" id="fB">1.30</span> overhead &divide; 60 &times; <span class="val" id="fP">6</span> people &times; <span class="val" id="fDu">30</span> min = <b><span class="val" id="fT">$0.00</span></b> per session</div>
 
 <div class="proj">
@@ -1222,7 +1270,7 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <section class="w" id="brew-picker" aria-label="Coffee break mode">
 <div class="brew-wrap">
   <div class="brew-header">
-    <span class="brew-title">☕ Coffee Break Mode — What are you working on?</span>
+    <span class="brew-title">Break Mode — Pick your working style</span>
     <span class="brew-result" id="brewResult" aria-live="polite"></span>
   </div>
   <div class="brew-opts" role="group" aria-label="Pick a brew to match your task">
@@ -1249,6 +1297,18 @@ try{localStorage.setItem(themeKey,nextTheme)}catch(e){}
 <div class="email-link">Prefer to preview first? <a href="/downloads/meeting-audit-template.html">Open the free audit kit preview &rarr;</a></div>
 </div>
 <div class="e-ok" id="emailOk">&#x2714; You're in! Check your inbox to confirm.<br><a href="/downloads/meeting-audit-template.html">Open the Meeting Cost Audit Kit &rarr;</a></div>
+</section>
+
+<section class="support-sec" id="support" aria-labelledby="supportHeading">
+<div class="support-card">
+<div class="sec-ey">Support MeetingBurn</div>
+<h2 class="sec-h" id="supportHeading">If this tool helps your team, you can support future updates</h2>
+<p class="sec-sub">A donation option (for example, Buy Me a Coffee) will be added soon. For now, the best support is sharing this calculator with a teammate who schedules recurring meetings.</p>
+<div class="support-actions">
+<a class="hb-p" href="#calculator">Run another calculation</a>
+<a class="hb-s" href="#newsletter">Get updates</a>
+</div>
+</div>
 </section>
 
 <!-- HOW IT WORKS -->
@@ -1699,6 +1759,7 @@ initSl();applyStateFromUrl();handleEmbedMode();
 /* Restore saved preset chip highlight */
 try{var sp=localStorage.getItem('mb.preset');if(sp){document.querySelectorAll('.preset-chip').forEach(function(c){c.classList.remove('on');});var chip=document.getElementById('preset'+sp.charAt(0).toUpperCase()+sp.slice(1));if(chip)chip.classList.add('on');}}catch(e){}
 recalc();
+['optAttendeesN','prepTimeN','followTimeN'].forEach(function(id){var el=document.getElementById(id);if(el)validateNum(el);});
 });
 
 function initSl(){const c=C[S.cur],s=document.getElementById('rS');s.min=c.mn;s.max=c.mx;s.value=c.df;Object.keys(RM).forEach(function(r){const el=document.getElementById(RM[r].s);if(el){el.min=c.mn;el.max=c.mx;el.value=c[r]||c.df}})}
@@ -1707,6 +1768,16 @@ function syncCurrencyUI(){document.querySelectorAll('[data-c]').forEach(function
 function syncModeUI(){document.getElementById('tLite').classList.toggle('on',S.mode==='lite');document.getElementById('tPro').classList.toggle('on',S.mode==='pro');document.getElementById('liteUI').classList.toggle('hidden',S.mode==='pro');document.getElementById('proUI').classList.toggle('hidden',S.mode==='lite')}
 function clamp(n,min,max){return Math.max(min,Math.min(max,n))}
 function setInputValue(id,val,min,max){var el=document.getElementById(id);if(!el||Number.isNaN(val))return;el.value=clamp(val,min,max)}
+function validateNum(el){
+ if(!el)return;
+ var min=parseFloat(el.min),max=parseFloat(el.max),raw=parseFloat(el.value);
+ if(Number.isNaN(raw)){el.setAttribute('aria-invalid','true');return;}
+ var next=raw;
+ if(!Number.isNaN(min)&&raw<min)next=min;
+ if(!Number.isNaN(max)&&raw>max)next=max;
+ if(next!==raw)el.value=next;
+ el.setAttribute('aria-invalid','false');
+}
 function syncRoleCounts(){document.getElementById('cE').textContent=S.roles.eng;document.getElementById('cM').textContent=S.roles.mgr;document.getElementById('cD').textContent=S.roles.des;document.getElementById('cX').textContent=S.roles.exec;document.getElementById('cCust').textContent=S.roles.custom}
 function applyStateFromUrl(){
 const p=new URLSearchParams(location.search);if(!p.toString())return;
@@ -1769,7 +1840,7 @@ document.getElementById('focusV').textContent=sym+focusCost.toFixed(2);
 const sessCost=S.rps*dur*60,am=FA[fi],mo=(sessCost*am)/12,yr=sessCost*am;
 const co2=(ppl*(dur/60)*am*0.04).toFixed(1);
 if(!S.on&&S.sec===0){document.getElementById('pS').textContent=sym+sessCost.toFixed(2);document.getElementById('costN').textContent=sym+'0.00'}
-document.getElementById('pM').textContent=sym+fK(mo);document.getElementById('pY').textContent=sym+fK(yr);document.getElementById('pC').textContent=co2+' kg';
+document.getElementById('pM').textContent=sym+fK(mo);document.getElementById('pY').textContent=sym+fK(yr);document.getElementById('pC').textContent=co2+' kg';var cs=document.getElementById('calcSummary');if(cs){cs.textContent='Estimated session: ' + sym + sessCost.toFixed(2) + ' · Monthly: ' + sym + fK(mo) + ' · Annual: ' + sym + fK(yr) + '';}
 document.getElementById('fS').textContent=sym+avgSal.toLocaleString();document.getElementById('fB').textContent=ben.toFixed(2);document.getElementById('fP').textContent=ppl;document.getElementById('fDu').textContent=dur;document.getElementById('fT').textContent=sym+sessCost.toFixed(2);
 const save20=sessCost*0.2*am;
 const rps2=ppl>2?S.rps*((ppl-2)/ppl):0;
